@@ -2,6 +2,8 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Link from 'next/link'
 
+
+import Logo from '@/components/LogoAnimation/Logo'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -32,7 +34,8 @@ export default function RootLayout({ children }) {
                   {navlinks}
                 </ul>
               </div>
-              <a className="btn btn-ghost text-xl">Logo</a>
+              {/* logo */}
+              <h1 className='text-xl md:text-2xl'></h1>
             </div>
             <div className="navbar-center hidden lg:flex">
               <ul className="menu menu-horizontal px-1 ">
@@ -47,7 +50,7 @@ export default function RootLayout({ children }) {
 
         {/* navbar ended */}
 
-        
+
         {children}
       </body>
     </html>
