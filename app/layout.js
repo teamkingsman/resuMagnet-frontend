@@ -43,7 +43,7 @@ export default function RootLayout({ children }) {
               </ul>
             </div>
             <div className="navbar-end">
-              <a className="btn px-5 rounded-3xl bg-main hover:text-highlight_color">Login</a>
+              <a className="btn rounded-full btn-sm md:btn-md shadow-lg  hover:shadow-xl bg-sub_color text-neutral-50 hover:bg-highlight_color hover:text-main  font-semibold">Login</a>
             </div>
           </div>
         </div>
@@ -54,29 +54,29 @@ export default function RootLayout({ children }) {
         {children}
 
         {/* footer section */}
-        <footer className="footer p-10 bg-[#FFFFFF] text-base-content border-t-4 border-double border-main">
+        <footer className="footer p-10 bg-[#FFFFFF] text-base-content border-t-4 border-double border-highlight_color">
           <nav>
-            <header className="footer-title text-main ">Services</header>
+            <header className="footer-title text-highlight_color ">Services</header>
             <a className="link link-hover text-main">CV Making</a>
             <a className="link link-hover text-main">Resume Making</a>
             <a className="link link-hover text-main">Image Croping</a>
             <a className="link link-hover text-main">Jod Searching</a>
           </nav>
           <nav>
-            <header className="footer-title text-main">Company</header>
+            <header className="footer-title text-highlight_color">Company</header>
             <a className="link link-hover text-main">About us</a>
             <a className="link link-hover text-main">Contact</a>
             <a className="link link-hover text-main">Jobs</a>
             <a className="link link-hover text-main">Press kit</a>
           </nav>
           <nav>
-            <header className="footer-title text-main">Legal</header>
+            <header className="footer-title text-highlight_color">Legal</header>
             <a className="link link-hover text-main">Terms of use</a>
             <a className="link link-hover text-main">Privacy policy</a>
             <a className="link link-hover text-main">Cookie policy</a>
           </nav>
           <form>
-            <header className="footer-title text-main">Newsletter</header>
+            <header className="footer-title text-highlight_color">Newsletter</header>
             <fieldset className="form-control w-80">
               <label className="label">
                 <span className="label-text text-main">Enter your email address</span>
