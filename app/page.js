@@ -1,4 +1,5 @@
-import Review from '@/components/Home/Review/Review'
+
+import Reviews from '@/components/Home/Review/Reviews'
 import Image from 'next/image'
 
 
@@ -6,7 +7,7 @@ import Image from 'next/image'
 export default function Home() {
   return (
     <>
-    <Review></Review>
+    <Reviews></Reviews>
    
   
    
