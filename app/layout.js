@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
   </>
 
   return (
-    <html >
+    <html data-theme="light" lang="en">
       <body className={inter.className}>
         {/* navbar code.  It will be available on the whole website */}
         <div className=" bg-[#FFFFFF]">
