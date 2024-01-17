@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <p>git test</p>
+        <p>git test 1</p>
         {children}
         </body>
     </html>
