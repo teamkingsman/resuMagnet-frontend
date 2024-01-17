@@ -1,16 +1,17 @@
+import Banner from '@/components/Home/Banner/Banner'
+import Template from '@/components/Home/Template/Template'
+
 import Image from 'next/image'
 
 
 export default function Home() {
   return (
     <>
-   
-  
-   
 
-    <h1 className='text-red-700'>heera</h1>
+    <Banner/>
+    <Template></Template>
 
-    
     </>
+    
   )
 }
