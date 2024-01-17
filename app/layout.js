@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
         <div>
           {/* logo */}
           <div>
-            <h1 className='text-main'>Logo</h1>
+            <h1 className='text-main'>Logo 1</h1>
           </div>
           {/* navlinks */}
           <div>
