@@ -15,7 +15,7 @@ const Banner = () => {
           prospects and showcase your unique strengths.
         </p>
         <Link href="/login">
-        <button className="btn rounded-full btn-xs sm:btn-sm md:btn-md lg:btn-lg bg-main">Get Started - it&apos;s free</button>
+        <button className="btn rounded-full btn-xs sm:btn-sm md:btn-md lg:btn-lg shadow-highlight_color shadow-lg hover:shadow-sub_color hover:shadow-xl bg-sub_color text-neutral-50 hover:bg-highlight_color hover:text-main  font-semibold">Get Started - it&apos;s free</button>
         </Link>
       </div>
       <div>
