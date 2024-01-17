@@ -10,6 +10,7 @@ module.exports = {
       'main': '#200E32',
       'sub_color': '#6C9ADF',
       'highlight_color': '#FD5873',
+      
     },
     extend: {
       backgroundImage: {
@@ -19,5 +20,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 }

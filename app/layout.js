@@ -12,9 +12,19 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <p>git test 1</p>
+        {/* navbar code.  It will be available on the whole website */}
+        <div>
+          {/* logo */}
+          <div>
+            <h1 className='text-main'>Logo</h1>
+          </div>
+          {/* navlinks */}
+          <div>
+              <h1>links</h1>
+          </div>
+        </div>
         {children}
-        </body>
+      </body>
     </html>
   )
 }
