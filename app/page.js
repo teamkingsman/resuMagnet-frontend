@@ -1,10 +1,10 @@
-import Image from 'next/image'
+import FeatureSection from "@/components/Home/Feature/FeatureSection";
 
 export default function Home() {
   return (
-    <div>Home
-      <p className='text-4xl'>home</p>
-    </div>
-    
+    <>
+   <FeatureSection/>
+    </>
+  
   )
 }
