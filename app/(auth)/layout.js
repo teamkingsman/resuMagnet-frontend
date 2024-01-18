@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 //   title: "Sing in",
 //   description: "This is a Sign In page",
 // };
-function SignInLayout({ children }) {
+function AuthLayout({ children }) {
   return (
     <html lang="en">
       <body>{children}</body>
@@ -11,4 +11,4 @@ function SignInLayout({ children }) {
   );
 }
 
-export default dynamic(() => Promise.resolve(SignInLayout), { ssr: false });
+export default dynamic (() => Promise.resolve(AuthLayout), {ssr: false});
