@@ -6,7 +6,7 @@ import Template from '@/components/Home/Template/Template'
 export default function Home() {
   return (
   
-
+<>
     <Banner/>
     <Template></Template>
  <FeatureSection/>
