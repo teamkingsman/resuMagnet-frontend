@@ -1,5 +1,8 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
+import Navbar from '@/components/Shared/Navbar'
+import Footer from '@/components/Shared/Footer'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -9,21 +12,15 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+ 
+
   return (
     <html data-theme="light" lang="en">
       <body className={inter.className}>
-        {/* navbar code.  It will be available on the whole website */}
-        <div>
-          {/* logo */}
-          <div>
-            <h1 className='text-main'>Logo</h1>
-          </div>
-          {/* navlinks */}
-          <div>
-              <h1>links</h1>
-          </div>
-        </div>
+        
+        <Navbar></Navbar>
         {children}
+        <Footer></Footer>
       </body>
     </html>
   )
