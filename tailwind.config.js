@@ -13,6 +13,7 @@ module.exports = {
       'main': '#200E32',
       'sub_color': '#6C9ADF',
       'highlight_color': '#FD5873',
+      'whitecolor': '#FFFFFF',
       
     },
     extend: {
@@ -24,4 +25,7 @@ module.exports = {
     },
   },
   plugins: [require("daisyui")],
+  daisyui: {
+    themes: ["light"],
+  },
 }
