@@ -16,6 +16,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html data-theme="light" lang="en">
+      <link rel="icon" href="/favicon.ico" sizes="any" />
       <body className={inter.className}>
         
         <Navbar></Navbar>

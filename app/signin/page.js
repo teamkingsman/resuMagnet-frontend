@@ -2,6 +2,12 @@ import SocialSignIn from "@/components/SocialSignIn/SocialSignIn";
 import AuthLottie from "@/components/AuthLottie";
 import Link from "next/link";
 import { MdOutlineLock, MdOutlineMail } from "react-icons/md";
+
+export const metadata = {
+  title: "Sing in",
+  description: "This is a Sign In page",
+};
+
 const SignIn = () => {
 
   return (

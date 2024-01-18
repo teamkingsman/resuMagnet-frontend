@@ -9,7 +9,10 @@ import {
   MdOutlinePhoto,
 } from "react-icons/md";
 
-
+export const metadata = {
+  title: "Sing Up",
+  description: "This is a Sign up page",
+};
 
 const Signup = () => {
 
