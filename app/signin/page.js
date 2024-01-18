@@ -1,8 +1,8 @@
 import SocialSignIn from "@/components/SocialSignIn/SocialSignIn";
-import AuthLottie from "@/components/authlottie";
+import AuthLottie from "@/components/AuthLottie";
 import Link from "next/link";
 import { MdOutlineLock, MdOutlineMail } from "react-icons/md";
-function signin() {
+const SignIn = () => {
 
   return (
     <div className="bg-main md:p-24 ">
@@ -78,4 +78,4 @@ function signin() {
   );
 }
 
-export default signin;
+export default SignIn;

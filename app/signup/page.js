@@ -1,5 +1,5 @@
 import SocialSignIn from "@/components/SocialSignIn/SocialSignIn";
-import AuthLottie from "@/components/authlottie";
+import AuthLottie from "@/components/AuthLottie";
 import Link from "next/link";
 import React from "react";
 import {
@@ -11,7 +11,7 @@ import {
 
 
 
-function signup() {
+const Signup = () => {
 
   return (
     <div className="bg-main md:p-24">
@@ -121,4 +121,4 @@ function signup() {
   );
 }
 
-export default signup;
+export default Signup;
