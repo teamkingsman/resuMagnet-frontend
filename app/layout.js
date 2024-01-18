@@ -1,9 +1,9 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Link from 'next/link'
+import Navbar from '@/components/Shared/Navbar'
+import Footer from '@/components/Shared/Footer'
 
 
-import Logo from '@/components/LogoAnimation/Logo'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -12,82 +12,15 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
-  // links of the navbar
-  const navlinks = <>
-    <li><Link href="/" className='text-main font-bold hover:text-highlight_color'>Home</Link></li>
-    <li><Link href="/" className='text-main font-bold hover:text-highlight_color'>About Us</Link></li>
-    <li><Link href="/" className='text-main font-bold hover:text-highlight_color'>Contact</Link></li>
-  </>
+ 
 
   return (
     <html data-theme="light" lang="en">
       <body className={inter.className}>
-        {/* navbar code.  It will be available on the whole website */}
-        <div className=" bg-[#FFFFFF]">
-          <div className="navbar max-w-[2520px] mx-auto px-5">
-            <div className="navbar-start">
-              <div className="dropdown">
-                <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-                </div>
-                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                  {navlinks}
-                </ul>
-              </div>
-              {/* logo */}
-              <h1 className='text-xl md:text-2xl'></h1>
-            </div>
-            <div className="navbar-center hidden lg:flex">
-              <ul className="menu menu-horizontal px-1 ">
-                {navlinks}
-              </ul>
-            </div>
-            <div className="navbar-end">
-              <a className="btn rounded-full btn-sm md:btn-md shadow-lg  hover:shadow-xl bg-sub_color text-neutral-50 hover:bg-highlight_color hover:text-main  font-semibold">Login</a>
-            </div>
-          </div>
-        </div>
-
-        {/* navbar ended */}
-
-
+        
+        <Navbar></Navbar>
         {children}
-
-        {/* footer section */}
-        <footer className="footer p-10 bg-[#FFFFFF] text-base-content border-t-4 border-double border-highlight_color">
-          <nav>
-            <header className="footer-title text-highlight_color ">Services</header>
-            <a className="link link-hover text-main">CV Making</a>
-            <a className="link link-hover text-main">Resume Making</a>
-            <a className="link link-hover text-main">Image Croping</a>
-            <a className="link link-hover text-main">Jod Searching</a>
-          </nav>
-          <nav>
-            <header className="footer-title text-highlight_color">Company</header>
-            <a className="link link-hover text-main">About us</a>
-            <a className="link link-hover text-main">Contact</a>
-            <a className="link link-hover text-main">Jobs</a>
-            <a className="link link-hover text-main">Press kit</a>
-          </nav>
-          <nav>
-            <header className="footer-title text-highlight_color">Legal</header>
-            <a className="link link-hover text-main">Terms of use</a>
-            <a className="link link-hover text-main">Privacy policy</a>
-            <a className="link link-hover text-main">Cookie policy</a>
-          </nav>
-          <form>
-            <header className="footer-title text-highlight_color">Newsletter</header>
-            <fieldset className="form-control w-80">
-              <label className="label">
-                <span className="label-text text-main">Enter your email address</span>
-              </label>
-              <div className="join">
-                <input type="text" placeholder="username@site.com" className="input input-bordered bg-[#FFFFFF] border-2 border-main join-item" />
-                <button className="btn bg-main text-[#FFFFFF] join-item hover:text-highlight_color">Subscribe</button>
-              </div>
-            </fieldset>
-          </form>
-        </footer>
+        <Footer></Footer>
       </body>
     </html>
   )
