@@ -1,6 +1,7 @@
 'use client'
 
 import Link from "next/link";
+import Logo from "../LogoAnimation/Logo";
 
 const Navbar = () => {
     // links of the navbar
@@ -10,19 +11,19 @@ const Navbar = () => {
         <li><Link href="/" className='text-main font-bold hover:text-highlight_color'>Contact</Link></li>
     </>
     return (
-        <div className=" bg-[#FFFFFF]">
+        <div className=" bg-whitecolor">
             <div className="navbar max-w-[2520px] mx-auto px-5">
                 <div className="navbar-start">
                     <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                        <div tabIndex={0} role="button" className="btn btn-ghost text-sub_color lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </div>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-whitecolor rounded-box w-52">
                             {navlinks}
                         </ul>
                     </div>
                     {/* logo */}
-                    <h1 className='text-xl md:text-2xl'></h1>
+                    <h1 className='text-xl'><Logo></Logo></h1>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 ">
