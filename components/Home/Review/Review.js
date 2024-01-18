@@ -18,13 +18,13 @@ const Review = ({item}) => {
         return stars;
     };
     return (
-        <div className="text-center  px-2 py-10 border-t-2 border-r-2 rounded-tr-xl">
+        <div className="text-center  px-6 py-10 border-t-2 border-r-2 rounded-tr-xl pb-10">
         
         
         <p className="font-bold text-main text-xl">{comment}</p>
         <h1 className="text-2xl font-bold text-main mt-10">{name}</h1>
         <h3 className="text-xl mb-4 font-bold italic text-neutral-700">{designation}</h3>
-        <div className="flex items-center justify-center mt-2 text-[#FFBF00] text-2xl">
+        <div className="flex items-center justify-center mt-2 text-[#FFBF00] text-2xl ">
             {renderStars()}
         </div>
     </div>
