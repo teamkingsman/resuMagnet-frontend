@@ -1,4 +1,4 @@
-# Project Name - Next.js Application
+# ResuMagnet - Next.js Application
 
 ## Introduction
 
@@ -17,8 +17,8 @@ Make sure you have the following installed on your machine:
 1. **Clone the repository:**
 
     ```bash
-    git clone <repository_url>
-    cd project-folder
+    git clone https://github.com/teamkingsman/resuMagnet-frontend.git
+    cd resuMagnet-frontend
     ```
 
 2. **Install dependencies:**
@@ -59,3 +59,4 @@ Before starting your work, ensure your local `dev` branch is up-to-date:
 ```bash
 git checkout dev
 git pull origin dev
+```
