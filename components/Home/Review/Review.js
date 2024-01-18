@@ -4,8 +4,10 @@ import { FaStar } from "react-icons/fa";
 
 
 
+
+
 const Review = ({item}) => {
-    const {id,name,designation,comment,rating} = item;
+    const {name,designation,comment,rating} = item;
 
     const renderStars = () => {
         const stars = [];
@@ -16,11 +18,13 @@ const Review = ({item}) => {
         return stars;
     };
     return (
-        <div className="text-center bg-sub_color px-20 py-10">
-        <h1 className="text-4xl font-bold text-main mb-2">{name}</h1>
-        <h3 className="text-2xl mb-4 font-bold italic text-neutral-700">{designation}</h3>
+        <div className="text-center  px-2 py-10 border-t-2 border-r-2 rounded-tr-xl">
+        
+        
         <p className="font-bold text-main text-xl">{comment}</p>
-        <div className="flex items-center justify-center mt-2 text-highlight_color text-2xl">
+        <h1 className="text-2xl font-bold text-main mt-10">{name}</h1>
+        <h3 className="text-xl mb-4 font-bold italic text-neutral-700">{designation}</h3>
+        <div className="flex items-center justify-center mt-2 text-[#FFBF00] text-2xl">
             {renderStars()}
         </div>
     </div>
