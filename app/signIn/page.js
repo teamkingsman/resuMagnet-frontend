@@ -12,7 +12,7 @@ function page() {
       <div className="card shrink-0 w-full max-w-sm ">
         <div className="text-center px-8 space-y-2"> 
           <p className="text-5xl text-main">Welcome</p>
-          <p className="text-sm text-sub_color">
+          <p className="text-sm text-main">
            Sign in to get started and
             explore all the amazing features our platform has to offer.
           </p>
