@@ -9,7 +9,10 @@ import {
   MdOutlinePhoto,
 } from "react-icons/md";
 
-
+export const metadata = {
+  title: "Sing Up",
+  description: "This is a Sign up page",
+};
 
 const Signup = () => {
 
@@ -32,7 +35,7 @@ const Signup = () => {
             <div className="form-control">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
-                  <MdOutlineDriveFileRenameOutline></MdOutlineDriveFileRenameOutline>{" "}
+                  <MdOutlineDriveFileRenameOutline></MdOutlineDriveFileRenameOutline>
                   Your Name
                 </span>
               </label>
@@ -109,7 +112,7 @@ const Signup = () => {
           <SocialSignIn></SocialSignIn>
           <p className="text-center font-semibold py-4">
             <small className="text-main">
-              Already have an account? Please{" "}
+              Already have an account? Please
             </small>
             <Link href="/signin" className="hover:underline hover:font-bold ">
               Sign In.
