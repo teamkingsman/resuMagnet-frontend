@@ -20,6 +20,8 @@ const Reviews = () => {
     transition: 'margin-left 0.5s ease', // Add a smooth transition effect
   };
 
+  
+
   return (
     <div className='bg-neutral-100 my-20 pt-10'>
       <div className='flex md:justify-between items-center'>
@@ -40,8 +42,8 @@ const Reviews = () => {
       </div>
 
       <div className="carousel carousel-end rounded-box" style={carouselStyle}>
-        <div className="carousel-item">
-          <div className="w-5/12 pl-10 lg:pl-20 grid grid-cols-10 lg:grid-cols-10 md:gap-10 lg:gap-10 mb-20 lg:items-center">
+        <div className="carousel-item  pl-10  lg:pl-0">
+          <div className="w-4/12 md:w-1/2 lg:w-5/12  lg:pl-20 grid grid-cols-10 lg:grid-cols-10 md:gap-10 lg:gap-10 mb-20 lg:items-center">
             {reviewsData.map((item, index) => (
               <Review key={item.id} item={item} />
             ))}
