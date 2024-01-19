@@ -22,14 +22,14 @@ const Reviews = () => {
 
   return (
     <div className=''>
-      <div className='flex justify-between items-center'>
-        <div className='my-8 pl-20'>
+      <div className='flex md:justify-between items-center'>
+        <div className='my-8 pl-10 md:pl-20'>
           <p className='text-6xl text-main'>Loved &</p>
           <p className='text-6xl font-bold text-main '> Trusted </p>
           <p><span className='text-6xl text-neutral-600'>by...</span></p>
         </div>
 
-        <div className='flex pr-20'>
+        <div className='lg:flex md:pr-20'>
           <div className='text-4xl mb-4 pl-20' onClick={handlePrevClick} style={{ cursor: 'pointer' }}>
             <FaArrowLeft />
           </div>
@@ -41,7 +41,7 @@ const Reviews = () => {
 
       <div className="carousel carousel-end rounded-box" style={carouselStyle}>
         <div className="carousel-item">
-          <div className="w-5/12 pl-20 grid md:grid-cols-2 lg:grid-cols-10 gap-10 mb-20 items-center">
+          <div className="w-5/12 pl-10 lg:pl-20 grid grid-cols-10 lg:grid-cols-10 md:gap-10 lg:gap-10 mb-20 lg:items-center">
             {reviewsData.map((item, index) => (
               <Review key={item.id} item={item} />
             ))}
