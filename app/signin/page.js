@@ -1,7 +1,8 @@
 import SocialSignIn from "@/components/SocialSignIn/SocialSignIn";
-import AuthLottie from "@/components/authlottie";
+import AuthLottie from "@/components/AuthLottie";
 import Link from "next/link";
 import { MdOutlineLock, MdOutlineMail } from "react-icons/md";
+import Logo from "@/components/LogoAnimation/Logo";
 function signin() {
 
   return (
@@ -19,6 +20,7 @@ function signin() {
         </div>
         <div className="card shrink-0 w-full max-w-sm ">
           <form className="card-body">
+            <Logo></Logo>
             <p className="text-3xl font-bold text-main">Sign In</p>
             <div className="form-control">
               <label className="label">
