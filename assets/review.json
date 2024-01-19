@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "name": "John Doe",
+        "designation": "Senior Software Engineer",
+        "comment": "Creating my CV with your website was a breeze. The templates are professional, and the whole process was quick. Highly recommended!",
+        "rating": 5
+      },
+      {
+        "id": 2,
+        "name": "Jane Smith",
+        "designation": "Marketing Specialist",
+        "comment": "Your website made it so easy to tailor my resume for different job applications. The result was a polished CV that helped me stand out.",
+        "rating": 4.5
+      },
+      {
+        "id": 3,
+        "name": "Alex Johnson",
+        "designation": "Graphic Designer",
+        "comment": "The design options are fantastic! I could customize my CV to match my personal style. Great user experience overall.",
+        "rating": 4
+      },
+      {
+        "id": 4,
+        "name": "Emily White",
+        "designation": "Human Resources Manager",
+        "comment": "I appreciate the resume writing tips provided on your website. It helped me highlight my strengths and present a compelling CV.",
+        "rating": 4.5
+      },
+      {
+        "id": 5,
+        "name": "David Brown",
+        "designation": "Project Manager",
+        "comment": "Your cover letter builder saved me a lot of time. The suggested content and formatting were spot on. Very satisfied with the results.",
+        "rating": 3
+      },
+      {
+        "id": 6,
+        "name": "Sophia Lee",
+        "designation": "Financial Analyst",
+        "comment": "I needed a resume for a career change, and your website guided me through the process seamlessly. Impressed with the variety of templates.",
+        "rating": 4
+      },
+      {
+        "id": 7,
+        "name": "Michael Carter",
+        "designation": "Medical Doctor",
+        "comment": "As a busy professional, I appreciated the simplicity of creating a CV on your platform. The end result exceeded my expectations.",
+        "rating": 4.5
+      },
+      {
+        "id": 8,
+        "name": "Olivia Taylor",
+        "designation": "Content Writer",
+        "comment": "Your website's resume tips section is a goldmine for job seekers. It helped me craft a compelling CV that landed me interviews.",
+        "rating": 5
+      },
+      {
+        "id": 9,
+        "name": "Daniel Rodriguez",
+        "designation": "Civil Engineer",
+        "comment": "The ability to export my CV in different formats was a game-changer. Your website streamlined the entire resume creation process.",
+        "rating": 4
+      },
+      {
+        "id": 10,
+        "name": "Ava Martinez",
+        "designation": "Social Media Manager",
+        "comment": "Your website's interface is user-friendly, and the templates are modern. It made the daunting task of creating a CV enjoyable.",
+        "rating": 4.5
+      }
+]
