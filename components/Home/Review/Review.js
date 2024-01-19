@@ -18,7 +18,7 @@ const Review = ({item}) => {
         return stars;
     };
     return (
-        <div className="text-center w-8/12 md:w-full md:px-6 py-10 border-t-2 border-r-2 rounded-tr-xl pb-10">
+        <div className="text-center w-8/12 md:w-full  md:px-6 py-10 border-t-2 border-r-2 rounded-tr-xl pb-10">
         
         
         <p className="font-bold text-main text-xl ">{comment}</p>
