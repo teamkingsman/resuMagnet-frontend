@@ -21,7 +21,7 @@ const Reviews = () => {
   };
 
   return (
-    <div className=''>
+    <div className='bg-neutral-100 my-20 pt-10'>
       <div className='flex md:justify-between items-center'>
         <div className='my-8 pl-10 md:pl-20'>
           <p className='text-6xl text-main'>Loved &</p>
