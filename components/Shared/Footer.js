@@ -7,8 +7,8 @@ const Footer = () => {
                 <header className="footer-title text-highlight_color ">Services</header>
                 <a className="link link-hover text-main">CV Making</a>
                 <a className="link link-hover text-main">Resume Making</a>
-                <a className="link link-hover text-main">Image Croping</a>
-                <a className="link link-hover text-main">Jod Searching</a>
+                <a className="link link-hover text-main">Cover Letter Builder</a>
+                <a className="link link-hover text-main">Jod Search</a>
             </nav>
             <nav>
                 <header className="footer-title text-highlight_color">Company</header>
@@ -25,12 +25,12 @@ const Footer = () => {
             </nav>
             <form>
                 <header className="footer-title text-highlight_color">Newsletter</header>
-                <fieldset className="form-control w-80">
+                <fieldset className="form-control w-full ">
                     <label className="label">
                         <span className="label-text text-main">Enter your email address</span>
                     </label>
                     <div className="join">
-                        <input type="text" placeholder="username@site.com" className="input input-bordered bg-[#FFFFFF] border-2 border-main join-item" />
+                        <input type="text" placeholder="username@site.com" className="input input-bordered bg-[#FFFFFF] border-2 border-main join-item  w-full" />
                         <button className="btn bg-main text-[#FFFFFF] join-item hover:text-highlight_color">Subscribe</button>
                     </div>
                 </fieldset>
