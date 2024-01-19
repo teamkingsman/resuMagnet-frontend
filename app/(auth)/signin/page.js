@@ -72,12 +72,12 @@ const SignIn = () => {
             </div>
           </form>
           <SocialSignIn></SocialSignIn>
-          <p className="text-center font-semibold py-4">
-            <small className="text-main">New Here? Please </small>
-            <Link href="/signup" className="hover:underline hover:font-bold ">
+          <div className="text-center font-semibold py-4">
+            <small className="text-main">New Here? Please <Link href="/signup" className="hover:underline hover:font-bold ">
               Sign Up.
-            </Link>
-          </p>
+            </Link></small>
+            
+          </div>
         </div>
       </div>
     </div>
