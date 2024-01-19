@@ -110,14 +110,15 @@ const Signup = () => {
             </div>
           </form>
           <SocialSignIn></SocialSignIn>
-          <p className="text-center font-semibold py-4">
+          <div className="text-center font-semibold py-4">
             <small className="text-main">
-              Already have an account? Please
-            </small>
-            <Link href="/signin" className="hover:underline hover:font-bold ">
+              Already have an account? Please 
+              <Link href="/signin" className="hover:underline hover:font-bold ">
               Sign In.
             </Link>
-          </p>
+            </small>
+            
+          </div>
         </div>
       </div>
     </div>
