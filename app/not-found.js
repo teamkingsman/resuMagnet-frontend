@@ -1,14 +1,12 @@
-import Link from 'next/link'
+import NotFoundPage from "@/components/NotFoundPage/NotFoundPage"
 
 const NotFound = async () => {
-   
-    return (
-        <div>
-        <h2>Not Found</h2>
-        <p>Could not find requested resource</p>
-        <Link href="/">Return Home</Link>
-      </div>
-    )
+
+  return (
+    <div className="max-w-6xl mx-auto px-4 mt-3">
+      <NotFoundPage></NotFoundPage>
+    </div >
+  )
 }
 
 export default NotFound
