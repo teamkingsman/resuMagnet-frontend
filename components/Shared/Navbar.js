@@ -1,9 +1,22 @@
 'use client'
+import { usePathname } from 'next/navigation'
 
 import Link from "next/link";
 import Logo from "../LogoAnimation/Logo";
+import { useEffect } from 'react';
 
 const Navbar = () => {
+    const pathname = usePathname()
+    console.log(pathname)
+    const doNotShowNav = ["/signin", "/signup"]
+    if (doNotShowNav.includes(pathname)) {
+        console.log("first")
+        return null;
+    }
+//     useEffect(()=>{
+    
+//    },[pathname])
+
     // links of the navbar
     const navlinks = <>
         <li><Link href="/" className='text-main font-bold hover:text-highlight_color'>Home</Link></li>
@@ -11,6 +24,7 @@ const Navbar = () => {
         <li><Link href="/" className='text-main font-bold hover:text-highlight_color'>Contact</Link></li>
     </>
     return (
+
         <div className=" bg-whitecolor">
             <div className="navbar max-w-[2520px] mx-auto px-5">
                 <div className="navbar-start">
