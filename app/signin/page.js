@@ -3,9 +3,12 @@ import AuthLottie from "@/components/AuthLottie";
 import Link from "next/link";
 import { MdOutlineLock, MdOutlineMail } from "react-icons/md";
 import Logo from "@/components/LogoAnimation/Logo";
-function signin() {
+import { useContext, useState } from "react";
+import { AuthContext } from "@/Providers/AuthProvider";
 
-  return (
+function signin() {
+  
+return (
     <div className="bg-main md:p-24 ">
       <div className="bg-neutral-50 hero-content flex-col lg:flex-row-reverse min-h-screen rounded-3xl mx-auto">
         <div className="hidden md:flex flex-col card shrink-0 w-full px-8 max-w-sm space-y-4">
