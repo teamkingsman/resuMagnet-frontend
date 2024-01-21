@@ -6,7 +6,6 @@ const Footer = () => {
     console.log(pathname)
     const doNotShowNav = ["/signin", "/signup"]
     if (doNotShowNav.includes(pathname)) {
-        console.log("first")
         return null;
     }
   
