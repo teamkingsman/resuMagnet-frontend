@@ -1,5 +1,6 @@
 'use client'
 import { AuthContext } from '@/Providers/AuthProvider';
+import { useRouter } from 'next/navigation';
 import React, { useContext, useState } from 'react'
 import { MdOutlineLock, MdOutlineMail } from 'react-icons/md';
 
@@ -7,7 +8,8 @@ function SignInForm () {
     const [signInError, setSignInError] = useState("");
   const [success, setSuccess] = useState("");
   const {signInUser} = useContext(AuthContext);
-
+  const router = useRouter();
+console.log(router)
   const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;

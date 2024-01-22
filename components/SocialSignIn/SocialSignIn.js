@@ -2,16 +2,17 @@
 import { AuthContext } from "@/Providers/AuthProvider";
 import { useContext } from "react";
 import { FaFacebookSquare, FaGoogle } from "react-icons/fa";
+import { useRouter } from 'next/navigation'
 
 
 function SocialSignIn() {
   const { googleSignIn } = useContext(AuthContext);
-
+  const router = useRouter();
   const handleGoogleSignIn = () => {
     googleSignIn()
         .then(result => {
             console.log(result.user);
-            navigate("/");
+            router.push('/')
         })
         .catch(error => {
             console.error(error);
