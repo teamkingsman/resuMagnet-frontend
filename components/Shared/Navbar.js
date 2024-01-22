@@ -1,16 +1,23 @@
 'use client'
+import { usePathname } from 'next/navigation'
 
 import Link from "next/link";
 import Logo from "../LogoAnimation/Logo";
 
+
 const Navbar = () => {
-    // links of the navbar
+    const pathname = usePathname()
+    const doNotShowNav = ["/signin", "/signup"]
+    if (doNotShowNav.includes(pathname)) {
+     return null;
+    }
     const navlinks = <>
         <li><Link href="/" className='text-main font-bold hover:text-highlight_color'>Home</Link></li>
         <li><Link href="/" className='text-main font-bold hover:text-highlight_color'>About Us</Link></li>
         <li><Link href="/" className='text-main font-bold hover:text-highlight_color'>Contact</Link></li>
     </>
     return (
+
         <div className=" bg-whitecolor">
             <div className="navbar max-w-[2520px] mx-auto px-5">
                 <div className="navbar-start">

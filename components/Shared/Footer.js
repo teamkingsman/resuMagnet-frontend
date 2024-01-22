@@ -1,6 +1,13 @@
 'use client'
+import { usePathname } from 'next/navigation'
 
 const Footer = () => {
+    const pathname = usePathname()
+    const doNotShowNav = ["/signin", "/signup"]
+    if (doNotShowNav.includes(pathname)) {
+        return null;
+    }
+  
     return (
         <div>
             <footer className="footer p-10 bg-[#FFFFFF] text-base-content border-t-4 border-double border-highlight_color">

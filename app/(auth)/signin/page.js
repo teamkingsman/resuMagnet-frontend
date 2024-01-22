@@ -1,15 +1,14 @@
 import SocialSignIn from "@/components/SocialSignIn/SocialSignIn";
 import AuthLottie from "@/components/AuthLottie";
 import Link from "next/link";
-import { MdOutlineLock, MdOutlineMail } from "react-icons/md";
+import SignInForm from "@/components/Auth/SignInForm";
 
 export const metadata = {
-  title: "Sing in",
+  title: "Sign in",
   description: "This is a Sign In page",
 };
 
-const SignIn = () => {
-
+const Signin = () => {
   return (
     <div className="bg-main md:p-24 ">
       <div className="bg-neutral-50 hero-content flex-col lg:flex-row-reverse min-h-screen rounded-3xl mx-auto">
@@ -21,67 +20,23 @@ const SignIn = () => {
               platform has to offer.
             </p>
           </div>
-        <AuthLottie></AuthLottie>
+          <AuthLottie></AuthLottie>
         </div>
         <div className="card shrink-0 w-full max-w-sm ">
-          <form className="card-body">
-            <p className="text-3xl font-bold text-main">Sign In</p>
-            <div className="form-control">
-              <label className="label">
-                <span className="flex items-center gap-2 label-text font-semibold text-main">
-                  <MdOutlineMail></MdOutlineMail> Email
-                </span>
-              </label>
-              <input
-                type="email"
-                placeholder="email"
-                name="email"
-                className="input bg-base-200"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="flex items-center gap-2 label-text font-semibold text-main">
-                  <MdOutlineLock></MdOutlineLock> Password
-                </span>
-              </label>
-              <input
-                type="password"
-                placeholder="password"
-                name="password"
-                className="input bg-base-200"
-                required
-              />
-              <label className="label">
-                <a
-                  href="#"
-                  className="label-text-alt hover:underline hover:font-semibold text-main"
-                >
-                  Forgot password?
-                </a>
-              </label>
-            </div>
-            <div className="form-control mt-6 ">
-              <button
-                type="submit"
-                className="btn bg-main text-neutral-50 font-bold overflow-hidden transition-all hover:scale-105  hover:shadow-2xl hover:bg-sub_color"
-              >
-                Sign In
-              </button>
-            </div>
-          </form>
+         <SignInForm></SignInForm>
           <SocialSignIn></SocialSignIn>
           <div className="text-center font-semibold py-4">
-            <small className="text-main">New Here? Please <Link href="/signup" className="hover:underline hover:font-bold ">
-              Sign Up.
-            </Link></small>
-            
+            <small className="text-main">
+              New Here? Please{" "}
+              <Link href="/signup" className="hover:underline hover:font-bold ">
+                Sign Up.
+              </Link>
+            </small>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default SignIn;
+export default Signin;
