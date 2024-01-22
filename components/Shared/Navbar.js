@@ -9,8 +9,7 @@ const Navbar = () => {
     const pathname = usePathname()
     const doNotShowNav = ["/signin", "/signup"]
     if (doNotShowNav.includes(pathname)) {
-
-        return null;
+     return null;
     }
     const navlinks = <>
         <li><Link href="/" className='text-main font-bold hover:text-highlight_color'>Home</Link></li>
