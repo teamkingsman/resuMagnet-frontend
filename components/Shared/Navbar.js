@@ -3,20 +3,14 @@ import { usePathname } from 'next/navigation'
 
 import Link from "next/link";
 import Logo from "../LogoAnimation/Logo";
-import { useEffect } from 'react';
+
 
 const Navbar = () => {
     const pathname = usePathname()
-    console.log(pathname)
     const doNotShowNav = ["/signin", "/signup"]
     if (doNotShowNav.includes(pathname)) {
-        return null;
+     return null;
     }
-//     useEffect(()=>{
-    
-//    },[pathname])
-
-    // links of the navbar
     const navlinks = <>
         <li><Link href="/" className='text-main font-bold hover:text-highlight_color'>Home</Link></li>
         <li><Link href="/" className='text-main font-bold hover:text-highlight_color'>About Us</Link></li>
