@@ -1,4 +1,4 @@
-import SocialSignIn from "@/components/SocialSignIn/SocialSignIn";
+import SocialSignIn from "@/components/Auth/SocialSignIn/SocialSignIn";
 import AuthLottie from "@/components/AuthLottie";
 import Link from "next/link";
 import SignInForm from "@/components/Auth/SignInForm";

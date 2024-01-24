@@ -8,11 +8,12 @@ import { useRouter } from 'next/navigation'
 function SocialSignIn() {
   const { googleSignIn } = useContext(AuthContext);
   const router = useRouter();
+  console.log(router)
   const handleGoogleSignIn = () => {
     googleSignIn()
         .then(result => {
             console.log(result.user);
-            router.push('/')
+            router.back()
         })
         .catch(error => {
             console.error(error);
