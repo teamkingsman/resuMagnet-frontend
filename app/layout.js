@@ -1,14 +1,12 @@
-'use client'
+
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Shared/Navbar";
 import Footer from "@/components/Shared/Footer";
 import AuthProvider from "@/Providers/AuthProvider";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
+import Providers from "@/Providers/providers";
 
 const inter = Inter({ subsets: ["latin"] });
-const queryClient = new QueryClient()
 
 // export const metadata = {
 //   title: "ResuMagnet",
@@ -21,13 +19,13 @@ export default function RootLayout({ children }) {
       <link rel="icon" href="/favicon.ico" sizes="any" />
       <body className={inter.className}>
         <>
-      <QueryClientProvider client={queryClient}>
+      <Providers>
         <AuthProvider>
           <Navbar></Navbar>
           {children}
           <Footer></Footer>
         </AuthProvider>
-      </QueryClientProvider>
+      </Providers>
         </>
       </body>
     </html>

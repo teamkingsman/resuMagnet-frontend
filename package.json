@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.18",
     "@tanstack/react-query": "^5.17.19",
     "@tanstack/react-query-devtools": "^5.17.21",
     "axios": "^1.6.5",
     "firebase": "^10.7.1",
     "lottie-react": "^2.4.0",
+    "next-cloudinary": "^5.20.0",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.49.3",

@@ -3,7 +3,7 @@ import { usePathname } from 'next/navigation'
 
 const Footer = () => {
     const pathname = usePathname()
-    const doNotShowNav = ["/signin", "/signup"]
+    const doNotShowNav = ["/signin", "/signup", "/dashboard", "/dashboard/profile", "/dashboard/cover-letter", "/dashboard/resume", "/dashboard/cv"]
     if (doNotShowNav.includes(pathname)) {
         return null;
     }

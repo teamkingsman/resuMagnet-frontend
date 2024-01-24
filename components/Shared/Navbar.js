@@ -7,12 +7,13 @@ import Logo from "../LogoAnimation/Logo";
 
 const Navbar = () => {
     const pathname = usePathname()
-    const doNotShowNav = ["/signin", "/signup"]
+    const doNotShowNav = ["/signin", "/signup", "/dashboard", "/dashboard/profile", "/dashboard/cover-letter", "/dashboard/resume", "/dashboard/cv"]
     if (doNotShowNav.includes(pathname)) {
      return null;
     }
     const navlinks = <>
         <li><Link href="/" className='text-main font-bold hover:text-highlight_color'>Home</Link></li>
+        <li><Link href="/dashboard" className='text-main font-bold hover:text-highlight_color'>Dashboard</Link></li>
         <li><Link href="/" className='text-main font-bold hover:text-highlight_color'>About Us</Link></li>
         <li><Link href="/contact" className='text-main font-bold hover:text-highlight_color'>Contact</Link></li>
     </>
@@ -30,7 +31,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                     {/* logo */}
-                    <h1 className='text-xl'><Logo></Logo></h1>
+                    <div className='text-xl'><Logo className="w-full  md:w-1/2 lg:w-1/3"></Logo></div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 ">
