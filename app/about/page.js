@@ -1,3 +1,5 @@
+import AboutUs from "@/components/About/AboutUs";
+
 export const metadata = {
     title: "About Us",
     description: "This is a About Us page",
@@ -6,7 +8,7 @@ export const metadata = {
 const About = () => {
     return (
         <div>
-            <h1>About Us</h1>
+            <AboutUs></AboutUs>
         </div>
     )
 }
