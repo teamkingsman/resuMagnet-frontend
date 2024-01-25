@@ -28,7 +28,7 @@ const Signin = () => {
           <div className="text-center font-semibold py-4">
             <small className="text-main">
               New Here? Please{" "}
-              <Link href="/signup" className="hover:underline hover:font-bold ">
+              <Link href="/signup" prefetch={true} className="hover:underline hover:font-bold ">
                 Sign Up.
               </Link>
             </small>

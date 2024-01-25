@@ -1,24 +1,42 @@
 'use client'
-import { AuthContext } from "@/Providers/AuthProvider";
-import { useContext } from "react";
+import { useEffect } from "react";
 import { FaFacebookSquare, FaGoogle } from "react-icons/fa";
 import { useRouter } from 'next/navigation'
+import { toast } from "sonner";
+import useAuth from "@/hooks/useAuth";
+// import usePreviousRoute from "@/hooks/usePreviousRoute";
 
 
 function SocialSignIn() {
-  const { googleSignIn } = useContext(AuthContext);
+  const { googleSignIn, user } = useAuth();
   const router = useRouter();
-  console.log(router)
+  // const previousRoute = usePreviousRoute();
   const handleGoogleSignIn = () => {
+    const toastId = toast.loading('Loading...');
+
     googleSignIn()
         .then(result => {
             console.log(result.user);
+            toast.success('Sign In successful', (toastId));
             router.back()
+            // if (previousRoute) {
+            //   router.replace(previousRoute);
+            // } else {
+            //   router.push('/'); // Default redirect if no previous route
+            // }
         })
         .catch(error => {
-            console.error(error);
+          console.error('Sign-in failed:', error);
+          toast.error(`Sign-in failed: ${error}`, (toastId));
         })
 }
+
+useEffect(() => {
+  // Optionally, you can automatically redirect if the user is already signed in
+  if (user) {
+    router.replace('/');
+  }
+}, [user, router]);
 
   return (
     <div className="flex flex-col items-center  space-y-4 px-8">

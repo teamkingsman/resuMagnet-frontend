@@ -29,7 +29,7 @@ const Signup = () => {
           <div className="text-center font-semibold py-4">
             <small className="text-main">
               Already have an account? Please{" "}
-              <Link href="/signin" className="hover:underline hover:font-bold ">
+              <Link href="/signin" prefetch={true} className="hover:underline hover:font-bold ">
                 Sign In.
               </Link>
             </small>
