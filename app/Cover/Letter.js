@@ -2,13 +2,13 @@ import coverLetterData from '/assets/cover.json'
 
 const Letter = () => {
     return (
-        <div className='w-10/12 mx-auto bg-[#B2BEB5] px-10 py-10 lg:px-20 lg:py-20'>
+        <div className='w-11/12 lg:w-9/12 mx-auto bg-[#D4D4D4] px-10 py-24 lg:px-20 lg:py-20'>
           {/* <h1>Cover Letter</h1> */}
           
           {/* Personal Information */}
           <p className='text-5xl font-bold text-main'>{coverLetterData.personalInformation.firstName} {coverLetterData.personalInformation.lastName}</p>
           <p className='text-3xl  text-neutral-950'>{coverLetterData.personalInformation.title}</p>
-         <div className='lg:flex lg:gap-8 my-2 text-xl font-medium text-main'>
+         <div className=' my-6 text-xl font-medium text-main'>
          <p>Email: {coverLetterData.personalInformation.email}</p>
           <p>Phone: {coverLetterData.personalInformation.phone}</p>
           <p>Address: {coverLetterData.personalInformation.address}</p>
@@ -17,19 +17,20 @@ const Letter = () => {
           {/* Summary */}
           {/* <h3>Summary</h3> */}
           <h2 className='text-xl text-neutral-950 mt-8 mb-4'>Dear Hiring Manager,</h2>
-          <p className='my-3'>I hope this letter finds you well. My name is {coverLetterData.personalInformation.firstName} {coverLetterData.personalInformation.lastName}. </p>
-          <p className='my-3'>I am very interested in this opportunity, and I am certain I have the necessary expertise to take Streich to the top of the industry.</p>
-          <p className='my-3'>{coverLetterData.summary}</p>
+          <p className='my-5 font-medium'>I hope this letter finds you well. My name is {coverLetterData.personalInformation.firstName} {coverLetterData.personalInformation.lastName}. </p>
+          <p className='my-5 font-medium'>I am very interested in this opportunity, and I am certain I have the necessary expertise to take Streich to the top of the industry.</p>
+          <p><p className='my-5 font-medium'>{coverLetterData.expertise}</p></p>
+          <p className='my-5 font-medium'>{coverLetterData.summary}</p>
     
           {/* Education */}
-          <h3 className='text-xl font-medium text-main '>My Education:</h3>
-          {coverLetterData.education.map((edu, index) => (
+          {/* <h3 className='text-xl font-medium text-main '>My Education:</h3> */}
+          {/* {coverLetterData.education.map((edu, index) => (
             <div className='lg:flex lg:gap-10' key={index}>
               <p>Degree: {edu.degree}</p>
               <p>School: {edu.school}</p>
               <p>Graduation Year: {edu.graduationYear}</p>
             </div>
-          ))}
+          ))} */}
     
           {/* Experience */}
           {/* <h3>Experience</h3> */}
@@ -49,20 +50,20 @@ const Letter = () => {
           ))} */}
     
           {/* Skills */}
-          <h3 className='text-xl font-medium text-main mt-3 underline'>Skills</h3>
-          <ul>
+          {/* <h3 className='text-xl font-medium text-main mt-3 underline'>Skills</h3> */}
+          {/* <ul>
             {coverLetterData.skills.map((skill, index) => (
               <li key={index}>{skill}</li>
             ))}
-          </ul>
+          </ul> */}
     
           {/* Languages */}
-          <h3>Languages</h3>
-          <ul>
+          {/* <h3>Languages</h3> */}
+          {/* <ul>
             {coverLetterData.languages.map((language, index) => (
               <li key={index}>{language}</li>
             ))}
-          </ul>
+          </ul> */}
     
           {/* Certifications */}
           {/* <h3>Certifications</h3> */}
@@ -84,7 +85,7 @@ const Letter = () => {
             </div>
           ))} */}
 
-          <p className='my-8'>I would be happy to provide greater detail about my skills and experience during an interview. Please call me at your earliest convenience.</p>
+          <p className='my-8 font-medium'>I would be happy to provide greater detail about my skills and experience during an interview. Please call me at your earliest convenience.</p>
 
           <h1 className=' font-bold text-main'>Sincerely,</h1>
           <h1 className='text-xl  font-bold text-neutral-950'>{coverLetterData.personalInformation.firstName} {coverLetterData.personalInformation.lastName}</h1>

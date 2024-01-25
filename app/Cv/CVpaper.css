@@ -1,0 +1,31 @@
+.cv-container {
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+  header {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  section {
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    color: #007bff;
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Add more styling as needed */
+  

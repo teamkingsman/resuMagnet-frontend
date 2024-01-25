@@ -1,78 +1,89 @@
 {
-    "personalInformation": {
-      "firstName": "John",
-      "lastName": "Doe",
-      "title": "Frontend Developer",
-      "email": "john.doe@example.com",
-      "phone": "+1 (555) 123-4567",
-      "address": "123 Main Street, Cityville, State, 12345"
-    },
+  "personalInformation": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "title": "Frontend Developer",
+    "email": "john.doe@example.com",
+    "phone": "+1 (555) 123-4567",
+    "address": "123 Main Street, Cityville, State, 12345",
+    "img": "https://i.ibb.co/chCkjXN/1517034957463.jpg"
+  },
+  "expertise": " What excites me most about the Angular Frontend Developer position at ShellShock is the opportunity to work on cutting-edge projects that push the boundaries of web development. I am particularly drawn to ShellShock's commitment to innovation and its collaborative work environment. I thrive in fast-paced, dynamic teams where creativity and problem-solving are valued, and I believe my skills and experience align perfectly with the company's vision.",
     "summary": "Dedicated and results-driven professional with a strong background in software development and a passion for creating innovative solutions.",
-    "education": [
-      {
-        "degree": "Bachelor of Science in Computer Science",
-        "school": "University of Technology",
-        "graduationYear": 2018
-      }
-    ],
-    "experience": [
-      {
-        "position": "Software Engineer",
-        "company": "Tech Solutions Inc.",
-        "location": "City, State",
-        "startDate": "June 2018",
-        "endDate": "Present",
-        "responsibilities": [
-          "Develop and maintain web applications using JavaScript, HTML, and CSS.",
-          "Collaborate with cross-functional teams to design and implement new features.",
-          "Troubleshoot and debug issues, ensuring optimal performance and user experience."
-        ]
-      },
-      {
-        "position": "Intern",
-        "company": "Innovative Software Co.",
-        "location": "City, State",
-        "startDate": "May 2017",
-        "endDate": "August 2017",
-        "responsibilities": [
-          "Assisted in the development of software modules and features.",
-          "Conducted testing and participated in code reviews.",
-          "Provided support in troubleshooting and bug fixing."
-        ]
-      }
-    ],
-    "skills": [
-      "JavaScript",
-      "HTML",
-      "CSS",
-      "React",
-      "Node.js",
-      "Git",
-      "Agile Development",
-      "Problem Solving",
-      "Team Collaboration"
-    ],
-    "languages": [
-      "English (Fluent)",
-      "Spanish (Intermediate)"
-    ],
-    "certifications": [
-      {
-        "name": "Certified Web Developer",
-        "organization": "Web Development Certification Institute",
-        "date": "January 2020"
-      }
-    ],
-    "projects": [
-      {
-        "name": "E-commerce Platform",
-        "description": "Developed a responsive e-commerce platform with secure payment processing.",
-        "technologies": ["React", "Node.js", "MongoDB", "Express"]
-      },
-      {
-        "name": "Task Management App",
-        "description": "Created a task management application with real-time collaboration features.",
-        "technologies": ["React", "Firebase", "Redux"]
-      }
-    ]
-  }
+  "education": [
+    {
+      "degree": "Bachelor of Science in Computer Science",
+      "school": "University of Technology",
+      "graduationYear": 2018
+    }
+  ],
+  "experience": [
+    {
+      "position": "Software Engineer",
+      "company": "Tech Solutions Inc.",
+      "location": "City, State",
+      "startDate": "June 2018",
+      "endDate": "Present",
+      "responsibilities": [
+        "Develop and maintain web applications using JavaScript, HTML, and CSS.",
+        "Collaborate with cross-functional teams to design and implement new features.",
+        "Troubleshoot and debug issues, ensuring optimal performance and user experience."
+      ]
+    },
+    {
+      "position": "Intern",
+      "company": "Innovative Software Co.",
+      "location": "City, State",
+      "startDate": "May 2017",
+      "endDate": "August 2017",
+      "responsibilities": [
+        "Assisted in the development of software modules and features.",
+        "Conducted testing and participated in code reviews.",
+        "Provided support in troubleshooting and bug fixing."
+      ]
+    }
+  ],
+  "skills": [
+    "JavaScript",
+    "HTML",
+    "CSS",
+    "React",
+    "Node.js",
+    "Git",
+    "Agile Development",
+    "Problem Solving",
+    "Team Collaboration"
+  ],
+  "languages": [
+    "English (Fluent)",
+    "Spanish (Intermediate)"
+  ],
+  "certifications": [
+    {
+      "name": "Certified Web Developer",
+      "organization": "Web Development Certification Institute",
+      "date": "January 2020"
+    }
+  ],
+  "projects": [
+    {
+      "name": "E-commerce Platform",
+      "description": "Developed a responsive e-commerce platform with secure payment processing.",
+      "technologies": [
+        "React",
+        "Node.js",
+        "MongoDB",
+        "Express"
+      ]
+    },
+    {
+      "name": "Task Management App",
+      "description": "Created a task management application with real-time collaboration features.",
+      "technologies": [
+        "React",
+        "Firebase",
+        "Redux"
+      ]
+    }
+  ]
+}
