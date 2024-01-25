@@ -1,23 +1,29 @@
 'use client'
-import { AuthContext } from "@/Providers/AuthProvider";
-import React, { useContext, useState } from "react";
+import useAuth from "@/hooks/useAuth";
+import { photoLink } from "@/lib/utils";
+import React, {  useState } from "react";
 import {
   MdOutlineDriveFileRenameOutline,
   MdOutlineLock,
   MdOutlineMail,
   MdOutlinePhoto,
 } from "react-icons/md";
+import { toast } from "sonner";
+
 
 function SignUpForm() {
   const [signUpError, setSignUpError] = useState("");
   const [success, setSuccess] = useState("");
-  const { signUpUser } = useContext(AuthContext);
+  const [photo, setPhoto] = useState(null);
+  const { signUpUser } = useAuth();
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
+    // const photo = form.photo.value[0];
+    console.log(photo);
     const password = form.password.value;
     const confirmPassword = form.confirmPassword.value;
 
@@ -43,15 +49,31 @@ function SignUpForm() {
     }
 
     setSignUpError("");
-    setSuccess("");
+    const toastId = toast.loading('Creating user ...');
+      const photoURL = await photoLink(photo);
+      
+    // iamge part
+    // const formData = new FormData();
+    // formData.append("file", photo);
+    // formData.append("upload_preset", `${persetName}`);
+    // const uploadResponse = await fetch(
+    //   `https://api.cloudinary.com/v1_1/${cloudinaryName}/image/upload`,
+    //   {
+    //     method: "POST",
+    //     body: formData,
+    //   }
+    // );
+    // const uploadedImageData = await uploadResponse.json();
+    // const photoURL = uploadedImageData.secure_url;
+    console.log(photoURL);
 
-    signUpUser(email, password, name)
-      .then((result) => {
-          setSuccess("User created successfully.");
-          const signedUpUser = result.user;
-        console.log(signedUpUser);
-      })
-      .catch((error) => console.log(error));
+    // signUpUser(email, password, name)
+    //   .then((result) => {
+    //       setSuccess("User created successfully.");
+    //       const signedUpUser = result.user;
+    //     console.log(signedUpUser);
+    //   })
+    //   .catch((error) => console.log(error));
   };
 
   return (
@@ -73,19 +95,19 @@ function SignUpForm() {
         />
       </div>
 
-
-      {/* <div className="form-control">
+      <div className="form-control">
         <label className="label">
           <span className="flex items-center gap-2 label-text font-semibold text-main">
             <MdOutlinePhoto></MdOutlinePhoto> Your Photo
           </span>
         </label>
         <input
+        onChange={(e) => setPhoto(e.target.files[0])}
           type="file"
           className="file-input  bg-base-200 file-input-md w-full max-w-xs"
+          name="photo"
         />
-      </div> */}
-
+      </div>
 
       <div className="form-control">
         <label className="label">
