@@ -15,7 +15,9 @@ import { FaRegComments } from "react-icons/fa";
 import { BiMessageSquareDots } from "react-icons/bi";
 import Link from "next/link";
 import Logo from "../LogoAnimation/Logo";
+import useAuth from "@/hooks/useAuth";
 function Sidebar() {
+  const {signOutUser} = useAuth()
   return (
     <>
       <Disclosure as="nav">
@@ -91,7 +93,7 @@ function Sidebar() {
 
             {/* logout */}
             <div className=" my-4">
-              <div className="flex mb-2 justify-start items-center gap-4 pl-5 border border-gray-200  hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+              <div onClick={signOutUser} className="flex mb-2 justify-start items-center gap-4 pl-5 border border-gray-200  hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
                 <MdOutlineLogout className="text-2xl text-gray-600 group-hover:text-white " />
                 <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
                   Logout
