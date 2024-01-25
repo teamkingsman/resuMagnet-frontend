@@ -3,9 +3,13 @@ import { usePathname } from 'next/navigation'
 
 import Link from "next/link";
 import Logo from "../LogoAnimation/Logo";
+import { useContext } from 'react';
+import { AuthContext } from '@/Providers/AuthProvider';
 
 
 const Navbar = () => {
+    const {user , signOutUser} = useContext(AuthContext)
+    
     const pathname = usePathname()
     const doNotShowNav = ["/signin", "/signup", "/dashboard", "/dashboard/profile", "/dashboard/cover-letter", "/dashboard/resume", "/dashboard/cv"]
     if (doNotShowNav.includes(pathname)) {
@@ -39,9 +43,13 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link href="/signin">
-                    <button className="btn rounded-full btn-sm md:btn-md shadow-lg  hover:shadow-xl bg-sub_color text-neutral-50 hover:bg-highlight_color hover:text-main  font-semibold">Sing In</button>
-                    </Link>
+                    {
+                        user ? 
+                        <button className="btn rounded-full btn-sm md:btn-md shadow-lg  hover:shadow-xl bg-sub_color text-neutral-50 hover:bg-highlight_color hover:text-main  font-semibold" onClick={signOutUser}>Sing out</button>
+                         : <Link href="/signin">
+                        <button className="btn rounded-full btn-sm md:btn-md shadow-lg  hover:shadow-xl bg-sub_color text-neutral-50 hover:bg-highlight_color hover:text-main  font-semibold">Sing In</button>
+                        </Link>
+                    }
                 </div>
             </div>
         </div>
