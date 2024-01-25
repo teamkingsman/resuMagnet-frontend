@@ -1,6 +1,8 @@
 'use client'
 import useAuth from "@/hooks/useAuth";
+import { saveUser } from "@/lib/auth";
 import { photoLink } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 import React, {  useState } from "react";
 import {
   MdOutlineDriveFileRenameOutline,
@@ -12,15 +14,16 @@ import { toast } from "sonner";
 
 
 function SignUpForm() {
+  const router = useRouter()
   const [signUpError, setSignUpError] = useState("");
   const [success, setSuccess] = useState("");
   const [photo, setPhoto] = useState(null);
-  const { signUpUser } = useAuth();
+  const { signUpUser, handleUpdateProfile } = useAuth();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
     const form = e.target;
-    const name = form.name.value;
+    const displayName = form.name.value;
     const email = form.email.value;
     // const photo = form.photo.value[0];
     console.log(photo);
@@ -50,30 +53,28 @@ function SignUpForm() {
 
     setSignUpError("");
     const toastId = toast.loading('Creating user ...');
-      const photoURL = await photoLink(photo);
-      
-    // iamge part
-    // const formData = new FormData();
-    // formData.append("file", photo);
-    // formData.append("upload_preset", `${persetName}`);
-    // const uploadResponse = await fetch(
-    //   `https://api.cloudinary.com/v1_1/${cloudinaryName}/image/upload`,
-    //   {
-    //     method: "POST",
-    //     body: formData,
-    //   }
-    // );
-    // const uploadedImageData = await uploadResponse.json();
-    // const photoURL = uploadedImageData.secure_url;
-    console.log(photoURL);
+     const photoURL = await photoLink(photo);
+     if(photoURL){
 
-    // signUpUser(email, password, name)
-    //   .then((result) => {
-    //       setSuccess("User created successfully.");
-    //       const signedUpUser = result.user;
-    //     console.log(signedUpUser);
-    //   })
-    //   .catch((error) => console.log(error));
+       const data = { displayName, email, password, photoURL };
+       try{
+      
+        await saveUser(data);
+        await signUpUser(email, password);
+        await handleUpdateProfile(displayName, photoURL)
+        .then(() => {
+  
+          toast.success('User Created', (toastId));
+  
+          setSuccess("User created successfully.");
+          router.back()
+        })
+      }
+      catch(error){
+        console.log(error)
+        toast.error(error.message, (toastId));
+      }
+     }
   };
 
   return (
