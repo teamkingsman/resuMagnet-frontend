@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Resume from '@/components/Resume/resume';
+import ResumeData from '@/components/Resume/resumeData';
+const Template1 = () => {
+    const [data, setData]=useState([]);
+    const [loading, setLoading] = useState(true);
 
-const Resume = () => {
+     
+   if(loading){
+    return (
+      <>
+          <ResumeData setData={setData} setLoading={setLoading} />
+       
+      </>
+    )
+}
     return (
         <div>
-            <h2>Resume</h2>
+              <Resume data={data}/> 
         </div>
     );
 };
 
-export default Resume;
+export default Template1;
