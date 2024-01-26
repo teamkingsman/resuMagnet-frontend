@@ -57,7 +57,7 @@ const CVpaper = () => {
         ))}
       </section>
 
-      {/* Add sections for Skills, Languages, Certifications, and Projects */}
+      
        {/* Skills */}
 
        <section className="skills">
