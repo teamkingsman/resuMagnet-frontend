@@ -1,5 +1,9 @@
 import coverLetterData from '/assets/cover.json';
 import './Resumes.css'; // Import the CSS file
+import { FaPhoneVolume } from "react-icons/fa6";
+import { MdEmail } from "react-icons/md";
+import { FaLocationDot } from "react-icons/fa6";
+import { FaUserGraduate } from "react-icons/fa6";
 
 const Resumes = () => {
   return (
@@ -10,13 +14,24 @@ const Resumes = () => {
 
         <div className='mx-4 text-lg '>
         <h2 className='text-xl text-main border-b-2 font-bold'>Contact:</h2>
+        <div className='flex items-center gap-2 mt-3'>
+            <FaPhoneVolume className='text-sub_color'></FaPhoneVolume>
         <p>Phone: {coverLetterData.personalInformation.phone}</p>
+        </div>
+        <div className='flex items-center gap-2'>
+            <MdEmail className='text-[#fcef4c]'></MdEmail>
         <p>Email: {coverLetterData.personalInformation.email}</p>
-        <p>Address: {coverLetterData.personalInformation.address}</p>
+        </div>
+       <div className='flex items-center gap-2'>
+        <FaLocationDot className='text-[#0102d8]'></FaLocationDot>
+       <p>Address: {coverLetterData.personalInformation.address}</p>
+       </div>
+        <div>
         <h3 className='text-xl text-main border-b-2 mt-5 font-bold'>Education</h3>
+        </div>
         {coverLetterData.education.map((edu, index) => (
           <div key={index}>
-            <p>Degree: {edu.degree}</p>
+            
             <p>School: {edu.school}</p>
             <p>Graduation Year: {edu.graduationYear}</p>
           </div>
