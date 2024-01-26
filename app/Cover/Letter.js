@@ -17,10 +17,10 @@ const Letter = () => {
           {/* Summary */}
           {/* <h3>Summary</h3> */}
           <h2 className='text-xl text-neutral-950 mt-8 mb-4'>Dear Hiring Manager,</h2>
-          <p className='my-5 font-medium'>I hope this letter finds you well. My name is {coverLetterData.personalInformation.firstName} {coverLetterData.personalInformation.lastName}. </p>
-          <p className='my-5 font-medium'>I am very interested in this opportunity, and I am certain I have the necessary expertise to take Streich to the top of the industry.</p>
-          <p><p className='my-5 font-medium'>{coverLetterData.expertise}</p></p>
-          <p className='my-5 font-medium'>{coverLetterData.summary}</p>
+          <p className='my-5 font-medium text-lg'>I hope this letter finds you well. My name is {coverLetterData.personalInformation.firstName} {coverLetterData.personalInformation.lastName}. </p>
+          <p className='my-5 font-medium text-lg'>I am very interested in this opportunity, and I am certain I have the necessary expertise to take Streich to the top of the industry.</p>
+          <p><p className='mt-10 mb-7 font-medium text-lg'>{coverLetterData.expertise}</p></p>
+          <p className='my-5 font-medium  text-lg'>{coverLetterData.summary}</p>
     
           {/* Education */}
           {/* <h3 className='text-xl font-medium text-main '>My Education:</h3> */}
@@ -85,9 +85,9 @@ const Letter = () => {
             </div>
           ))} */}
 
-          <p className='my-8 font-medium'>I would be happy to provide greater detail about my skills and experience during an interview. Please call me at your earliest convenience.</p>
+          <p className='my-8 font-medium text-lg'>I would be happy to provide greater detail about my skills and experience during an interview. Please call me at your earliest convenience.</p>
 
-          <h1 className=' font-bold text-main'>Sincerely,</h1>
+          <h1 className=' font-bold text-main mt-5'>Sincerely,</h1>
           <h1 className='text-xl  font-bold text-neutral-950'>{coverLetterData.personalInformation.firstName} {coverLetterData.personalInformation.lastName}</h1>
         </div>
       );
