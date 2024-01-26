@@ -67,7 +67,7 @@ function LanguageForm({onSubmit}) {
       <div className="form-control mt-4">
         <button
           type="submit"
-          className="btn-sm bg-sub_color text-neutral-50 font-bold overflow-hidden transition-all hover:scale-105  hover:shadow-2xl hover:bg-highlight_color"
+          className="btn-sm bg-main text-neutral-50 font-bold overflow-hidden transition-all hover:scale-105  hover:shadow-2xl hover:bg-sub_color"
         >
           Add
         </button>
