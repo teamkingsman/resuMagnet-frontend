@@ -1,11 +1,12 @@
-import React from 'react';
+import ResumeForm from "@/components/BuilderForm/ResumeForm/ResumeForm"
 
-const Resume = () => {
-    return (
-        <div>
-            <h2>Resume</h2>
-        </div>
-    );
-};
 
-export default Resume;
+function resumeBuilder () {
+  return (
+    <div>
+      <ResumeForm></ResumeForm>
+    </div>
+  )
+}
+
+export default resumeBuilder

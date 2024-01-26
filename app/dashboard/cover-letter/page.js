@@ -1,11 +1,11 @@
 
+import CoverLetterForm from '@/components/BuilderForm/CoverLetterForm/CoverLetterForm'
+import React from 'react'
 
 const CoverLetter = () => {
     return (
         <div>
-            <h2>CoverLetter</h2>
-           
-            
+            <CoverLetterForm></CoverLetterForm>
         </div>
     );
 };

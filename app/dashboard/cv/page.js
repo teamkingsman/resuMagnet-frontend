@@ -1,11 +1,10 @@
-import React from 'react';
+import CvForm from "@/components/BuilderForm/CvForm/CvForm"
 
-const Cv = () => {
-    return (
-        <div>
-            <h2>Cv</h2>
-        </div>
-    );
-};
 
-export default Cv;
+function page () {
+  return (
+    <CvForm></CvForm>
+  )
+}
+
+export default page
