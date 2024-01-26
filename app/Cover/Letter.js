@@ -7,8 +7,8 @@ const Letter = () => {
           
           {/* Personal Information */}
           <p className='text-5xl font-bold text-main'>{coverLetterData.personalInformation.firstName} {coverLetterData.personalInformation.lastName}</p>
-          <p className='text-3xl  text-neutral-950'>{coverLetterData.personalInformation.title}</p>
-         <div className=' my-6 text-xl font-medium text-main'>
+          <p className='text-3xl  text-neutral-950 border-b-4 pb-4'>{coverLetterData.personalInformation.title}</p>
+         <div className=' mt-6 mb-16 text-xl font-medium text-main'>
          <p>Email: {coverLetterData.personalInformation.email}</p>
           <p>Phone: {coverLetterData.personalInformation.phone}</p>
           <p>Address: {coverLetterData.personalInformation.address}</p>
