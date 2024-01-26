@@ -21,12 +21,15 @@ console.log(router)
         setSuccess("User logged in successfully.");
         const signedInUser = result.user;
         console.log(signedInUser);
+        router.back()
       })
       .catch((error) => {
         console.error(error);
         setSignInError(error.message);
       });
   };
+
+  
   return (
     <form onSubmit={handleSignIn} className="card-body">
             <p className="text-3xl font-bold text-main">Sign In</p>

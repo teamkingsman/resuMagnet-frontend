@@ -5,9 +5,12 @@ import EducationForm from "../FormComponents/EducationForm/EducationForm";
 import SkillForm from "../FormComponents/SkillForm/SkillForm";
 import LanguageForm from "../FormComponents/LanguageForm/LanguageForm";
 import BasicInfoForm from "../FormComponents/BasicInfoForm/BasicInfoForm";
+import { useRouter } from "next/navigation";
 
 
 function ResumeForm() {
+  const router = useRouter()
+
   // Form data state
   const [allFormData, setAllFormData] = useState({
     basicInfo: null,
@@ -104,8 +107,8 @@ function ResumeForm() {
   };
 
   const handlePreview = async() => {
-    const addDataRes = await axiosSecure.post('/post', allFormData);
     console.log(addDataRes.data);
+    router.push("/dashboard/resume/templatetwo")
   };
 
   return (

@@ -1,10 +1,10 @@
 import CvForm from "@/components/BuilderForm/CvForm/CvForm"
 
 
-function page () {
+function CV () {
   return (
     <CvForm></CvForm>
   )
 }
 
-export default page
+export default CV
