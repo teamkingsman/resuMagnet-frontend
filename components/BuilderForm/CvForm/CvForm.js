@@ -5,8 +5,11 @@ import EducationForm from "../FormComponents/EducationForm/EducationForm";
 import SkillForm from "../FormComponents/SkillForm/SkillForm";
 import LanguageForm from "../FormComponents/LanguageForm/LanguageForm";
 import BasicInfoForm from "../FormComponents/BasicInfoForm/BasicInfoForm";
+import { useRouter } from "next/navigation";
 
 function CvForm() {
+  const router = useRouter()
+
   // Form data state
   const [allFormData, setAllFormData] = useState({
     basicInfo: null,
@@ -104,6 +107,7 @@ function CvForm() {
 
   const handlePreview = () => {
     console.log(allFormData);
+    router.push("/dashboard/cv/templatetwo")
   };
 
   return (

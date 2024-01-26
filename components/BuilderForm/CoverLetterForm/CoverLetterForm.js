@@ -1,5 +1,9 @@
 "use client"
+
+import { useRouter } from "next/navigation";
+
 function CoverLetterForm() {
+  const router = useRouter()
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const formData = {
@@ -12,7 +16,7 @@ function CoverLetterForm() {
     };
 
     console.log("Form Data:", formData);
-
+    router.push('/dashboard/cover-letter/templatetwo')
   };
   return (
     <div className="hero min-h-screen bg-main">
