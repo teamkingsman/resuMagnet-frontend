@@ -289,7 +289,7 @@ function ResumeForm() {
               <div className="form-control mt-4">
                 <button
                   type="button"
-                  className="btn btn-md text-left text-main font-semibold hover:font-bold hover:bg hover:border"
+                  className="btn bg-main text-neutral-50 font-bold overflow-hidden transition-all hover:scale-105  hover:shadow-2xl hover:bg-sub_color"
                   onClick={handlePreview}
                 >
                   Preview

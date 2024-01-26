@@ -2,10 +2,12 @@
 import CoverLetterForm from '@/components/BuilderForm/CoverLetterForm/CoverLetterForm'
 import React from 'react'
 
-function page () {
-  return (
-   <CoverLetterForm></CoverLetterForm>
-  )
-}
+const CoverLetter = () => {
+    return (
+        <div>
+            <CoverLetterForm></CoverLetterForm>
+        </div>
+    );
+};
 
-export default page
+export default CoverLetter;
