@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link';
 import { usePathname } from 'next/navigation'
 
 const Footer = () => {
@@ -7,7 +8,7 @@ const Footer = () => {
     if (doNotShowNav.includes(pathname)) {
         return null;
     }
-  
+
     return (
         <div>
             <footer className="footer p-10 bg-[#FFFFFF] text-base-content border-t-4 border-double border-highlight_color">
@@ -32,15 +33,14 @@ const Footer = () => {
                 </nav>
                 <nav>
                     <header className="footer-title text-highlight_color">Company</header>
-                    <a className="link link-hover text-main">About us</a>
-                    <a className="link link-hover text-main">Contact</a>
+                    <Link href="/about" ><p className="link link-hover text-main"></p>About Us</Link>
+                    <Link href="/contact" ><p className="link link-hover text-main"></p>Contact</Link>
                     <a className="link link-hover text-main">Jobs</a>
                     <a className="link link-hover text-main">Press kit</a>
                 </nav>
                 <nav>
                     <header className="footer-title text-highlight_color">Legal</header>
-                    <a className="link link-hover text-main">Terms of use</a>
-                    <a className="link link-hover text-main">Privacy policy</a>
+                    <Link href="/terms" ><p className="link link-hover text-main"></p>Terms & Policies</Link>
                     <a className="link link-hover text-main">Cookie policy</a>
                 </nav>
                 <form className="hidden md:block">
@@ -57,8 +57,8 @@ const Footer = () => {
                 </form>
             </footer>
             <div className="w-full p-4 bg-main text-neutral-content">
-                    <p className="text-center">Copyright © 2024 - All right reserved Kingsman Team</p>
-                
+                <p className="text-center">Copyright © 2024 - All right reserved Kingsman Team</p>
+
             </div>
         </div>
     );
