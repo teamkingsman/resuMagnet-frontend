@@ -1,5 +1,3 @@
-
-
 import PrivateRoute from "@/Providers/PrivateRoute";
 import Sidebar from "@/components/Dashboard/Sidebar";
 

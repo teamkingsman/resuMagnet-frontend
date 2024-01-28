@@ -1,0 +1,14 @@
+.resume-container {
+    display: flex;
+  }
+  
+  .left-part {
+    width: 33.33%;
+    /* padding: 20px; */
+  }
+  
+  .right-part {
+    width: 66.66%;
+    /* padding: 20px; */
+  }
+  

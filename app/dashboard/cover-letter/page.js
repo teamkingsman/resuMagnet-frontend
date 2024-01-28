@@ -1,21 +1,11 @@
-import CoverLetter from "@/components/CoverLetter/coverLetter";
-import CoverLetterData from "@/components/CoverLetter/coverLetterData";
-import { useState } from "react";
 
+import CoverLetterForm from '@/components/BuilderForm/CoverLetterForm/CoverLetterForm'
+import React from 'react'
 
-const Template1 = () => {
-    const[item,setItem]=useState([]);
-    const [loading, setLoading] = useState(true);
-    if(loading){
-        return (
-          <>  
-            <CoverLetterData setItem={setItem} setLoading={setLoading} />
-          </>
-        )
-    }
+const CoverLetter = () => {
     return (
         <div>
-             <CoverLetter item={item}/>
+            <CoverLetterForm></CoverLetterForm>
         </div>
     );
 };

@@ -1,24 +1,12 @@
-import React, { useState } from 'react';
-import Resume from '@/components/Resume/resume';
-import ResumeData from '@/components/Resume/resumeData';
-const Template1 = () => {
-    const [data, setData]=useState([]);
-    const [loading, setLoading] = useState(true);
+import ResumeForm from "@/components/BuilderForm/ResumeForm/ResumeForm"
 
-     
-   if(loading){
-    return (
-      <>
-          <ResumeData setData={setData} setLoading={setLoading} />
-       
-      </>
-    )
+
+function resumeBuilder () {
+  return (
+    <div>
+      <ResumeForm></ResumeForm>
+    </div>
+  )
 }
-    return (
-        <div>
-              <Resume data={data}/> 
-        </div>
-    );
-};
 
-export default Template1;
+export default resumeBuilder
