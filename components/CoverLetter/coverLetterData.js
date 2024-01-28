@@ -1,6 +1,11 @@
-import React, { useEffect } from 'react';
+'use client'
+import { useEffect, useState } from "react";
+import CoverLetter from "./coverLetter";
 
-const CoverLetterData = ({setItem,setLoading}) => {
+const CoverLetterData = () => {
+    const[item,setItem]=useState([]);
+    const[loading,setLoading]=useState(true);
+
     useEffect(()=>{
         fetch('coverLetter.json') // Replace with your API endpoint URL
         .then(response => response.json())
@@ -9,11 +14,12 @@ const CoverLetterData = ({setItem,setLoading}) => {
             setLoading(false);
         } )
         
-    },[setItem,setLoading])
-
+    },[])
     return (
         <>
-           <h1>Loading..</h1> 
+       {
+        loading? <span className="loading loading-spinner loading-lg"></span>: <CoverLetter item={item}/>
+       }
         </>
     );
 };
