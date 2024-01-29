@@ -1,5 +1,6 @@
-import Cv from '@/components/Cv/Cv';
 
+
+import Cv from '@/components/Cv/Cv';
 import React from 'react';
 
 const page = () => {

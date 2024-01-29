@@ -12,15 +12,22 @@ const Resume = () => {
                           <h1 className="text-xl font-bold">{resume.personalInformation[0].firstName} {resume.personalInformation[0].lastName} </h1>
                          </div>
                          <div className="mr-4 mt-8">
-                            <h2>Email:{resume.personalInformation[0].email}</h2>  
-                            <h2>Contact:{resume.personalInformation[0].phone}</h2>  
-                            <h2>Address:{resume.personalInformation[0].address}</h2>  
-                           
+                         
+                           {
+                              resume.personalInformation.map((info,index)=>(
+                                <div key={index}>
+                                   <h2>Email:{info.email}</h2> 
+                                   <h2>Contact:{info.phone}</h2>
+                                   <h2>Address:{info.address}</h2>
+                                </div>
+
+                              ))
+                           }
                          </div>
                 </div>
                 {/* horizontal */}
-                <div className="space-y-4 w-[750px] mx-auto bg-cyan-600">
-                <hr className="mt-4 h-2  "/>
+                <div className="space-y-4 w-[750px] mx-auto bg-black">
+                <hr className="mt-4 h-1  "/>
                 </div>
                 {/* career */}
                 <div className="ml-8 mr-4">
@@ -31,102 +38,109 @@ const Resume = () => {
                       {/* skills */}
                       <div className="mt-4">
                              <h2 className="text-2xl font-bold">Skills</h2>
+                             <div className="space-y-2 w-[750px] mx-auto bg-black">
+                <hr className=" h-1"/>
+                </div>
                              <div className="text-md">
-                                <p>Experts:{resume.skills[0]} | {resume.skills[1]} | {resume.skills[2]} | {resume.skills[3]} | React.js | Daisyui</p>
-                                <p>Comfortable: {resume.skills[4]} | {resume.skills[5]}  | {resume.skills[7]} | JWT</p>
-                                <p>Familiar:{resume.skills[6]}</p>
-       
+                                <ul className='grid grid-cols-3'>
+                                  {
+                                    resume.skills.map((skill,index)=>(
+                                         <li key={index}>{skill}</li>
+                                    ))
+                                  } 
+                                 </ul>
                              </div>
                       </div>
                          {/* Experience */}
                       <div className="mt-4">
 
                              <h2 className="text-2xl font-bold mb-2">Experience:</h2>
-                             <div className="flex justify-between">
-                                <h2 className="text-xl font-bold">{resume.experience[0].company}</h2>
-                                <h2>City, State</h2>
-                             </div>
-                             <div className="flex justify-between">
-                             <h2 className="text-lg font-bold">{resume.experience[0].position}</h2> 
-                              <h3>{resume.experience[0].endDate}</h3>
-                             </div>
-                             <div className="ml-8">
+                             {
+                              resume.experience.map((experience, index) => (
+                                 <>
+                                 <div key={index} className="flex justify-between">
+                                 <h2 className="text-xl font-bold">{experience.company}</h2>
+                                 {/* <h2>{experience.location}</h2> */}
+                              </div>
+                                 <div key={index} className="flex justify-between">
+                                 <h2 className="text-lg font-bold">{experience.position}</h2> 
+                                  <h3>{experience.endDate}</h3>
+                                 </div>
+                                 <div className="ml-8">
                                   
                                   <ul className="list-disc">
-                                  <li className="text-md">{resume.experience[0].responsibilities[0]} </li>
-                                  <li className="text-md">{resume.experience[0].responsibilities[1]} </li>
-                                  <li className="text-md">{resume.experience[0].responsibilities[2]} </li>
+                                  <li className="text-md">{experience.responsibilities} </li>
+                                
                                  </ul>
                              </div>
+                                 </>
+                              ))
+                             }
 
                       </div>
-                      <div className="mt-4">
-                       
-                              
-                             <div className="flex justify-between">
-                                <h2 className="text-xl font-bold">{resume.experience[1].company}</h2>
-                                <h2>City, State</h2>
-                             </div>
-                             <div className="flex justify-between">
-                             <h2 className="text-lg font-bold">{resume.experience[1].position}</h2> 
-                              <h3>{resume.experience[1].endDate}</h3>
-                             </div>
-                             <div className="ml-8">
-                                  
-                                  <ul className="list-disc">
-                                  <li className="text-md">{resume.experience[1].responsibilities[0]} </li>
-                                  <li className="text-md">{resume.experience[1].responsibilities[1]} </li>
-                                  <li className="text-md">{resume.experience[1].responsibilities[2]} </li>
-                                 </ul>
-                             </div>
-
-                      </div>
+                     
                       {/* Project */}
                       <div className="mt-4">
                         <h1 className="text-xl font-bold">Project</h1>
-                             <h2 className="text-lg font-bold">{resume.projects[0].name}</h2>
+                           
+                             {
+                               resume.projects.map((project, index) => (
+                                 <div key={index}>
+                                     <h2 className="text-lg font-bold">{project.name}</h2>
                              <ul className="list-disc px-4 ml-4">
-                             <li className='text-md'>{resume.projects[0].description}</li>
+                             <li className='text-md'>{project.description}</li>
                              </ul>
-                             <p className=""> <span className="text-md font-bold">Technologies</span>:{resume.projects[0].technologies[0]} {resume.projects[0].technologies[1]} {resume.projects[1].technologies[2]}
-                               {resume.projects[0].technologies[3]} {resume.projects[0].technologies[4]}</p>
+                             <p className=""> <span className="text-md font-bold">Technologies</span>:{project.technologies} </p>
+                                 </div>
+                               ))
+                             }
                       </div>
                         
-                      <div className="mt-4">
-                    
-                             <h2 className="text-lg font-bold">{resume.projects[1].name}</h2>
-                             <ul className="list-disc px-4 ml-4">
-                             <li className='text-md'>{resume.projects[1].description}</li>
-                             </ul>
-                             <p className=""> <span className="text-md font-bold">Technologies</span>:{resume.projects[1].technologies[0]} {resume.projects[1].technologies[1]} {resume.projects[1].technologies[2]}
-                               {resume.projects[1].technologies[3]} {resume.projects[1].technologies[4]}</p>
-                      </div>
+                  
                       {/* certifications */}
                       <div className="mt-4">
                         <h1 className="text-xl font-bold">Certification:</h1>
-                             <h2 className="text-lg font-bold">{resume.certifications[0].name}</h2>
+                       
+                             {
+                                  resume.certifications.map((certification, index) => (
+                                    <div key={index}>
+                               <h2 className="text-lg font-bold">{certification.name}</h2>
                              <div className="flex justify-between">
-                             <p className="text-md">{resume.certifications[0].organization}</p>
-                             <p className="text-md">{resume.certifications[0].date}</p>
+                             <p className="text-md">{certification.organization}</p>
+                             <p className="text-md">{certification.date}</p>
                              </div>
+                                    </div>
+                                  ))
+                             }
                       </div>
                       {/* Education*/}
                       <div className="mt-4">
                         <h1 className="text-xl font-bold">Education:</h1>
-                             <h2 className="text-lg font-bold">{resume.education[0].degree}</h2>
+                         
+                             {
+                                    resume.education.map((education, index) => (
+                                       <div key={index}>
+                                        <h2 className="text-lg font-bold">{education.degree}</h2>
                              <div className="flex justify-between">
-                             <p className="text-md">{resume.education[0].school}</p>
-                             <p className="text-md">{resume.education[0].graduationYear}</p>
+                             <p className="text-md">{education.school}</p>
+                             <p className="text-md">{education.graduationYear}</p>
                              </div>
+                                       </div>
+                                    ))
+                             }
                       </div>
                       {/* <Education/> */}
                       {/* LANGUAGE */}
                       <div className="mt-4">
                         <h1 className="text-xl font-bold">Language:</h1>
-                             <div className=" flex gap-4">
-                             <h2 className="text-md ">{resume.languages[0]}</h2> |
-                             <h2 className="text-md ">{resume.languages[1]}</h2>
+                            {
+                                    resume.languages.map((language, index) => (
+                                       <div key={index} className=" flex gap-4">
+                                       <h2 className="text-md ">{language}</h2> |
+                        
                              </div>
+                                    ))
+                            }
                       </div>
 
                 </div>
@@ -134,5 +148,4 @@ const Resume = () => {
         </>
     );
 };
-
 export default Resume;
