@@ -10,4 +10,4 @@ const CoverLetter = () => {
     );
 };
 
-export default Template1;
+export default CoverLetter;

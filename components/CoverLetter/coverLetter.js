@@ -1,8 +1,7 @@
 
-
-const CoverLetter = ({item}) => {
-    console.log(item)
-    const {coverLetter} = item;
+import coverLetter from '/public/coverLetter.json'
+const CoverLetter = () => {
+    console.log(coverLetter);    
     return (
         <>
              <div className="shadow-2xl bg-slate-200 font-serif w-[400px]  lg:w-[800px] h-[1000px] mx-auto mt-4">

@@ -1,10 +1,8 @@
-import Contact from "@/app/contact/page";
+
 import Image from "next/image";
-
-
-const Cv = ({cvData}) => {
-    console.log(cvData);
-    const {personalInformation,address,contact ,education,skills,experience,projects,interests,extracurricular,languages,objective}=cvData;
+import cv from "/public/cv.json"
+const Cv = () => {
+  
     return (
         <>
            <div className=" mt-8  font-serif   lg:w-[800px] h-[700px] mx-auto shadow-2xl ">
@@ -15,42 +13,42 @@ const Cv = ({cvData}) => {
                   <div className=" ml-4">
                        <div className="mt-4">
   
-                  <Image  src={personalInformation[0].img}  alt="Sample Image"
+                  <Image  src={cv.personalInformation[0].img}  alt="Sample Image"
                     width={100} height={100} />
-                       <h1 className="text-md font-bold mt-4">{personalInformation[0].firstName} {personalInformation[0].lastName}</h1>
-                       <p className="text-md font-semibold">{personalInformation[0].position}</p>
+                       <h1 className="text-md font-bold mt-4">{cv.personalInformation[0].firstName} {cv.personalInformation[0].lastName}</h1>
+                       <p className="text-md font-semibold">{cv.personalInformation[0].position}</p>
                        </div>
                        <div className="text-sm">
                        <h1 className="text-sm font-semibold underline">Address</h1>
-                    <p className="text-sm font-semibold">{address[0].street}{address[0].city}</p>
+                    <p className="text-sm font-semibold">{cv.address[0].street}{cv.address[0].city}</p>
 
                        </div>
 
                        <div className="mt-4" >
                        <h1 className="text-sm font-semibold underline">CONTACT:</h1>
-                       <h1 className="text-sm font-semibold">{contact[0].email}</h1>
-                       <p className="text-sm font-semibold">{contact[0].phone}</p>
+                       <h1 className="text-sm font-semibold">{cv.contact[0].email}</h1>
+                       <p className="text-sm font-semibold">{cv.contact[0].phone}</p>
                        </div>
                        <div className="mt-4">
                        <h1 className="text-sm font-semibold underline">DATE OF BIRTH:</h1>
-                       <p className="text-sm font-semibold">{personalInformation[0].dateOfBirth}</p>
+                       <p className="text-sm font-semibold">{cv.personalInformation[0].dateOfBirth}</p>
                        </div>
 
                        <div className="mt-4">
                        <h1 className="text-sm font-semibold underline">LANGUAGE:</h1>
-                       <p className="text-sm font-semibold">{languages[0]} {languages[1]}</p>
+                       <p className="text-sm font-semibold">{cv.languages[0]} {cv.languages[1]}</p>
                        </div>
                        {/* skills */}
                        <div className="mt-4">
                        <h1 className="text-sm font-semibold underline">SKILLS:</h1>
-                       <p className="text-sm font-semibold">{skills[0].technical[0]} {skills[0].technical[1]}</p>
-                       <p className="text-sm font-semibold">{skills[0].technical[2]} {skills[0].technical[3]}</p>
-                       <p className="text-sm font-semibold">{skills[0].technical[4]} {skills[0].technical[5]}</p>
+                       <p className="text-sm font-semibold">{cv.skills[0].technical[0]} {cv.skills[0].technical[1]}</p>
+                       <p className="text-sm font-semibold">{cv.skills[0].technical[2]} {cv.skills[0].technical[3]}</p>
+                       <p className="text-sm font-semibold">{cv.skills[0].technical[4]} {cv.skills[0].technical[5]}</p>
                        </div>
                        {/* Interest */}
                        <div className="mt-4">
                        <h1 className="text-sm font-semibold underline">INTEREST:</h1>
-                       <p className="text-sm font-semibold">{interests}</p>
+                       <p className="text-sm font-semibold">{cv.interests}</p>
                        </div>
                 
                   </div>
@@ -61,7 +59,7 @@ const Cv = ({cvData}) => {
                   <div className="p-4">
                         <div >
                             <h1 className="mt-10 text-2xl font-bold text-center underline">CURRICULUM VITE</h1>
-                      <p className="text-md font-serif mt-4"> <span className=" font-bold">OBJECTIVE:</span>{objective}</p>
+                      <p className="text-md font-serif mt-4"> <span className=" font-bold">OBJECTIVE:</span>{cv.objective}</p>
                        
                         </div>
 
@@ -71,14 +69,14 @@ const Cv = ({cvData}) => {
                        <hr className=" h-1 "/>
                          </div>
                          <div className=" mt-2">
-                         <h2 className="text-sm font-semibold">{education[0].degree}</h2>
+                         <h2 className="text-sm font-semibold">{cv.education[0].degree}</h2>
 
-                         <p className="text-sm font-semibold">{education[0].institution}</p>
+                         <p className="text-sm font-semibold">{cv.education[0].institution}</p>
                          </div>
                          <div className="mt-2">
-                         <h2 className="text-sm font-semibold">{education[1].degree}</h2>
+                         <h2 className="text-sm font-semibold">{cv.education[1].degree}</h2>
 
-                          <p className="text-sm font-semibold">{education[1].institution}</p>
+                          <p className="text-sm font-semibold">{cv.education[1].institution}</p>
                          </div>
                         </div>
                         {/* experience */}
@@ -90,14 +88,14 @@ const Cv = ({cvData}) => {
                             <div className=" mt-2">
                            <div className="flex gap-12 py-4">
                                  <div>
-                                 <h2 className="text-sm font-semibold">{experience[0].startDate} {experience[0].endDate}</h2>
-                                 <h2 className="text-sm font-semibold">{experience[1].startDate} {experience[1].endDate}</h2>
+                                 <h2 className="text-sm font-semibold">{cv.experience[0].startDate} {cv.experience[0].endDate}</h2>
+                                 <h2 className="text-sm font-semibold">{cv.experience[1].startDate} {cv.experience[1].endDate}</h2>
 
 
                                  </div>
                                  <div>
-                                 <h1 className="text-sm font-semibold">{experience[0].company} {experience[0].position}</h1>
-                                 <h1 className="text-sm font-semibold">{experience[1].company} {experience[1].position}</h1>
+                                 <h1 className="text-sm font-semibold">{cv.experience[0].company} {cv.experience[0].position}</h1>
+                                 <h1 className="text-sm font-semibold">{cv.experience[1].company} {cv.experience[1].position}</h1>
 
                                  </div>
 
@@ -114,8 +112,8 @@ const Cv = ({cvData}) => {
                             </div>
                             <div className="space-y-2 ml-4">
                             <ul className="list-disc">
-                            <li className="text-sm font-semibold">{extracurricular[0].responsibilities} </li>
-                            <li className="text-sm font-semibold">{extracurricular[1].responsibilities}</li>
+                            <li className="text-sm font-semibold">{cv.extracurricular[0].responsibilities} </li>
+                            <li className="text-sm font-semibold">{cv.extracurricular[1].responsibilities}</li>
                             <li className="text-sm font-semibold">Winter of Photography competition</li>
                             </ul>
                             </div>

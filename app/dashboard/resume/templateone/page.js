@@ -1,10 +1,11 @@
-import ResumeData from '@/components/Resume/resumeData';
+import Resume from '@/components/Resume/resume';
+
 import React from 'react';
 
 const page = () => {
     return (
         <div>
-            <ResumeData/>
+         <Resume/>
         </div>
     );
 };

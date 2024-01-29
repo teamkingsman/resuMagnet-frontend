@@ -1,10 +1,11 @@
-import CoverLetterData from '@/components/CoverLetter/coverLetterData';
+import CoverLetter from '@/components/CoverLetter/coverLetter';
+
 import React from 'react';
 
 const page = () => {
     return (
         <div>
-           <CoverLetterData/> 
+         <CoverLetter/>
         </div>
     );
 };
