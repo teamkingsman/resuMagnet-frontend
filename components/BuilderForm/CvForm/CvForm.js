@@ -24,6 +24,7 @@ function CvForm() {
     employment: [],
     skills: [],
     languages: [],
+    projects: [], 
     email: userEmail,
   });
 
@@ -93,7 +94,6 @@ function CvForm() {
     try {
       const response = await cvFromPost(allFormData);
       console.log("CV data sent successfully", response);
-//       router.push("/dashboard/cv/templatetwo")
     } catch (error) {
       console.error("Error sending CV data", error);
     }

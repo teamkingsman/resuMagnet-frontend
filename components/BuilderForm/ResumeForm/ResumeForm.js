@@ -10,7 +10,6 @@ import { AuthContext } from "@/Providers/AuthProvider";
 import { resumeFromPost } from "@/lib/BuilderAPI";
 import ProjectForm from "../FormComponents/ProjectForm/ProjectForm";
 function ResumeForm() {
-  const router = useRouter()
   const { user } = useContext(AuthContext);
   const userEmail = user.email;
   // Form data state
@@ -20,6 +19,7 @@ function ResumeForm() {
     employment: [],
     skills: [],
     languages: [],
+    projects: [], 
     email: userEmail,
   });
 
@@ -90,11 +90,9 @@ function ResumeForm() {
     try {
       const response = await resumeFromPost(allFormData);
       console.log("Resume data sent successfully", response);
-//           router.push("/dashboard/resume/templatetwo")
     } catch (error) {
       console.error("Error sending resume data", error);
     }
-
   };
 
   return (
