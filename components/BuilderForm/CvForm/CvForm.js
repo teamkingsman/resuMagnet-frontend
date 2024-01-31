@@ -1,12 +1,18 @@
 "use client";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import EmploymentForm from "../FormComponents/EmploymentForm/EmploymentForm";
 import EducationForm from "../FormComponents/EducationForm/EducationForm";
 import SkillForm from "../FormComponents/SkillForm/SkillForm";
 import LanguageForm from "../FormComponents/LanguageForm/LanguageForm";
 import BasicInfoForm from "../FormComponents/BasicInfoForm/BasicInfoForm";
+import { AuthContext } from "@/Providers/AuthProvider";
+import { cvFromPost } from "@/lib/BuilderAPI";
+import ProjectForm from "../FormComponents/ProjectForm/ProjectForm";
 
 function CvForm() {
+  // Form data state
+  const { user } = useContext(AuthContext);
+  const userEmail = user.email;
   // Form data state
   const [allFormData, setAllFormData] = useState({
     basicInfo: null,
@@ -14,6 +20,7 @@ function CvForm() {
     employment: [],
     skills: [],
     languages: [],
+    email: userEmail,
   });
 
   // toggle States
@@ -21,6 +28,7 @@ function CvForm() {
   const [showEducationForm, setShowEducationForm] = useState(false);
   const [showSkillForm, setShowSkillForm] = useState(false);
   const [showLanguageForm, setShowLanguageForm] = useState(false);
+  const [showProjectForm, setShowProjectForm] = useState(false);
 
   // toggle buttons
   const handleEmploymentFormToggle = () => {
@@ -34,6 +42,9 @@ function CvForm() {
   };
   const handleLanguageFormToggle = () => {
     setShowLanguageForm(!showLanguageForm);
+  };
+  const handleProjectFormToggle = () => {
+    setShowProjectForm(!showProjectForm);
   };
 
   // get form data
@@ -67,43 +78,20 @@ function CvForm() {
       skills: [...prevData.skills, skillFormData],
     }));
   };
-
-  // delete
-
-  const handleDeleteEducation = (index) => {
-    setAllFormData((prevData) => {
-      const updatedEducation = [...prevData.education];
-      updatedEducation.splice(index, 1);
-      return { ...prevData, education: updatedEducation };
-    });
+  const handleProjectFormSubmit = (projectFormData) => {
+    setAllFormData((prevData) => ({
+      ...prevData,
+      projects: [...prevData.projects, projectFormData],
+    }));
   };
 
-  const handleDeleteEmployment = (index) => {
-    setAllFormData((prevData) => {
-      const updatedEmployment = [...prevData.employment];
-      updatedEmployment.splice(index, 1);
-      return { ...prevData, employment: updatedEmployment };
-    });
-  };
-
-  const handleDeleteSkill = (index) => {
-    setAllFormData((prevData) => {
-      const updatedSkills = [...prevData.skills];
-      updatedSkills.splice(index, 1);
-      return { ...prevData, skills: updatedSkills };
-    });
-  };
-
-  const handleDeleteLanguage = (index) => {
-    setAllFormData((prevData) => {
-      const updatedLanguages = [...prevData.languages];
-      updatedLanguages.splice(index, 1);
-      return { ...prevData, languages: updatedLanguages };
-    });
-  };
-
-  const handlePreview = () => {
-    console.log(allFormData);
+  const handlePreview = async () => {
+    try {
+      const response = await cvFromPost(allFormData);
+      console.log("CV data sent successfully", response);
+    } catch (error) {
+      console.error("Error sending CV data", error);
+    }
   };
 
   return (
@@ -111,7 +99,7 @@ function CvForm() {
       <div className="hero min-h-screen bg-main">
         <div className="hero-content flex-col">
           <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold text-main">
+            <h1 className="text-5xl font-bold text-whitecolor">
               Create Your Own CV
             </h1>
           </div>
@@ -133,31 +121,6 @@ function CvForm() {
                   <EducationForm
                     onSubmit={handleEducationFormSubmit}
                   ></EducationForm>
-                  {allFormData.education.map((edu, index) => (
-                    <div key={index} className="added-item">
-                      <div className="overflow-x-auto bg">
-                        <table className="table">
-                          <tbody>
-                            <tr>
-                              <td>{edu.degree}</td>
-                              <td>{edu.institute}</td>
-                              <td>{edu.startDate}</td>
-                              <td> {edu.endDate}</td>
-                              <td>
-                                <button
-                                  type="button"
-                                  onClick={() => handleDeleteEducation(index)}
-                                  className=" btn-circle bg-highlight_color hover:bg-sub_color  btn-sm btn-outline"
-                                >
-                                 X
-                                </button>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  ))}
                 </>
               )}
 
@@ -176,31 +139,6 @@ function CvForm() {
                   <EmploymentForm
                     onSubmit={handleEmploymentFormSubmit}
                   ></EmploymentForm>
-                  {allFormData.employment.map((emp, index) => (
-                    <div key={index} className="added-item">
-                      <div className="overflow-x-auto">
-                        <table className="table">
-                          <tbody>
-                            <tr>
-                              <td>{emp.jobTitle}</td>
-                              <td>{emp.employer}</td>
-                              <td>{emp.startDate}</td>
-                              <td>{emp.endDate}</td>
-                              <td>
-                                <button
-                                  type="button"
-                                  onClick={() => handleDeleteEmployment(index)}
-                                  className=" btn-circle bg-highlight_color hover:bg-sub_color  btn-sm btn-outline"
-                                >
-                                 X
-                                </button>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  ))}
                 </>
               )}
 
@@ -217,29 +155,6 @@ function CvForm() {
               {showSkillForm && (
                 <>
                   <SkillForm onSubmit={handleSkillFormSubmit}></SkillForm>
-                  {allFormData.skills.map((skillData, index) => (
-                    <div key={index} className="added-item">
-                      <div className="overflow-x-auto">
-                        <table className="table">
-                          <tbody>
-                            <tr>
-                              <td>{skillData.skill}</td>
-                              <td>{skillData.level}</td>
-                              <td>
-                                <button
-                                  type="button"
-                                  onClick={() => handleDeleteSkill(index)}
-                                  className=" btn-circle bg-highlight_color hover:bg-sub_color  btn-sm btn-outline"
-                                >
-                                 X
-                                </button>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  ))}
                 </>
               )}
 
@@ -258,29 +173,22 @@ function CvForm() {
                   <LanguageForm
                     onSubmit={handleLanguageFormSubmit}
                   ></LanguageForm>
-                  {allFormData.languages.map((lang, index) => (
-                    <div key={index} className="added-item">
-                      <div className="overflow-x-auto">
-                        <table className="table">
-                          <tbody>
-                            <tr>
-                              <td> {lang.language}</td>
-                              <td>{lang.proficiency}</td>
-                              <td>
-                                <button
-                                  type="button"
-                                  onClick={() => handleDeleteLanguage(index)}
-                                  className=" btn-circle bg-highlight_color hover:bg-sub_color  btn-sm btn-outline"
-                                >
-                                 X
-                                </button>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  ))}
+                </>
+              )}
+
+              <div className="form-control mt-4">
+                <button
+                  type="button"
+                  className="text-left text-main font-semibold hover:font-bold hover:bg hover:border "
+                  onClick={handleProjectFormToggle}
+                >
+                  Add Projects +
+                </button>
+              </div>
+
+              {showProjectForm && (
+                <>
+                  <ProjectForm onSubmit={handleProjectFormSubmit}></ProjectForm>
                 </>
               )}
 
