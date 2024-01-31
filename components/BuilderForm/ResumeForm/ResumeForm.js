@@ -6,12 +6,12 @@ import EducationForm from "../FormComponents/EducationForm/EducationForm";
 import SkillForm from "../FormComponents/SkillForm/SkillForm";
 import LanguageForm from "../FormComponents/LanguageForm/LanguageForm";
 import BasicInfoForm from "../FormComponents/BasicInfoForm/BasicInfoForm";
-import { AuthContext } from "@/Providers/AuthProvider";
 import { resumeFromPost } from "@/lib/BuilderAPI";
 import ProjectForm from "../FormComponents/ProjectForm/ProjectForm";
-function ResumeForm() {
+import useAuth from "@/hooks/useAuth";
+const ResumeForm = () => {
   const router = useRouter()
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const userEmail = user.email;
   // Form data state
   const [allFormData, setAllFormData] = useState({
