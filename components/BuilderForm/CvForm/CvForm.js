@@ -91,6 +91,7 @@ function CvForm() {
   };
 
   const handlePreview = async () => {
+    console.log(allFormData);
     try {
       const response = await cvFromPost(allFormData);
       console.log("CV data sent successfully", response);
