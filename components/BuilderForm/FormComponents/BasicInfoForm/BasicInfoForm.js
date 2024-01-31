@@ -17,7 +17,7 @@ function BasicInfoForm({ onSubmit }) {
     e.preventDefault();
     const photoURL = await photoLink(photo);
     const formData = {
-      designation: e.target.designation?.value, 
+      designation: e.target.designation?.value,
       photoURL: photoURL,
       fname: e.target.fname?.value,
       lname: e.target.lname?.value,
@@ -239,6 +239,7 @@ function BasicInfoForm({ onSubmit }) {
               <span className="label-text font-semibold text-main">About</span>
             </label>
             <textarea
+              name="about"
               placeholder="About Your self"
               className="textarea textarea-bordered textarea-lg w-full bg-base-300"
             ></textarea>
