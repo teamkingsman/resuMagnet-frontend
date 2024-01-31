@@ -16,7 +16,7 @@ function SocialSignIn() {
     const toastId = toast.loading('Loading...');
 
     googleSignIn()
-      .then( async(result) => {
+      .then(async(result) => {
         console.log(result.user);
         const currentUser = {
           email: result.user.email,
@@ -25,7 +25,7 @@ function SocialSignIn() {
         };
         await saveUser(currentUser)
         toast.success('Sign In successful', (toastId));
-        // router.back()
+        router.back()
         // if (previousRoute) {
         //   router.replace(previousRoute);
         // } else {
@@ -38,12 +38,12 @@ function SocialSignIn() {
       })
   }
 
-  // useEffect(() => {
-  //   // Optionally, you can automatically redirect if the user is already signed in
-  //   if (user) {
-  //     router.replace('/');
-  //   }
-  // }, [user, router]);
+  useEffect(() => {
+    // Optionally, you can automatically redirect if the user is already signed in
+    if (user) {
+      router.replace('/');
+    }
+  }, [user, router]);
 
   return (
     <div className="flex flex-col items-center  space-y-4 px-8">

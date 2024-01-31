@@ -8,8 +8,12 @@ import BasicInfoForm from "../FormComponents/BasicInfoForm/BasicInfoForm";
 import { AuthContext } from "@/Providers/AuthProvider";
 import { cvFromPost } from "@/lib/BuilderAPI";
 import ProjectForm from "../FormComponents/ProjectForm/ProjectForm";
+import { useRouter } from "next/navigation";
+
 
 function CvForm() {
+  const router = useRouter()
+
   // Form data state
   const { user } = useContext(AuthContext);
   const userEmail = user.email;
@@ -89,9 +93,11 @@ function CvForm() {
     try {
       const response = await cvFromPost(allFormData);
       console.log("CV data sent successfully", response);
+//       router.push("/dashboard/cv/templatetwo")
     } catch (error) {
       console.error("Error sending CV data", error);
     }
+
   };
 
   return (

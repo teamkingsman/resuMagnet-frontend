@@ -2,13 +2,15 @@
 import { AuthContext } from "@/Providers/AuthProvider";
 import { coverLetterFromPost } from "@/lib/BuilderAPI";
 import { useContext } from "react";
+import { useRouter } from "next/navigation";
 function CoverLetterForm() {
-
+  const router = useRouter()
   const { user } = useContext(AuthContext);
   const userEmail = user.email;
 
 
   const handleFormSubmit = async(e) => {
+
     e.preventDefault();
     const formData = {
       designation: e.target.designation?.value,
@@ -23,6 +25,7 @@ function CoverLetterForm() {
     try {
       const response = await coverLetterFromPost(formData);
       console.log("Cover Letter data sent successfully", response);
+//       router.push('/dashboard/cover-letter/templatetwo')
     } catch (error) {
       console.error("Error sending Cover Letter data", error);
     }
