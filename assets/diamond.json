@@ -1,0 +1,91 @@
+{
+    "basicInfo": {
+      "designation": "MERN Stack Developer",
+      "photoURL": "https://res.cloudinary.com/dxox3wiq1/image/upload/v1706722135/poto_kwnhid.jpg",
+      "fname": "Sakib",
+      "lname": "Hossain",
+      "email": "Hossain.sakib.x@gmail.com",
+      "phone": "01955703819",
+      "country": "Bangladesh",
+      "city": "Narayanganj",
+      "street": "Bscic Road,Kanchpur",
+      "postal": "1430",
+      "dob": "1999-11-10",
+      "nationality": "Bangladeshi"
+    },
+    "education": [
+      {
+        "degree": "Bsc In Cse",
+        "institute": "National University of Bangladesh",
+        "startDate": "2018-04-26",
+        "endDate": "2022-07-27",
+        "jobDescription": "fsdfsd"
+      },
+      {
+        "degree": "HSC",
+        "institute": "GiasUddin Islamic Model College",
+        "startDate": "2015-06-09",
+        "endDate": "2017-04-20",
+        "jobDescription": "fsdfsdf"
+      }
+    ],
+    "employment": [
+      {
+        "jobTitle": "fsdfsd",
+        "employer": "sdfsdf",
+        "startDate": "2024-01-07",
+        "endDate": "2024-01-10",
+        "jobDescription": "fsdfsdf"
+      }
+    ],
+    "skills": [
+      {
+        "skill": "fsdf",
+        "level": "intermediate"
+      },
+      {
+        "skill": "sdfsd",
+        "level": "intermediate"
+      }
+    ],
+    "languages": [
+      {
+        "language": "fsdfs",
+        "proficiency": "intermediate"
+      },
+      {
+        "language": "fsdf",
+        "proficiency": "advanced"
+      }
+    ],
+    "projects": [
+      [
+        {
+          "title": "fsd",
+          "type": "sdf",
+          "liveLink": "sdf",
+          "description": "sdf",
+          "githubLink": "sdf"
+        },
+        {
+          "title": "fsdfsdf",
+          "type": "sdfsdf",
+          "liveLink": "sdf",
+          "description": "sdf",
+          "githubLink": "sdf"
+        }
+      ],
+      [
+        {
+          "title": "fsdf",
+          "type": "sdfsd",
+          "liveLink": "sdfsd",
+          "description": "sdfsd",
+          "githubLink": "sdfs"
+        }
+      ]
+    ]
+    ,
+    "email": "mskib567@gmail.com"
+  }
+  
