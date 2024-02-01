@@ -3,10 +3,10 @@ import Link from "next/link";
 const TemplatesNav = () => {
     return (
         <div>
-            <div className="navbar bg-base-100 px-4">
+            <div className="navbar bg-base-100 px-4 border-b-2 border-b-sub_color shadow-xl">
                 <div className="flex-1">
                     <button className="">
-                        <Link href="/" className="flex flex-row gap-2"><span className="text-sub_color"><IoCaretBack /></span> Back To Home</Link>
+                        <Link href="/" className="flex flex-row gap-2 items-center"><span className="text-sub_color"><IoCaretBack /></span><span className="text-sm md:text-lg text-sub_color">Back To Home</span></Link>
                     </button>
                 </div>
                 <div className="flex-none">
@@ -20,10 +20,10 @@ const TemplatesNav = () => {
                                 </div>
                                 <div className="drawer-side">
                                     <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
-                                    <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+                                    <ul className="menu p-4 w-72 md:w-80 min-h-full bg-base-200 text-base-content">
                                         {/* Sidebar content here */}
-                                        <li className="btn">Download PDF</li>
-                                        <li><a>Sidebar Item 2</a></li>
+                                        <li><a>Copy Link</a></li>
+                                        <li className="btn btn-sm md:btn-md lg:btn-lg w-3/4 mx-auto bg-sub_color py-4 mt-4">Download PDF</li>
                                     </ul>
                                 </div>
                             </div>
