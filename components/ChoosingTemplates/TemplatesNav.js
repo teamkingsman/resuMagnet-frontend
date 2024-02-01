@@ -1,4 +1,5 @@
 import { IoCaretBack } from "react-icons/io5";
+
 import Link from "next/link";
 const TemplatesNav = () => {
     return (
@@ -23,22 +24,12 @@ const TemplatesNav = () => {
                                     <ul className="menu p-4 w-72 md:w-80 min-h-full bg-base-200 text-base-content">
                                         {/* Sidebar content here */}
                                         <li><a>Copy Link</a></li>
-                                        <li className="btn btn-sm md:btn-md lg:btn-lg w-3/4 mx-auto bg-sub_color py-4 mt-4">Download PDF</li>
+                                        <li className="btn btn-sm md:btn-md lg:btn-lg w-3/4 mx-auto bg-sub_color py-4 mt-4 "><span className="text-highlight_color"></span>Download PDF</li>
                                     </ul>
                                 </div>
                             </div>
                         </li>
-                        {/* <li>
-                            <details>
-                                <summary>
-                                More
-                                </summary>
-                                <ul className="p-2 bg-base-100 rounded-t-none">
-                                    <li className="block md:hidden">Download PDF</li>
-                                    <li>Share Link</li>
-                                </ul>
-                            </details>
-                        </li> */}
+                
                     </ul>
                 </div>
             </div>
