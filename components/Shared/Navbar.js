@@ -11,7 +11,7 @@ const Navbar = () => {
     const {user , signOutUser} = useContext(AuthContext)
     
     const pathname = usePathname()
-    const doNotShowNav = ["/signin", "/signup", "/dashboard", "/dashboard/profile", "/dashboard/cover-letter", "/dashboard/resume", "/dashboard/cv"]
+    const doNotShowNav = ["/signin", "/signup", "/dashboard", "/dashboard/profile", "/dashboard/cover-letter", "/dashboard/resume", "/dashboard/cv" , "/templateEditor"]
     if (doNotShowNav.includes(pathname)) {
      return null;
     }
