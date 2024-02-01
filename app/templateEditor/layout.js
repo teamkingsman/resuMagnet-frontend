@@ -1,4 +1,5 @@
 import PrivateRoute from "@/Providers/PrivateRoute";
+import TemplatesNav from "@/components/ChoosingTemplates/TemplatesNav";
 
 
 const TemplateEditor = ({ children }) => {
@@ -6,7 +7,8 @@ const TemplateEditor = ({ children }) => {
         // <PrivateRoute>
             <div>
                 {/* navbar goes here */}
-                <div className="grid grid-cols-12 gap-4 w-full ">
+                <TemplatesNav></TemplatesNav>
+                <div className="grid grid-cols-12 gap-4 w-full mt-4">
                     <div className="col-span-3 ">
                         {/* side bar goes here */}
                         <h1>Sidebar</h1>
