@@ -14,40 +14,43 @@ import { useRouter } from "next/navigation";
 function CvForm() {
   const { user } = useContext(AuthContext);
   const userEmail = user.email;
-  // Form data state
+
   const [allFormData, setAllFormData] = useState({
     basicInfo: null,
     education: [],
     employment: [],
-    projects: [], 
-    email: userEmail,
+    languages: [],
+    projects: [],
+    skills: [],
+    userEmail: userEmail,
   });
 
-  // toggle States
   const [showEmploymentForm, setShowEmploymentForm] = useState(false);
   const [showEducationForm, setShowEducationForm] = useState(false);
   const [showSkillForm, setShowSkillForm] = useState(false);
   const [showLanguageForm, setShowLanguageForm] = useState(false);
   const [showProjectForm, setShowProjectForm] = useState(false);
 
-  // toggle buttons
   const handleEmploymentFormToggle = () => {
     setShowEmploymentForm(!showEmploymentForm);
   };
+
   const handleEducationFormToggle = () => {
     setShowEducationForm(!showEducationForm);
   };
+
   const handleSkillFormToggle = () => {
     setShowSkillForm(!showSkillForm);
   };
+
   const handleLanguageFormToggle = () => {
     setShowLanguageForm(!showLanguageForm);
   };
+
   const handleProjectFormToggle = () => {
     setShowProjectForm(!showProjectForm);
   };
 
-  // get form data
   const handleBasicInfoDataChange = (basicInfoFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
@@ -61,34 +64,34 @@ function CvForm() {
       education: educationFormData,
     }));
   };
+
   const handleEmploymentDataChange = (employmentFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
       employment: employmentFormData,
     }));
   };
-  
+
   const handleLanguageDataChange = (languageFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      language: languageFormData,
+      languages: languageFormData,
     }));
   };
 
   const handleSkillDataChange = (skillFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      skill: skillFormData,
+      skills: skillFormData,
     }));
   };
-  
+
   const handleProjectDataChange = (projectFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
       projects: projectFormData,
     }));
   };
-
 
   const handlePreview = async () => {
     console.log(allFormData);
@@ -111,7 +114,7 @@ function CvForm() {
             </h1>
           </div>
           <div className="card w-full shadow-2xl bg-base-100">
-            <BasicInfoForm onChange={handleBasicInfoDataChange}></BasicInfoForm>
+            <BasicInfoForm onChange={handleBasicInfoDataChange} />
             <div className="card-body">
               <div className="form-control mt-4">
                 <button
@@ -124,9 +127,9 @@ function CvForm() {
               </div>
 
               {showEducationForm && (
-                <>
-                 <EducationForm onChange={handleEducationDataChange}></EducationForm>
-                </>
+                <EducationForm
+                  onChange={handleEducationDataChange}
+                ></EducationForm>
               )}
 
               <div className="form-control mt-4">
@@ -140,11 +143,9 @@ function CvForm() {
               </div>
 
               {showEmploymentForm && (
-                <>
-                  <EmploymentForm
-                    onChange={handleEmploymentDataChange}
-                  ></EmploymentForm>
-                </>
+                <EmploymentForm
+                  onChange={handleEmploymentDataChange}
+                ></EmploymentForm>
               )}
 
               <div className="form-control mt-4">
@@ -158,9 +159,7 @@ function CvForm() {
               </div>
 
               {showSkillForm && (
-                <>
-                  <SkillForm onChange={handleSkillDataChange}></SkillForm>
-                </>
+                <SkillForm onChange={handleSkillDataChange}></SkillForm>
               )}
 
               <div className="form-control mt-4">
@@ -174,17 +173,15 @@ function CvForm() {
               </div>
 
               {showLanguageForm && (
-                <>
-                  <LanguageForm
-                    onChange={handleLanguageDataChange}
-                  ></LanguageForm>
-                </>
+                <LanguageForm
+                  onChange={handleLanguageDataChange}
+                ></LanguageForm>
               )}
 
               <div className="form-control mt-4">
                 <button
                   type="button"
-                  className="text-left text-main font-semibold hover:font-bold hover:bg hover:border "
+                  className="text-left text-main font-semibold hover:font-bold hover:bg hover:border"
                   onClick={handleProjectFormToggle}
                 >
                   Add Projects +
@@ -192,15 +189,13 @@ function CvForm() {
               </div>
 
               {showProjectForm && (
-                <>
-                  <ProjectForm onChange={handleProjectDataChange}></ProjectForm>
-                </>
+                <ProjectForm onChange={handleProjectDataChange}></ProjectForm>
               )}
 
               <div className="form-control mt-4">
                 <button
                   type="button"
-                  className="btn bg-main text-neutral-50 font-bold overflow-hidden transition-all hover:scale-105  hover:shadow-2xl hover:bg-sub_color"
+                  className="btn bg-main text-neutral-50 font-bold overflow-hidden transition-all hover:scale-105 hover:shadow-2xl hover:bg-sub_color"
                   onClick={handlePreview}
                 >
                   Preview

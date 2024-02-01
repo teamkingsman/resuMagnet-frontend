@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -21,9 +22,8 @@ function EducationForm({ onChange }) {
         entry.id === id ? { ...entry, [field]: date } : entry
       )
     );
-    onChange(educationHistory);
+    onChange([...educationHistory]);
   };
-
   const handleCheckboxChange = (e, id) => {
     const { checked } = e.target;
     setEducationHistory((prevHistory) =>
@@ -66,7 +66,7 @@ function EducationForm({ onChange }) {
   };
 
   return (
-    <form className="md:flex flex-col justify-center gap-4 mt-4">
+    <div className="md:flex flex-col justify-center gap-4 mt-4">
       {educationHistory.map((entry) => (
         <div key={entry.id}>
           <h1 className="text-center font-extrabold py-2 text-2xl">
@@ -121,6 +121,7 @@ function EducationForm({ onChange }) {
                 placeholderText="Select Start Date"
                 className="input bg-base-300"
                 dateFormat="dd-MM-yyyy"
+                showTimeInput={false}
               />
             </div>
 
@@ -136,6 +137,7 @@ function EducationForm({ onChange }) {
                 placeholderText="Select End Date"
                 className="input bg-base-300"
                 dateFormat="dd-MM-yyyy"
+                showTimeInput={false}
                 disabled={entry.ongoing}
               />
             </div>
@@ -185,7 +187,7 @@ function EducationForm({ onChange }) {
           Add More History +
         </button>
       </div>
-    </form>
+    </div>
   );
 }
 

@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 
 function SkillForm({ onChange }) {
@@ -16,7 +17,11 @@ function SkillForm({ onChange }) {
         skill.id === id ? { ...skill, [name]: value } : skill
       )
     );
-    onChange(skills);
+    
+    setSkills((updatedSkills) => {
+      onChange(updatedSkills);
+      return updatedSkills;
+    });
   };
 
   const addMoreSkill = () => {
@@ -28,13 +33,12 @@ function SkillForm({ onChange }) {
         level: "",
       },
     ]);
-    onChange(skills);
   };
 
   return (
     <div className="md:flex flex-col justify-center gap-4 mt-4">
       {skills.map((skill) => (
-        <div key={skill.id}>
+        <div key={`skill-${skill.id}`}>
           <h1 className="text-center font-extrabold py-2 text-2xl">Skill {skill.id}</h1>
           <div className="md:flex justify-between gap-4">
             <div className="form-control">
@@ -82,7 +86,7 @@ function SkillForm({ onChange }) {
         <button
           type="button"
           onClick={addMoreSkill}
-          className="flex items-center justify-center gap-2 text-main font-semibold hover:font-bold hover:bg hover:border "
+          className="flex items-center justify-center gap-2 text-main font-semibold hover:font-bold hover:bg hover:border"
         >
           Add More Skill +
         </button>
