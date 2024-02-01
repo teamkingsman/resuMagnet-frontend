@@ -1,0 +1,73 @@
+{
+    "personalData": {
+      "name": "Anna Field",
+      "title": "Junior Project Manager"
+    },
+    "PersonalInfo": {
+      "location": "Bangladesh, Dhaka",
+      "email": "abcd@gmail.com",
+      "phone": "00 99 888 99",
+      "linkedin": "link.in",
+      "github": "github.git"
+    },
+    "profile": "Seasoned frontend developer with 1.5 years of expertise in React and Tailwind CSS. Proficient in Firebase for seamless backend integration. Skilled in MongoDB and Express JS.",
+    "professionalExperience": [
+      {
+        "startDate": "2017/07",
+        "endDate": "2019/08",
+        "company": "JP Morgan",
+        "location": "Bangladesh, Dhaka",
+        "position": "Senior Financial Analyst",
+        "responsibilities": [
+          "Analyzed financial statements to determine business opportunities.",
+          "Established new forecasting tracking and management reporting system to improve availability of financial data, triggering 15% increase in accuracy.",
+          "Spearheaded due diligence for $2.3 billion joint venture, identifying key risks.",
+          "Streamlined reporting to maximize efficiency while maintaining compliance."
+        ]
+      },
+      {
+        "startDate": "2014/07",
+        "endDate": "2016/08",
+        "company": "UBS",
+        "location": "Bangladesh, Dhaka",
+        "position": "Financial Analyst",
+        "responsibilities": [
+          "Prepared Presentation for earning call & investor relations website.",
+          "Performed company valuation in Excel.",
+          "Lead due diligence for $5 million acquisition, identifying and minimizing liabilities and risks.",
+          "Built financial models in Excel."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "startDate": "2014/09",
+        "endDate": "2015/08",
+        "institution": "Harvard Business School",
+        "location": "Harvard, USA",
+        "degree": "MSc Finance"
+      },
+      {
+        "startDate": "2013/09",
+        "endDate": "2014/07",
+        "institution": "London School of Economics ",
+        "location": "London, UK",
+        "degree": "BA Economics"
+      }
+    ],
+    "skills": {
+      "expertise": [
+        "React.js",
+        "React Router",
+        "Javascript",
+        "ES6",
+        "Tailwind CSS"
+      ],
+      "comfortable": ["Nodejs", "Express JS", "JWT", "Axios"],
+      "tools": ["VS Code", "git", "Figma", "Netlify", "Vercel"]
+    },
+    "languages": ["English (Conversational)", "Bangla (Native)"],
+    "certificates": ["CFA - Level 1", "CPA - Level 1"],
+    "personalSkills": ["Leadership", "Team Work", "Negotiation"]
+  }
+  
