@@ -1,0 +1,80 @@
+{
+    "personalInformation":[
+       {
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john.doe@example.com",
+      "phone": "+1 (555) 123-4567",
+      "address": "123 Main Street, Cityville, State, 12345"
+    }
+  ],
+    "summary": "Dedicated and results-driven professional with a strong background in software development and a passion for creating innovative solutions.",
+    "education": [
+      {
+        "degree": "Bachelor of Science in Computer Science",
+        "school": "University of Technology",
+        "graduationYear": 2018
+      }
+    ],
+    "experience": [
+      {
+        "position": "Software Engineer",
+        "company": "Tech Solutions Inc.",
+        "location": "City, State",
+        "startDate": "June 2018",
+        "endDate": "Present",
+        "responsibilities": [
+          "Develop and maintain web applications using JavaScript, HTML, and CSS.",
+          "Collaborate with cross-functional teams to design and implement new features.",
+          "Troubleshoot and debug issues, ensuring optimal performance and user experience."
+        ]
+      },
+      {
+        "position": "Intern",
+        "company": "Innovative Software Co.",
+        "location": "City, State",
+        "startDate": "May 2017",
+        "endDate": "August 2017",
+        "responsibilities": [
+          "Assisted in the development of software modules and features.",
+          "Conducted testing and participated in code reviews.",
+          "Provided support in troubleshooting and bug fixing."
+        ]
+      }
+    ],
+    "skills": [
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "React",
+      "Node.js",
+      "Next.js",
+      "Git",
+      "Agile Development",
+      "Problem Solving",
+      "Team Collaboration"
+    ],
+    "languages": [
+      "English (Fluent)",
+      "Bangla (Intermediate)"
+    ],
+    "certifications": [
+      {
+        "name": "Certified Web Developer",
+        "organization": "Web Development Certification Institute",
+        "date": "January 2020"
+      }
+    ],
+    "projects": [
+      {
+        "name": "E-commerce Platform",
+        "description": "Developed a responsive e-commerce platform with secure payment processing.",
+        "technologies": ["React", "Node.js", "MongoDB", "Express"]
+      },
+      {
+        "name": "Task Management App",
+        "description": "Created a task management application with real-time collaboration features.",
+        "technologies": ["React", "Firebase", "Redux"]
+      }
+    ]
+  }

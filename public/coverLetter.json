@@ -1,0 +1,30 @@
+{
+    "coverLetter": {
+      "sender": {
+        "name": "John Roy",
+        "address": "Gracevile,FL 34562",
+        "email": "your.email@example.com",
+        "phone": "123-456-7890"
+      },
+      "recipient": {
+        "name": "Dear Ms.Carter",
+        "company": "software Lab",
+        "address": "Mirpur dhaka"
+      },
+      "date": "January 26, 2024",
+      "subject": "Application for [Job Title]",
+      "salutation": "Dear Hiring Manager,",
+      "body": [
+        "I am writing to express my strong interest in the [Job Title] position at [Company Name], as advertised on your website.",
+        "With my background in [Your Field] and a proven track record in [Relevant Skills], I am confident that my skills and experience make me a perfect fit for this role.",
+        "In my previous position at [Previous Company], I successfully [Highlight an Achievement or Responsibility]. This experience has equipped me with the ability to [Mention a Key Skill or Quality].",
+        "I am particularly drawn to [Company Name] because of [Reasons Why You're Interested]. I am impressed by your commitment to [Company Values or Achievements], and I am excited about the opportunity to contribute to your team.",
+        "Enclosed is my resume that further outlines my qualifications. I would welcome the opportunity to discuss how my skills and experiences align with your company's needs in more detail.",
+        "Thank you for considering my application. I look forward to the possibility of discussing this exciting opportunity with you.",
+        "Sincerely,",
+        "Moin uddin"
+      ],
+      "closing": "Best Regards"
+    }
+  }
+  
