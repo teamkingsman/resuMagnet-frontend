@@ -5,7 +5,7 @@ const Banner = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 justify-evenly gap-6 items-center max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4 my-4">
       <div className="">
-        <h1 className="text-2xl md:text-3xl lg:text-5xl">Unlock Your Potential with
+        <h1 className="text-2xl font-semibold md:text-3xl lg:text-5xl">Unlock Your Potential with
 
           Our Exceptional Resume
           Building Platform</h1>

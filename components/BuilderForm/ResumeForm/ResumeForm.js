@@ -1,87 +1,99 @@
 "use client";
-import { useContext, useState } from "react";
-import { useRouter } from "next/navigation";
+import React, { useContext, useState } from "react";
 import EmploymentForm from "../FormComponents/EmploymentForm/EmploymentForm";
 import EducationForm from "../FormComponents/EducationForm/EducationForm";
 import SkillForm from "../FormComponents/SkillForm/SkillForm";
 import LanguageForm from "../FormComponents/LanguageForm/LanguageForm";
 import BasicInfoForm from "../FormComponents/BasicInfoForm/BasicInfoForm";
-import { resumeFromPost } from "@/lib/BuilderAPI";
 import ProjectForm from "../FormComponents/ProjectForm/ProjectForm";
+import { AuthContext } from "@/Providers/AuthProvider";
+import { resumeFromPost } from "@/lib/BuilderAPI";
 import useAuth from "@/hooks/useAuth";
+import { useRouter } from "next/navigation";
+
 const ResumeForm = () => {
   const router = useRouter()
   const { user } = useAuth();
+
+function ResumeForm() {
+  const { user } = useContext(AuthContext);
   const userEmail = user.email;
-  // Form data state
+
   const [allFormData, setAllFormData] = useState({
     basicInfo: null,
     education: [],
     employment: [],
-    skills: [],
     languages: [],
-    email: userEmail,
+    projects: [],
+    skills: [],
+    userEmail: userEmail,
   });
 
-  // toggle States
   const [showEmploymentForm, setShowEmploymentForm] = useState(false);
   const [showEducationForm, setShowEducationForm] = useState(false);
   const [showSkillForm, setShowSkillForm] = useState(false);
   const [showLanguageForm, setShowLanguageForm] = useState(false);
   const [showProjectForm, setShowProjectForm] = useState(false);
 
-  // toggle buttons
   const handleEmploymentFormToggle = () => {
     setShowEmploymentForm(!showEmploymentForm);
   };
+
   const handleEducationFormToggle = () => {
     setShowEducationForm(!showEducationForm);
   };
+
   const handleSkillFormToggle = () => {
     setShowSkillForm(!showSkillForm);
   };
+
   const handleLanguageFormToggle = () => {
     setShowLanguageForm(!showLanguageForm);
   };
+
   const handleProjectFormToggle = () => {
     setShowProjectForm(!showProjectForm);
   };
 
-  // get form data
-  const handleBasicInfoFormSubmit = (basicInfoFormData) => {
+  const handleBasicInfoDataChange = (basicInfoFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
       basicInfo: basicInfoFormData,
     }));
   };
-  const handleEducationFormSubmit = (educationFormData) => {
+
+  const handleEducationDataChange = (educationFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      education: [...prevData.education, educationFormData],
+      education: educationFormData,
     }));
   };
-  const handleEmploymentFormSubmit = (employmentFormData) => {
+
+  const handleEmploymentDataChange = (employmentFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      employment: [...prevData.employment, employmentFormData],
+      employment: employmentFormData,
     }));
   };
-  const handleLanguageFormSubmit = (languageFormData) => {
+
+  const handleLanguageDataChange = (languageFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      languages: [...prevData.languages, languageFormData],
+      languages: languageFormData,
     }));
   };
-  const handleSkillFormSubmit = (skillFormData) => {
+
+  const handleSkillDataChange = (skillFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      skills: [...prevData.skills, skillFormData],
+      skills: skillFormData,
     }));
   };
-  const handleProjectFormSubmit = (projectFormData) => {
+
+  const handleProjectDataChange = (projectFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      projects: [...prevData.projects, projectFormData],
+      projects: projectFormData,
     }));
   };
 
@@ -90,15 +102,12 @@ const ResumeForm = () => {
     try {
       const response = await resumeFromPost(allFormData);
       console.log("Resume data sent successfully", response);
-//           router.push("/dashboard/resume/templatetwo")
     } catch (error) {
       console.error("Error sending resume data", error);
     }
-
   };
 
   return (
-    <div>
       <div className="hero min-h-screen bg-main">
         <div className="hero-content flex-col">
           <div className="text-center lg:text-left">
@@ -107,7 +116,7 @@ const ResumeForm = () => {
             </h1>
           </div>
           <div className="card w-full shadow-2xl bg-base-100">
-            <BasicInfoForm onSubmit={handleBasicInfoFormSubmit}></BasicInfoForm>
+            <BasicInfoForm onChange={handleBasicInfoDataChange} />
             <div className="card-body">
               <div className="form-control mt-4">
                 <button
@@ -120,11 +129,9 @@ const ResumeForm = () => {
               </div>
 
               {showEducationForm && (
-                <>
-                  <EducationForm
-                    onSubmit={handleEducationFormSubmit}
-                  ></EducationForm>
-                </>
+                <EducationForm
+                  onChange={handleEducationDataChange}
+                ></EducationForm>
               )}
 
               <div className="form-control mt-4">
@@ -138,11 +145,9 @@ const ResumeForm = () => {
               </div>
 
               {showEmploymentForm && (
-                <>
-                  <EmploymentForm
-                    onSubmit={handleEmploymentFormSubmit}
-                  ></EmploymentForm>
-                </>
+                <EmploymentForm
+                  onChange={handleEmploymentDataChange}
+                ></EmploymentForm>
               )}
 
               <div className="form-control mt-4">
@@ -156,9 +161,7 @@ const ResumeForm = () => {
               </div>
 
               {showSkillForm && (
-                <>
-                  <SkillForm onSubmit={handleSkillFormSubmit}></SkillForm>
-                </>
+                <SkillForm onChange={handleSkillDataChange}></SkillForm>
               )}
 
               <div className="form-control mt-4">
@@ -172,17 +175,15 @@ const ResumeForm = () => {
               </div>
 
               {showLanguageForm && (
-                <>
-                  <LanguageForm
-                    onSubmit={handleLanguageFormSubmit}
-                  ></LanguageForm>
-                </>
+                <LanguageForm
+                  onChange={handleLanguageDataChange}
+                ></LanguageForm>
               )}
 
               <div className="form-control mt-4">
                 <button
                   type="button"
-                  className="text-left text-main font-semibold hover:font-bold hover:bg hover:border "
+                  className="text-left text-main font-semibold hover:font-bold hover:bg hover:border"
                   onClick={handleProjectFormToggle}
                 >
                   Add Projects +
@@ -190,15 +191,13 @@ const ResumeForm = () => {
               </div>
 
               {showProjectForm && (
-                <>
-                  <ProjectForm onSubmit={handleProjectFormSubmit}></ProjectForm>
-                </>
+                <ProjectForm onChange={handleProjectDataChange}></ProjectForm>
               )}
 
               <div className="form-control mt-4">
                 <button
                   type="button"
-                  className="btn bg-main text-neutral-50 font-bold overflow-hidden transition-all hover:scale-105  hover:shadow-2xl hover:bg-sub_color"
+                  className="btn bg-main text-neutral-50 font-bold overflow-hidden transition-all hover:scale-105 hover:shadow-2xl hover:bg-sub_color"
                   onClick={handlePreview}
                 >
                   Preview
@@ -208,8 +207,8 @@ const ResumeForm = () => {
           </div>
         </div>
       </div>
-    </div>
   );
+}
 }
 
 export default ResumeForm;

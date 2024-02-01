@@ -18,83 +18,90 @@ function CvForm() {
   // Form data state
   const { user } = useAuth();
   const userEmail = user.email;
-  // Form data state
+
   const [allFormData, setAllFormData] = useState({
     basicInfo: null,
     education: [],
     employment: [],
-    skills: [],
     languages: [],
-    email: userEmail,
+    projects: [],
+    skills: [],
+    userEmail: userEmail,
   });
 
-  // toggle States
   const [showEmploymentForm, setShowEmploymentForm] = useState(false);
   const [showEducationForm, setShowEducationForm] = useState(false);
   const [showSkillForm, setShowSkillForm] = useState(false);
   const [showLanguageForm, setShowLanguageForm] = useState(false);
   const [showProjectForm, setShowProjectForm] = useState(false);
 
-  // toggle buttons
   const handleEmploymentFormToggle = () => {
     setShowEmploymentForm(!showEmploymentForm);
   };
+
   const handleEducationFormToggle = () => {
     setShowEducationForm(!showEducationForm);
   };
+
   const handleSkillFormToggle = () => {
     setShowSkillForm(!showSkillForm);
   };
+
   const handleLanguageFormToggle = () => {
     setShowLanguageForm(!showLanguageForm);
   };
+
   const handleProjectFormToggle = () => {
     setShowProjectForm(!showProjectForm);
   };
 
-  // get form data
-  const handleBasicInfoFormSubmit = (basicInfoFormData) => {
+  const handleBasicInfoDataChange = (basicInfoFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
       basicInfo: basicInfoFormData,
     }));
   };
-  const handleEducationFormSubmit = (educationFormData) => {
+
+  const handleEducationDataChange = (educationFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      education: [...prevData.education, educationFormData],
+      education: educationFormData,
     }));
   };
-  const handleEmploymentFormSubmit = (employmentFormData) => {
+
+  const handleEmploymentDataChange = (employmentFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      employment: [...prevData.employment, employmentFormData],
+      employment: employmentFormData,
     }));
   };
-  const handleLanguageFormSubmit = (languageFormData) => {
+
+  const handleLanguageDataChange = (languageFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      languages: [...prevData.languages, languageFormData],
+      languages: languageFormData,
     }));
   };
-  const handleSkillFormSubmit = (skillFormData) => {
+
+  const handleSkillDataChange = (skillFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      skills: [...prevData.skills, skillFormData],
+      skills: skillFormData,
     }));
   };
-  const handleProjectFormSubmit = (projectFormData) => {
+
+  const handleProjectDataChange = (projectFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      projects: [...prevData.projects, projectFormData],
+      projects: projectFormData,
     }));
   };
 
   const handlePreview = async () => {
+    console.log(allFormData);
     try {
       const response = await cvFromPost(allFormData);
       console.log("CV data sent successfully", response);
-//       router.push("/dashboard/cv/templatetwo")
     } catch (error) {
       console.error("Error sending CV data", error);
     }
@@ -111,7 +118,7 @@ function CvForm() {
             </h1>
           </div>
           <div className="card w-full shadow-2xl bg-base-100">
-            <BasicInfoForm onSubmit={handleBasicInfoFormSubmit}></BasicInfoForm>
+            <BasicInfoForm onChange={handleBasicInfoDataChange} />
             <div className="card-body">
               <div className="form-control mt-4">
                 <button
@@ -124,11 +131,9 @@ function CvForm() {
               </div>
 
               {showEducationForm && (
-                <>
-                  <EducationForm
-                    onSubmit={handleEducationFormSubmit}
-                  ></EducationForm>
-                </>
+                <EducationForm
+                  onChange={handleEducationDataChange}
+                ></EducationForm>
               )}
 
               <div className="form-control mt-4">
@@ -142,11 +147,9 @@ function CvForm() {
               </div>
 
               {showEmploymentForm && (
-                <>
-                  <EmploymentForm
-                    onSubmit={handleEmploymentFormSubmit}
-                  ></EmploymentForm>
-                </>
+                <EmploymentForm
+                  onChange={handleEmploymentDataChange}
+                ></EmploymentForm>
               )}
 
               <div className="form-control mt-4">
@@ -160,9 +163,7 @@ function CvForm() {
               </div>
 
               {showSkillForm && (
-                <>
-                  <SkillForm onSubmit={handleSkillFormSubmit}></SkillForm>
-                </>
+                <SkillForm onChange={handleSkillDataChange}></SkillForm>
               )}
 
               <div className="form-control mt-4">
@@ -176,17 +177,15 @@ function CvForm() {
               </div>
 
               {showLanguageForm && (
-                <>
-                  <LanguageForm
-                    onSubmit={handleLanguageFormSubmit}
-                  ></LanguageForm>
-                </>
+                <LanguageForm
+                  onChange={handleLanguageDataChange}
+                ></LanguageForm>
               )}
 
               <div className="form-control mt-4">
                 <button
                   type="button"
-                  className="text-left text-main font-semibold hover:font-bold hover:bg hover:border "
+                  className="text-left text-main font-semibold hover:font-bold hover:bg hover:border"
                   onClick={handleProjectFormToggle}
                 >
                   Add Projects +
@@ -194,15 +193,13 @@ function CvForm() {
               </div>
 
               {showProjectForm && (
-                <>
-                  <ProjectForm onSubmit={handleProjectFormSubmit}></ProjectForm>
-                </>
+                <ProjectForm onChange={handleProjectDataChange}></ProjectForm>
               )}
 
               <div className="form-control mt-4">
                 <button
                   type="button"
-                  className="btn bg-main text-neutral-50 font-bold overflow-hidden transition-all hover:scale-105  hover:shadow-2xl hover:bg-sub_color"
+                  className="btn bg-main text-neutral-50 font-bold overflow-hidden transition-all hover:scale-105 hover:shadow-2xl hover:bg-sub_color"
                   onClick={handlePreview}
                 >
                   Preview

@@ -1,4 +1,3 @@
-// Used in Resume
 "use client";
 import { deleteImageFromUrl, photoLink } from "@/lib/utils";
 import Image from "next/image";
@@ -12,7 +11,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 
 
 
-function BasicInfoForm({ onSubmit }) {
+function BasicInfoForm({ onChange }) {
   const [showAdditionalFields, setShowAdditionalFields] = useState(false);
   const [photoUrl, setPhotoUrl] = useState(null);
   const [dob, setDob] = useState(null);
@@ -34,34 +33,31 @@ const handelPhotoFileDel = async () => {
     console.log(res)
   }
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    
+  const handleInputChange = async (e) => {
+
     const formData = {
-      designation: e.target.designation?.value,
+      designation: e.target.form.designation.value,
       photoURL: photoUrl,
-      fname: e.target.fname?.value,
-      lname: e.target.lname?.value,
-      email: e.target.email?.value,
-      phone: e.target.phone?.value,
+      fname: e.target.form.fname.value,
+      lname: e.target.form.lname.value,
+      email: e.target.form.email.value,
+      phone: e.target.form.phone.value,
       ...(showAdditionalFields && {
-        country: e.target.country?.value,
-        city: e.target.city?.value,
-        street: e.target.street?.value,
-        postal: e.target.postal?.value,
-        dob: showAdditionalFields
-          ? dob
-            ? dob.toISOString().split("T")[0]
-            : null
-          : null,
-        nationality: e.target.nationality?.value,
-        about: e.target.about?.value,
+        country: e.target.form.country.value,
+        city: e.target.form.city.value,
+        street: e.target.form.street.value,
+        postal: e.target.form.postal.value,
+        dob: showAdditionalFields ? dob : null,
+        nationality: e.target.form.nationality.value,
+        about: e.target.form.about.value,
       }),
     };
-    onSubmit(formData);
+
+    onChange(formData);
   };
+
   return (
-    <form onSubmit={handleFormSubmit} className="card-body">
+    <form className="card-body">
      <div className=" mx-auto">
         <div className="avatar">
           <div className="w-24 rounded">
@@ -90,6 +86,7 @@ const handelPhotoFileDel = async () => {
             placeholder="Enter Designation"
             className="input bg-base-300"
             required
+            onChange={handleInputChange}
           />
         </div>
         <div className="form-control mt-4">
@@ -106,7 +103,7 @@ const handelPhotoFileDel = async () => {
         </div>
       </div>
 
-      <div className="md:flex justify-center gap-4">
+      <div className="md:flex justify-between gap-4">
         <div className="form-control mt-4">
           <label className="label">
             <span className="flex items-center gap-2 label-text font-semibold text-main">
@@ -119,6 +116,7 @@ const handelPhotoFileDel = async () => {
             className="input bg-base-300"
             name="fname"
             required
+            onChange={handleInputChange}
           />
         </div>
         <div className="form-control mt-4">
@@ -133,11 +131,12 @@ const handelPhotoFileDel = async () => {
             className="input bg-base-300"
             name="lname"
             required
+            onChange={handleInputChange}
           />
         </div>
       </div>
 
-      <div className="md:flex justify-center gap-4">
+      <div className="md:flex justify-between gap-4">
         <div className="form-control mt-4">
           <label className="label">
             <span className="flex items-center gap-2 label-text font-semibold text-main">
@@ -150,6 +149,7 @@ const handelPhotoFileDel = async () => {
             className="input bg-base-300"
             name="email"
             required
+            onChange={handleInputChange}
           />
         </div>
         <div className="form-control mt-4">
@@ -164,6 +164,7 @@ const handelPhotoFileDel = async () => {
             className="input bg-base-300"
             name="phone"
             required
+            onChange={handleInputChange}
           />
         </div>
       </div>
@@ -172,7 +173,7 @@ const handelPhotoFileDel = async () => {
         <div className="form-control mt-4">
           <button
             type="button"
-            className="flex items-center justify-center gap-2 text-main font-semibold hover:font-bold hover:bg hover:border "
+            className="flex items-center justify-between gap-2 text-main font-semibold hover:font-bold hover:bg hover:border "
             onClick={handleToggleClick}
           >
             Add More Information +
@@ -182,7 +183,7 @@ const handelPhotoFileDel = async () => {
 
       {showAdditionalFields && (
         <>
-          <div className="md:flex justify-center gap-4">
+          <div className="md:flex justify-between gap-4">
             <div className="form-control mt-4">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
@@ -194,6 +195,7 @@ const handelPhotoFileDel = async () => {
                 placeholder="Enter Country"
                 className="input bg-base-300"
                 name="country"
+                onChange={handleInputChange}
               />
             </div>
             <div className="form-control mt-4">
@@ -207,11 +209,12 @@ const handelPhotoFileDel = async () => {
                 placeholder="Enter City"
                 className="input bg-base-300"
                 name="city"
+                onChange={handleInputChange}
               />
             </div>
           </div>
 
-          <div className="md:flex justify-center gap-4">
+          <div className="md:flex justify-between gap-4">
             <div className="form-control mt-4">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
@@ -223,6 +226,7 @@ const handelPhotoFileDel = async () => {
                 placeholder="Enter Street"
                 className="input bg-base-300"
                 name="street"
+                onChange={handleInputChange}
               />
             </div>
             <div className="form-control mt-4">
@@ -236,25 +240,12 @@ const handelPhotoFileDel = async () => {
                 placeholder="Enter Postal Code"
                 className="input bg-base-300"
                 name="postal"
+                onChange={handleInputChange}
               />
             </div>
           </div>
 
-          <div className="md:flex justify-center gap-4">
-            <div className="form-control mt-4">
-              <label className="label">
-                <span className="flex items-center gap-2 label-text font-semibold text-main">
-                  Date Of Birth
-                </span>
-              </label>
-              <DatePicker
-                selected={dob}
-                onChange={(date) => setDob(date)}
-                placeholderText="Select Date of Birth"
-                className="input bg-base-300"
-                dateFormat="yyyy-MM-dd"
-              />
-            </div>
+          <div className="md:flex justify-between gap-4">
             <div className="form-control mt-4">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
@@ -266,23 +257,40 @@ const handelPhotoFileDel = async () => {
                 placeholder="Enter Nationality"
                 className="input bg-base-300"
                 name="nationality"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-control mt-4">
+              <label className="label">
+                <span className="flex items-center gap-2 label-text font-semibold text-main">
+                  Date Of Birth
+                </span>
+              </label>
+              <input
+                type="date"
+                placeholder="Select Date of Birth"
+                className="input bg-base-300"
+                name="dob"
+                onChange={(e) => setDob(e.target.value)}
               />
             </div>
           </div>
 
-          <div className="form-control flex justify-center gap-4 mt-8">
+          <div className="form-control flex justify-between gap-4 mt-8">
             <label className="label">
               <span className="label-text font-semibold text-main">About</span>
             </label>
             <textarea
+              name="about"
               placeholder="About Your self"
               className="textarea textarea-bordered textarea-lg w-full bg-base-300"
+              onChange={handleInputChange}
             ></textarea>
           </div>
           <div className="form-control mt-4">
             <button
               type="button"
-              className="flex items-center justify-center gap-2 text-main font-semibold hover:font-bold hover:bg hover:border "
+              className="flex items-center justify-between gap-2 text-main font-semibold hover:font-bold hover:bg hover:border "
               onClick={handleToggleClick}
             >
               Add Less Information -
@@ -290,15 +298,6 @@ const handelPhotoFileDel = async () => {
           </div>
         </>
       )}
-
-      <div className="form-control mt-6">
-        <button
-          type="submit"
-          className="btn-sm bg-main text-neutral-50 font-bold overflow-hidden transition-all hover:scale-105  hover:shadow-2xl hover:bg-sub_color"
-        >
-          Add
-        </button>
-      </div>
     </form>
   );
 }
