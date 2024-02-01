@@ -7,7 +7,7 @@ const CvDiamond = () => {
     const { basicInfo, education, employment, skills, languages, projects } = CvData;
 
     return (
-      <div className='bg-[#566573] py-20'>
+      <div className='bg-[#AEB6BF] py-20'>
 
 <div
         className="cv-container px-5 lg:px-12 py-10 bg-neutral-50 mx-auto max-w-6xl"

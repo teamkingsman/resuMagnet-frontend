@@ -5,7 +5,7 @@ import CoverDiamond from "./CoverDiamond";
 
 const page = () => {
     return (
-        <div>
+        <div className="bg-[#AEB6BF] py-20">
             <CoverDiamond></CoverDiamond>
             
         </div>
