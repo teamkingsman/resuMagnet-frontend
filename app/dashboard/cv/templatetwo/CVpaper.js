@@ -1,6 +1,7 @@
 import coverLetterData from '/assets/cover.json'
 import './CVpaper.css'
 
+import Image from 'next/image'
 const CVpaper = () => {
     return (
         <div className="cv-container w-11/12 md:w-10/12 lg:w-9/12">
@@ -19,7 +20,14 @@ const CVpaper = () => {
         
             </div>
 
-            <img className='w-[350px] h-[300px]' src={coverLetterData.personalInformation.img} alt='Profile' />
+            {/* <img className='w-[350px] h-[300px]' src={coverLetterData.personalInformation.img} alt='Profile' /> */}
+            <Image
+      src={coverLetterData.personalInformation.img} 
+      width={350}
+      height={300}
+      alt="Picture of the author"
+    />
+
         </div>
       </section>
 

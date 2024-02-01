@@ -1,18 +1,39 @@
 "use client";
-import { photoLink } from "@/lib/utils";
-import { useState } from "react";
+import { deleteImageFromUrl, photoLink } from "@/lib/utils";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import avatar from "@/assets/avatar.gif";
+import { FaRegEdit } from "react-icons/fa";
+import { AiOutlineDelete } from "react-icons/ai";
+
+
+
 
 function BasicInfoForm({ onChange }) {
   const [showAdditionalFields, setShowAdditionalFields] = useState(false);
-  const [photo, setPhoto] = useState(null);
+  const [photoUrl, setPhotoUrl] = useState(null);
   const [dob, setDob] = useState(null);
-
+  
   const handleToggleClick = () => {
     setShowAdditionalFields(!showAdditionalFields);
   };
+const handelPhotoFileUp = async (e) => {
+  const photoURL = await photoLink(e.target.files[0]);
+  setPhotoUrl(photoURL);
+};
+
+const handelPhotoFileDel = async () => {
+  console.log(photoUrl)
+    const res = await deleteImageFromUrl(photoUrl)
+    if(res?.result=='ok'){
+      setPhotoUrl(null)
+    }
+    console.log(res)
+  }
 
   const handleInputChange = async (e) => {
-    const photoURL = await photoLink(photo);
 
     const formData = {
       designation: e.target.form.designation.value,
@@ -36,8 +57,23 @@ function BasicInfoForm({ onChange }) {
   };
 
   return (
-    <form className="card-body">
-      <div className="md:flex justify-between gap-4">
+    <form onSubmit={handleFormSubmit} className="card-body">
+     <div className=" mx-auto">
+        <div className="avatar">
+          <div className="w-24 rounded">
+            <Image alt="user" width={400} height={400} src={photoUrl ? photoUrl : avatar} />
+          </div>
+        </div>
+           <div className="flex justify-center mx-auto">
+           <FaRegEdit className="text-main" />
+
+            <AiOutlineDelete onClick={handelPhotoFileDel} className="text-main" />
+           </div>
+
+     </div>
+
+
+      <div className="md:flex justify-center gap-4">
         <div className="form-control mt-4">
           <label className="label">
             <span className="flex items-center gap-2 label-text font-semibold text-main">
@@ -61,8 +97,7 @@ function BasicInfoForm({ onChange }) {
           </label>
           <input
             type="file"
-            name="photo"
-            onChange={(e) => setPhoto(e.target.files[0])}
+            onChange={handelPhotoFileUp}
             className="w-64 file-input file-input-md bg-base-300"
           />
         </div>

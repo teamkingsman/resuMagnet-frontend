@@ -3,10 +3,10 @@ import Letter from "./Letter";
 
 
 
-const Cover = () => {
+const page = () => {
     return (
         <div className="bg-[#808080]">
-            {/* <h2>cover</h2> */}
+            {/* <h2>page</h2> */}
             <Letter></Letter>
 
             
@@ -14,4 +14,4 @@ const Cover = () => {
     );
 };
 
-export default Cover;
+export default page;

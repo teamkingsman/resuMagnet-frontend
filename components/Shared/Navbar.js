@@ -4,11 +4,11 @@ import { usePathname } from 'next/navigation'
 import Link from "next/link";
 import Logo from "../LogoAnimation/Logo";
 import { useContext } from 'react';
-import { AuthContext } from '@/Providers/AuthProvider';
+import useAuth from '@/hooks/useAuth';
 
 
 const Navbar = () => {
-    const {user , signOutUser} = useContext(AuthContext)
+    const {user , signOutUser} = useAuth()
     
     const pathname = usePathname()
     const doNotShowNav = ["/signin", "/signup", "/dashboard", "/dashboard/profile", "/dashboard/cover-letter", "/dashboard/resume", "/dashboard/cv" , "/templateEditor"]
