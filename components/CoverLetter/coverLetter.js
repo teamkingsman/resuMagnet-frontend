@@ -6,7 +6,7 @@ const CoverLetter = () => {
         <>
              <div className="shadow-2xl bg-slate-200 font-serif w-[400px]  lg:w-[800px] h-[1000px] mx-auto mt-4">
               <div className="">
-                 <h2 className="text-center text-2xl font-bold mt-4">{coverLetter.sender.name}</h2>
+                 <h2 className="text-center text-2xl font-bold mt-4">{coverLetter.sender?.name}</h2>
               </div>
                    {/* horizontal */}
                    <div className="space-y-4 w-[300px] lg:w-[750px] mx-auto bg-cyan-600">
@@ -22,7 +22,7 @@ const CoverLetter = () => {
                     <h2 className="">{coverLetter.date}</h2>
                     <h2 className="">{coverLetter.salutation}</h2>
                     <h2 className="">{coverLetter.recipient.company}</h2>
-                     <p className="mt-4">{coverLetter.recipient.name}</p>
+                     <p className="mt-4">{coverLetter.recipient?.name}</p>
                      <div className=" justify-center">
                         <p>{coverLetter.body}</p>
                          
