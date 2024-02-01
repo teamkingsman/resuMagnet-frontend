@@ -12,9 +12,6 @@ import { useRouter } from "next/navigation";
 
 
 function CvForm() {
-  const router = useRouter()
-
-  // Form data state
   const { user } = useContext(AuthContext);
   const userEmail = user.email;
   // Form data state
@@ -22,8 +19,6 @@ function CvForm() {
     basicInfo: null,
     education: [],
     employment: [],
-    skills: [],
-    languages: [],
     projects: [], 
     email: userEmail,
   });
@@ -53,42 +48,47 @@ function CvForm() {
   };
 
   // get form data
-  const handleBasicInfoFormSubmit = (basicInfoFormData) => {
+  const handleBasicInfoDataChange = (basicInfoFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
       basicInfo: basicInfoFormData,
     }));
   };
-  const handleEducationFormSubmit = (educationFormData) => {
+
+  const handleEducationDataChange = (educationFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      education: [...prevData.education, educationFormData],
+      education: educationFormData,
     }));
   };
-  const handleEmploymentFormSubmit = (employmentFormData) => {
+  const handleEmploymentDataChange = (employmentFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      employment: [...prevData.employment, employmentFormData],
+      employment: employmentFormData,
     }));
   };
-  const handleLanguageFormSubmit = (languageFormData) => {
+  
+  const handleLanguageDataChange = (languageFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      languages: [...prevData.languages, languageFormData],
+      language: languageFormData,
     }));
   };
-  const handleSkillFormSubmit = (skillFormData) => {
+
+  const handleSkillDataChange = (skillFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      skills: [...prevData.skills, skillFormData],
+      skill: skillFormData,
     }));
   };
-  const handleProjectFormSubmit = (projectFormData) => {
+  
+  const handleProjectDataChange = (projectFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      projects: [...prevData.projects, projectFormData],
+      projects: projectFormData,
     }));
   };
+
 
   const handlePreview = async () => {
     console.log(allFormData);
@@ -111,7 +111,7 @@ function CvForm() {
             </h1>
           </div>
           <div className="card w-full shadow-2xl bg-base-100">
-            <BasicInfoForm onSubmit={handleBasicInfoFormSubmit}></BasicInfoForm>
+            <BasicInfoForm onChange={handleBasicInfoDataChange}></BasicInfoForm>
             <div className="card-body">
               <div className="form-control mt-4">
                 <button
@@ -125,9 +125,7 @@ function CvForm() {
 
               {showEducationForm && (
                 <>
-                  <EducationForm
-                    onSubmit={handleEducationFormSubmit}
-                  ></EducationForm>
+                 <EducationForm onChange={handleEducationDataChange}></EducationForm>
                 </>
               )}
 
@@ -144,7 +142,7 @@ function CvForm() {
               {showEmploymentForm && (
                 <>
                   <EmploymentForm
-                    onSubmit={handleEmploymentFormSubmit}
+                    onChange={handleEmploymentDataChange}
                   ></EmploymentForm>
                 </>
               )}
@@ -161,7 +159,7 @@ function CvForm() {
 
               {showSkillForm && (
                 <>
-                  <SkillForm onSubmit={handleSkillFormSubmit}></SkillForm>
+                  <SkillForm onChange={handleSkillDataChange}></SkillForm>
                 </>
               )}
 
@@ -178,7 +176,7 @@ function CvForm() {
               {showLanguageForm && (
                 <>
                   <LanguageForm
-                    onSubmit={handleLanguageFormSubmit}
+                    onChange={handleLanguageDataChange}
                   ></LanguageForm>
                 </>
               )}
@@ -195,7 +193,7 @@ function CvForm() {
 
               {showProjectForm && (
                 <>
-                  <ProjectForm onSubmit={handleProjectFormSubmit}></ProjectForm>
+                  <ProjectForm onChange={handleProjectDataChange}></ProjectForm>
                 </>
               )}
 

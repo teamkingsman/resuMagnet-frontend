@@ -1,10 +1,8 @@
-// Used in Resume
-"use client";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-function EmploymentForm({ onSubmit }) {
+function EmploymentForm({ onChange }) {
   const [employmentHistory, setEmploymentHistory] = useState([
     {
       id: 1,
@@ -22,6 +20,7 @@ function EmploymentForm({ onSubmit }) {
         entry.id === id ? { ...entry, [field]: date } : entry
       )
     );
+    onChange(employmentHistory);
   };
 
   const handleInputChange = (e, field, id) => {
@@ -30,22 +29,7 @@ function EmploymentForm({ onSubmit }) {
         entry.id === id ? { ...entry, [field]: e.target.value } : entry
       )
     );
-  };
-
-  const handleForm = (e) => {
-    e.preventDefault();
-    const formData = employmentHistory.map((entry) => ({
-      jobTitle: entry.jobTitle,
-      employer: entry.employer,
-      startDate: entry.startDate
-        ? entry.startDate.toISOString().split("T")[0]
-        : null,
-      endDate: entry.endDate
-        ? entry.endDate.toISOString().split("T")[0]
-        : null,
-      jobDescription: entry.jobDescription,
-    }));
-    onSubmit(formData);
+    onChange(employmentHistory);
   };
 
   const addMoreHistory = () => {
@@ -60,16 +44,16 @@ function EmploymentForm({ onSubmit }) {
         jobDescription: "",
       },
     ]);
+    onChange(employmentHistory);
   };
 
   return (
-    <form
-      onSubmit={handleForm}
-      className="md:flex flex-col justify-center gap-4 mt-4"
-    >
+    <form className="md:flex flex-col justify-center gap-4 mt-4">
       {employmentHistory.map((entry) => (
         <div key={entry.id}>
-          <h1 className="text-center font-extrabold py-2 text-2xl">Employment History {entry.id}</h1>
+          <h1 className="text-center font-extrabold py-2 text-2xl">
+            Employment History {entry.id}
+          </h1>
           <div className="md:flex justify-between gap-4">
             <div className="form-control">
               <label className="label">
@@ -155,12 +139,13 @@ function EmploymentForm({ onSubmit }) {
               className="textarea textarea-bordered bg-base-300"
               name={`jobDescription-${entry.id}`}
               value={entry.jobDescription}
-              onChange={(e) => handleInputChange(e, "jobDescription", entry.id)}
+              onChange={(e) =>
+                handleInputChange(e, "jobDescription", entry.id)
+              }
             />
           </div>
         </div>
       ))}
-
       <div className="form-control mt-4">
         <button
           type="button"
@@ -168,14 +153,6 @@ function EmploymentForm({ onSubmit }) {
           className="flex items-center justify-center gap-2 text-main font-semibold hover:font-bold hover:bg hover:border "
         >
           Add More History +
-        </button>
-      </div>
-      <div className="form-control mt-4">
-        <button
-          type="submit"
-          className="btn-sm bg-main text-neutral-50 font-bold overflow-hidden transition-all hover:scale-105  hover:shadow-2xl hover:bg-sub_color"
-        >
-          Submit
         </button>
       </div>
     </form>

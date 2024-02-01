@@ -1,8 +1,6 @@
-// Used in Resume
-"use client";
 import React, { useState } from "react";
 
-function LanguageForm({ onSubmit }) {
+function LanguageForm({ onChange }) {
   const [languages, setLanguages] = useState([
     {
       id: 1,
@@ -18,15 +16,7 @@ function LanguageForm({ onSubmit }) {
         lang.id === id ? { ...lang, [name]: value } : lang
       )
     );
-  };
-
-  const handleForm = (e) => {
-    e.preventDefault();
-    const formData = languages.map((lang) => ({
-      language: lang.language,
-      proficiency: lang.proficiency,
-    }));
-    onSubmit(formData);
+    onChange(languages);
   };
 
   const addMoreLanguage = () => {
@@ -38,17 +28,15 @@ function LanguageForm({ onSubmit }) {
         proficiency: "",
       },
     ]);
+    onChange(languages);
   };
 
   return (
-    <form
-      onSubmit={handleForm}
-      className="md:flex flex-col justify-center gap-4 mt-4"
-    >
+    <div className="md:flex flex-col justify-center gap-4 mt-4">
       {languages.map((lang) => (
         <div key={lang.id}>
           <h1 className="text-center font-extrabold py-2 text-2xl">Language {lang.id}</h1>
-          <div className="md:flex justify-between ">
+          <div className="md:flex justify-between">
             <div className="form-control">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
@@ -95,20 +83,12 @@ function LanguageForm({ onSubmit }) {
         <button
           type="button"
           onClick={addMoreLanguage}
-          className="flex items-center justify-center gap-2 text-main font-semibold hover:font-bold hover:bg hover:border "
+          className="flex items-center justify-center gap-2 text-main font-semibold hover:font-bold hover:bg hover:border"
         >
           Add More Language +
         </button>
       </div>
-      <div className="form-control mt-4">
-        <button
-          type="submit"
-          className="btn-sm bg-main text-neutral-50 font-bold overflow-hidden transition-all hover:scale-105  hover:shadow-2xl hover:bg-sub_color"
-        >
-          Submit
-        </button>
-      </div>
-    </form>
+    </div>
   );
 }
 

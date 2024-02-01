@@ -1,6 +1,5 @@
 "use client";
 import { useContext, useState } from "react";
-import { useRouter } from "next/navigation";
 import EmploymentForm from "../FormComponents/EmploymentForm/EmploymentForm";
 import EducationForm from "../FormComponents/EducationForm/EducationForm";
 import SkillForm from "../FormComponents/SkillForm/SkillForm";
@@ -17,8 +16,6 @@ function ResumeForm() {
     basicInfo: null,
     education: [],
     employment: [],
-    skills: [],
-    languages: [],
     projects: [], 
     email: userEmail,
   });
@@ -48,42 +45,47 @@ function ResumeForm() {
   };
 
   // get form data
-  const handleBasicInfoFormSubmit = (basicInfoFormData) => {
+  const handleBasicInfoDataChange = (basicInfoFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
       basicInfo: basicInfoFormData,
     }));
   };
-  const handleEducationFormSubmit = (educationFormData) => {
+
+  const handleEducationDataChange = (educationFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      education: [...prevData.education, educationFormData],
+      education: educationFormData,
     }));
   };
-  const handleEmploymentFormSubmit = (employmentFormData) => {
+  const handleEmploymentDataChange = (employmentFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      employment: [...prevData.employment, employmentFormData],
+      employment: employmentFormData,
     }));
   };
-  const handleLanguageFormSubmit = (languageFormData) => {
+  
+  const handleLanguageDataChange = (languageFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      languages: [...prevData.languages, languageFormData],
+      language: languageFormData,
     }));
   };
-  const handleSkillFormSubmit = (skillFormData) => {
+
+  const handleSkillDataChange = (skillFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      skills: [...prevData.skills, skillFormData],
+      skill: skillFormData,
     }));
   };
-  const handleProjectFormSubmit = (projectFormData) => {
+  
+  const handleProjectDataChange = (projectFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      projects: [...prevData.projects, projectFormData],
+      projects: projectFormData,
     }));
   };
+
 
   const handlePreview = async () => {
     console.log(allFormData);
@@ -105,7 +107,7 @@ function ResumeForm() {
             </h1>
           </div>
           <div className="card w-full shadow-2xl bg-base-100">
-            <BasicInfoForm onSubmit={handleBasicInfoFormSubmit}></BasicInfoForm>
+            <BasicInfoForm onChange={handleBasicInfoDataChange}></BasicInfoForm>
             <div className="card-body">
               <div className="form-control mt-4">
                 <button
@@ -119,9 +121,7 @@ function ResumeForm() {
 
               {showEducationForm && (
                 <>
-                  <EducationForm
-                    onSubmit={handleEducationFormSubmit}
-                  ></EducationForm>
+                 <EducationForm onChange={handleEducationDataChange}></EducationForm>
                 </>
               )}
 
@@ -138,7 +138,7 @@ function ResumeForm() {
               {showEmploymentForm && (
                 <>
                   <EmploymentForm
-                    onSubmit={handleEmploymentFormSubmit}
+                    onChange={handleEmploymentDataChange}
                   ></EmploymentForm>
                 </>
               )}
@@ -155,7 +155,7 @@ function ResumeForm() {
 
               {showSkillForm && (
                 <>
-                  <SkillForm onSubmit={handleSkillFormSubmit}></SkillForm>
+                  <SkillForm onChange={handleSkillDataChange}></SkillForm>
                 </>
               )}
 
@@ -172,7 +172,7 @@ function ResumeForm() {
               {showLanguageForm && (
                 <>
                   <LanguageForm
-                    onSubmit={handleLanguageFormSubmit}
+                    onChange={handleLanguageDataChange}
                   ></LanguageForm>
                 </>
               )}
@@ -189,7 +189,7 @@ function ResumeForm() {
 
               {showProjectForm && (
                 <>
-                  <ProjectForm onSubmit={handleProjectFormSubmit}></ProjectForm>
+                  <ProjectForm onChange={handleProjectDataChange}></ProjectForm>
                 </>
               )}
 

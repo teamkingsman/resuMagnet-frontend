@@ -19,13 +19,12 @@ function CoverLetterForm() {
       email: e.target.email?.value,
       phone: e.target.phone?.value,
       letterBody: e.target.letterBody?.value,
-      email: userEmail,
+      userEmail: userEmail,
     };
 
     try {
       const response = await coverLetterFromPost(formData);
       console.log("Cover Letter data sent successfully", response);
-//       router.push('/dashboard/cover-letter/templatetwo')
     } catch (error) {
       console.error("Error sending Cover Letter data", error);
     }

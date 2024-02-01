@@ -1,11 +1,10 @@
-// Used in Resume
 "use client";
 import { photoLink } from "@/lib/utils";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-function BasicInfoForm({ onSubmit }) {
+function BasicInfoForm({ onChange }) {
   const [showAdditionalFields, setShowAdditionalFields] = useState(false);
   const [photo, setPhoto] = useState(null);
   const handleToggleClick = () => {
@@ -13,34 +12,39 @@ function BasicInfoForm({ onSubmit }) {
   };
   const [dob, setDob] = useState(null);
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    const photoURL = await photoLink(photo);
+  const handleInputChange = async (e) => {
+    const name = e.target.name;
+    const value = e.target.type === "file" ? e.target.files[0] : e.target.value;
+    if (name === "photo") {
+      setPhoto(value);
+    } else if (name === "dob") {
+      setDob(value);
+    }
+
+    const photoURL = name === "photo" ? await photoLink(value) : null;
+
     const formData = {
-      designation: e.target.designation?.value,
+      designation: e.target.form.designation.value,
       photoURL: photoURL,
-      fname: e.target.fname?.value,
-      lname: e.target.lname?.value,
-      email: e.target.email?.value,
-      phone: e.target.phone?.value,
+      fname: e.target.form.fname.value,
+      lname: e.target.form.lname.value,
+      email: e.target.form.email.value,
+      phone: e.target.form.phone.value,
       ...(showAdditionalFields && {
-        country: e.target.country?.value,
-        city: e.target.city?.value,
-        street: e.target.street?.value,
-        postal: e.target.postal?.value,
-        dob: showAdditionalFields
-          ? dob
-            ? dob.toISOString().split("T")[0]
-            : null
-          : null,
-        nationality: e.target.nationality?.value,
-        about: e.target.about?.value,
+        country: e.target.form.country.value,
+        city: e.target.form.city.value,
+        street: e.target.form.street.value,
+        postal: e.target.form.postal.value,
+        dob: showAdditionalFields ? dob : null,
+        nationality: e.target.form.nationality.value,
+        about: e.target.form.about.value,
       }),
     };
-    onSubmit(formData);
+    onChange(formData);
   };
+
   return (
-    <form onSubmit={handleFormSubmit} className="card-body">
+    <form className="card-body">
       <div className="md:flex justify-center gap-4">
         <div className="form-control mt-4">
           <label className="label">
@@ -54,6 +58,7 @@ function BasicInfoForm({ onSubmit }) {
             placeholder="Enter Designation"
             className="input bg-base-300"
             required
+            onChange={handleInputChange}
           />
         </div>
         <div className="form-control mt-4">
@@ -64,7 +69,8 @@ function BasicInfoForm({ onSubmit }) {
           </label>
           <input
             type="file"
-            onChange={(e) => setPhoto(e.target.files[0])}
+            name="photo"
+            onChange={handleInputChange}
             className="w-64 file-input file-input-md bg-base-300"
           />
         </div>
@@ -83,6 +89,7 @@ function BasicInfoForm({ onSubmit }) {
             className="input bg-base-300"
             name="fname"
             required
+            onChange={handleInputChange}
           />
         </div>
         <div className="form-control mt-4">
@@ -97,6 +104,7 @@ function BasicInfoForm({ onSubmit }) {
             className="input bg-base-300"
             name="lname"
             required
+            onChange={handleInputChange}
           />
         </div>
       </div>
@@ -114,6 +122,7 @@ function BasicInfoForm({ onSubmit }) {
             className="input bg-base-300"
             name="email"
             required
+            onChange={handleInputChange}
           />
         </div>
         <div className="form-control mt-4">
@@ -128,6 +137,7 @@ function BasicInfoForm({ onSubmit }) {
             className="input bg-base-300"
             name="phone"
             required
+            onChange={handleInputChange}
           />
         </div>
       </div>
@@ -158,6 +168,7 @@ function BasicInfoForm({ onSubmit }) {
                 placeholder="Enter Country"
                 className="input bg-base-300"
                 name="country"
+                onChange={handleInputChange}
               />
             </div>
             <div className="form-control mt-4">
@@ -171,6 +182,7 @@ function BasicInfoForm({ onSubmit }) {
                 placeholder="Enter City"
                 className="input bg-base-300"
                 name="city"
+                onChange={handleInputChange}
               />
             </div>
           </div>
@@ -187,6 +199,7 @@ function BasicInfoForm({ onSubmit }) {
                 placeholder="Enter Street"
                 className="input bg-base-300"
                 name="street"
+                onChange={handleInputChange}
               />
             </div>
             <div className="form-control mt-4">
@@ -200,6 +213,7 @@ function BasicInfoForm({ onSubmit }) {
                 placeholder="Enter Postal Code"
                 className="input bg-base-300"
                 name="postal"
+                onChange={handleInputChange}
               />
             </div>
           </div>
@@ -230,6 +244,7 @@ function BasicInfoForm({ onSubmit }) {
                 placeholder="Enter Nationality"
                 className="input bg-base-300"
                 name="nationality"
+                onChange={handleInputChange}
               />
             </div>
           </div>
@@ -242,6 +257,7 @@ function BasicInfoForm({ onSubmit }) {
               name="about"
               placeholder="About Your self"
               className="textarea textarea-bordered textarea-lg w-full bg-base-300"
+              onChange={handleInputChange}
             ></textarea>
           </div>
           <div className="form-control mt-4">
@@ -255,15 +271,6 @@ function BasicInfoForm({ onSubmit }) {
           </div>
         </>
       )}
-
-      <div className="form-control mt-6">
-        <button
-          type="submit"
-          className="btn-sm bg-main text-neutral-50 font-bold overflow-hidden transition-all hover:scale-105  hover:shadow-2xl hover:bg-sub_color"
-        >
-          Add
-        </button>
-      </div>
     </form>
   );
 }
