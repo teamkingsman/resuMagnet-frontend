@@ -6,7 +6,7 @@ import { GiPostOffice } from "react-icons/gi";
 import { MdOutlinePermContactCalendar } from "react-icons/md";
 import { IoEarth } from "react-icons/io5";
 import cvData from "/assets/cv.json";
-import Img from "../../../public/user.jpg";
+
 const Cv = () => {
   const { basicInfo, education, employment, languages, skills, projects } =
     cvData;
