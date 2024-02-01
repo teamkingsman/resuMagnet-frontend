@@ -5,8 +5,8 @@ const Template = () => {
     <div className="py-6 my-6 bg-[#fff7ed]">
       <div className="flex flex-col md:flex-row justify-evenly items-center justify-items-center gap-16 max-w-[2520px] mx-auto xl:px-20 md:pr-10 sm:px-2 px-4">
         <div className="mt-10 space-y-9 pl-6">
-          <h1 className="text-3xl md:text-4xl font-semibold">The Right <span className="text-highlight_color">Resume</span> & <span className="text-highlight_color">CV</span> Maker for the Job</h1>
-          <p className="text-xl md:text-2xl text-neutral-600">
+          <h1 className="text-2xl font-semibold md:text-3xl lg:text-5xl">The Right <span className="text-highlight_color">Resume</span> & <span className="text-highlight_color">CV</span> Maker for the Job</h1>
+          <p className="text-base md:text-xl my-6">
             Tech, Engineering, Management or Marketing - CV generator with the
             right resume templates to highlight your career journey.
           </p>
