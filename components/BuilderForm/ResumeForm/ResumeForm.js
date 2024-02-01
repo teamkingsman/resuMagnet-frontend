@@ -8,8 +8,9 @@ import BasicInfoForm from "../FormComponents/BasicInfoForm/BasicInfoForm";
 import ProjectForm from "../FormComponents/ProjectForm/ProjectForm";
 import { AuthContext } from "@/Providers/AuthProvider";
 import { resumeFromPost } from "@/lib/BuilderAPI";
-import ProjectForm from "../FormComponents/ProjectForm/ProjectForm";
 import useAuth from "@/hooks/useAuth";
+import { useRouter } from "next/navigation";
+
 const ResumeForm = () => {
   const router = useRouter()
   const { user } = useAuth();
@@ -207,6 +208,7 @@ function ResumeForm() {
         </div>
       </div>
   );
+}
 }
 
 export default ResumeForm;

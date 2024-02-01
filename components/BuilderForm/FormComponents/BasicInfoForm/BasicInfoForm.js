@@ -37,7 +37,7 @@ const handelPhotoFileDel = async () => {
 
     const formData = {
       designation: e.target.form.designation.value,
-      photoURL: photoURL,
+      photoURL: photoUrl,
       fname: e.target.form.fname.value,
       lname: e.target.form.lname.value,
       email: e.target.form.email.value,
@@ -57,7 +57,7 @@ const handelPhotoFileDel = async () => {
   };
 
   return (
-    <form onSubmit={handleFormSubmit} className="card-body">
+    <form className="card-body">
      <div className=" mx-auto">
         <div className="avatar">
           <div className="w-24 rounded">
