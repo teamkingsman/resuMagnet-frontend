@@ -11,7 +11,7 @@ const Navbar = () => {
     const {user , signOutUser} = useContext(AuthContext)
     
     const pathname = usePathname()
-    const doNotShowNav = ["/signin", "/signup", "/dashboard", "/dashboard/profile", "/dashboard/cover-letter", "/dashboard/resume", "/dashboard/cv"]
+    const doNotShowNav = ["/signin", "/signup", "/dashboard", "/dashboard/profile", "/dashboard/cover-letter", "/dashboard/resume", "/dashboard/cv" , "/templateEditor"]
     if (doNotShowNav.includes(pathname)) {
      return null;
     }
@@ -47,7 +47,7 @@ const Navbar = () => {
                         user ? 
                         <button className="btn rounded-full btn-sm md:btn-md shadow-lg  hover:shadow-xl bg-sub_color text-neutral-50 hover:bg-highlight_color hover:text-main  font-semibold" onClick={signOutUser}>Sing out</button>
                          : <Link href="/signin">
-                        <button className="btn rounded-full btn-sm md:btn-md shadow-lg  hover:shadow-xl bg-sub_color text-neutral-50 hover:bg-highlight_color hover:text-main  font-semibold">Sing In</button>
+                        <button className="btn rounded-full btn-sm md:btn-md shadow-lg  hover:shadow-xl bg-sub_color text-neutral-50 hover:bg-highlight_color hover:text-main  font-semibold">Sign In</button>
                         </Link>
                     }
                 </div>
