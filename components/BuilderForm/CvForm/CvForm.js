@@ -1,5 +1,5 @@
 "use client";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import EmploymentForm from "../FormComponents/EmploymentForm/EmploymentForm";
 import EducationForm from "../FormComponents/EducationForm/EducationForm";
 import SkillForm from "../FormComponents/SkillForm/SkillForm";
@@ -9,13 +9,14 @@ import { AuthContext } from "@/Providers/AuthProvider";
 import { cvFromPost } from "@/lib/BuilderAPI";
 import ProjectForm from "../FormComponents/ProjectForm/ProjectForm";
 import { useRouter } from "next/navigation";
+import useAuth from "@/hooks/useAuth";
 
 
 function CvForm() {
   const router = useRouter()
 
   // Form data state
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const userEmail = user.email;
   // Form data state
   const [allFormData, setAllFormData] = useState({

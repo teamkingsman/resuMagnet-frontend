@@ -1,0 +1,86 @@
+{
+    "basicInfo": {
+      "about": "Seasoned frontend developer with 1.5 years of expertise in React and Tailwind CSS. Proficient in Firebase for seamless backend integration. Skilled in MongoDB and Express JS.",
+      "city": "Khulna",
+      "country": "Bangladesh",
+      "designation": "junior webdeveloper",
+      "dob": "2024-01-09",
+      "email": "joy@1.com",
+      "fname": "Joy",
+      "lname": "Biswas",
+      "nationality": "Bangladeshi",
+      "phone": "017442931..",
+      "photoURL": "https://res.cloudinary.com/dxox3wiq1/image/upload/v1706712633/user_wb9o5m.jpg",
+      "postal": "35657",
+      "street": "22, gollamari more"
+    },
+    "education": [
+      {
+        "degree": "Honours",
+        "institute": "Khulna School of Economics",
+        "startDate": "2024-01-01",
+        "endDate": "2024-01-19",
+        "jobDescription": "dfdfdsereeee"
+      },
+      {
+        "degree": "BSC Science",
+        "institute": "Dhaka School and College",
+        "startDate": "2024-01-01",
+        "endDate": "2024-01-19",
+        "jobDescription": "ereerr--dfdfdsereeeefdf"
+      }
+    ],
+    "employment": [
+      {
+        "jobTitle": "Junior Web Developer",
+        "employer": "JP Morgan",
+        "startDate": "2024-01-08",
+        "endDate": "2024-01-11",
+        "jobDescription": "Established new forecasting tracking and management reporting system to improve availability of financial data, triggering 15% increase in accuracy."
+      },
+      {
+        "jobTitle": "Senior Web Developer",
+        "employer": "Md. Kamal",
+        "startDate": "2024-01-08",
+        "endDate": "2024-01-11",
+        "jobDescription": "Prepared Presentation for earning call & investor relations website."
+      }
+    ],
+    "languages": [
+      {
+        "language": "Bangla",
+        "proficiency": "intermediate"
+      },
+      {
+        "language": "English",
+        "proficiency": "advanced"
+      }
+    ],
+    "skills": [
+      {
+        "skill": "react, next",
+        "level": "intermediate"
+      },
+      {
+        "skill": "react, js, next",
+        "level": "advanced"
+      }
+    ],
+    "projects": [
+      {
+        "title": "Survey Scribe",
+        "type": "Online Survey",
+        "liveLink": "https://survey.surge",
+        "description": "Online survey website, a surveyor create survey . user see always see all survey and comments.",
+        "githubLink": "https://www.surveygithub.git"
+      },
+      {
+        "title": "Marketer Hub",
+        "type": "Online shop",
+        "liveLink": "https://marketer.surge",
+        "description": "User choose any degital gasate. and buy products . ",
+        "githubLink": "https://www.marketergithub.git"
+      }
+    ]
+  }
+  
