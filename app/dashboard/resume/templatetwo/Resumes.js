@@ -4,13 +4,22 @@ import { FaPhoneVolume } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaUserGraduate } from "react-icons/fa6";
+import Image from 'next/image';
 
 const Resumes = () => {
   return (
     <div className="resume-container w-11/12 md:w-10/12 lg:w-8/12 mx-auto">
       {/* Left Part (1/3) */}
       <div className="left-part bg-[#4c7d81] py-5 text-neutral-50">
-        <img className='rounded-full px-2 py-2' src={coverLetterData.personalInformation.img} alt="Profile" />
+        {/* <img className='rounded-full px-2 py-2' src={coverLetterData.personalInformation.img} alt="Profile" /> */}
+
+        <Image
+        className='rounded-full px-2 py-2'
+      src={coverLetterData.personalInformation.img} 
+      width={350}
+      height={300}
+      alt="Picture of the author"
+    />
 
         <div className='mx-4 text-lg '>
         <h2 className='text-xl text-main border-b-2 font-bold'>Contact:</h2>

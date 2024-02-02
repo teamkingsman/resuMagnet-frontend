@@ -1,11 +1,11 @@
 "use client"
-import { AuthContext } from "@/Providers/AuthProvider";
 import { coverLetterFromPost } from "@/lib/BuilderAPI";
 import { useContext } from "react";
 import { useRouter } from "next/navigation";
+import useAuth from "@/hooks/useAuth";
 function CoverLetterForm() {
   const router = useRouter()
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const userEmail = user.email;
 
 
@@ -19,13 +19,13 @@ function CoverLetterForm() {
       email: e.target.email?.value,
       phone: e.target.phone?.value,
       letterBody: e.target.letterBody?.value,
-      email: userEmail,
+      userEmail: userEmail,
     };
-
+    console.log(formData)
     try {
       const response = await coverLetterFromPost(formData);
       console.log("Cover Letter data sent successfully", response);
-//       router.push('/dashboard/cover-letter/templatetwo')
+      router.push("dashboard/cover-letter/preview")
     } catch (error) {
       console.error("Error sending Cover Letter data", error);
     }
@@ -139,6 +139,7 @@ function CoverLetterForm() {
                 </span>
               </label>
               <textarea
+                name="letterBody"
                 placeholder="Enter Content"
                 className="textarea textarea-bordered textarea-lg w-full bg-base-300"
               ></textarea>

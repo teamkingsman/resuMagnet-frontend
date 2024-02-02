@@ -1,46 +1,83 @@
-// Used in Resume
 "use client";
-import { photoLink } from "@/lib/utils";
-import { useState } from "react";
+import { deleteImageFromUrl, photoLink } from "@/lib/utils";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import avatar from "@/assets/avatar.gif";
+import { FaRegEdit } from "react-icons/fa";
+import { AiOutlineDelete } from "react-icons/ai";
+import CropImage from "@/components/Modal/CropImage";
 
-function BasicInfoForm({ onSubmit }) {
+
+
+
+function BasicInfoForm({ onChange }) {
   const [showAdditionalFields, setShowAdditionalFields] = useState(false);
-  const [photo, setPhoto] = useState(null);
+  const [photoUrl, setPhotoUrl] = useState(null);
+  const [dob, setDob] = useState(null);
+  
   const handleToggleClick = () => {
     setShowAdditionalFields(!showAdditionalFields);
   };
-  const [dob, setDob] = useState(null);
+const handelPhotoFileUp = async (e) => {
+  const photoURL = await photoLink(e.target.files[0]);
+  setPhotoUrl(photoURL);
+};
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    const photoURL = await photoLink(photo);
+const handelPhotoFileDel = async () => {
+  console.log(photoUrl)
+    const res = await deleteImageFromUrl(photoUrl)
+    if(res?.result=='ok'){
+      setPhotoUrl(null)
+    }
+    console.log(res)
+  }
+  const [isOpen, setIsOpen] = useState(true);
+  const handelCropModal= () =>{
+    setIsOpen(!isOpen)
+  }
+  const handleInputChange = async (e) => {
+
     const formData = {
-      designation: e.target.designation?.value, 
-      photoURL: photoURL,
-      fname: e.target.fname?.value,
-      lname: e.target.lname?.value,
-      email: e.target.email?.value,
-      phone: e.target.phone?.value,
+      designation: e.target.form.designation.value,
+      photoURL: photoUrl,
+      fname: e.target.form.fname.value,
+      lname: e.target.form.lname.value,
+      email: e.target.form.email.value,
+      phone: e.target.form.phone.value,
       ...(showAdditionalFields && {
-        country: e.target.country?.value,
-        city: e.target.city?.value,
-        street: e.target.street?.value,
-        postal: e.target.postal?.value,
-        dob: showAdditionalFields
-          ? dob
-            ? dob.toISOString().split("T")[0]
-            : null
-          : null,
-        nationality: e.target.nationality?.value,
-        about: e.target.about?.value,
+        country: e.target.form.country.value,
+        city: e.target.form.city.value,
+        street: e.target.form.street.value,
+        postal: e.target.form.postal.value,
+        dob: showAdditionalFields ? dob : null,
+        nationality: e.target.form.nationality.value,
+        about: e.target.form.about.value,
       }),
     };
-    onSubmit(formData);
+
+    onChange(formData);
   };
+
   return (
-    <form onSubmit={handleFormSubmit} className="card-body">
+    <>
+    <form className="card-body">
+     <div className=" mx-auto">
+        <div className="avatar">
+          <div className="w-24 rounded">
+            <Image alt="user" width={400} height={400} src={photoUrl ? photoUrl : avatar} />
+          </div>
+        </div>
+           <div className="flex justify-center mx-auto">
+           <FaRegEdit onClick={handelCropModal} className="text-main" />
+
+            <AiOutlineDelete onClick={handelPhotoFileDel} className="text-main" />
+           </div>
+
+     </div>
+
+
       <div className="md:flex justify-center gap-4">
         <div className="form-control mt-4">
           <label className="label">
@@ -54,6 +91,7 @@ function BasicInfoForm({ onSubmit }) {
             placeholder="Enter Designation"
             className="input bg-base-300"
             required
+            onChange={handleInputChange}
           />
         </div>
         <div className="form-control mt-4">
@@ -64,13 +102,13 @@ function BasicInfoForm({ onSubmit }) {
           </label>
           <input
             type="file"
-            onChange={(e) => setPhoto(e.target.files[0])}
+            onChange={handelPhotoFileUp}
             className="w-64 file-input file-input-md bg-base-300"
           />
         </div>
       </div>
 
-      <div className="md:flex justify-center gap-4">
+      <div className="md:flex justify-between gap-4">
         <div className="form-control mt-4">
           <label className="label">
             <span className="flex items-center gap-2 label-text font-semibold text-main">
@@ -83,6 +121,7 @@ function BasicInfoForm({ onSubmit }) {
             className="input bg-base-300"
             name="fname"
             required
+            onChange={handleInputChange}
           />
         </div>
         <div className="form-control mt-4">
@@ -97,11 +136,12 @@ function BasicInfoForm({ onSubmit }) {
             className="input bg-base-300"
             name="lname"
             required
+            onChange={handleInputChange}
           />
         </div>
       </div>
 
-      <div className="md:flex justify-center gap-4">
+      <div className="md:flex justify-between gap-4">
         <div className="form-control mt-4">
           <label className="label">
             <span className="flex items-center gap-2 label-text font-semibold text-main">
@@ -114,6 +154,7 @@ function BasicInfoForm({ onSubmit }) {
             className="input bg-base-300"
             name="email"
             required
+            onChange={handleInputChange}
           />
         </div>
         <div className="form-control mt-4">
@@ -128,6 +169,7 @@ function BasicInfoForm({ onSubmit }) {
             className="input bg-base-300"
             name="phone"
             required
+            onChange={handleInputChange}
           />
         </div>
       </div>
@@ -136,7 +178,7 @@ function BasicInfoForm({ onSubmit }) {
         <div className="form-control mt-4">
           <button
             type="button"
-            className="flex items-center justify-center gap-2 text-main font-semibold hover:font-bold hover:bg hover:border "
+            className="flex items-center justify-between gap-2 text-main font-semibold hover:font-bold hover:bg hover:border "
             onClick={handleToggleClick}
           >
             Add More Information +
@@ -146,7 +188,7 @@ function BasicInfoForm({ onSubmit }) {
 
       {showAdditionalFields && (
         <>
-          <div className="md:flex justify-center gap-4">
+          <div className="md:flex justify-between gap-4">
             <div className="form-control mt-4">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
@@ -158,6 +200,7 @@ function BasicInfoForm({ onSubmit }) {
                 placeholder="Enter Country"
                 className="input bg-base-300"
                 name="country"
+                onChange={handleInputChange}
               />
             </div>
             <div className="form-control mt-4">
@@ -171,11 +214,12 @@ function BasicInfoForm({ onSubmit }) {
                 placeholder="Enter City"
                 className="input bg-base-300"
                 name="city"
+                onChange={handleInputChange}
               />
             </div>
           </div>
 
-          <div className="md:flex justify-center gap-4">
+          <div className="md:flex justify-between gap-4">
             <div className="form-control mt-4">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
@@ -187,6 +231,7 @@ function BasicInfoForm({ onSubmit }) {
                 placeholder="Enter Street"
                 className="input bg-base-300"
                 name="street"
+                onChange={handleInputChange}
               />
             </div>
             <div className="form-control mt-4">
@@ -200,25 +245,12 @@ function BasicInfoForm({ onSubmit }) {
                 placeholder="Enter Postal Code"
                 className="input bg-base-300"
                 name="postal"
+                onChange={handleInputChange}
               />
             </div>
           </div>
 
-          <div className="md:flex justify-center gap-4">
-            <div className="form-control mt-4">
-              <label className="label">
-                <span className="flex items-center gap-2 label-text font-semibold text-main">
-                  Date Of Birth
-                </span>
-              </label>
-              <DatePicker
-                selected={dob}
-                onChange={(date) => setDob(date)}
-                placeholderText="Select Date of Birth"
-                className="input bg-base-300"
-                dateFormat="yyyy-MM-dd"
-              />
-            </div>
+          <div className="md:flex justify-between gap-4">
             <div className="form-control mt-4">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
@@ -230,40 +262,50 @@ function BasicInfoForm({ onSubmit }) {
                 placeholder="Enter Nationality"
                 className="input bg-base-300"
                 name="nationality"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-control mt-4">
+              <label className="label">
+                <span className="flex items-center gap-2 label-text font-semibold text-main">
+                  Date Of Birth
+                </span>
+              </label>
+              <input
+                type="date"
+                placeholder="Select Date of Birth"
+                className="input bg-base-300"
+                name="dob"
+                onChange={(e) => setDob(e.target.value)}
               />
             </div>
           </div>
 
-          <div className="form-control flex justify-center gap-4 mt-8">
+          <div className="form-control flex justify-between gap-4 mt-8">
             <label className="label">
               <span className="label-text font-semibold text-main">About</span>
             </label>
             <textarea
+              name="about"
               placeholder="About Your self"
               className="textarea textarea-bordered textarea-lg w-full bg-base-300"
+              onChange={handleInputChange}
             ></textarea>
           </div>
           <div className="form-control mt-4">
             <button
               type="button"
-              className="flex items-center justify-center gap-2 text-main font-semibold hover:font-bold hover:bg hover:border "
+              className="flex items-center justify-between gap-2 text-main font-semibold hover:font-bold hover:bg hover:border "
               onClick={handleToggleClick}
             >
               Add Less Information -
             </button>
           </div>
         </>
+      
       )}
-
-      <div className="form-control mt-6">
-        <button
-          type="submit"
-          className="btn-sm bg-main text-neutral-50 font-bold overflow-hidden transition-all hover:scale-105  hover:shadow-2xl hover:bg-sub_color"
-        >
-          Add
-        </button>
-      </div>
     </form>
+      </>
   );
 }
 
