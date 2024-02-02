@@ -15,10 +15,6 @@ const ResumeForm = () => {
   const router = useRouter()
   const { user } = useAuth();
 
-function ResumeForm() {
-  const { user } = useContext(AuthContext);
-  const userEmail = user.email;
-
   const [allFormData, setAllFormData] = useState({
     basicInfo: null,
     education: [],
@@ -26,7 +22,7 @@ function ResumeForm() {
     languages: [],
     projects: [],
     skills: [],
-    userEmail: userEmail,
+    userEmail: user?.email,
   });
 
   const [showEmploymentForm, setShowEmploymentForm] = useState(false);
@@ -208,7 +204,6 @@ function ResumeForm() {
         </div>
       </div>
   );
-}
 }
 
 export default ResumeForm;

@@ -21,7 +21,7 @@ const LinkData = [
 ];
 const Dashboard = () => {
   return (
-    <div>
+    <div className="py-14 lg:py-4">
       <div className="lg:mx-3 lg:pl-8 mt-3">
         <div
           className="hero min-h-[40vh]"

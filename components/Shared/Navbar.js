@@ -3,17 +3,16 @@ import { usePathname } from 'next/navigation'
 
 import Link from "next/link";
 import Logo from "../LogoAnimation/Logo";
-import { useContext } from 'react';
 import useAuth from '@/hooks/useAuth';
 
 
 const Navbar = () => {
-    const {user , signOutUser} = useAuth()
-    
+    const { user, signOutUser } = useAuth()
+
     const pathname = usePathname()
-    const doNotShowNav = ["/signin", "/signup", "/dashboard", "/dashboard/profile", "/dashboard/cover-letter", "/dashboard/resume", "/dashboard/cv" , "/templateEditor"]
+    const doNotShowNav = ["/signin", "/signup", "/dashboard", "/dashboard/profile", "/dashboard/cover-letter", "/dashboard/resume", "/dashboard/cv", "/preview", "/dashboard/resume/preview"]
     if (doNotShowNav.includes(pathname)) {
-     return null;
+        return null;
     }
     const navlinks = <>
         <li><Link href="/" className='text-main font-bold hover:text-highlight_color'>Home</Link></li>
@@ -44,11 +43,11 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     {
-                        user ? 
-                        <button className="btn rounded-full btn-sm md:btn-md shadow-lg  hover:shadow-xl bg-sub_color text-neutral-50 hover:bg-highlight_color hover:text-main  font-semibold" onClick={signOutUser}>Sign out</button>
-                         : <Link href="/signin">
-                        <button className="btn rounded-full btn-sm md:btn-md shadow-lg  hover:shadow-xl bg-sub_color text-neutral-50 hover:bg-highlight_color hover:text-main  font-semibold">Sign In</button>
-                        </Link>
+                        user ?
+                            <button className="btn rounded-full btn-sm md:btn-md shadow-lg  hover:shadow-xl bg-sub_color text-neutral-50 hover:bg-highlight_color hover:text-main  font-semibold" onClick={signOutUser}>Sign out</button>
+                            : <Link href="/signin">
+                                <button className="btn rounded-full btn-sm md:btn-md shadow-lg  hover:shadow-xl bg-sub_color text-neutral-50 hover:bg-highlight_color hover:text-main  font-semibold">Sign In</button>
+                            </Link>
                     }
                 </div>
             </div>

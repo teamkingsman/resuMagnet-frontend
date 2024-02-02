@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import avatar from "@/assets/avatar.gif";
 import { FaRegEdit } from "react-icons/fa";
 import { AiOutlineDelete } from "react-icons/ai";
+import CropImage from "@/components/Modal/CropImage";
 
 
 
@@ -32,7 +33,10 @@ const handelPhotoFileDel = async () => {
     }
     console.log(res)
   }
-
+  const [isOpen, setIsOpen] = useState(true);
+  const handelCropModal= () =>{
+    setIsOpen(!isOpen)
+  }
   const handleInputChange = async (e) => {
 
     const formData = {
@@ -57,6 +61,7 @@ const handelPhotoFileDel = async () => {
   };
 
   return (
+    <>
     <form className="card-body">
      <div className=" mx-auto">
         <div className="avatar">
@@ -65,7 +70,7 @@ const handelPhotoFileDel = async () => {
           </div>
         </div>
            <div className="flex justify-center mx-auto">
-           <FaRegEdit className="text-main" />
+           <FaRegEdit onClick={handelCropModal} className="text-main" />
 
             <AiOutlineDelete onClick={handelPhotoFileDel} className="text-main" />
            </div>
@@ -297,8 +302,10 @@ const handelPhotoFileDel = async () => {
             </button>
           </div>
         </>
+      
       )}
     </form>
+      </>
   );
 }
 
