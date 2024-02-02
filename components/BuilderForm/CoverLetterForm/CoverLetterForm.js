@@ -1,10 +1,16 @@
 "use client"
-
+import { coverLetterFromPost } from "@/lib/BuilderAPI";
+import { useContext } from "react";
 import { useRouter } from "next/navigation";
-
+import useAuth from "@/hooks/useAuth";
 function CoverLetterForm() {
   const router = useRouter()
-  const handleFormSubmit = (e) => {
+  const { user } = useAuth();
+  const userEmail = user.email;
+
+
+  const handleFormSubmit = async(e) => {
+
     e.preventDefault();
     const formData = {
       designation: e.target.designation?.value,
@@ -13,16 +19,22 @@ function CoverLetterForm() {
       email: e.target.email?.value,
       phone: e.target.phone?.value,
       letterBody: e.target.letterBody?.value,
+      userEmail: userEmail,
     };
+    console.log(formData)
+    try {
+      const response = await coverLetterFromPost(formData);
+      console.log("Cover Letter data sent successfully", response);
+    } catch (error) {
+      console.error("Error sending Cover Letter data", error);
+    }
 
-    console.log("Form Data:", formData);
-    router.push('/dashboard/cover-letter/templatetwo')
   };
   return (
     <div className="hero min-h-screen bg-main">
       <div className="hero-content flex-col">
         <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold text-main">
+          <h1 className="text-5xl font-bold text-whitecolor">
             Create Your Own Cover Letter
           </h1>
         </div>
@@ -126,6 +138,7 @@ function CoverLetterForm() {
                 </span>
               </label>
               <textarea
+                name="letterBody"
                 placeholder="Enter Content"
                 className="textarea textarea-bordered textarea-lg w-full bg-base-300"
               ></textarea>

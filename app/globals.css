@@ -4,4 +4,17 @@
 
 .display-linebreak {
     white-space: pre-line;
+}
+.font-poppins {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .font-roboto-mono {
+    font-family: 'Roboto Mono', monospace;
+  }
+  .font-open-sans {
+    font-family: 'Open Sans', sans-serif;
+  }
+  .font-lobster {
+    font-family: 'Lobster', cursive;
   }

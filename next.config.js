@@ -10,6 +10,12 @@ const nextConfig = {
           },
           {
             protocol: 'https',
+            hostname: 'res.cloudinary.com',
+            port: '',
+            pathname: '/**',
+          },
+          {
+            protocol: 'https',
             hostname:  'wallpapercave.com',
             port: '',
             pathname: '/**',
@@ -20,8 +26,24 @@ const nextConfig = {
             port: '',
             pathname: '/**',
           },
+          {
+            protocol: 'https',
+            hostname: 'res.cloudinary.com',
+            port: '',
+            pathname: '/**',
+          }
         ],
-    }
+    },
+    reactStrictMode: true,
+    webpack: (config) => {
+      config.resolve = {
+        ...config.resolve,
+        fallback: {
+          fs: false,
+        },
+      };
+      return config;
+    },
 }
 
-module.exports = nextConfig
+module.exports = nextConfig;

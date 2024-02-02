@@ -1,127 +1,122 @@
 "use client";
-import { useState } from "react";
+import React, { useContext, useState } from "react";
 import EmploymentForm from "../FormComponents/EmploymentForm/EmploymentForm";
 import EducationForm from "../FormComponents/EducationForm/EducationForm";
 import SkillForm from "../FormComponents/SkillForm/SkillForm";
 import LanguageForm from "../FormComponents/LanguageForm/LanguageForm";
 import BasicInfoForm from "../FormComponents/BasicInfoForm/BasicInfoForm";
+import ProjectForm from "../FormComponents/ProjectForm/ProjectForm";
+import { AuthContext } from "@/Providers/AuthProvider";
+import { resumeFromPost } from "@/lib/BuilderAPI";
+import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 
+const ResumeForm = () => {
+  const router = useRouter()
+  const { user } = useAuth();
 
 function ResumeForm() {
-  const router = useRouter()
+  const { user } = useContext(AuthContext);
+  const userEmail = user.email;
 
-  // Form data state
   const [allFormData, setAllFormData] = useState({
     basicInfo: null,
     education: [],
     employment: [],
-    skills: [],
     languages: [],
+    projects: [],
+    skills: [],
+    userEmail: userEmail,
   });
 
-  // toggle States
   const [showEmploymentForm, setShowEmploymentForm] = useState(false);
   const [showEducationForm, setShowEducationForm] = useState(false);
   const [showSkillForm, setShowSkillForm] = useState(false);
   const [showLanguageForm, setShowLanguageForm] = useState(false);
+  const [showProjectForm, setShowProjectForm] = useState(false);
 
-  // toggle buttons
   const handleEmploymentFormToggle = () => {
     setShowEmploymentForm(!showEmploymentForm);
   };
+
   const handleEducationFormToggle = () => {
     setShowEducationForm(!showEducationForm);
   };
+
   const handleSkillFormToggle = () => {
     setShowSkillForm(!showSkillForm);
   };
+
   const handleLanguageFormToggle = () => {
     setShowLanguageForm(!showLanguageForm);
   };
 
-  // get form data
-  const handleBasicInfoFormSubmit = (basicInfoFormData) => {
+  const handleProjectFormToggle = () => {
+    setShowProjectForm(!showProjectForm);
+  };
+
+  const handleBasicInfoDataChange = (basicInfoFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
       basicInfo: basicInfoFormData,
     }));
   };
-  const handleEducationFormSubmit = (educationFormData) => {
+
+  const handleEducationDataChange = (educationFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      education: [...prevData.education, educationFormData],
-    }));
-  };
-  const handleEmploymentFormSubmit = (employmentFormData) => {
-    setAllFormData((prevData) => ({
-      ...prevData,
-      employment: [...prevData.employment, employmentFormData],
-    }));
-  };
-  const handleLanguageFormSubmit = (languageFormData) => {
-    setAllFormData((prevData) => ({
-      ...prevData,
-      languages: [...prevData.languages, languageFormData],
-    }));
-  };
-  const handleSkillFormSubmit = (skillFormData) => {
-    setAllFormData((prevData) => ({
-      ...prevData,
-      skills: [...prevData.skills, skillFormData],
+      education: educationFormData,
     }));
   };
 
-  // delete
-
-  const handleDeleteEducation = (index) => {
-    setAllFormData((prevData) => {
-      const updatedEducation = [...prevData.education];
-      updatedEducation.splice(index, 1);
-      return { ...prevData, education: updatedEducation };
-    });
+  const handleEmploymentDataChange = (employmentFormData) => {
+    setAllFormData((prevData) => ({
+      ...prevData,
+      employment: employmentFormData,
+    }));
   };
 
-  const handleDeleteEmployment = (index) => {
-    setAllFormData((prevData) => {
-      const updatedEmployment = [...prevData.employment];
-      updatedEmployment.splice(index, 1);
-      return { ...prevData, employment: updatedEmployment };
-    });
+  const handleLanguageDataChange = (languageFormData) => {
+    setAllFormData((prevData) => ({
+      ...prevData,
+      languages: languageFormData,
+    }));
   };
 
-  const handleDeleteSkill = (index) => {
-    setAllFormData((prevData) => {
-      const updatedSkills = [...prevData.skills];
-      updatedSkills.splice(index, 1);
-      return { ...prevData, skills: updatedSkills };
-    });
+  const handleSkillDataChange = (skillFormData) => {
+    setAllFormData((prevData) => ({
+      ...prevData,
+      skills: skillFormData,
+    }));
   };
 
-  const handleDeleteLanguage = (index) => {
-    setAllFormData((prevData) => {
-      const updatedLanguages = [...prevData.languages];
-      updatedLanguages.splice(index, 1);
-      return { ...prevData, languages: updatedLanguages };
-    });
+  const handleProjectDataChange = (projectFormData) => {
+    setAllFormData((prevData) => ({
+      ...prevData,
+      projects: projectFormData,
+    }));
   };
 
-  const handlePreview = async() => {
-    console.log(addDataRes.data);
-    router.push("/dashboard/resume/templatetwo")
+  const handlePreview = async () => {
+    console.log(allFormData);
+    try {
+      const response = await resumeFromPost(allFormData);
+      console.log("Resume data sent successfully", response);
+    } catch (error) {
+      console.error("Error sending resume data", error);
+    }
   };
 
   return (
-    <div>
       <div className="hero min-h-screen bg-main">
         <div className="hero-content flex-col">
           <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold text-main">
+            <h1 className="text-5xl font-bold text-whitecolor">
               Create Your Own Resume
             </h1>
           </div>
           <div className="card w-full shadow-2xl bg-base-100">
-            <BasicInfoForm onSubmit={handleBasicInfoFormSubmit}></BasicInfoForm>
+            <BasicInfoForm onChange={handleBasicInfoDataChange} />
             <div className="card-body">
               <div className="form-control mt-4">
                 <button
@@ -134,36 +129,9 @@ function ResumeForm() {
               </div>
 
               {showEducationForm && (
-                <>
-                  <EducationForm
-                    onSubmit={handleEducationFormSubmit}
-                  ></EducationForm>
-                  {allFormData.education.map((edu, index) => (
-                    <div key={index} className="added-item">
-                      <div className="overflow-x-auto bg">
-                        <table className="table">
-                          <tbody>
-                            <tr>
-                              <td>{edu.degree}</td>
-                              <td>{edu.institute}</td>
-                              <td>{edu.startDate}</td>
-                              <td> {edu.endDate}</td>
-                              <td>
-                                <button
-                                  type="button"
-                                  onClick={() => handleDeleteEducation(index)}
-                                  className=" btn-circle bg-highlight_color hover:bg-sub_color  btn-sm btn-outline"
-                                >
-                                 X
-                                </button>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  ))}
-                </>
+                <EducationForm
+                  onChange={handleEducationDataChange}
+                ></EducationForm>
               )}
 
               <div className="form-control mt-4">
@@ -177,36 +145,9 @@ function ResumeForm() {
               </div>
 
               {showEmploymentForm && (
-                <>
-                  <EmploymentForm
-                    onSubmit={handleEmploymentFormSubmit}
-                  ></EmploymentForm>
-                  {allFormData.employment.map((emp, index) => (
-                    <div key={index} className="added-item">
-                      <div className="overflow-x-auto">
-                        <table className="table">
-                          <tbody>
-                            <tr>
-                              <td>{emp.jobTitle}</td>
-                              <td>{emp.employer}</td>
-                              <td>{emp.startDate}</td>
-                              <td>{emp.endDate}</td>
-                              <td>
-                                <button
-                                  type="button"
-                                  onClick={() => handleDeleteEmployment(index)}
-                                  className=" btn-circle bg-highlight_color hover:bg-sub_color  btn-sm btn-outline"
-                                >
-                                 X
-                                </button>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  ))}
-                </>
+                <EmploymentForm
+                  onChange={handleEmploymentDataChange}
+                ></EmploymentForm>
               )}
 
               <div className="form-control mt-4">
@@ -220,32 +161,7 @@ function ResumeForm() {
               </div>
 
               {showSkillForm && (
-                <>
-                  <SkillForm onSubmit={handleSkillFormSubmit}></SkillForm>
-                  {allFormData.skills.map((skillData, index) => (
-                    <div key={index} className="added-item">
-                      <div className="overflow-x-auto">
-                        <table className="table">
-                          <tbody>
-                            <tr>
-                              <td>{skillData.skill}</td>
-                              <td>{skillData.level}</td>
-                              <td>
-                                <button
-                                  type="button"
-                                  onClick={() => handleDeleteSkill(index)}
-                                  className=" btn-circle bg-highlight_color hover:bg-sub_color  btn-sm btn-outline"
-                                >
-                                 X
-                                </button>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  ))}
-                </>
+                <SkillForm onChange={handleSkillDataChange}></SkillForm>
               )}
 
               <div className="form-control mt-4">
@@ -259,40 +175,29 @@ function ResumeForm() {
               </div>
 
               {showLanguageForm && (
-                <>
-                  <LanguageForm
-                    onSubmit={handleLanguageFormSubmit}
-                  ></LanguageForm>
-                  {allFormData.languages.map((lang, index) => (
-                    <div key={index} className="added-item">
-                      <div className="overflow-x-auto">
-                        <table className="table">
-                          <tbody>
-                            <tr>
-                              <td> {lang.language}</td>
-                              <td>{lang.proficiency}</td>
-                              <td>
-                                <button
-                                  type="button"
-                                  onClick={() => handleDeleteLanguage(index)}
-                                  className=" btn-circle bg-highlight_color hover:bg-sub_color  btn-sm btn-outline"
-                                >
-                                 X
-                                </button>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  ))}
-                </>
+                <LanguageForm
+                  onChange={handleLanguageDataChange}
+                ></LanguageForm>
               )}
 
               <div className="form-control mt-4">
                 <button
                   type="button"
-                  className="btn bg-main text-neutral-50 font-bold overflow-hidden transition-all hover:scale-105  hover:shadow-2xl hover:bg-sub_color"
+                  className="text-left text-main font-semibold hover:font-bold hover:bg hover:border"
+                  onClick={handleProjectFormToggle}
+                >
+                  Add Projects +
+                </button>
+              </div>
+
+              {showProjectForm && (
+                <ProjectForm onChange={handleProjectDataChange}></ProjectForm>
+              )}
+
+              <div className="form-control mt-4">
+                <button
+                  type="button"
+                  className="btn bg-main text-neutral-50 font-bold overflow-hidden transition-all hover:scale-105 hover:shadow-2xl hover:bg-sub_color"
                   onClick={handlePreview}
                 >
                   Preview
@@ -302,8 +207,8 @@ function ResumeForm() {
           </div>
         </div>
       </div>
-    </div>
   );
+}
 }
 
 export default ResumeForm;
