@@ -1,5 +1,5 @@
 // import resumeTwo from '/public/data.json'
-import CvData from '../../assets/cv.json'
+import CvData from '../../assets/resume.json'
 const ResumeTwo = () => {
     console.log(CvData);
     const { basicInfo, education, employment, skill, language, projects } = CvData;

@@ -1,6 +1,6 @@
 
 import Image from "next/image";
-import CvData from '../../assets/cv.json'
+import CvData from '../../assets/resume.json'
 
 const Cv = () => {
   console.log(CvData);
