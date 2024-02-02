@@ -1,5 +1,5 @@
 
-// import coverLetter from '../../assets/coverLetter.json'
+
 const CoverLetter = ({coverLetter}) => {
     console.log(coverLetter);   
     const { designation, email, fname, lname, letterBody, phone } = coverLetter;
