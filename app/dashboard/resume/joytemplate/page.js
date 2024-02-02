@@ -1,12 +1,21 @@
+"use client";
+import useAuth from "@/hooks/useAuth";
+import Resume from "./Resume";
+import { useEffect, useState } from "react";
+import { resumeFromGet } from "@/lib/BuilderAPI";
 
-import Resume from './Resume';
-
-const page = () => {
-    return (
-        <div>
-            <Resume></Resume>
-        </div>
-    );
+const JoyResume = () => {
+  const { user } = useAuth();
+  const [resumeData, setResumeData] = useState({});
+  console.log(resumeData);
+  useEffect(() => {
+    resumeFromGet(user.email).then((res) => setResumeData(res));
+  }, [user]);
+  return (
+    <div>
+      <Resume resumeData={resumeData}></Resume>
+    </div>
+  );
 };
 
-export default page;
+export default JoyResume;
