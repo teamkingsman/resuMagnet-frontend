@@ -32,11 +32,7 @@ const CoverLetter = () => {
                      <div className=" justify-center">
                         <p className='display-linebreak'>{coverLetter?.letterBody}</p>
                          
-                       {/* <p className="mt-4">Thank you for your time and consideration of my candidacy.</p>
-                       <div className="mt-4">
-                        <p>{coverLetter?.closing}</p>
-                        <p>Moin Uddin</p>
-                       </div> */}
+                 
                      </div>
                 </div>
 
