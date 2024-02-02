@@ -1,5 +1,5 @@
 {
-    "basicInfo": [
+    "basicInfo": 
     {
         "designation":"Software Engineer",
         "photoURL": "https://i.ibb.co/MfrxpQb/moin.jpg",
@@ -14,8 +14,8 @@
         "dob": "09-07-199",
         "nationality": "Bangladeshi",
         "about":"Dedicated and results-driven professional with a strong background in software development and a passion for creating innovative solutions."
-    }
-],
+    },
+
     "education": [
         {
             "id": 1,

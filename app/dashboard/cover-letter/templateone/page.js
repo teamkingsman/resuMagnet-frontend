@@ -1,13 +1,26 @@
+'use client'
 import CoverLetter from '@/components/CoverLetter/coverLetter';
+import useAuth from '@/hooks/useAuth';
+import { coverLetterFromGet } from '@/lib/BuilderAPI';
 
-import React from 'react';
 
-const page = () => {
+import React, { useEffect, useState } from 'react';
+
+const Page = () => {
+    const {user}=useAuth();
+    const[coverLetter,setCoverLetter]=useState({});
+console.log(coverLetter);
+   useEffect(()=>{
+       coverLetterFromGet(user.email)
+       .then((res)=>{
+           setCoverLetter(res);
+       })
+   },[user])
     return (
         <div>
-         <CoverLetter/>
+         <CoverLetter coverLetter={coverLetter}/>
         </div>
     );
 };
 
-export default page;
+export default Page;
