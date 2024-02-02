@@ -3,9 +3,8 @@ import { MdEmail } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
 import { FaLinkedinIn } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
-import resumeData from "/assets/resume.json";
 
-const Resume = () => {
+const Resume = (resumeData) => {
   // const {
   //   professionalExperience,
   //   education,
