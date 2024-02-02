@@ -1,11 +1,9 @@
-import coverLetter from "/assets/coverLetter.json";
+// import coverLetter from "/assets/coverLetter.json";
 
-const CoverLetter = () => {
+const CoverLetter = ({coverLetter}) => {
   const { designation, email, fname, lname, letterBody, phone } = coverLetter;
-
-  const formattedLetterBody = letterBody
-    .split("\n")
-    .map((line, index) => <p key={index}>{line}</p>);
+// console.log(coverLetter);
+  
   return (
     <div className="max-w-screen-lg mx-auto border-2 p-10 font-poppins ">
       <div className="text-center text-lg">
@@ -23,12 +21,10 @@ const CoverLetter = () => {
       </div>
 
       <div className="pt-5 text-lg">
-        <p>{formattedLetterBody}</p>
+        {/* <p>{formattedLetterBody}</p> */}
+        <p className='display-linebreak'>{letterBody}</p>
         <br />
-        <p>Yours sincerely</p>
-        <h3>
-          {fname} <span>{lname}</span>
-        </h3>
+        
       </div>
     </div>
   );
