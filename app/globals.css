@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+.display-linebreak {
+    white-space: pre-line;
+  }

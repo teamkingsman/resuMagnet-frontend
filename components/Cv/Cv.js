@@ -1,9 +1,9 @@
 
 import Image from "next/image";
-import cv from "/public/cv.json"
+import cv from '../../assets/resume.json'
 
 const Cv = () => {
-  
+  console.log(cv)
     return (
         <>
            <div className=" mt-8  font-serif   lg:w-[800px] h-[700px] mx-auto shadow-2xl ">
@@ -12,64 +12,69 @@ const Cv = () => {
             {/* left */}
            <div className="w-1/4 text-sm lg:text-lg mx-auto  lg:h-[600px] bg-slate-300  shadow-slate-400">
                   <div className=" ml-4">
-                 
-                       {
-                        cv.personalInformation.map((info,index)=>(
-                          <>
-                          <div key={index} className="mt-4">
+              
+                          {
+                            cv.basicInfo.map((info,index)=>(
+                              <div key={index}>
+                              <div  className="mt-4">
   
-                          <Image  src={info.img}  alt="Sample Image"
-                            width={100} height={100} />
-                               <h1 className="text-md font-bold mt-4">{info.firstName} {info.lastName}</h1>
-                               <p className="text-md font-semibold">{info.position}</p>
-                               </div>
-                                  <div className="mt-4">
-                                  <h1 className="text-sm font-semibold underline">DATE OF BIRTH:</h1>
-                                  <p className="text-sm font-semibold">{info.dateOfBirth}</p>
-                                  </div>
-                                  </>
-                        ))
-                       }
-                        {
-                        cv.address.map((address,index)=>(
-                          <div key={index} className="text-sm">
-                          <h1 className="text-sm font-semibold underline">Address</h1>
-                          <p className="text-sm font-semibold">{address.street}{address.city}</p>
-   
-                          </div>
-                        ))
-                        }
-
-                         {
-                         cv.contact.map((contact,index)=>(
-                          <div key={index} className="mt-4" >
-                          <h1 className="text-sm font-semibold underline">CONTACT:</h1>
-                          <h1 className="text-sm font-semibold">{contact.email}</h1>
-                          <p className="text-sm font-semibold">{contact.phone}</p>
-                          </div>
-                         ))
-                         }
-                       {
-                        
-                       }
+                              <Image  src={info.photoURL}  alt="Sample Image"
+                                width={100} height={100} />
+                                   <h1 className="text-md font-bold mt-4">{info.fname} {info.lname}</h1>
+                                   <p className="text-md font-semibold">{info.designation}</p>
+                                   </div>
+                                      <div className="mt-4">
+                                      <h1 className="text-sm font-semibold underline">DATE OF BIRTH:</h1>
+                                      <p className="text-sm font-semibold">{info.dob}</p>
+                                      </div>
+                                  
+                          
+                            
+                     
+                              <div className="text-sm">
+                              <h1 className="text-sm font-semibold underline">Address</h1>
+                              <p className="text-sm font-semibold">{info.street}{info.city}</p>
+       
+                              </div>
+                           
+    
+                             
+                          
+                              <div  className="mt-4" >
+                              <h1 className="text-sm font-semibold underline">CONTACT:</h1>
+                              <h1 className="text-sm font-semibold">{info.email}</h1>
+                              <p className="text-sm font-semibold">{info.phone}</p>
+                              </div>
+                              </div>
+                            ))
+                          }
+                       
+                  
 
                        <div className="mt-4">
                        <h1 className="text-sm font-semibold underline">LANGUAGE:</h1>
                         {
-                        cv.languages.map((language,index)=>(
-                          <p key={index} className="text-sm font-semibold">{language}</p>
-                        ))
+                           cv.language.map((language,index)=>(
+                            <div key={index}>
+                            <p className="text-sm font-semibold">{language.language}</p>
+                           <p  className="text-sm font-semibold">{language.proficiency}</p>
+                           </div>
+                           ))
                         }
+                  
+                         
+                        
+                        
                        </div>
                        {/* skills */}
                        <div className="mt-4">
                        <h1 className="text-sm font-semibold underline">SKILLS:</h1>
                          <ul>
                            {
-                             cv.skills.map((skill,index)=>(
+                             cv.skill.map((skill,index)=>(
                               <div key={index} >
-                                <li  className="text-sm font-semibold">{skill.technical}</li>
-                                <li  className="text-sm font-semibold">{skill.soft}</li>
+                                <li  className="text-sm font-semibold">{skill.level}</li>
+                                <li  className="text-sm font-semibold">{skill.skill}</li>
                               </div>
 
 
@@ -77,15 +82,7 @@ const Cv = () => {
                            }
                          </ul>
                        </div>
-                       {/* Interest */}
-                       <div className="mt-4">
-                       <h1 className="text-sm font-semibold underline">INTEREST:</h1>
-                       {
-                         cv.interests.map((interest,index)=>(
-                          <p key={index} className="text-sm font-semibold">{interest}</p>
-                         ))
-                       }
-                       </div>
+                     
                 
                   </div>
             </div>
@@ -95,7 +92,11 @@ const Cv = () => {
                   <div className="p-4">
                         <div >
                             <h1 className="mt-10 text-2xl font-bold text-center underline">CURRICULUM VITE</h1>
-                      <p className="text-md font-serif mt-4"> <span className=" font-bold">OBJECTIVE:</span>{cv.objective}</p>
+                         {
+                          cv.basicInfo.map((info,index)=>(
+                            <p key={index} className="text-md font-serif mt-4"> <span className=" font-bold">OBJECTIVE:</span>{info.about}</p>
+                          ))
+                         }
                        
                         </div>
 
@@ -109,7 +110,8 @@ const Cv = () => {
                            cv.education.map((education,index)=>(
                             <div key={index} className=" mt-2">
                                          <p  className="text-sm font-semibold">{education.degree}</p>
-                             <p className="text-sm font-semibold">{education.institution}</p>
+                             <p className="text-sm font-semibold">{education.institute}</p>
+                             <p className="text-sm font-semibold">{education.ongoing}</p>
                              
                                  </div>
                                  ))
@@ -125,14 +127,14 @@ const Cv = () => {
                            <hr className=" h-1 "/>    
                             </div>
                             <div className=" mt-2">
-                           <div className="flex gap-12 py-4">
+                           <div className=" py-4">
                             {
-                              cv.experience.map((experience,index)=>(
+                              cv.employment.map((employment,index)=>(
                                 <div key={index}>
-                                <h2 className="text-sm font-semibold">{experience.startDate} {experience.endDate}</h2>
-                                <h1 className="text-sm font-semibold">{experience.company}</h1>
-                                <h1 className="text-sm font-semibold">{experience.position}</h1>
-                                <p className="text-sm font-semibold">{experience.description}</p>
+                                <h2 className="text-sm font-semibold flex gap-8">{employment.startDate}  {employment.endDate}</h2>
+                                <h1 className="text-lg font-semibold">{employment.jobTitle}</h1>
+                                <h1 className="text-sm font-semibold">{employment.employer}</h1>
+                                <p className="text-sm ">{employment.jobDescription}</p>
                                 
 
                                 </div>
@@ -144,27 +146,8 @@ const Cv = () => {
 
                             </div>
                         </div>
-                        {/* experience */}
-                        {/* Extra CURRICULUM */}
-                        <div className="mt-2 ">
-                            <h1 className=" font-bold ">EXTRA CURRICULUM EXPERIENCE & AWARDS</h1>
-                            <div className="space-y-2 bg-black">
-                           <hr className=" h-1 "/>    
-                            </div>
-                            <div className="space-y-2 ml-4">
-                            <ul className="list-disc">
-                                {
-                                  cv.extracurricular.map((extraCurriculum,index)=>(
-                                    <li key={index} className="text-sm font-semibold">{extraCurriculum.responsibilities} </li>
-                                   
-                                  ))
-                                }
-                            </ul>
-                            </div>
-                            </div>
+                 
                   </div>
-
-                  
 
             </div>
            </div>

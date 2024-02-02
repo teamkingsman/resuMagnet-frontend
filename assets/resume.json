@@ -1,0 +1,79 @@
+{
+    "basicInfo": [
+    {
+        "designation":"Software Engineer",
+        "photoURL": "https://i.ibb.co/MfrxpQb/moin.jpg",
+        "fname": "Moin",
+        "lname": "Uddin",
+        "email": "moincse022@gmail.com",
+        "phone": "01758724236",
+        "country": "Bangladesh",
+        "city": "Gopalgonj",
+        "street": "123 Main Street, Cityville",
+        "postal": "7868",
+        "dob": "09-07-199",
+        "nationality": "Bangladeshi",
+        "about":"Dedicated and results-driven professional with a strong background in software development and a passion for creating innovative solutions."
+    }
+],
+    "education": [
+        {
+            "id": 1,
+            "degree": "Bachelor of Science in Computer Science",
+            "institute": "University of Technology",
+            "startDate": "02-08-2018",
+            "endDate": "02-09-2022",
+            "ongoing": "Present",
+            "jobDescription": "Dedicated and results-driven professional with a strong background in software development and a passion for creating innovative solutions."
+        }
+    ],
+    "employment": [
+        {
+            "id": 1,
+            "jobTitle": "Frontend Developer",
+            "employer": "Tech Solutions Inc.",
+            "startDate": "02-09-2022",
+            "endDate": "07-09-2022",
+            "jobDescription":  "Collaborate with cross-functional teams to design and implement new features."
+        },
+        {
+            "id": 2,
+            "jobTitle": "Frontend Developer",
+            "employer": "Tech Solutions Inc.",
+            "startDate": "02-09-2022",
+            "endDate": "07-09-2022",
+            "jobDescription":  "Collaborate with cross-functional teams to design and implement new features."
+        }
+    ],
+    "projects": [
+        {
+            "id": 1,
+            "title": "E-commerce Platform",
+            "type": "HTML,CSS,Javascript,React",
+            "liveLink": "Live link",
+            "description": "Developed a responsive e-commerce platform with secure payment processing.",
+            "githubLink": "githubLink"
+        }
+    ],
+    "email": "mskib567@gmail.com",
+    "skill": [
+        {
+            "id": 1,
+            "skill": "HTML,CSS,Tailwind,JavaScript,React,Node,mongoDB,github",
+            "level": "Advanced"
+        }
+    ],
+    "language": [
+        {
+            "id": 1,
+            "language": "English",
+            "proficiency": "Intermediate"
+        },
+        {
+            "id": 2,
+            "language": "Bangla",
+            "proficiency": "Advanced"
+        }
+      
+    ]
+}
