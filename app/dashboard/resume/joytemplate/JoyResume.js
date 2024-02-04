@@ -2,12 +2,14 @@ import { FaLocationDot } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
 import { IoIosPeople } from "react-icons/io";
-import { MdOutlinePermContactCalendar } from "react-icons/md";
+// import { MdOutlinePermContactCalendar } from "react-icons/md";
+
 import { GiPostOffice } from "react-icons/gi";
 import { IoEarth } from "react-icons/io5";
 import Image from "next/image";
-const Resume = ({ resume }) => {
+const JoyResume = ({ resume }) => {
   const { basicInfo, education, employment, languages, skills, projects } = resume;
+  console.log(resume);
   return (
     <div className="max-w-screen-lg mx-auto border-2 p-5 my-4 font-poppins">
       <div className="w-full">
@@ -27,7 +29,7 @@ const Resume = ({ resume }) => {
               {basicInfo?.email}
             </h2>
             <h2 className="flex items-center gap-2">
-              <MdOutlinePermContactCalendar />
+              {/* <MdOutlinePermContactCalendar /> */}
               {basicInfo?.dob}
             </h2>
             <h2 className="flex items-center gap-2 ">
@@ -59,13 +61,13 @@ const Resume = ({ resume }) => {
             </h2>
           </div>
           <div className="">
-            <Image
+           {basicInfo?.photoURL && <Image
               src={basicInfo?.photoURL}
               alt="User Image"
               className="rounded-full m-5"
               width={100}
               height={100}
-            />
+            />}
           </div>
         </div>
       </div>
@@ -85,10 +87,10 @@ const Resume = ({ resume }) => {
           <div key={index} className="pt-2 grid grid-cols-12 gap-2">
             <div className="col-span-3">
             <h2>
-                  {new Date(edu?.startDate).toISOString().slice(0, 10)} -
-                  {edu?.ongoing
+                  {new Date(emp?.startDate)?.toISOString().slice(0, 10)} -
+                  {emp?.ongoing
                     ? "Present"
-                    : new Date(edu?.endDate).toISOString().slice(0, 10)}
+                    : new Date(emp?.endDate)?.toISOString().slice(0, 10)}
                 </h2>
               
             </div>
@@ -112,10 +114,10 @@ const Resume = ({ resume }) => {
             <div key={index} className="flex md:gap-5 gap-3">
               <div>
                 <h2>
-                  {new Date(edu?.startDate).toISOString().slice(0, 10)} -
+                  {new Date(edu?.startDate)?.toISOString().slice(0, 10)} -
                   {edu?.ongoing
                     ? "Present"
-                    : new Date(edu?.endDate).toISOString().slice(0, 10)}
+                    : new Date(edu?.endDate)?.toISOString().slice(0, 10)}
                 </h2>
                 {/* <h3>{edu.location}</h3> */}
               </div>
@@ -137,7 +139,7 @@ const Resume = ({ resume }) => {
         {projects?.map((project, index) => (
           <div key={index} className="text-xl pt-3">
             <h2 className="font-semibold">
-              {project.title}
+              {project?.title}
               <span className="text-base font-medium">{project?.type}</span>
             </h2>
             <h3>{project?.liveLink}</h3>
@@ -181,4 +183,4 @@ const Resume = ({ resume }) => {
   );
 };
 
-export default Resume;
+export default JoyResume;
