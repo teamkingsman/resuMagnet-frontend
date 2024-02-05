@@ -102,6 +102,8 @@ function CvForm() {
     try {
       const response = await cvFromPost(allFormData);
       console.log("CV data sent successfully", response);
+      router.push("dashboard/cover-letter/preview")
+
     } catch (error) {
       console.error("Error sending CV data", error);
     }

@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "basicInfo": 
     {
         "designation":"Software Engineer",
@@ -76,4 +77,80 @@
         }
       
     ]
+=======
+  "_id": {
+    "$oid": "65bcfa9595332699854d5c67"
+  },
+  "userEmail": "joykumarbiswas100@gmail.com",
+  "basicInfo": {
+    "designation": "Frontend webdevelope",
+    "photoURL": null,
+    "fname": "qfff",
+    "lname": "Biswas",
+    "email": "joy@1.com",
+    "phone": "017442931..",
+    "country": "Bangladesh",
+    "city": "Khulna",
+    "street": "22, gollamari more, khulna",
+    "postal": "43224",
+    "dob": "2024-02-21",
+    "nationality": "Bangladeshi",
+    "about": "aaaaaaaaas"
+  },
+  "education": [
+    {
+      "id": {
+        "$numberInt": "1"
+      },
+      "degree": "Honours",
+      "institute": "Khulna School of Economics",
+      "startDate": "2024-02-14T18:00:00.000Z",
+      "endDate": "2024-02-19T18:00:00.000Z",
+      "ongoing": false,
+      "jobDescription": "ssssssss"
+    }
+  ],
+  "employment": [
+    {
+      "id": {
+        "$numberInt": "1"
+      },
+      "jobTitle": "Junior Web Developer",
+      "employer": "JP Morgan",
+      "startDate": "2024-02-21T18:00:00.000Z",
+      "endDate": "2024-02-20T18:00:00.000Z",
+      "jobDescription": "ssssssssss"
+    }
+  ],
+  "languages": [
+    {
+      "id": {
+        "$numberInt": "1"
+      },
+      "language": "Bangla",
+      "proficiency": "advanced"
+    }
+  ],
+  "projects": [
+    {
+      "id": {
+        "$numberInt": "1"
+      },
+      "title": "sssssssss",
+      "type": "Phablet",
+      "liveLink": "livelink.surge",
+      "description": "ssssssssssssssddddddd",
+      "githubLink": "portfolio.git"
+    }
+  ],
+  "skills": [
+    {
+      "id": {
+        "$numberInt": "1"
+      },
+      "skill": "react,next",
+      "level": "intermediate"
+    }
+  ]
+>>>>>>> e932750d1790827bf242bd2af188614b9eeac334
 }

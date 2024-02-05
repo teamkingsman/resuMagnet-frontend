@@ -1,9 +1,9 @@
 import Image from "next/image";
 
-import CvData from '../../assets/resume.json';
-const CvTwo = () => {
+
+const PremiumCv = ({cv}) => {
    // console.log(cv);
-   const { basicInfo, education, employment, skill, language, projects } = CvData;
+   const { basicInfo, education, employment, skill, language, projects } = cv;
    return (
         <>
              <div className=" mt-8 font-serif bg-slate-400  lg:w-[800px] h-[700px] mx-auto shadow-2xl ">
@@ -31,8 +31,15 @@ const CvTwo = () => {
                     
                      <div>
                     
-                     <Image className="-mt-20" src={basicInfo.photoURL}  alt="Sample Image"
-                        width={150} height={200} />
+            {basicInfo?.photoURL &&
+              <Image
+                src={basicInfo?.photoURL}
+                alt="Profile"
+                className="rounded-full"
+                width={250}
+                height={150}
+              />
+            }
                      </div>
         
                      </div>
@@ -134,4 +141,4 @@ const CvTwo = () => {
     );
 };
 
-export default CvTwo;
+export default PremiumCv;

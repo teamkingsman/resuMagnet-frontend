@@ -1,7 +1,7 @@
 
 
-const CoverLetter = ({coverLetter}) => {
-    console.log(coverLetter);   
+const ClassicCoverLetter = ({coverLetter}) => {
+    // console.log(coverLetter);
     const { designation, email, fname, lname, letterBody, phone } = coverLetter;
     return (
         <>
@@ -43,4 +43,4 @@ const CoverLetter = ({coverLetter}) => {
     );
 };
 
-export default CoverLetter;
+export default ClassicCoverLetter;

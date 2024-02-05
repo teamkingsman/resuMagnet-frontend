@@ -1,8 +1,7 @@
-// import resumeTwo from '/public/data.json'
-import CvData from '../../assets/resume.json'
-const ResumeTwo = () => {
-    console.log(CvData);
-    const { basicInfo, education, employment, skill, language, projects } = CvData;
+
+const PremiumResume = ({resume}) => {
+    // console.log(resume);
+    const { basicInfo, education, employment, skill, language, projects } = resume;
     return (
         <>
            <div className="lg:w-[800px] font-serif p-8  h-[900px] mt-10 bg-slate-300 mx-auto shadow-2xl">
@@ -147,4 +146,4 @@ const ResumeTwo = () => {
     );
 };
 
-export default ResumeTwo;
+export default PremiumResume;

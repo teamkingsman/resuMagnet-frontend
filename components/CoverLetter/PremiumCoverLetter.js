@@ -1,6 +1,6 @@
-import coverLetter from '../../assets/coverLetter.json';
-const CoverLetterTwo = () => {
-    console.log(coverLetter)
+
+const PremiumCoverLetter = ({coverLetter}) => {
+    // console.log(coverLetter)
     const { designation, email, fname, lname, letterBody, phone } = coverLetter;
     return (
         <>
@@ -31,4 +31,4 @@ const CoverLetterTwo = () => {
     );
 };
 
-export default CoverLetterTwo;
+export default PremiumCoverLetter;

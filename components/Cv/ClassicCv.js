@@ -1,10 +1,10 @@
 
 import Image from "next/image";
-import CvData from '../../assets/resume.json'
+// import CvData from '../../assets/resume.json'
 
-const Cv = () => {
-  console.log(CvData);
-  const { basicInfo, education, employment, skill, language} = CvData;
+const ClassicCv = ({cv}) => {
+  // console.log(Cv);
+  const { basicInfo, education, employment, skill, language} = cv;
   return (
         <>
            <div className=" mt-8  font-serif   lg:w-[800px] h-[700px] mx-auto shadow-2xl ">
@@ -18,8 +18,15 @@ const Cv = () => {
                               <div>
                               <div  className="mt-4">
   
-                              <Image  src={basicInfo.photoURL}  alt="Sample Image"
-                                width={100} height={100} />
+                 {basicInfo?.photoURL &&
+              <Image
+                src={basicInfo?.photoURL}
+                alt="Profile"
+                className="rounded-full"
+                width={250}
+                height={150}
+              />
+            }
                                    <h1 className="text-md font-bold mt-4">{basicInfo.fname} {basicInfo.lname}</h1>
                                    <p className="text-md font-semibold">{basicInfo.designation}</p>
                                    </div>
@@ -156,4 +163,4 @@ const Cv = () => {
     );
 };
 
-export default Cv;
+export default ClassicCv;

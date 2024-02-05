@@ -7,7 +7,7 @@ function DynamicSection({ sectionData, sectionName, handleChange, handleAddEntry
     return (
         <div>
             <h2>{sectionName.charAt(0).toUpperCase() + sectionName.slice(1)}</h2>
-            <div       className="md:flex flex-col justify-center gap-4 mt-4">
+            <div className="md:flex flex-col justify-center gap-4 mt-4">
                 
             {sectionData.map((entry, index) => (
                  <div key={index}>

@@ -1,8 +1,8 @@
-import React from 'react';
-import CvData from '../../assets/resume.json'
-const Resume = () => {
-  console.log(CvData);
-  const { basicInfo, education, employment, skill, language, projects } = CvData;
+
+
+const ClassicResume = ({resume}) => {
+  // console.log(CvData);
+  const { basicInfo, education, employment, skill, language, projects } = resume;
     return (
         <>
              <div className=" font-serif  lg:w-[800px] h-[1200px] mx-auto shadow-2xl bg-slate-300">
@@ -37,7 +37,7 @@ const Resume = () => {
                    
                         <div  className="mt-4">
                         <h2 className="text-2xl font-bold ">CAREER OBJECTIVE</h2>
-                        <p className=" justify-center text-md">{basicInfo.about}</p>
+                        <p className=" justify-center text-md">{basicInfo?.about}</p>
                       </div>
                      
 
@@ -161,4 +161,4 @@ const Resume = () => {
     );
 };
 
-export default Resume;
+export default ClassicResume;

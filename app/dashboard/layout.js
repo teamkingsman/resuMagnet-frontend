@@ -1,16 +1,21 @@
+"use client"
 import PrivateRoute from "@/Providers/PrivateRoute";
 import Sidebar from "@/components/Dashboard/Sidebar";
+import { usePathname } from "next/navigation";
 
 
 const DashboardLayout =  ({ children }) => {
-
+  const pathname = usePathname()
+    const doNotShowNav = [ "/dashboard/resume/preview","/dashboard/cover-letter/preview","/dashboard/cv/preview" ]
   return (
     <PrivateRoute>
     <div className="grid grid-cols-12 gap-4 w-full ">
-      <div className="col-span-2 ">
+      {
+        doNotShowNav.includes(pathname) ? <div></div> : (<div className="lg:col-span-2 ">
         <Sidebar></Sidebar>
-      </div>
-      <div className=" col-span-10 xl:px-10 md:pr-5 sm:px-2 px-2 pt-14">{children}</div>
+      </div>)
+      }
+      <div className={doNotShowNav.includes(pathname) ? "col-span-12":"col-span-10"}  >{children}</div>
     </div>
     </PrivateRoute>
   );

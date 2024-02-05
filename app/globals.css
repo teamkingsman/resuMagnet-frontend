@@ -18,3 +18,6 @@
   .font-lobster {
     font-family: 'Lobster', cursive;
   }
+  .display-linebreak {
+    white-space: pre-line;
+  }

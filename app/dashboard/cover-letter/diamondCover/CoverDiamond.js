@@ -1,6 +1,6 @@
 import diamondCover from '/assets/diamondCover.json'
 
-const CoverDiamond = () => {
+const CoverDiamond = ({cover}) => {
     const {
         designation,
         fname,
@@ -8,7 +8,7 @@ const CoverDiamond = () => {
         email,
         phone,
         letterBody
-      } = diamondCover;
+      } = cover;
     
       return (
         <div className="max-w-6xl mx-auto py-16 px-10 bg-gray-100 rounded shadow-md bg-neutral-50">
