@@ -1,6 +1,6 @@
 
 const PremiumResume = ({resume}) => {
-    // console.log(resume);
+ 
     const { basicInfo, education, employment, skill, language, projects } = resume;
     return (
         <>
