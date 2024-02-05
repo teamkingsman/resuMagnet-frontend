@@ -4,6 +4,7 @@ import useAuth from "@/hooks/useAuth";
 import { coverLetterFromGet, coverLetterFromPost } from "@/lib/BuilderAPI";
 import { useEffect, useState } from "react";
 import CoverDiamond from "../diamondCover/CoverDiamond";
+import CoverLetter from "../joytemplate/CoverLetter";
 
 
 
@@ -19,7 +20,7 @@ function MainTemplatePreview({ selectedTemplate }) {
       <>
         {/* Render the selected template components or content here */}
         {selectedTemplate === 'template1' && <CoverDiamond cover={data}/>}
-        {selectedTemplate === 'template2' && <div>template2</div>}
+        {selectedTemplate === 'template2' && <CoverLetter coverLetter={data}/>}
         {selectedTemplate === 'template3' && <div>template3</div>}
         {selectedTemplate === 'template4' && <div>template4</div>}
         {/* Add more template previews as needed */}
