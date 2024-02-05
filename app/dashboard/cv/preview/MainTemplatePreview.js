@@ -4,7 +4,7 @@ import useAuth from "@/hooks/useAuth";
 import { cvFromGet } from "@/lib/BuilderAPI";
 import { useEffect, useState } from "react";
 import Cv from "@/app/dashboard/cv/joycv/Cv";
-import CvDiamond from "@/app/dashboard/cv/CvDiamond/CvDiamond";
+import CvDiamond from "../CvDiamond/CvDiamond";
 
 
 
