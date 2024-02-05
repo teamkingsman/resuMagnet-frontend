@@ -13,20 +13,20 @@ const PremiumCv = ({cv}) => {
             
                      <div className="mt-4 ">
                         <div>
-                     <h1 className="text-3xl font-bold ">{basicInfo.fname}  {basicInfo.lname}</h1>
-                     <h1 className="text-xl font-bold ">{basicInfo.designation}</h1>
+                     <h1 className="text-3xl font-bold ">{basicInfo?.fname}  {basicInfo?.lname}</h1>
+                     <h1 className="text-xl font-bold ">{basicInfo?.designation}</h1>
                      <div className="flex mt-4 justify-between">
                      <div className="">
-                     <h1 className="text-md  ">{basicInfo.email}</h1>
-                     <h1 className="text-md ">{basicInfo.phone}</h1>
-                     <h1 className="text-md  ">Date of birth:{basicInfo.dob}</h1>
-                     <h1 className="text-md  ">nationality:{basicInfo.nationality}</h1>
+                     <h1 className="text-md  ">{basicInfo?.email}</h1>
+                     <h1 className="text-md ">{basicInfo?.phone}</h1>
+                     <h1 className="text-md  ">Date of birth:{basicInfo?.dob}</h1>
+                     <h1 className="text-md  ">nationality:{basicInfo?.nationality}</h1>
                      </div>
 
                      <div>
-                     <h1 className="text-md ">Country:{basicInfo.country}</h1>
-                     <h1 className="text-md  ">City:{basicInfo.city}</h1>
-                     <h1 className="text-md  ">postal code:{basicInfo.postal}</h1>
+                     <h1 className="text-md ">Country:{basicInfo?.country}</h1>
+                     <h1 className="text-md  ">City:{basicInfo?.city}</h1>
+                     <h1 className="text-md  ">postal code:{basicInfo?.postal}</h1>
                      </div>
                     
                      <div>
@@ -52,13 +52,14 @@ const PremiumCv = ({cv}) => {
               
              {/* personalInformation */}
              {/* objective */}
+             {employment?.length !== 0 && <>
              <div>
                  <h1 className="text-xl font-bold">summary:</h1>
                  <div>
-                    <p>{basicInfo.about}</p>
+                    <p>{basicInfo?.about}</p>
                  </div>
-                </div>   
-                </div>   
+                </div>  </> } 
+                </div>  
        
             {/* experience */}
             <h1 className="text-xl font-bold">Experience:</h1>
