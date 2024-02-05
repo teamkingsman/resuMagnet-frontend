@@ -1,40 +1,46 @@
-import React from 'react';
-import resume from '/public/data.json'
-const Resume = () => {
- 
+
+
+const ClassicResume = ({resume}) => {
+  // console.log(CvData);
+  const { basicInfo, education, employment, skill, language, projects } = resume;
     return (
         <>
              <div className=" font-serif  lg:w-[800px] h-[1200px] mx-auto shadow-2xl bg-slate-300">
-                <div className="flex justify-between ">
-                         <div className="ml-8 mt-8">
-                          <h2 className="text-xl font-bold"></h2>
-                          <h1 className="text-xl font-bold">Web developer</h1>
-                          <h1 className="text-xl font-bold">{resume.personalInformation[0].firstName} {resume.personalInformation[0].lastName} </h1>
-                         </div>
-                         <div className="mr-4 mt-8">
+               
                          
-                           {
-                              resume.personalInformation.map((info,index)=>(
-                                <div key={index}>
-                                   <h2>Email:{info.email}</h2> 
-                                   <h2>Contact:{info.phone}</h2>
-                                   <h2>Address:{info.address}</h2>
-                                </div>
-
-                              ))
-                           }
+                       
+                                <>
+                                 <div className="flex justify-between ">
+                     
+                     
+                                    <div className="ml-8 mt-8">
+                          <h2 className="text-xl font-bold"></h2>
+                          <h1 className="text-xl font-bold">{basicInfo?.designation}</h1>
+                          {/* <h1 className="text-xl font-bold">{basicInfo?.fname} {basicInfo.lname} </h1> */}
                          </div>
-                </div>
+                        <div className="mr-4 mt-8"> 
+                                <div >
+                                   <h2>Email:{basicInfo?.email}</h2> 
+                                   <h2>Contact:{basicInfo?.phone}</h2>
+                                   <h2>Address:{basicInfo?.street}</h2>
+                                </div>
+                                </div>
+                </div> 
+                                </>
+                           
                 {/* horizontal */}
                 <div className="space-y-4 w-[750px] mx-auto bg-black">
                 <hr className="mt-4 h-1  "/>
                 </div>
                 {/* career */}
                 <div className="ml-8 mr-4">
-                      <div className="mt-4">
+                   
+                        <div  className="mt-4">
                         <h2 className="text-2xl font-bold ">CAREER OBJECTIVE</h2>
-                        <p className=" justify-center text-md">{resume.summary}</p>
+                        <p className=" justify-center text-md">{basicInfo?.about}</p>
                       </div>
+                     
+
                       {/* skills */}
                       <div className="mt-4">
                              <h2 className="text-2xl font-bold">Skills</h2>
@@ -44,8 +50,8 @@ const Resume = () => {
                              <div className="text-md">
                                 <ul className='grid grid-cols-3'>
                                   {
-                                    resume.skills.map((skill,index)=>(
-                                         <li key={index}>{skill}</li>
+                                    skill?.map((skill,index)=>(
+                                         <li key={index}>{skill?.skill}</li>
                                     ))
                                   } 
                                  </ul>
@@ -56,20 +62,21 @@ const Resume = () => {
 
                              <h2 className="text-2xl font-bold mb-2">Experience:</h2>
                              {
-                              resume.experience.map((experience, index) => (
+                              employment?.map((employment, index) => (
                                  <>
                                  <div key={index} className="flex justify-between">
-                                 <h2 className="text-xl font-bold">{experience.company}</h2>
+                                 <h2 className="text-lg font-bold">{employment?.employer}</h2>
                                  {/* <h2>{experience.location}</h2> */}
                               </div>
                                  <div key={index} className="flex justify-between">
-                                 <h2 className="text-lg font-bold">{experience.position}</h2> 
-                                  <h3>{experience.endDate}</h3>
+                                 <h2 className="text-md font-bold">{employment?.jobTitle}</h2>
+                               
+                                  <h3>{employment?.endDate}</h3>
                                  </div>
                                  <div className="ml-8">
                                   
                                   <ul className="list-disc">
-                                  <li className="text-md">{experience.responsibilities} </li>
+                                  <li>{employment?.jobDescription}</li>
                                 
                                  </ul>
                              </div>
@@ -84,13 +91,17 @@ const Resume = () => {
                         <h1 className="text-xl font-bold">Project</h1>
                            
                              {
-                               resume.projects.map((project, index) => (
+                               projects?.map((project, index) => (
                                  <div key={index}>
-                                     <h2 className="text-lg font-bold">{project.name}</h2>
+                                     <h2 className="text-lg font-bold">{project?.title}</h2>
+                                     <div className='flex gap-8 underline'>
+                                    <h1 className="text-lg font-bold">{project?.liveLink}</h1>
+                                    <h1 className="text-lg font-bold">{project?.githubLink}</h1>
+                                    </div>
                              <ul className="list-disc px-4 ml-4">
-                             <li className='text-md'>{project.description}</li>
+                             <li className='text-md'>{project?.description}</li>
                              </ul>
-                             <p className=""> <span className="text-md font-bold">Technologies</span>:{project.technologies} </p>
+                             <p className=""> <span className="text-md font-bold">Technologies</span>:{project?.type} </p>
                                  </div>
                                ))
                              }
@@ -98,7 +109,7 @@ const Resume = () => {
                         
                   
                       {/* certifications */}
-                      <div className="mt-4">
+                      {/* <div className="mt-4">
                         <h1 className="text-xl font-bold">Certification:</h1>
                        
                              {
@@ -112,18 +123,18 @@ const Resume = () => {
                                     </div>
                                   ))
                              }
-                      </div>
+                      </div> */}
                       {/* Education*/}
                       <div className="mt-4">
                         <h1 className="text-xl font-bold">Education:</h1>
                          
                              {
-                                    resume.education.map((education, index) => (
+                                    education?.map((education, index) => (
                                        <div key={index}>
-                                        <h2 className="text-lg font-bold">{education.degree}</h2>
+                                        <h2 className="text-lg font-bold">{education?.degree}</h2>
                              <div className="flex justify-between">
-                             <p className="text-md">{education.school}</p>
-                             <p className="text-md">{education.graduationYear}</p>
+                             <p className="text-md">{education?.institute}</p>
+                             <p className="text-md">{education?.ongoing}</p>
                              </div>
                                        </div>
                                     ))
@@ -134,9 +145,10 @@ const Resume = () => {
                       <div className="mt-4">
                         <h1 className="text-xl font-bold">Language:</h1>
                             {
-                                    resume.languages.map((language, index) => (
+                                    language?.map((language, index) => (
                                        <div key={index} className=" flex gap-4">
-                                       <h2 className="text-md ">{language}</h2> |
+                                       <h2 className="text-md ">{language?.language}</h2> |
+                                       <h2 className="text-md ">{language?.proficiency}</h2> |
                         
                              </div>
                                     ))
@@ -148,4 +160,5 @@ const Resume = () => {
         </>
     );
 };
-export default Resume;
+
+export default ClassicResume;
