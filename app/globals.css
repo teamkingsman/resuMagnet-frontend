@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+.display-linebreak {
+    white-space: pre-line;
+}
 .font-poppins {
     font-family: 'Poppins', sans-serif;
   }
