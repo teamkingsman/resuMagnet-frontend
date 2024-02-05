@@ -68,7 +68,12 @@ useEffect(() => {
             [section]: [...prevData[section], {}],
         }));
     };
-
+const handleRemoveEntry = (section) => {
+    setResumeData((prevData) => ({
+        ...prevData,
+        [section]: [...prevData[section].slice(0, -1)],
+    }));
+  }
     // Fetch data from database and update resumeData state
     // useEffect(() => {
     //     // Fetch data from database and update resumeData state
@@ -146,7 +151,7 @@ useEffect(() => {
             placeholder="Enter Last Name"
             className="input bg-base-300"
             name="lname"
-            value={resumeData.lname}
+            value={resumeData?.lname}
             onChange={(e) => setResumeData({ ...resumeData, lname: e.target.value })}
             required
           />
@@ -196,12 +201,14 @@ useEffect(() => {
                 sectionName="experiences"
                 handleChange={handleChange}
                 handleAddEntry={() => handleAddEntry('experiences')}
+                handleRemoveEntry={() => handleRemoveEntry('experiences')}
             />
             <DynamicSection
                 sectionData={resumeData.skills}
                 sectionName="skills"
                 handleChange={handleChange}
                 handleAddEntry={() => handleAddEntry('skills')}
+                handleRemoveEntry={() => handleRemoveEntry('skills')}
             />
             {/* Repeat similar components for projects, skills, and experiences */}
 
@@ -209,6 +216,5 @@ useEffect(() => {
         </form>
     );
 }
-
 
 export default ResumeForm;

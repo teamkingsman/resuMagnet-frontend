@@ -3,10 +3,10 @@
 import useAuth from "@/hooks/useAuth";
 import { cvFromGet } from "@/lib/BuilderAPI";
 import { useEffect, useState } from "react";
-import CvDiamond from "../diamondcv/CvDiamond";
-import Cv from "../joycv/Cv";
 import ClassicCv from "@/components/Cv/ClassicCv";
 import PremiumCv from "@/components/Cv/PremiumCv";
+import Cv from "@/app/dashboard/cv/joycv/Cv";
+import CvDiamond from "../CvDiamond/CvDiamond";
 
 
 

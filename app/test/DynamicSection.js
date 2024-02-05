@@ -2,17 +2,16 @@
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-function DynamicSection({ sectionData, sectionName, handleChange, handleAddEntry }) {
+function DynamicSection({ sectionData, sectionName, handleChange, handleAddEntry, handleRemoveEntry }) {
     console.log(sectionData)
     return (
-        <div>
+        <div className="w-2/5 mx-auto">
             <h2>{sectionName.charAt(0).toUpperCase() + sectionName.slice(1)}</h2>
-            <div className="md:flex flex-col justify-center gap-4 mt-4">
                 
             {sectionData.map((entry, index) => (
-                 <div key={index}>
+                 <div className="md:flex flex-col justify-center gap-4 mt-4 border  rounded p-4" key={index}>
                  <h1 className="text-center font-extrabold py-2 text-2xl">{sectionName.charAt(0).toUpperCase() + sectionName.slice(1)} History {index+1}</h1>
-                 <div className="md:flex justify-between gap-4">
+                 <div className="md:flex justify-center gap-4">
                    <div className="form-control">
                      <label className="label">
                        <span className="flex items-center gap-2 label-text font-semibold text-main">
@@ -46,7 +45,7 @@ function DynamicSection({ sectionData, sectionName, handleChange, handleAddEntry
                      />
                    </div>
                  </div>
-                 <div className="md:flex justify-between gap-4">
+                 <div className="md:flex justify-center gap-4">
                    <div className="form-control">
                      <label className="label">
                        <span className="flex items-center gap-2 label-text font-semibold text-main">
@@ -81,7 +80,7 @@ function DynamicSection({ sectionData, sectionName, handleChange, handleAddEntry
                    </div>
                  </div>
        
-                 <div className="flex flex-col justify-between">
+                 <div className="flex flex-col justify-center">
                    <div className="form-control">
                      <div className="flex items-center">
                        <label className="label">
@@ -114,10 +113,12 @@ function DynamicSection({ sectionData, sectionName, handleChange, handleAddEntry
                  </div>
                </div>
             ))}
-                        </div>
 
-            <button type="button" onClick={handleAddEntry}>
+            <button className="btn my-4" type="button" onClick={handleAddEntry}>
                 Add {sectionName.slice(0, -1)}
+            </button>
+            <button className="btn my-4" type="button" onClick={handleRemoveEntry}>
+                Remove {sectionName.slice(0, -1)}
             </button>
         </div>
     );

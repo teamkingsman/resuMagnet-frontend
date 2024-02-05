@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import CoverDiamond from "../diamondCover/CoverDiamond";
 import ClassicCoverLetter from "@/components/CoverLetter/ClassicCoverLetter";
 import PremiumCoverLetter from "@/components/CoverLetter/PremiumCoverLetter";
+import CoverLetter from "../joytemplate/CoverLetter";
 
 
 
@@ -21,7 +22,7 @@ function MainTemplatePreview({ selectedTemplate }) {
       <>
         {/* Render the selected template components or content here */}
         {selectedTemplate === 'template1' && <CoverDiamond cover={data}/>}
-        {selectedTemplate === 'template2' && <div>template2</div>}
+        {selectedTemplate === 'template2' && <CoverLetter coverLetter={data}/>}
         {selectedTemplate === 'template3' && <ClassicCoverLetter coverLetter={data}/>}
         {selectedTemplate === 'template4' && <PremiumCoverLetter coverLetter={data}/>}
         {/* Add more template previews as needed */}

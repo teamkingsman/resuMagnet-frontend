@@ -313,7 +313,7 @@ const ResumeForm = () => {
     try {
       const response = await resumeFromPost(allFormData);
       console.log("Resume data sent successfully", response);
-      router.push("dashboard/cover-letter/preview")
+      router.push("dashboard/resume/preview")
 
     } catch (error) {
       console.error("Error sending resume data", error);
