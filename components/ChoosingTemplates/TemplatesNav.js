@@ -23,7 +23,9 @@ const TemplatesNav = () => {
                                     <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
                                     <ul className="menu p-4 w-72 md:w-80 min-h-full bg-base-200 text-base-content">
                                         {/* Sidebar content here */}
-                                        <li><a>Copy Link</a></li>
+                                        <li>
+                                            <Link href={`/r/${1}`}>
+                                            Copy Link</Link></li>
                                         <li className="btn btn-sm md:btn-md lg:btn-lg w-3/4 mx-auto bg-sub_color py-4 mt-4 "><span className="text-highlight_color"></span>Download PDF</li>
                                     </ul>
                                 </div>
