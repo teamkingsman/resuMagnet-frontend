@@ -1,28 +1,19 @@
 "use client"
 import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
-function EmploymentForm({ onChange }) {
-  const [employmentHistory, setEmploymentHistory] = useState([
-    {
-      id: 1,
-      jobTitle: "",
-      employer: "",
-      startDate: null,
-      endDate: null,
-      jobDescription: "",
-    },
-  ]);
-
-  const handleDateChange = (date, field, id) => {
-    setEmploymentHistory((prevHistory) =>
-      prevHistory.map((entry) =>
-        entry.id === id ? { ...entry, [field]: date } : entry
-      )
-    );
-    onChange([...employmentHistory]);
-  };
+function EmploymentForm({ onChange, employment: initialEmploymentData }) {
+  const [employmentHistory, setEmploymentHistory] = useState(
+    initialEmploymentData || [
+      {
+        id: 1,
+        jobTitle: "",
+        employer: "",
+        startDate: " ",
+        endDate: " ",
+        jobDescription: "",
+      },
+    ]
+  );
 
   const handleInputChange = (e, field, id) => {
     setEmploymentHistory((prevHistory) =>
@@ -40,8 +31,8 @@ function EmploymentForm({ onChange }) {
         id: prevHistory.length + 1,
         jobTitle: "",
         employer: "",
-        startDate: null,
-        endDate: null,
+        startDate: " ",
+        endDate: " ",
         jobDescription: "",
       },
     ]);
@@ -90,48 +81,6 @@ function EmploymentForm({ onChange }) {
             </div>
           </div>
 
-          <div className="md:flex justify-between gap-4">
-            <div className="form-control">
-              <label className="label">
-                <span className="flex items-center gap-2 label-text font-semibold text-main">
-                  Start Date
-                </span>
-              </label>
-              <DatePicker
-                selected={entry.startDate}
-                onChange={(date) =>
-                  handleDateChange(date, "startDate", entry.id)
-                }
-                showTimeSelect={false}
-                required
-                placeholderText="Select Start Date"
-                className="input bg-base-300"
-                dateFormat="dd-MM-yyyy"
-                showTimeInput={false}
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="flex items-center gap-2 label-text font-semibold text-main">
-                  End Date
-                </span>
-              </label>
-              <DatePicker
-                selected={entry.endDate}
-                onChange={(date) =>
-                  handleDateChange(date, "endDate", entry.id)
-                }
-                showTimeSelect={false}
-                required
-                placeholderText="Select End Date"
-                className="input bg-base-300"
-                dateFormat="dd-MM-yyyy"
-                showTimeInput={false}
-
-              />
-            </div>
-          </div>
-
           <div className="form-control">
             <label className="label">
               <span className="flex items-center gap-2 label-text font-semibold text-main">
@@ -153,7 +102,19 @@ function EmploymentForm({ onChange }) {
       <div className="form-control mt-4">
         <button
           type="button"
-          onClick={addMoreHistory}
+          onClick={() =>
+            setEmploymentHistory([
+              ...employmentHistory,
+              {
+                id: employmentHistory.length + 1,
+                jobTitle: "",
+                employer: "",
+                startDate: " ",
+                endDate: " ",
+                jobDescription: "",
+              },
+            ])
+          }
           className="flex items-center justify-center gap-2 text-main font-semibold hover:font-bold hover:bg hover:border "
         >
           Add More History +

@@ -5,35 +5,153 @@ import EducationForm from "../FormComponents/EducationForm/EducationForm";
 import SkillForm from "../FormComponents/SkillForm/SkillForm";
 import LanguageForm from "../FormComponents/LanguageForm/LanguageForm";
 import BasicInfoForm from "../FormComponents/BasicInfoForm/BasicInfoForm";
-import { AuthContext } from "@/Providers/AuthProvider";
+import ExtraActivitiesForm from "../FormComponents/ExtraActivitiesForm/ExtraActivitiesForm";
 import { cvFromPost } from "@/lib/BuilderAPI";
 import ProjectForm from "../FormComponents/ProjectForm/ProjectForm";
 import { useRouter } from "next/navigation";
 import useAuth from "@/hooks/useAuth";
 
-
 function CvForm() {
-  const router = useRouter()
+  const router = useRouter();
 
-  // Form data state
   const { user } = useAuth();
   const userEmail = user.email;
 
   const [allFormData, setAllFormData] = useState({
-    basicInfo: null,
+    basicInfo: [],
     education: [],
     employment: [],
     languages: [],
     projects: [],
     skills: [],
+    extraActivities: [],
     userEmail: userEmail,
   });
+
+  const cvData = {
+    basicInfo: {
+      designation: "Mern Stack Developer",
+      photoURL:
+        "https://res.cloudinary.com/dxox3wiq1/image/upload/v1707156846/poto_plc2na.jpg",
+      fname: "Md Sakib",
+      lname: "Hossain",
+      email: "Mskib567@gmai.com",
+      phone: "01955703819",
+      country: "Bangladesh",
+      city: "Narayanganj",
+      street: "BSCIC Road,Kanchpur",
+      postal: "1430",
+      dob: "1999-11-28",
+      nationality: "Bangladeshi",
+      about: "dfgdfgdfgdf",
+    },
+    education: [
+      {
+        id: 1,
+        degree: "Bsc in CSE",
+        institute: "National University Of Bangladesh",
+        startDate: "2018-05-28",
+        endDate: "2022-05-02",
+        ongoing: false,
+        educationDescription: "gdgrftghrtf",
+      },
+      {
+        id: 2,
+        degree: "HSC",
+        institute: "GiasUddin Islamic Model College",
+        startDate: "2015-05-28",
+        endDate: "2017-05-28",
+        ongoing: false,
+        educationDescription: "gdgdfgdff",
+      },
+    ],
+    employment: [
+      {
+        id: 1,
+        jobTitle: "dgdfgdfg",
+        employer: "dfdfgdfg",
+        startDate: "2018-05-28",
+        endDate: "2018-05-28",
+        jobDescription: "df",
+      },
+      {
+        id: 2,
+        jobTitle: "ddfgdfgfg",
+        employer: "dfdfgdfg",
+        startDate: "2018-05-28",
+        endDate: "2018-05-28",
+        jobDescription: "dgdfgdff",
+      },
+    ],
+    projects: [
+      {
+        id: 1,
+        title: "gdgdfgf",
+        type: "dfdfgdfgg",
+        liveLink: "ddfgdfgfg",
+        description: "ddfgdff",
+        githubLink: "dfdfgdfg",
+      },
+      {
+        id: 2,
+        title: "ggdfgddf",
+        type: "dfdfgdfg",
+        liveLink: "dfdfgdfg",
+        description: "ddfgdff",
+        githubLink: "ddfgdffg",
+      },
+    ],
+    email: "mskib567@gmail.com",
+    skill: [
+      {
+        id: 1,
+        skill: "dfggdfgdfdf",
+        level: "Advanced",
+      },
+      {
+        id: 2,
+        skill: "dfgdf",
+        level: "Intermediate",
+      },
+    ],
+    language: [
+      {
+        id: 1,
+        language: "ffsdfdg",
+        proficiency: "Fluent",
+      },
+      {
+        id: 2,
+        language: "ffsdfsdg",
+        proficiency: "Intermediate",
+      },
+    ],
+    extraActivities: [
+      {
+        id: 1,
+        activity: "Volunteer Work",
+        organization: "Red Cross",
+        startDate: "2021-01-01",
+        endDate: "2021-06-30",
+        description: "Helping with disaster relief efforts.",
+      },
+      {
+        id: 2,
+        activity: "Volunteer Work",
+        organization: "Red Cross",
+        startDate: "2021-01-01",
+        endDate: "2021-06-30",
+        description: "Helping with disaster relief efforts.",
+      },
+    ],
+  };
 
   const [showEmploymentForm, setShowEmploymentForm] = useState(false);
   const [showEducationForm, setShowEducationForm] = useState(false);
   const [showSkillForm, setShowSkillForm] = useState(false);
   const [showLanguageForm, setShowLanguageForm] = useState(false);
   const [showProjectForm, setShowProjectForm] = useState(false);
+  const [showExtraActivitiesForm, setShowExtraActivitiesForm] = useState(false);
 
   const handleEmploymentFormToggle = () => {
     setShowEmploymentForm(!showEmploymentForm);
@@ -53,6 +171,10 @@ function CvForm() {
 
   const handleProjectFormToggle = () => {
     setShowProjectForm(!showProjectForm);
+  };
+
+  const handleExtraActivitiesFormToggle = () => {
+    setShowExtraActivitiesForm(!showExtraActivitiesForm);
   };
 
   const handleBasicInfoDataChange = (basicInfoFormData) => {
@@ -97,17 +219,22 @@ function CvForm() {
     }));
   };
 
+  const handleExtraActivitiesDataChange = (extraActivitiesFormData) => {
+    setAllFormData((prevData) => ({
+      ...prevData,
+      extraActivities: extraActivitiesFormData,
+    }));
+  };
+
   const handlePreview = async () => {
     console.log(allFormData);
     try {
       const response = await cvFromPost(allFormData);
       console.log("CV data sent successfully", response);
-      router.push("dashboard/cover-letter/preview")
-
+      // router.push("dashboard/cover-letter/preview");
     } catch (error) {
       console.error("Error sending CV data", error);
     }
-
   };
 
   return (
@@ -120,7 +247,10 @@ function CvForm() {
             </h1>
           </div>
           <div className="card w-full shadow-2xl bg-base-100">
-            <BasicInfoForm onChange={handleBasicInfoDataChange} />
+            <BasicInfoForm
+              onChange={handleBasicInfoDataChange}
+              basicInfo={cvData.basicInfo}
+            />
             <div className="card-body">
               <div className="form-control mt-4">
                 <button
@@ -135,6 +265,7 @@ function CvForm() {
               {showEducationForm && (
                 <EducationForm
                   onChange={handleEducationDataChange}
+                  education={cvData.education}
                 ></EducationForm>
               )}
 
@@ -151,6 +282,7 @@ function CvForm() {
               {showEmploymentForm && (
                 <EmploymentForm
                   onChange={handleEmploymentDataChange}
+                  employment={cvData.employment}
                 ></EmploymentForm>
               )}
 
@@ -165,7 +297,10 @@ function CvForm() {
               </div>
 
               {showSkillForm && (
-                <SkillForm onChange={handleSkillDataChange}></SkillForm>
+                <SkillForm
+                  onChange={handleSkillDataChange}
+                  skill={cvData.skill}
+                ></SkillForm>
               )}
 
               <div className="form-control mt-4">
@@ -181,6 +316,7 @@ function CvForm() {
               {showLanguageForm && (
                 <LanguageForm
                   onChange={handleLanguageDataChange}
+                  language={cvData.language}
                 ></LanguageForm>
               )}
 
@@ -195,7 +331,27 @@ function CvForm() {
               </div>
 
               {showProjectForm && (
-                <ProjectForm onChange={handleProjectDataChange}></ProjectForm>
+                <ProjectForm
+                  onChange={handleProjectDataChange}
+                  projects={cvData.projects}
+                ></ProjectForm>
+              )}
+
+              <div className="form-control mt-4">
+                <button
+                  type="button"
+                  className="text-left text-main font-semibold hover:font-bold hover:bg hover:border"
+                  onClick={handleExtraActivitiesFormToggle}
+                >
+                  Add Extra Activities +
+                </button>
+              </div>
+
+              {showExtraActivitiesForm && (
+                <ExtraActivitiesForm
+                  onChange={handleExtraActivitiesDataChange}
+                  extraActivities={cvData.extraActivities}
+                />
               )}
 
               <div className="form-control mt-4">

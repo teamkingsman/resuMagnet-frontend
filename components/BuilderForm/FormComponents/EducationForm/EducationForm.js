@@ -1,29 +1,35 @@
-"use client"
+"use client";
 import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
-function EducationForm({ onChange }) {
-  const [educationHistory, setEducationHistory] = useState([
-    {
-      id: 1,
-      degree: "",
-      institute: "",
-      startDate: null,
-      endDate: null,
-      ongoing: false,
-      jobDescription: "",
-    },
-  ]);
+function EducationForm({ onChange, education: initialEducationData }) {
+  const [educationHistory, setEducationHistory] = useState(
+    initialEducationData || [
+      {
+        id: 1,
+        degree: "",
+        institute: "",
+        startDate: " ",
+        endDate: " ",
+        ongoing: false,
+        educationDescription: "",
+      },
+    ]
+  );
 
-  const handleDateChange = (date, field, id) => {
+  const handleDateChange = (e, field, id) => {
     setEducationHistory((prevHistory) =>
       prevHistory.map((entry) =>
-        entry.id === id ? { ...entry, [field]: date } : entry
+        entry.id === id
+          ? {
+              ...entry,
+              [field]: e.target.value || "",
+            }
+          : entry
       )
     );
     onChange([...educationHistory]);
   };
+
   const handleCheckboxChange = (e, id) => {
     const { checked } = e.target;
     setEducationHistory((prevHistory) =>
@@ -32,7 +38,7 @@ function EducationForm({ onChange }) {
           ? {
               ...entry,
               ongoing: checked,
-              endDate: checked ? null : entry.endDate,
+              endDate: checked ? " " : entry.endDate,
             }
           : entry
       )
@@ -46,22 +52,6 @@ function EducationForm({ onChange }) {
         entry.id === id ? { ...entry, [field]: e.target.value } : entry
       )
     );
-    onChange(educationHistory);
-  };
-
-  const addMoreHistory = () => {
-    setEducationHistory((prevHistory) => [
-      ...prevHistory,
-      {
-        id: prevHistory.length + 1,
-        degree: "",
-        institute: "",
-        startDate: null,
-        endDate: null,
-        ongoing: false,
-        jobDescription: "",
-      },
-    ]);
     onChange(educationHistory);
   };
 
@@ -113,15 +103,13 @@ function EducationForm({ onChange }) {
                   Start Date
                 </span>
               </label>
-              <DatePicker
-                selected={entry.startDate}
-                onChange={(date) =>
-                  handleDateChange(date, "startDate", entry.id)
-                }
-                placeholderText="Select Start Date"
+              <input
+                type="date"
+                placeholder="Select Start Date"
                 className="input bg-base-300"
-                dateFormat="dd-MM-yyyy"
-                showTimeInput={false}
+                name={`startDate-${entry.id}`}
+                value={entry.startDate}
+                onChange={(e) => handleDateChange(e, "startDate", entry.id)}
               />
             </div>
 
@@ -131,13 +119,13 @@ function EducationForm({ onChange }) {
                   End Date
                 </span>
               </label>
-              <DatePicker
-                selected={entry.endDate}
-                onChange={(date) => handleDateChange(date, "endDate", entry.id)}
-                placeholderText="Select End Date"
+              <input
+                type="date"
+                placeholder="Select End Date"
                 className="input bg-base-300"
-                dateFormat="dd-MM-yyyy"
-                showTimeInput={false}
+                name={`endDate-${entry.id}`}
+                value={entry.endDate}
+                onChange={(e) => handleDateChange(e, "endDate", entry.id)}
                 disabled={entry.ongoing}
               />
             </div>
@@ -165,12 +153,12 @@ function EducationForm({ onChange }) {
                 </span>
               </label>
               <textarea
-                placeholder="Enter Job Description"
+                placeholder="Enter Education Description"
                 className="textarea textarea-lg textarea-bordered bg-base-300"
-                name={`jobDescription-${entry.id}`}
-                value={entry.jobDescription}
+                name={`educationDescription-${entry.id}`}
+                value={entry.educationDescription}
                 onChange={(e) =>
-                  handleInputChange(e, "jobDescription", entry.id)
+                  handleInputChange(e, "educationDescription", entry.id)
                 }
               />
             </div>
@@ -181,7 +169,20 @@ function EducationForm({ onChange }) {
       <div className="form-control mt-4">
         <button
           type="button"
-          onClick={addMoreHistory}
+          onClick={() =>
+            setEducationHistory([
+              ...educationHistory,
+              {
+                id: educationHistory.length + 1,
+                degree: "",
+                institute: "",
+                startDate: " ",
+                endDate: " ",
+                ongoing: false,
+                educationDescription: "",
+              },
+            ])
+          }
           className="flex items-center justify-center gap-2 text-main font-semibold hover:font-bold hover:bg hover:border"
         >
           Add More History +

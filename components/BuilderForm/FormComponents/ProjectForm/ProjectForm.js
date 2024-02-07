@@ -1,17 +1,8 @@
-"use client"
-import React, { useState } from "react";
+"use client";
+import React, {  useState } from "react";
 
-function ProjectForm({ onChange }) {
-  const [projects, setProjects] = useState([
-    {
-      id: 1,
-      title: "",
-      type: "",
-      liveLink: "",
-      description: "",
-      githubLink: "",
-    },
-  ]);
+function ProjectForm({ onChange, projects: initialProjects }) {
+  const [projects, setProjects] = useState(initialProjects);
 
   const handleProjectChange = (e, id) => {
     const { name, value } = e.target;
@@ -42,7 +33,9 @@ function ProjectForm({ onChange }) {
     <div className="md:flex flex-col justify-center gap-4 mt-4">
       {projects.map((project) => (
         <div key={project.id}>
-          <h1 className="text-center font-extrabold py-2 text-2xl">Project {project.id}</h1>
+          <h1 className="text-center font-extrabold py-2 text-2xl">
+            Project {project.id}
+          </h1>
           <div className="md:flex justify-center gap-4">
             <div className="form-control">
               <label className="label">
