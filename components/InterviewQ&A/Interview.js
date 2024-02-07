@@ -36,19 +36,30 @@ const Interview = () => {
 
     return (
         <div>
-            <h1>Search</h1>
+            <form onSubmit={handleGenerate} className="w-full mx-auto flex gap-3 items-center justify-center">
+                <label className="form-control w-full max-w-xs">
+                    <div className="label">
+                        <span className="label-text text-main">Generate Interview Questions</span>
+                    </div>
+                    <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+                    <div className="label">
+                        <span className="label-text-alt">Bottom Left label</span>
+                        <span className="label-text-alt">Bottom Right label</span>
+                    </div>
+                </label>
+                <button className="btn" type="submit">Generate</button>
+            </form>
             <div>
                 {chatLog.map((message, index) => (
-                    <div key={index} className="text-center text-5xl">
-                        <h1>sms</h1>
-                        {message.message}
+                    <div key={index} className="">
+                       <h1 className="text-2xl md:text-3xl font-extrabold text-sub_color px-4 py-2 mt-4">Resu-Magnet</h1>
+                        <hr className="py-2" />
+                        { isLoading ? <h1>loading</h1> :<div className="w-full md:w-4/5 px-4 font-semibold text-lg md:text-xl mb-6">
+                            {message.message}
+                        </div>}
                     </div>
                 ))}
             </div>
-            <form onSubmit={handleGenerate}>
-                <input type="text" placeholder="type here" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
-                <button className="btn" type="submit">Generate</button>
-            </form>
         </div>
     );
 };
