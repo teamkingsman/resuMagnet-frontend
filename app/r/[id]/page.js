@@ -1,18 +1,26 @@
-// "use client"
+"use client"
 // import { usePathname } from "next/navigation";
 
 import ResumeDiamond from "@/app/dashboard/resume/diamondResume/ResumeDiamond";
 import JoyResume from "@/app/dashboard/resume/joytemplate/JoyResume";
 import ClassicResume from "@/components/Resume/ClassicResume";
 import PremiumResume from "@/components/Resume/PremiumResumeTwo";
+import useAuth from "@/hooks/useAuth";
+import { resumeFromGet, resumeFromGetById } from "@/lib/BuilderAPI";
+import { useEffect, useState } from "react";
 // import { useEffect } from "react";
 
 const ResumeViewer = ({ params }) => {
-//   const [selectedTemplate, setSelectedTemplate] = useState("template1");
+  console.log(params);  
+  const [selectedTemplate, setSelectedTemplate] = useState("template1");
+  const [data, setData] = useState({})
 
-  // useEffect(()=>{
-
-  // },[])
+  useEffect(() => {
+    resumeFromGetById(params.id)
+            .then((res) => setData(res))
+            .catch((err) => console.log(err));
+}, [params.id]);
+console.log(data);
   return (
     <div>
       {params.id}

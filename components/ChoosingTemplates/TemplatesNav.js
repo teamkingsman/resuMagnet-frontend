@@ -1,7 +1,19 @@
+"use client"
 import { IoCaretBack } from "react-icons/io5";
 
 import Link from "next/link";
+import useAuth from "@/hooks/useAuth";
+import { resumeFromGet } from "@/lib/BuilderAPI";
+import { useEffect, useState } from "react";
 const TemplatesNav = () => {
+    const {user} = useAuth()
+  
+  const [selectedTemplate, setSelectedTemplate] = useState("");
+  useEffect(()=>{
+    resumeFromGet(user.email).then((res) => setSelectedTemplate(res))
+    .catch((err) => console.log(err))
+  },[user.email])
+  console.log(selectedTemplate);
     return (
         <div>
             <div className="navbar bg-base-100 px-4 border-b-2 border-b-sub_color shadow-xl">
@@ -27,7 +39,7 @@ const TemplatesNav = () => {
                                     <ul className="menu p-4 w-72 md:w-80 min-h-full bg-base-200 text-base-content">
                                         {/* Sidebar content here */}
                                         <li>
-                                            <Link href={`/r/${1}`}>
+                                            <Link href={`/r/${selectedTemplate._id}`}>
                                             Copy Link</Link></li>
                                         <li className="btn btn-sm md:btn-md lg:btn-lg w-3/4 mx-auto bg-sub_color py-4 mt-4 "><span className="text-highlight_color"></span>Download PDF</li>
                                     </ul>
