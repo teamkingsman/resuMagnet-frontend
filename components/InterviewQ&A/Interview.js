@@ -52,11 +52,36 @@ const Interview = () => {
             <div>
                 {chatLog.map((message, index) => (
                     <div key={index} className="">
-                       <h1 className="text-2xl md:text-3xl font-extrabold text-sub_color px-4 py-2 mt-4">Resu-Magnet</h1>
-                        <hr className="py-2" />
-                        { isLoading ? <><span className="loading loading-dots loading-lg"></span></> :<div className="w-full md:w-4/5 px-4 font-semibold text-lg md:text-xl mb-6">
-                            {message.message}
-                        </div>}
+                        {message.type === 'user' && (
+                            <div>
+                                <h1 className="text-2xl md:text-3xl font-extrabold text-sub_color px-4 py-2 mt-4">Resu-Magnet</h1>
+                                <hr className="py-2" />
+                                <div className="w-full md:w-4/5 px-4 font-semibold text-lg md:text-xl mb-6">
+                                    {message.message}
+                                </div>
+                            </div>
+                        )}
+                        {
+                            isLoading ? 
+                            <span className="loading loading-dots loading-lg"></span> 
+                         :
+                           message.type === 'bot' && (
+
+                            <div className="w-full md:w-4/5 px-4 font-semibold text-lg md:text-xl mb-6">
+                                {(
+                                    message.message
+                                )}
+                            </div>
+                        )}
+                        
+                        {/* {message.type === 'bot' && (
+
+                            <div className="w-full md:w-4/5 px-4 font-semibold text-lg md:text-xl mb-6">
+                                { (
+                                    message.message
+                                )}
+                            </div>
+                        )} */}
                     </div>
                 ))}
             </div>
