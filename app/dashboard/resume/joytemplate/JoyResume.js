@@ -2,7 +2,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
 import { IoIosPeople } from "react-icons/io";
-// import { MdOutlinePermContactCalendar } from "react-icons/md";
+import { MdOutlinePermContactCalendar } from "react-icons/md";
 
 import { GiPostOffice } from "react-icons/gi";
 import { IoEarth } from "react-icons/io5";
@@ -29,7 +29,7 @@ const JoyResume = ({ resume }) => {
               {basicInfo?.email}
             </h2>
             <h2 className="flex items-center gap-2">
-              {/* <MdOutlinePermContactCalendar /> */}
+              <MdOutlinePermContactCalendar />
               {basicInfo?.dob}
             </h2>
             <h2 className="flex items-center gap-2 ">
