@@ -17,7 +17,10 @@ function MainTemplatePreview({ params }) {
 
   useEffect(() => {
     cvFromGetById(params.id)
-            .then((res) => setData(res))
+            .then((res) => {
+              setData(res)
+              setSelectedTemplate(res?.template || "template1")
+            })
             .catch((err) => console.log(err));
 }, [params.id]);
 // console.log(data);

@@ -1,7 +1,7 @@
 'use client'
 
 import useAuth from "@/hooks/useAuth";
-import { cvFromGet } from "@/lib/BuilderAPI";
+import { cvFromGet, cvTemplateUpdate } from "@/lib/BuilderAPI";
 import { useEffect, useState } from "react";
 import ClassicCv from "@/components/Cv/ClassicCv";
 import PremiumCv from "@/components/Cv/PremiumCv";
@@ -25,9 +25,25 @@ function MainTemplatePreview() {
       setSelectedTemplate(search)
     }
   },[search])
+
+  useEffect(() => {
+    if(data._id)
+  {
+    const obj={template:selectedTemplate}
+    cvTemplateUpdate(data?._id, obj)
+    .then((res) => {
+      console.log(res)
+    }).catch((err) => console.log(err))
+
+  }
+
+    },[data._id, selectedTemplate])
   useEffect(() => {
     if(user.email){
-      cvFromGet(user.email).then((res) => setData(res))
+      cvFromGet(user.email).then((res) => {
+        setData(res)
+        setSelectedTemplate(res?.template || "template1")
+      })
       .catch((err) => console.log(err))
     }
   },[user.email])
