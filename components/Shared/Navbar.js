@@ -10,12 +10,13 @@ const Navbar = () => {
     const { user, signOutUser } = useAuth()
 
     const pathname = usePathname()
-    const doNotShowNav = ["/signin", "/signup", "/dashboard", "/dashboard/profile", "/dashboard/cover-letter", "/dashboard/resume", "/dashboard/cv", "/preview", "/dashboard/resume/preview", "/dashboard/cv/preview","/dashboard/cover-letter/preview"]
-    if (doNotShowNav.includes(pathname)) {
+    const lastpath = pathname.split("/").pop() // Get the last part of the pathname (e.g., "dashboard" or "signin")
+   console.log(lastpath)
+    const doNotShowNav = ["signin", "signup", "dashboard", "profile", "cover-letter", "resume", "cv", "preview",]
+    if (doNotShowNav.includes(lastpath)) {
         return null;
     }
     const navlinks = <>
-        <li><Link href="/" className='text-main font-bold hover:text-highlight_color'>Home</Link></li>
         <li><Link href="/dashboard" className='text-main font-bold hover:text-highlight_color'>Dashboard</Link></li>
         <li><Link href="/about" className='text-main font-bold hover:text-highlight_color'>About Us</Link></li>
         <li><Link href="/contact" className='text-main font-bold hover:text-highlight_color'>Contact</Link></li>

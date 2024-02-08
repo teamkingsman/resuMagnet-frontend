@@ -5,8 +5,10 @@ import Subscribe from './Subscribe';
 
 const Footer = () => {
     const pathname = usePathname()
-    const doNotShowNav = ["/signin", "/signup", "/dashboard", "/dashboard/profile", "/dashboard/cover-letter", "/dashboard/resume", "/dashboard/cv", "/preview", "/dashboard/resume/preview", "/dashboard/cv/preview","/dashboard/cover-letter/preview"]
-    if (doNotShowNav.includes(pathname)) {
+    const lastpath = pathname.split("/").pop() // Get the last part of the pathname (e.g., "dashboard" or "signin")
+   console.log(lastpath)
+    const doNotShowNav = ["signin", "signup", "dashboard", "profile", "cover-letter", "resume", "cv", "preview",]
+    if (doNotShowNav.includes(lastpath)) {
         return null;
     }
    
