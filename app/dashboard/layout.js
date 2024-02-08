@@ -6,16 +6,17 @@ import { usePathname } from "next/navigation";
 
 const DashboardLayout =  ({ children }) => {
   const pathname = usePathname()
-    const doNotShowNav = [ "/dashboard/resume/preview","/dashboard/cover-letter/preview","/dashboard/cv/preview" ]
+  const lastpath = pathname.split("/").pop() // Get the last part of the pathname (e.g., "dashboard" or "signin")
+    const doNotShowNav = [ "preview" ]
   return (
     <PrivateRoute>
     <div className="grid grid-cols-12 gap-4 w-full ">
       {
-        doNotShowNav.includes(pathname) ? <div></div> : (<div className="lg:col-span-2 ">
+        doNotShowNav.includes(lastpath) ? <div></div> : (<div className="lg:col-span-2 ">
         <Sidebar></Sidebar>
       </div>)
       }
-      <div className={doNotShowNav.includes(pathname) ? "col-span-12":"col-span-10"}  >{children}</div>
+      <div className={doNotShowNav.includes(lastpath) ? "col-span-12":"col-span-10"}  >{children}</div>
     </div>
     </PrivateRoute>
   );
