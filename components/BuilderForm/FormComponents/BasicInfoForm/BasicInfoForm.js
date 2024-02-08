@@ -5,6 +5,7 @@ import { useState } from "react";
 import avatar from "@/assets/avatar.gif";
 import { FaRegEdit } from "react-icons/fa";
 import { AiOutlineDelete } from "react-icons/ai";
+import CropImage from "@/components/Modal/CropImage";
 
 function BasicInfoForm({ onChange, basicInfo }) {
   const [showAdditionalFields, setShowAdditionalFields] = useState(false);
@@ -47,9 +48,7 @@ function BasicInfoForm({ onChange, basicInfo }) {
     }
   };
 
-  const handelCropModal = () =>{
 
-  };
 
   const handleInputChange = (e) => {
     const fieldName = e.target.name;
@@ -78,12 +77,16 @@ function BasicInfoForm({ onChange, basicInfo }) {
             </div>
           </div>
           <div className="flex justify-center mx-auto">
-            <FaRegEdit onClick={handelCropModal} className="text-main" />
-            <AiOutlineDelete
+          {
+              photoUrl ? 
+              <FaRegEdit onClick={() => document.getElementById('my_modal_1').showModal()} className="text-main" /> 
+              :<FaRegEdit className="text-main" />
+            }            <AiOutlineDelete
               onClick={handelPhotoFileDel}
               className="text-main"
             />
           </div>
+          <CropImage photoUrl={photoUrl}/>
         </div>
 
         <div className="md:flex justify-center gap-4">
@@ -187,6 +190,17 @@ function BasicInfoForm({ onChange, basicInfo }) {
           </div>
         </div>
 
+        {!showAdditionalFields && (
+          <div className="form-control mt-4">
+            <button
+              type="button"
+              className="flex items-center justify-between gap-2 text-main font-semibold hover:font-bold hover:bg hover:border "
+              onClick={handleToggleClick}
+            >
+              Add More Information +
+            </button>
+          </div>
+        )}
         {!showAdditionalFields && (
           <div className="form-control mt-4">
             <button
