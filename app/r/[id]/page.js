@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 
 const ResumeViewer = ({ params }) => {
   console.log(params);  
-  const [selectedTemplate, setSelectedTemplate] = useState("template1");
+  const [selectedTemplate, setSelectedTemplate] = useState("template2");
   const [data, setData] = useState({})
 
   useEffect(() => {

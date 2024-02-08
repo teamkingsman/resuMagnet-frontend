@@ -8,12 +8,12 @@ import { useEffect, useState } from "react";
 const TemplatesNav = () => {
     const {user} = useAuth()
   
-  const [selectedTemplate, setSelectedTemplate] = useState("");
+  const [objectId, setObjectId] = useState("");
   useEffect(()=>{
-    resumeFromGet(user.email).then((res) => setSelectedTemplate(res))
+    resumeFromGet(user.email).then((res) => setObjectId(res._id))
     .catch((err) => console.log(err))
   },[user.email])
-  console.log(selectedTemplate);
+  console.log(objectId);
     return (
         <div>
             <div className="navbar bg-base-100 px-4 border-b-2 border-b-sub_color shadow-xl">
@@ -39,7 +39,7 @@ const TemplatesNav = () => {
                                     <ul className="menu p-4 w-72 md:w-80 min-h-full bg-base-200 text-base-content">
                                         {/* Sidebar content here */}
                                         <li>
-                                            <Link href={`/r/${selectedTemplate._id}`}>
+                                            <Link href={`/r/${objectId}`}>
                                             Copy Link</Link></li>
                                         <li className="btn btn-sm md:btn-md lg:btn-lg w-3/4 mx-auto bg-sub_color py-4 mt-4 "><span className="text-highlight_color"></span>Download PDF</li>
                                     </ul>
