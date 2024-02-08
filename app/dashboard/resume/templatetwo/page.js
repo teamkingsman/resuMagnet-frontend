@@ -1,13 +1,39 @@
+"use client"
+import useAuth from "@/hooks/useAuth";
+
+import { useEffect, useState } from "react";
+import {resumeFromGet} from "@/lib/BuilderAPI";
+
 import Resumes from "./Resumes";
 
 
-const page = () => {
+const TemplateResume = () => {
+    
+    const {user} = useAuth();
+    const [resume, setResume] = useState({})
+
+     
+    useEffect(()=>{
+        resumeFromGet(user.email)
+        .then (res => setResume(res))
+    }, [user])
+    resumeFromGet(resume)
     return (
         <div>
-            <Resumes></Resumes>
+            <Resumes resume={resume}></Resumes>
             
         </div>
     );
 };
 
-export default page;
+export default TemplateResume;
+
+
+
+
+
+
+
+    
+   
+

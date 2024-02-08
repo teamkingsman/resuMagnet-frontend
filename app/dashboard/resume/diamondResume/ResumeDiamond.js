@@ -86,11 +86,11 @@ const ResumeDiamond = ({resume}) => {
               {Array.isArray(projGroup) &&
                 projGroup.map((project, projIndex) => (
                   <div key={projIndex} className="project mb-4 p-4 border rounded">
-                    <h3 className="text-lg font-bold">{project.title}</h3>
-                    <p>{project.type}</p>
-                    <p>{project.description}</p>
-                    <p>Live Link: {project.liveLink}</p>
-                    <p>GitHub Link: {project.githubLink}</p>
+                    <h3 className="text-lg font-bold">{project?.title}</h3>
+                    <p>{project?.type}</p>
+                    <p>{project?.description}</p>
+                    <p>Live Link: {project?.liveLink}</p>
+                    <p>GitHub Link: {project?.githubLink}</p>
                   </div>
                 ))}
             </div>
