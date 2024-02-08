@@ -9,8 +9,8 @@ const Interview = () => {
 
     const handleGenerate = async (e) => {
         e.preventDefault();
-        setChatLog((prevChatLog) => [...prevChatLog, { type: 'user', message: inputValue }]);
-        await SendMessage(inputValue);
+        setChatLog((prevChatLog) => [...prevChatLog, { type: 'user', message: `Act like a interviewer and generate Question and Answer for the job ${inputValue}` }]);
+        await SendMessage(`Act like a interviewer and generate Question and Answer for the job ${inputValue}`);
         setInputValue('');
     };
 
