@@ -69,7 +69,9 @@ const Interview = () => {
 
                             <div className="w-full md:w-4/5 px-4 font-semibold text-lg md:text-xl mb-6">
                                 {(
-                                    message.message
+                                    message.message.split('?').map((part, i) => (
+                                        <p key={i}> {part.trim()}</p>
+                                    ))
                                 )}
                             </div>
                         )}
