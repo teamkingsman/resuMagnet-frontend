@@ -99,31 +99,25 @@ const Resumes = ({ resume }) => {
 
         {/* Summary */}
         {/* <h3>Summary</h3> */}
-        <p className='text-lg mt-5'>{basicInfo?.about}</p>
+        <div className='overflow-hidden'>
+        <p className='text-lg mt-5 '>{basicInfo?.about}</p>
+        </div>
 
 
         <h3 className='text-xl font-bold border-b-2 mt-10'>Projects</h3>
-        {/* {coverLetterData.projects.map((project, index) => (
-          <div key={index}>
-            <p className='font-medium'>Name: {project.name}</p>
-            <p>Description: {project.description}</p>
-            <p className='mb-5'>Technologies: {project.technologies.join(', ')}</p>
+
+        {projects?.map((project, index) => (
+          <div key={index} className="text-xl pt-3">
+            <h2 className="font-semibold bg-transparent">{project?.title}</h2>
+            <h3>{project?.type}</h3>
+            <h3>{project?.liveLink}</h3>
+            <h3>{project?.githubLink}</h3>
+            <ul className="list-disc pl-4">
+              <li>{project?.description}</li>
+            </ul>
           </div>
-        ))} */}
-         {projects?.map((projGroup, index) => (
-            <div key={index} className="project-group mt-4">
-              {Array.isArray(projGroup) &&
-                projGroup.map((project, projIndex) => (
-                  <div key={projIndex} className="project mb-4 p-4 border rounded">
-                    <h3 className="text-lg font-bold">{project.title}</h3>
-                    <p>{project.type}</p>
-                    <p>{project.description}</p>
-                    <p>Live Link: {project.liveLink}</p>
-                    <p>GitHub Link: {project.githubLink}</p>
-                  </div>
-                ))}
-            </div>
-          ))}
+        ))}
+
 
         {/* Experience */}
         <h3 className='text-xl font-bold border-b-2 mt-10'>Experience</h3>
@@ -141,13 +135,13 @@ const Resumes = ({ resume }) => {
             </ul>
           </div>
         ))} */}
-         {employment?.map((job, index) => (
-            <div key={index} className="mb-4">
-              <p className="font-bold">{job.jobTitle} - {job.employer}</p>
-              <p>{`${job.startDate} - ${job.endDate}`}</p>
-              <p>{job.jobDescription}</p>
-            </div>
-          ))}
+        {employment?.map((job, index) => (
+          <div key={index} className="mb-4">
+            <p className="font-bold">{job.jobTitle} - {job.employer}</p>
+            <p>{`${job.startDate} - ${job.endDate}`}</p>
+            <p>{job.jobDescription}</p>
+          </div>
+        ))}
 
         {/* Certifications */}
         {/* <h3 className='text-xl font-bold border-b-2'>Certifications</h3>
