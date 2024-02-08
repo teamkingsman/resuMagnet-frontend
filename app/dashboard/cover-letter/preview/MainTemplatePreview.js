@@ -7,16 +7,31 @@ import CoverDiamond from "../diamondCover/CoverDiamond";
 import ClassicCoverLetter from "@/components/CoverLetter/ClassicCoverLetter";
 import PremiumCoverLetter from "@/components/CoverLetter/PremiumCoverLetter";
 import CoverLetter from "../joytemplate/CoverLetter";
+import { useSearchParams } from "next/navigation";
 
 
 
-function MainTemplatePreview({ selectedTemplate }) {
+function MainTemplatePreview() {
   const {user} = useAuth()
   const [data, setData] = useState({})
+  const [selectedTemplate, setSelectedTemplate] = useState('template1')
+  const searchParams = useSearchParams()
+  
+  const search = searchParams.get('template')
   useEffect(() => {
-    coverLetterFromGet(user.email).then((res) => setData(res))
-    .catch((err) => console.log(err))
-  },[user])
+    if(search){
+      setSelectedTemplate(search)
+    }
+  },[search])
+  useEffect(() => {
+    if(user.email){
+      coverLetterFromGet(user.email).then((res) => {
+        if(res){
+          setData(res)
+        }
+      })
+    }
+  },[user.email])
     // Use selectedTemplate to dynamically render the chosen template
     return (
       <>

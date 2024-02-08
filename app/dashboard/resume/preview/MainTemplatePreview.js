@@ -7,12 +7,23 @@ import ResumeDiamond from "../diamondResume/ResumeDiamond";
 import ClassicResume from "@/components/Resume/ClassicResume";
 import PremiumResume from "@/components/Resume/PremiumResumeTwo";
 import JoyResume from "../joytemplate/JoyResume";
+import { useSearchParams } from "next/navigation";
 
 
 
-function MainTemplatePreview({ selectedTemplate }) {
+function MainTemplatePreview() {
   const {user} = useAuth()
   const [data, setData] = useState({})
+  const [selectedTemplate, setSelectedTemplate] = useState('template1')
+  const searchParams = useSearchParams()
+  
+  const search = searchParams.get('template')
+  useEffect(() => {
+    if(search){
+      setSelectedTemplate(search)
+    }
+  },[search])
+  
   useEffect(() => {
     resumeFromGet(user.email).then((res) => setData(res))
     .catch((err) => console.log(err))
