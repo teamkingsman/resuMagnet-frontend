@@ -8,6 +8,8 @@ import PremiumCv from "@/components/Cv/PremiumCv";
 import Cv from "@/app/dashboard/cv/joycv/Cv";
 import CvDiamond from "../CvDiamond/CvDiamond";
 import { useSearchParams } from "next/navigation";
+import CVpaper from "../templatetwo/CVpaper";
+import CvGolden from "../CvGolden/CvGolden";
 
 
 
@@ -37,6 +39,8 @@ function MainTemplatePreview() {
         {selectedTemplate === 'template2' && <Cv cvData={data}/>}
         {selectedTemplate === 'template3' && <ClassicCv cv={data}/>}
         {selectedTemplate === 'template4' && <PremiumCv cv={data}/>}
+        {selectedTemplate === 'template5' && <CVpaper cv={data}/>}
+        {selectedTemplate === 'template6' && <CvGolden cv={data}/>}
         {/* Add more template previews as needed */}
       </>
     );
