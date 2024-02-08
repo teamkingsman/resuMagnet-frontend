@@ -5,6 +5,8 @@ import Cv from "@/app/dashboard/cv/joycv/Cv";
 import CvDiamond from "@/app/dashboard/cv/CvDiamond/CvDiamond";
 import ClassicCv from "@/components/Cv/ClassicCv";
 import PremiumCv from "@/components/Cv/PremiumCv";
+import CVpaper from "@/app/dashboard/cv/templatetwo/CVpaper";
+import CvGolden from "@/app/dashboard/cv/CvGolden/CvGolden";
 // import CvDiamond from "../CvDiamond/CvDiamond";
 
 
@@ -28,6 +30,8 @@ function MainTemplatePreview({ params }) {
         {selectedTemplate === 'template2' && <Cv cvData={data}/>}
         {selectedTemplate === 'template3' && <ClassicCv cv={data}/>}
         {selectedTemplate === 'template4' && <PremiumCv cv={data}/>}
+        {selectedTemplate === 'template5' && <CVpaper cv={data}/>}
+        {selectedTemplate === 'template6' && <CvGolden cv={data}/>}
         {/* Add more template previews as needed */}
       </>
     );
