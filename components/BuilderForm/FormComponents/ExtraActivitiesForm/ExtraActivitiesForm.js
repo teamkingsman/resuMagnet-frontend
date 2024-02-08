@@ -1,17 +1,13 @@
 "use client"
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-function ExtraActivitiesForm({ onChange }) {
-  const [activities, setActivities] = useState([
-    {
-      id: 1,
-      name: "",
-      organization: "",
-      startDate: "",
-      endDate: "",
-      description: "",
-    },
-  ]);
+function ExtraActivitiesForm({ onChange, extraActivities: initialActivities }) {
+  const [activities, setActivities] = useState(initialActivities);
+
+  // Update state when initialActivities prop changes
+  useEffect(() => {
+    setActivities(initialActivities);
+  }, [initialActivities]);
 
   const handleInputChange = (e, field, id) => {
     setActivities((prevActivities) =>
@@ -19,7 +15,6 @@ function ExtraActivitiesForm({ onChange }) {
         activity.id === id ? { ...activity, [field]: e.target.value } : activity
       )
     );
-    onChange([...activities]);
   };
 
   const handleDateChange = (date, field, id) => {
@@ -28,7 +23,6 @@ function ExtraActivitiesForm({ onChange }) {
         activity.id === id ? { ...activity, [field]: date } : activity
       )
     );
-    onChange([...activities]);
   };
 
   const addMoreActivity = () => {
@@ -43,8 +37,12 @@ function ExtraActivitiesForm({ onChange }) {
         description: "",
       },
     ]);
-    onChange([...activities]);
   };
+
+  useEffect(() => {
+    onChange([...activities]);
+  }, [activities, onChange]);
+
 
   return (
     <div className="md:flex flex-col justify-center gap-4 mt-4">
@@ -64,7 +62,7 @@ function ExtraActivitiesForm({ onChange }) {
                 type="text"
                 placeholder="Enter Activity Name"
                 className="input bg-base-300"
-                name={`activityName-${activity.id}`}
+                name="name"
                 value={activity.name}
                 onChange={(e) => handleInputChange(e, "name", activity.id)}
                 required

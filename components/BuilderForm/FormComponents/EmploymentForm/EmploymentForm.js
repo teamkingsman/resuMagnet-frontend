@@ -1,4 +1,5 @@
-"use client"
+// EmploymentForm component
+"use client";
 import React, { useState } from "react";
 
 function EmploymentForm({ onChange, employment: initialEmploymentData }) {
@@ -81,6 +82,40 @@ function EmploymentForm({ onChange, employment: initialEmploymentData }) {
             </div>
           </div>
 
+          <div className="md:flex justify-between gap-4">
+            <div className="form-control">
+              <label className="label">
+                <span className="flex items-center gap-2 label-text font-semibold text-main">
+                  Start Date
+                </span>
+              </label>
+              <input
+                type="date"
+                placeholder="Select Start Date"
+                className="input bg-base-300"
+                name={`startDate-${entry.id}`}
+                value={entry.startDate}
+                onChange={(e) => handleInputChange(e, "startDate", entry.id)}
+              />
+            </div>
+
+            <div className="form-control">
+              <label className="label">
+                <span className="flex items-center gap-2 label-text font-semibold text-main">
+                  End Date
+                </span>
+              </label>
+              <input
+                type="date"
+                placeholder="Select End Date"
+                className="input bg-base-300"
+                name={`endDate-${entry.id}`}
+                value={entry.endDate}
+                onChange={(e) => handleInputChange(e, "endDate", entry.id)}
+              />
+            </div>
+          </div>
+
           <div className="form-control">
             <label className="label">
               <span className="flex items-center gap-2 label-text font-semibold text-main">
@@ -89,12 +124,10 @@ function EmploymentForm({ onChange, employment: initialEmploymentData }) {
             </label>
             <textarea
               placeholder="Enter Job Description"
-              className="textarea textarea-bordered bg-base-300"
+              className="textarea bg-base-300"
               name={`jobDescription-${entry.id}`}
               value={entry.jobDescription}
-              onChange={(e) =>
-                handleInputChange(e, "jobDescription", entry.id)
-              }
+              onChange={(e) => handleInputChange(e, "jobDescription", entry.id)}
             />
           </div>
         </div>

@@ -7,40 +7,24 @@ import { FaRegEdit } from "react-icons/fa";
 import { AiOutlineDelete } from "react-icons/ai";
 
 function BasicInfoForm({ onChange, basicInfo }) {
-  const {
-    designation = "",
-    photoURL = avatar,
-    fname = "",
-    lname = "",
-    email = "",
-    phone = "",
-    country = "",
-    city = "",
-    street = "",
-    postal = "",
-    dob = "",
-    nationality = "",
-    about = "",
-  } = basicInfo || {};
-
   const [showAdditionalFields, setShowAdditionalFields] = useState(false);
-  const [photoUrl, setPhotoUrl] = useState(photoURL || avatar);
-  const [dobValue, setDob] = useState(dob || "");
+  const [photoUrl, setPhotoUrl] = useState(basicInfo?.photoURL || avatar);
+  const [dobValue, setDob] = useState(basicInfo?.dob || "");
 
   const [formData, setFormData] = useState({
-    designation,
-    photoURL,
-    fname,
-    lname,
-    email,
-    phone,
-    country,
-    city,
-    street,
-    postal,
-    dob,
-    nationality,
-    about,
+    designation: basicInfo?.designation || "",
+    photoURL: basicInfo?.photoURL || avatar,
+    fname: basicInfo?.fname || "",
+    lname: basicInfo?.lname || "",
+    email: basicInfo?.email || "",
+    phone: basicInfo?.phone || "",
+    country: basicInfo?.country || "",
+    city: basicInfo?.city || "",
+    street: basicInfo?.street || "",
+    postal: basicInfo?.postal || "",
+    dob: basicInfo?.dob || "",
+    nationality: basicInfo?.nationality || "",
+    about: basicInfo?.about || "",
   });
 
   const handleToggleClick = () => {
@@ -63,8 +47,8 @@ function BasicInfoForm({ onChange, basicInfo }) {
     }
   };
 
-  const handelCropModal = () => {
-    
+  const handelCropModal = () =>{
+
   };
 
   const handleInputChange = (e) => {
@@ -77,7 +61,6 @@ function BasicInfoForm({ onChange, basicInfo }) {
     }));
 
     onChange({ ...formData, [fieldName]: fieldValue });
-    console.log(object);
   };
 
   return (
@@ -231,7 +214,7 @@ function BasicInfoForm({ onChange, basicInfo }) {
                   className="input bg-base-300"
                   name="country"
                   onChange={handleInputChange}
-                  value={basicInfo?.country || ""}
+                  defaultValue={basicInfo?.country || ""}
                 />
               </div>
               <div className="form-control mt-4">
@@ -246,7 +229,7 @@ function BasicInfoForm({ onChange, basicInfo }) {
                   className="input bg-base-300"
                   name="city"
                   onChange={handleInputChange}
-                  value={basicInfo?.city || ""}
+                  defaultValue={basicInfo?.city || ""}
                 />
               </div>
             </div>
@@ -264,7 +247,7 @@ function BasicInfoForm({ onChange, basicInfo }) {
                   className="input bg-base-300"
                   name="street"
                   onChange={handleInputChange}
-                  value={basicInfo?.street || ""}
+                  defaultValue={basicInfo?.street || ""}
                 />
               </div>
               <div className="form-control mt-4">
@@ -279,7 +262,7 @@ function BasicInfoForm({ onChange, basicInfo }) {
                   className="input bg-base-300"
                   name="postal"
                   onChange={handleInputChange}
-                  value={basicInfo?.postal || ""}
+                  defaultValue={basicInfo?.postal || ""}
                 />
               </div>
             </div>
@@ -297,7 +280,7 @@ function BasicInfoForm({ onChange, basicInfo }) {
                   className="input bg-base-300"
                   name="nationality"
                   onChange={handleInputChange}
-                  value={basicInfo?.nationality || ""}
+                  defaultValue={basicInfo?.nationality || ""}
                 />
               </div>
               <div className="form-control mt-4">
@@ -312,7 +295,7 @@ function BasicInfoForm({ onChange, basicInfo }) {
                   className="input bg-base-300"
                   name="dob"
                   onChange={(e) => setDob(e.target.value)}
-                  value={basicInfo?.dob || ""}
+                  defaultValue={basicInfo?.dob || ""}
                 />
               </div>
             </div>
@@ -328,7 +311,7 @@ function BasicInfoForm({ onChange, basicInfo }) {
                 placeholder="About Your self"
                 className="textarea textarea-bordered textarea-lg w-full bg-base-300"
                 onChange={handleInputChange}
-                value={basicInfo?.about || ""}
+                defaultValue={basicInfo?.about || ""}
               ></textarea>
             </div>
             <div className="form-control mt-4">

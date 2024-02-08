@@ -17,23 +17,24 @@ function EducationForm({ onChange, education: initialEducationData }) {
   );
 
   const handleDateChange = (e, field, id) => {
-    setEducationHistory((prevHistory) =>
-      prevHistory.map((entry) =>
+    setEducationHistory((prevHistory) => {
+      const updatedHistory = prevHistory.map((entry) =>
         entry.id === id
           ? {
               ...entry,
               [field]: e.target.value || "",
             }
           : entry
-      )
-    );
-    onChange([...educationHistory]);
+      );
+      onChange([...updatedHistory]);
+      return updatedHistory;
+    });
   };
 
   const handleCheckboxChange = (e, id) => {
     const { checked } = e.target;
-    setEducationHistory((prevHistory) =>
-      prevHistory.map((entry) =>
+    setEducationHistory((prevHistory) => {
+      const updatedHistory = prevHistory.map((entry) =>
         entry.id === id
           ? {
               ...entry,
@@ -41,27 +42,29 @@ function EducationForm({ onChange, education: initialEducationData }) {
               endDate: checked ? " " : entry.endDate,
             }
           : entry
-      )
-    );
-    onChange(educationHistory);
+      );
+      onChange([...updatedHistory]);
+      return updatedHistory;
+    });
   };
 
   const handleInputChange = (e, field, id) => {
-    setEducationHistory((prevHistory) =>
-      prevHistory.map((entry) =>
+    setEducationHistory((prevHistory) => {
+      const updatedHistory = prevHistory.map((entry) =>
         entry.id === id ? { ...entry, [field]: e.target.value } : entry
-      )
-    );
-    onChange(educationHistory);
+      );
+      onChange([...updatedHistory]);
+      return updatedHistory;
+    });
   };
 
   return (
     <div className="md:flex flex-col justify-center gap-4 mt-4">
-      {educationHistory.map((entry) => (
-        <div key={entry.id}>
-          <h1 className="text-center font-extrabold py-2 text-2xl">
-            Education History {entry.id}
-          </h1>
+    {educationHistory.map((entry) => (
+      <div key={entry.id}>
+        <h1 className="text-center font-extrabold py-2 text-2xl">
+          Education History {entry.id}
+        </h1>
           <div className="md:flex justify-between gap-4">
             <div className="form-control">
               <label className="label">
@@ -154,7 +157,7 @@ function EducationForm({ onChange, education: initialEducationData }) {
               </label>
               <textarea
                 placeholder="Enter Education Description"
-                className="textarea textarea-lg textarea-bordered bg-base-300"
+                className="textarea bg-base-300"
                 name={`educationDescription-${entry.id}`}
                 value={entry.educationDescription}
                 onChange={(e) =>
@@ -166,14 +169,14 @@ function EducationForm({ onChange, education: initialEducationData }) {
         </div>
       ))}
 
-      <div className="form-control mt-4">
+<div className="form-control mt-4">
         <button
           type="button"
           onClick={() =>
-            setEducationHistory([
-              ...educationHistory,
+            setEducationHistory((prevHistory) => [
+              ...prevHistory,
               {
-                id: educationHistory.length + 1,
+                id: prevHistory.length + 1,
                 degree: "",
                 institute: "",
                 startDate: " ",

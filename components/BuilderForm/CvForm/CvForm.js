@@ -227,20 +227,28 @@ function CvForm() {
   };
 
   const handlePreview = async () => {
-    console.log(allFormData);
     try {
-      const response = await cvFromPost(allFormData);
-      console.log("CV data sent successfully", response);
-      router.push("dashboard/cover-letter/preview")
-
+      const mergedData = {
+        basicInfo: { ...cvData.basicInfo, ...allFormData.basicInfo },
+        education: { ...cvData.education, ...allFormData.education },
+        employment: { ...cvData.employment, ...allFormData.employment },
+        skill: { ...cvData.skill, ...allFormData.skill},
+        language: { ...cvData.language, ...allFormData.language },
+        projects: { ...cvData.projects, ...allFormData.projects },
+        
+      };
+      console.log(mergedData);
+      const response = await resumeFromPost(mergedData);
+      console.log("Resume data sent successfully", response);
+      // router.push("dashboard/resume/preview");
     } catch (error) {
-      console.error("Error sending CV data", error);
+      console.error("Error sending resume data", error);
     }
   };
 
   return (
-    <div>
-      <div className="hero min-h-screen bg-main">
+    <div className="hero min-h-screen my-16 ">
+      <div className="bg-main p-8 rounded-xl">
         <div className="hero-content flex-col">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold text-whitecolor">

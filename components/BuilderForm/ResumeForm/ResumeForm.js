@@ -6,7 +6,6 @@ import SkillForm from "../FormComponents/SkillForm/SkillForm";
 import LanguageForm from "../FormComponents/LanguageForm/LanguageForm";
 import BasicInfoForm from "../FormComponents/BasicInfoForm/BasicInfoForm";
 import ProjectForm from "../FormComponents/ProjectForm/ProjectForm";
-import { AuthContext } from "@/Providers/AuthProvider";
 import { resumeFromPost } from "@/lib/BuilderAPI";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
@@ -28,7 +27,8 @@ const ResumeForm = () => {
   const resumeData = {
     basicInfo: {
       designation: "Mern Stack Developer",
-      photoURL: "https://res.cloudinary.com/dxox3wiq1/image/upload/v1707156846/poto_plc2na.jpg",
+      photoURL:
+        "https://res.cloudinary.com/dxox3wiq1/image/upload/v1707156846/poto_plc2na.jpg",
       fname: "Md Sakib",
       lname: "Hossain",
       email: "Mskib567@gmai.com",
@@ -66,7 +66,7 @@ const ResumeForm = () => {
         id: 1,
         jobTitle: "dgdfgdfg",
         employer: "dfdfgdfg",
-        startDate:"2018-05-28",
+        startDate: "2018-05-28",
         endDate: "2018-05-28",
         jobDescription: "df",
       },
@@ -193,121 +193,135 @@ const ResumeForm = () => {
   };
 
   const handlePreview = async () => {
-    console.log(allFormData);
     try {
-      const response = await resumeFromPost(allFormData);
+      const mergedData = {
+        basicInfo: { ...resumeData.basicInfo, ...allFormData.basicInfo },
+        education: { ...resumeData.education, ...allFormData.education },
+        employment: { ...resumeData.employment, ...allFormData.employment },
+        skill: { ...resumeData.skill, ...allFormData.skill},
+        language: { ...resumeData.language, ...allFormData.language },
+        projects: { ...resumeData.projects, ...allFormData.projects },
+        
+      };
+      console.log(mergedData);
+      const response = await resumeFromPost(mergedData);
       console.log("Resume data sent successfully", response);
-      router.push("dashboard/resume/preview")
-
+      // router.push("dashboard/resume/preview");
     } catch (error) {
       console.error("Error sending resume data", error);
     }
   };
   
+
   return (
-    <div className="hero min-h-screen bg-main">
-      <div className="hero-content flex-col">
-        <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold text-whitecolor">
-            Create Your Own Resume
-          </h1>
-        </div>
-        <div className="card w-full shadow-2xl bg-base-100">
-          <BasicInfoForm
-            onChange={handleBasicInfoDataChange}
-            basicInfo={resumeData.basicInfo}
-          />
-          <div className="card-body">
-            <div className="form-control mt-4">
-              <button
-                type="button"
-                className="text-left text-main font-semibold hover:font-bold hover:bg hover:border "
-                onClick={handleEducationFormToggle}
-              >
-                Add Education History +
-              </button>
-            </div>
+    <div className="hero min-h-screen my-16 ">
+      <div className="bg-main p-8 rounded-xl">
+        <div className="hero-content flex-col">
+          <div className="text-center lg:text-left">
+            <h1 className="text-5xl font-bold text-whitecolor">
+              Create Your Own Resume
+            </h1>
+          </div>
+          <div className="card w-full shadow-2xl bg-base-100">
+            <BasicInfoForm
+              onChange={handleBasicInfoDataChange}
+              basicInfo={resumeData.basicInfo}
+            />
+            <div className="card-body">
+              <div className="form-control mt-4">
+                <button
+                  type="button"
+                  className="text-left text-main font-semibold hover:font-bold hover:bg hover:border "
+                  onClick={handleEducationFormToggle}
+                >
+                  Add Education History +
+                </button>
+              </div>
 
-            {showEducationForm && (
-              <EducationForm
-                onChange={handleEducationDataChange}
-                education={resumeData.education}
-              ></EducationForm>
-            )}
+              {showEducationForm && (
+                <EducationForm
+                  onChange={handleEducationDataChange}
+                  education={resumeData.education}
+                ></EducationForm>
+              )}
 
-            <div className="form-control mt-4">
-              <button
-                type="button"
-                className="text-left text-main font-semibold hover:font-bold hover:bg hover:border "
-                onClick={handleEmploymentFormToggle}
-              >
-                Add Employment History +
-              </button>
-            </div>
+              <div className="form-control mt-4">
+                <button
+                  type="button"
+                  className="text-left text-main font-semibold hover:font-bold hover:bg hover:border "
+                  onClick={handleEmploymentFormToggle}
+                >
+                  Add Employment History +
+                </button>
+              </div>
 
-            {showEmploymentForm && (
-              <EmploymentForm
-                onChange={handleEmploymentDataChange}
-                employment={resumeData.employment}
-              ></EmploymentForm>
-            )}
+              {showEmploymentForm && (
+                <EmploymentForm
+                  onChange={handleEmploymentDataChange}
+                  employment={resumeData.employment}
+                ></EmploymentForm>
+              )}
 
-            <div className="form-control mt-4">
-              <button
-                type="button"
-                className="text-left text-main font-semibold hover:font-bold hover:bg hover:border "
-                onClick={handleSkillFormToggle}
-              >
-                Add Skills +
-              </button>
-            </div>
+              <div className="form-control mt-4">
+                <button
+                  type="button"
+                  className="text-left text-main font-semibold hover:font-bold hover:bg hover:border "
+                  onClick={handleSkillFormToggle}
+                >
+                  Add Skills +
+                </button>
+              </div>
 
-            {showSkillForm && (
-              <SkillForm onChange={handleSkillDataChange}
-              skill={resumeData.skill}
-              ></SkillForm>
-            )}
+              {showSkillForm && (
+                <SkillForm
+                  onChange={handleSkillDataChange}
+                  skill={resumeData.skill}
+                ></SkillForm>
+              )}
 
-            <div className="form-control mt-4">
-              <button
-                type="button"
-                className="text-left text-main font-semibold hover:font-bold hover:bg hover:border "
-                onClick={handleLanguageFormToggle}
-              >
-                Add Languages +
-              </button>
-            </div>
+              <div className="form-control mt-4">
+                <button
+                  type="button"
+                  className="text-left text-main font-semibold hover:font-bold hover:bg hover:border "
+                  onClick={handleLanguageFormToggle}
+                >
+                  Add Languages +
+                </button>
+              </div>
 
-            {showLanguageForm && (
-              <LanguageForm onChange={handleLanguageDataChange}
-              language={resumeData.language}
-              ></LanguageForm>
-            )}
+              {showLanguageForm && (
+                <LanguageForm
+                  onChange={handleLanguageDataChange}
+                  language={resumeData.language}
+                ></LanguageForm>
+              )}
 
-            <div className="form-control mt-4">
-              <button
-                type="button"
-                className="text-left text-main font-semibold hover:font-bold hover:bg hover:border"
-                onClick={handleProjectFormToggle}
-              >
-                Add Projects +
-              </button>
-            </div>
+              <div className="form-control mt-4">
+                <button
+                  type="button"
+                  className="text-left text-main font-semibold hover:font-bold hover:bg hover:border"
+                  onClick={handleProjectFormToggle}
+                >
+                  Add Projects +
+                </button>
+              </div>
 
-            {showProjectForm && (
-              <ProjectForm onChange={handleProjectDataChange}
-              projects={resumeData.projects}
-              ></ProjectForm>
-            )}
+              {showProjectForm && (
+                <ProjectForm
+                  onChange={handleProjectDataChange}
+                  projects={resumeData.projects}
+                ></ProjectForm>
+              )}
 
-            <div className="form-control mt-4">
-              <button
-                type="button"
-                className="btn bg-main text-neutral-50 font-bold overflow-hidden transition-all hover:scale-105 hover:shadow-2xl hover:bg-sub_color"
-                onClick={handlePreview}
-              >
-                Preview
-              </button>
+              <div className="form-control mt-4">
+                <button
+                  type="button"
+                  className="btn bg-main text-neutral-50 font-bold overflow-hidden transition-all hover:scale-105 hover:shadow-2xl hover:bg-sub_color"
+                  onClick={handlePreview}
+                >
+                  Preview
+                </button>
+              </div>
             </div>
           </div>
         </div>
