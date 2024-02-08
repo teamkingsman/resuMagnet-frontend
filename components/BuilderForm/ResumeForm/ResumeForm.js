@@ -6,7 +6,8 @@ import SkillForm from "../FormComponents/SkillForm/SkillForm";
 import LanguageForm from "../FormComponents/LanguageForm/LanguageForm";
 import BasicInfoForm from "../FormComponents/BasicInfoForm/BasicInfoForm";
 import ProjectForm from "../FormComponents/ProjectForm/ProjectForm";
-import { resumeFromPost, resumeFromGet } from "@/lib/BuilderAPI";
+import { AuthContext } from "@/Providers/AuthProvider";
+import { resumeFromPost } from "@/lib/BuilderAPI";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 
@@ -196,7 +197,8 @@ const ResumeForm = () => {
     try {
       const response = await resumeFromPost(allFormData);
       console.log("Resume data sent successfully", response);
-      router.push("dashboard/resume/preview");
+      router.push("dashboard/resume/preview")
+
     } catch (error) {
       console.error("Error sending resume data", error);
     }
