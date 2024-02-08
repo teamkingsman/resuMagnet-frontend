@@ -8,6 +8,8 @@ import ClassicResume from "@/components/Resume/ClassicResume";
 import PremiumResume from "@/components/Resume/PremiumResumeTwo";
 import JoyResume from "../joytemplate/JoyResume";
 import { useSearchParams } from "next/navigation";
+import Resumes from "../templatetwo/Resumes";
+import GoldenResume from "../GoldenResume/GoldenResume";
 
 
 
@@ -36,6 +38,8 @@ function MainTemplatePreview() {
         {selectedTemplate === 'template2' && <JoyResume resume={data}/>}
         {selectedTemplate === 'template3' && <ClassicResume resume={data}/>}
         {selectedTemplate === 'template4' && <PremiumResume resume={data} />}
+        {selectedTemplate === 'template5' && <Resumes resume={data}></Resumes>}
+        {selectedTemplate === 'template6' && <GoldenResume resume={{data}}/>}
         {/* Add more template previews as needed */}
       </>
     );
