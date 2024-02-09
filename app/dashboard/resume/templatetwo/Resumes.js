@@ -59,7 +59,9 @@ const Resumes = ({ resume }) => {
           {education?.map((edu, index) => (
             <div key={index} className="mb-4">
               <p className="font-bold">{edu.degree} - {edu.institute}</p>
-              <p>{`${edu.startDate} - ${edu.endDate}`}</p>
+              <p>{`${new Date(edu?.startDate)?.toLocaleDateString()} - ${edu?.ongoing
+                    ? "Present"
+                    : new Date(edu?.endDate)?.toLocaleDateString()}`}</p>
               <p>{edu.jobDescription}</p>
             </div>
           ))}
@@ -138,7 +140,9 @@ const Resumes = ({ resume }) => {
         {employment?.map((job, index) => (
           <div key={index} className="mb-4">
             <p className="font-bold">{job.jobTitle} - {job.employer}</p>
-            <p>{`${job.startDate} - ${job.endDate}`}</p>
+            <p>{`${new Date(job?.startDate)?.toLocaleDateString()} - ${job?.ongoing
+                    ? "Present"
+                    : new Date(job?.endDate)?.toLocaleDateString()}`}</p>
             <p>{job.jobDescription}</p>
           </div>
         ))}
