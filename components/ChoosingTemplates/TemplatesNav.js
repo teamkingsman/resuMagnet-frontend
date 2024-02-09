@@ -6,27 +6,8 @@ import useAuth from "@/hooks/useAuth";
 import { cvFromGet, resumeFromGet } from "@/lib/BuilderAPI";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-const TemplatesNav = () => {
-<<<<<<< HEAD
+const TemplatesNav = ({pathname}) => {
     
-=======
-    const {user} = useAuth()
-  const pathname= usePathname()
-  console.log(pathname);
-  const [objectId, setObjectId] = useState("");
-  useEffect(()=>{
-    if(pathname == '/dashboard/resume/preview' ){
-        resumeFromGet(user.email).then((res) => setObjectId(res._id))
-    .catch((err) => console.log(err))
-    }
-    if(pathname == '/dashboard/cv/preview'){
-        cvFromGet(user.email).then((res) => setObjectId(res._id))
-    .catch((err) => console.log(err))
-    }
-    
-  },[user.email,pathname])
-  console.log(objectId);
->>>>>>> c20f3615bb19b61355a083f7bb6a6313a9a22fb8
     return (
         <div>
             <div className="navbar bg-base-100 px-4 border-b-2 border-b-sub_color shadow-xl">
