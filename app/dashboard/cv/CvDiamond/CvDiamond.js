@@ -17,12 +17,12 @@ const CvDiamond = ({ cv }) => {
         <div className="basic-info text-center text-main pb-5 border-b-4 mt-10">
           {basicInfo?.photoURL &&
             <Image
-            src={basicInfo?.photoURL}
-            alt="Profile"
-            className="rounded-full w-48 h-48 mx-auto mb-4"
-            width={300} // Set the width of the image
-            height={300} // Set the height of the image
-          />
+              src={basicInfo?.photoURL}
+              alt="Profile"
+              className="rounded-full w-48 h-48 mx-auto mb-4"
+              width={300} // Set the width of the image
+              height={300} // Set the height of the image
+            />
           }
           <h1 className="text-3xl text-sub_color font-bold">{`${basicInfo?.fname} ${basicInfo?.lname}`}</h1>
           <p className='font-bold text-xl'>{basicInfo?.designation}</p>
@@ -56,7 +56,7 @@ const CvDiamond = ({ cv }) => {
             <div key={index} className="mb-4">
               <p className="font-bold">{job.jobTitle} - {job.employer}</p>
               <p>{`${job.startDate} - ${job.endDate}`}</p>
-              <p>{job.jobDescription}</p>
+              <p>{job.description}</p>
             </div>
           ))}
         </div>
@@ -81,20 +81,18 @@ const CvDiamond = ({ cv }) => {
 
         <div className="projects mt-6">
           <h2 className="text-xl font-bold text-main bg-sub_color pl-2 mb-4 py-2">Projects</h2>
-          {projects?.map((projGroup, index) => (
-            <div key={index} className="project-group mt-4">
-              {Array.isArray(projGroup) &&
-                projGroup.map((project, projIndex) => (
-                  <div key={projIndex} className="project mb-4 p-4 border rounded">
-                    <h3 className="text-lg font-bold">{project.title}</h3>
-                    <p>{project.type}</p>
-                    <p>{project.description}</p>
-                    <p>Live Link: {project.liveLink}</p>
-                    <p>GitHub Link: {project.githubLink}</p>
-                  </div>
-                ))}
+          {projects?.map((project, index) => (
+            <div key={index} className="text-xl pt-3">
+              <h2 className="font-semibold bg-transparent">{project?.title}</h2>
+              <h3>{project?.type}</h3>
+              <h3>{project?.liveLink}</h3>
+              <h3>{project?.githubLink}</h3>
+              <ul className="list-disc pl-4">
+                <li>{project?.description}</li>
+              </ul>
             </div>
           ))}
+
         </div>
       </div>
     </div>

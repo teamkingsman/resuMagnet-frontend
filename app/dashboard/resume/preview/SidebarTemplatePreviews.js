@@ -10,6 +10,8 @@ function SidebarTemplatePreviews() {
           <Link href="/dashboard/resume/preview?template=template2"><li className="btn btn-block bg-main text-whitecolor hover:bg-sub_color">Template 2</li></Link>
           <Link href="/dashboard/resume/preview?template=template3"><li className="btn btn-block bg-main text-whitecolor hover:bg-sub_color">Template 3</li></Link>
           <Link href="/dashboard/resume/preview?template=template4"><li className="btn btn-block bg-main text-whitecolor hover:bg-sub_color">Template 4</li></Link>
+          <Link href="/dashboard/resume/preview?template=template5"><li className="btn btn-block bg-main text-whitecolor hover:bg-sub_color">Template 5</li></Link>
+          <Link href="/dashboard/resume/preview?template=template6"><li className="btn btn-block bg-main text-whitecolor hover:bg-sub_color">Template 6</li></Link>
           
           {/* Add more template options as needed */}
         </ul>

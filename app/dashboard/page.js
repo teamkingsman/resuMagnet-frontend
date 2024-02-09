@@ -1,6 +1,7 @@
 // import Image from "next/image";
 // import img from "@/assets/dashboard-img.jpg";
 import LinkBtn from "@/components/Dashboard/Dashboard/LinkBtn";
+import PreviewBtn from "@/components/Dashboard/Dashboard/PreviewBtn";
 export const metadata = {
   title: "Dashboard",
   description: "This is a Dashboard page",
@@ -19,6 +20,23 @@ const LinkData = [
     href: "/dashboard/cv",
   },
 
+];
+const PreviewData = [
+  {
+    title: "My Resume",
+    href: "/dashboard/resume/preview",
+    discription: "you can see your previous resume"
+  },
+  {
+    title: "My Cover Letter",
+    href: "/dashboard/cover-letter/preview",
+    discription: "you can see your previous resume"
+  },
+  {
+    title: "My CV",
+    href: "/dashboard/cv/preview",
+    discription: "you can see your previous resume"
+  },
 ];
 const Dashboard = () => {
   return (
@@ -48,7 +66,14 @@ const Dashboard = () => {
             <LinkBtn key={item.title} title={item.title} href={item.href}></LinkBtn>
           ))}
         </div>
+        {/* previews template section */}
+      <div className="mt-4 grid grid-cols-3 gap-4">
+          {PreviewData.map((item) => (
+            <PreviewBtn key={item.title} title={item.title} href={item.href} discription={item.discription}></PreviewBtn>
+          ))}
+        </div>
       </div>
+      
     </div>
   );
 };
