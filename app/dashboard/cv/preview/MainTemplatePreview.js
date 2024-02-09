@@ -27,15 +27,15 @@ function MainTemplatePreview() {
   },[search])
 
   useEffect(() => {
-    if(data._id)
-  {
-    const obj={template:selectedTemplate}
-    cvTemplateUpdate(data?._id, obj)
-    .then((res) => {
-      console.log(res)
-    }).catch((err) => console.log(err))
-
-  }
+    if (data._id) {
+      const obj = { template: selectedTemplate };
+      const updateData = data?._id && selectedTemplate ? cvTemplateUpdate(data._id, obj) : Promise.resolve({ ok: false });
+      updateData
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => console.log(err));
+    }
 
     },[data._id, selectedTemplate])
   useEffect(() => {

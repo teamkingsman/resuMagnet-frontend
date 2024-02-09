@@ -14,42 +14,41 @@ import GoldenResume from "../GoldenResume/GoldenResume";
 
 
 function MainTemplatePreview() {
-  const {user} = useAuth()
-  const [data, setData] = useState({})
-  const [selectedTemplate, setSelectedTemplate] = useState('')
-  const searchParams = useSearchParams()
-  
-  const search = searchParams.get('template')
-  useEffect(() => {
-    if(search){
-      setSelectedTemplate(search)
-    }
-  },[search])
+ const { user } = useAuth();
+const [data, setData] = useState({});
+const [selectedTemplate, setSelectedTemplate] = useState("");
+const searchParams = useSearchParams();
 
-  useEffect(() => {
-    if(data._id)
-  {
-    const obj={template:selectedTemplate}
-    resumeTemplateUpdate(data?._id, obj)
-    .then((res) => {
-      console.log(res)
-    }).catch((err) => console.log(err))
-
+const search = searchParams.get("template");
+useEffect(() => {
+  if (search) {
+    setSelectedTemplate(search);
   }
+}, [search]);
 
-    },[data._id, selectedTemplate])
-  
-  useEffect(() => {
-    resumeFromGet(user.email)
+useEffect(() => {
+  if (data._id) {
+    const obj = { template: selectedTemplate };
+    const updateData = data?._id && selectedTemplate ? resumeTemplateUpdate(data._id, obj) : Promise.resolve({ ok: false });
+    updateData
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  }
+}, [data._id, selectedTemplate]);
+
+useEffect(() => {
+  resumeFromGet(user.email)
     .then((res) => {
-      setData(res)
-      if(res?.template)
-    setSelectedTemplate(res?.template || "template1")
-    }
-    
-    )
-    .catch((err) => console.log(err))
-  },[user.email])
+      setData(res);
+      if (res?.template) {
+        setSelectedTemplate(res?.template || "template1");
+      }
+    })
+    .catch((err) => console.log(err));
+}, [user.email]);
+
     // Use selectedTemplate to dynamically render the chosen template
     return (
       <>

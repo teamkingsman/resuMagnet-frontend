@@ -27,7 +27,6 @@ function MainTemplatePreview({ params }) {
     // Use selectedTemplate to dynamically render the chosen template
     return (
       <>
-      {params.id}
         {/* Render the selected template components or content here */}
         {selectedTemplate === 'template1' && <CvDiamond cv={data}/>}
         {selectedTemplate === 'template2' && <Cv cvData={data}/>}
