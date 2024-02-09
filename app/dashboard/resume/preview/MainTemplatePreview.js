@@ -1,7 +1,7 @@
 'use client'
 
 import useAuth from "@/hooks/useAuth";
-import { resumeFromGet } from "@/lib/BuilderAPI";
+import { resumeFromGet, resumeTemplateUpdate } from "@/lib/BuilderAPI";
 import { useEffect, useState } from "react";
 import ResumeDiamond from "../diamondResume/ResumeDiamond";
 import ClassicResume from "@/components/Resume/ClassicResume";
@@ -14,22 +14,41 @@ import GoldenResume from "../GoldenResume/GoldenResume";
 
 
 function MainTemplatePreview() {
-  const {user} = useAuth()
-  const [data, setData] = useState({})
-  const [selectedTemplate, setSelectedTemplate] = useState('template1')
-  const searchParams = useSearchParams()
-  
-  const search = searchParams.get('template')
-  useEffect(() => {
-    if(search){
-      setSelectedTemplate(search)
-    }
-  },[search])
-  
-  useEffect(() => {
-    resumeFromGet(user.email).then((res) => setData(res))
-    .catch((err) => console.log(err))
-  },[user.email])
+ const { user } = useAuth();
+const [data, setData] = useState({});
+const [selectedTemplate, setSelectedTemplate] = useState("");
+const searchParams = useSearchParams();
+
+const search = searchParams.get("template");
+useEffect(() => {
+  if (search) {
+    setSelectedTemplate(search);
+  }
+}, [search]);
+
+useEffect(() => {
+  if (data._id) {
+    const obj = { template: selectedTemplate };
+    const updateData = data?._id && selectedTemplate ? resumeTemplateUpdate(data._id, obj) : Promise.resolve({ ok: false });
+    updateData
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  }
+}, [data._id, selectedTemplate]);
+
+useEffect(() => {
+  resumeFromGet(user.email)
+    .then((res) => {
+      setData(res);
+      if (res?.template) {
+        setSelectedTemplate(res?.template || "template1");
+      }
+    })
+    .catch((err) => console.log(err));
+}, [user.email]);
+
     // Use selectedTemplate to dynamically render the chosen template
     return (
       <>
@@ -39,7 +58,7 @@ function MainTemplatePreview() {
         {selectedTemplate === 'template3' && <ClassicResume resume={data}/>}
         {selectedTemplate === 'template4' && <PremiumResume resume={data} />}
         {selectedTemplate === 'template5' && <Resumes resume={data}></Resumes>}
-        {selectedTemplate === 'template6' && <GoldenResume resume={{data}}/>}
+        {selectedTemplate === 'template6' && <GoldenResume resume={data}/>}
         {/* Add more template previews as needed */}
       </>
     );

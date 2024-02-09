@@ -5,10 +5,16 @@ import Link from "next/link";
 import useAuth from "@/hooks/useAuth";
 import { cvFromGet, resumeFromGet } from "@/lib/BuilderAPI";
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 const TemplatesNav = () => {
     const {user} = useAuth()
   const pathname= usePathname()
+  const router = useRouter();
+console.log(router)
+  const handleBackClick = () => {
+    router.back(); // Go back to the previous page
+  };
+
   console.log(pathname);
   const [objectId, setObjectId] = useState("");
   useEffect(()=>{
@@ -27,8 +33,8 @@ const TemplatesNav = () => {
         <div>
             <div className="navbar bg-base-100 px-4 border-b-2 border-b-sub_color shadow-xl">
                 <div className="flex-1">
-                    <button className="">
-                        <Link href="/" className="flex flex-row gap-2 items-center"><span className="text-sub_color"><IoCaretBack /></span><span className="text-sm md:text-lg text-sub_color">Back To Home</span></Link>
+                    <button onClick={handleBackClick} className="flex flex-row gap-2 items-center">
+                        <span className="text-sub_color"><IoCaretBack /></span><span className="text-sm md:text-lg text-sub_color">Back</span>
                     </button>
                 </div>
                 <div className="flex-none">

@@ -120,7 +120,9 @@ const Cv = ({cvData}) => {
                 <h2 className="text-xl font-semibold">{job?.jobTitle}</h2>
                 <h2>{job?.employer}</h2>
                 <h2>
-                  {job?.startDate} -- {job?.endDate}
+                  {new Date(job?.startDate)?.toLocaleDateString()} -- {job?.ongoing
+                    ? "Present"
+                    : new Date(job?.endDate)?.toLocaleDateString()}
                 </h2>
                 <ul className="list-disc pl-4">
                   <li>{job?.jobDescription}</li>
@@ -138,7 +140,9 @@ const Cv = ({cvData}) => {
                 <h2 className="font-semibold">{edu?.degree}</h2>
                 <h3>{edu?.institute}</h3>
                 <h3>
-                  {edu?.startDate} -- <span>{edu?.endDate}</span>
+                  {new Date(edu?.startDate)?.toLocaleDateString()} -- <span>{edu?.ongoing
+                    ? "Present"
+                    : new Date(edu?.endDate)?.toLocaleDateString()}</span>
                 </h3>
                 <ul className="list-disc pl-4">
                   <li>{edu?.jobDescription}</li>

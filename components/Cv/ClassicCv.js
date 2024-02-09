@@ -116,7 +116,9 @@ const ClassicCv = ({ cv }) => {
                     <div key={index} className=" mt-2">
                       <p className="text-sm font-semibold">{education?.degree}</p>
                       <p className="text-sm font-semibold">{education?.institute}</p>
-                      <p className="text-sm font-semibold">{education?.ongoing}</p>
+                      <p className="text-sm font-semibold"> {new Date(education?.startDate)?.toLocaleDateString()} -- {education?.ongoing
+                    ? "Present"
+                    : new Date(education?.endDate)?.toLocaleDateString()}</p>
 
                     </div>
                   ))
@@ -136,7 +138,9 @@ const ClassicCv = ({ cv }) => {
                     {
                       employment?.map((employment, index) => (
                         <div key={index}>
-                          <h2 className="text-sm font-semibold flex gap-8">{employment?.startDate}  {employment.endDate}</h2>
+                          <h2 className="text-sm font-semibold flex gap-8">{new Date(employment?.startDate)?.toLocaleDateString()}  {employment?.ongoing
+                    ? "Present"
+                    : new Date(employment?.endDate)?.toLocaleDateString()}</h2>
                           <h1 className="text-lg font-semibold">{employment?.jobTitle}</h1>
                           <h1 className="text-sm font-semibold">{employment?.employer}</h1>
                           <p className="text-sm ">{employment?.jobDescription}</p>
