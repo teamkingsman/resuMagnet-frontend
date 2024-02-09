@@ -2,6 +2,7 @@ import { IoCaretBack } from "react-icons/io5";
 
 import Link from "next/link";
 const TemplatesNav = () => {
+    
     return (
         <div>
             <div className="navbar bg-base-100 px-4 border-b-2 border-b-sub_color shadow-xl">

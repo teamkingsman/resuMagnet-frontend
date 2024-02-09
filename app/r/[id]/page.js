@@ -8,7 +8,7 @@ import PremiumResume from "@/components/Resume/PremiumResumeTwo";
 // import { useEffect } from "react";
 
 const ResumeViewer = ({ params }) => {
-//   const [selectedTemplate, setSelectedTemplate] = useState("template1");
+  // const [selectedTemplate, setSelectedTemplate] = useState("template1");
 
   // useEffect(()=>{
 
