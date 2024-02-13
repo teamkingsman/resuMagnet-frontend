@@ -1,11 +1,11 @@
 
-import CoverLetterForm from '@/components/BuilderForm/CoverLetterForm/CoverLetterForm'
-import React from 'react'
+import AllCoverLetter from '../test/AllCoverLetter';
 
 const CoverLetter = () => {
     return (
         <div>
-            <CoverLetterForm ></CoverLetterForm>
+           <AllCoverLetter></AllCoverLetter>
+            {/* <CoverLetterForm></CoverLetterForm> */}
         </div>
     );
 };
