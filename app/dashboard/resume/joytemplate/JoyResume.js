@@ -87,10 +87,10 @@ const JoyResume = ({ resume }) => {
           <div key={index} className="pt-2 grid grid-cols-12 gap-2">
             <div className="col-span-3">
             <h2>
-                  {new Date(emp?.startDate)?.toISOString().slice(0, 10)} -
+                  {new Date(emp?.startDate)?.toLocaleDateString()} -
                   {emp?.ongoing
                     ? "Present"
-                    : new Date(emp?.endDate)?.toISOString().slice(0, 10)}
+                    : new Date(emp?.endDate)?.toLocaleDateString()}
                 </h2>
               
             </div>
@@ -114,10 +114,10 @@ const JoyResume = ({ resume }) => {
             <div key={index} className="flex md:gap-5 gap-3">
               <div>
                 <h2>
-                  {new Date(edu?.startDate)?.toISOString().slice(0, 10)} -
+                  {new Date(edu?.startDate)?.toLocaleDateString()} -
                   {edu?.ongoing
                     ? "Present"
-                    : new Date(edu?.endDate)?.toISOString().slice(0, 10)}
+                    : new Date(edu?.endDate)?.toLocaleDateString()}
                 </h2>
                 {/* <h3>{edu.location}</h3> */}
               </div>
