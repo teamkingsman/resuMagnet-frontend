@@ -5,7 +5,7 @@ import React from 'react'
 const CoverLetter = () => {
     return (
         <div>
-            <CoverLetterForm></CoverLetterForm>
+            {/* <CoverLetterForm></CoverLetterForm> */}
         </div>
     );
 };

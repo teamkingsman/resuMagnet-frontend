@@ -71,10 +71,10 @@ const ResumeDiamond = ({ resume }) => {
           </h2>
           {education?.map((edu, index) => (
             <div key={index} className="mb-4">
-              <p className="font-bold">
-                {edu.degree} - {edu.institute}
-              </p>
-              <p>{`${edu.startDate} - ${edu.endDate}`}</p>
+              <p className="font-bold">{edu.degree} - {edu.institute}</p>
+              <p>{`${new Date(edu?.startDate)?.toLocaleDateString()} - ${edu?.ongoing
+                    ? "Present"
+                    : new Date(edu?.endDate)?.toLocaleDateString()}`}</p>
               <p>{edu.jobDescription}</p>
             </div>
           ))}
@@ -104,9 +104,7 @@ const ResumeDiamond = ({ resume }) => {
           </h2>
           {employment?.map((job, index) => (
             <div key={index} className="mb-4">
-              <p className="font-bold">
-                {job.jobTitle} - {job.employer}
-              </p>
+              <p className="font-bold">{job.jobTitle} - {job.employer}</p>
               <p>{`${job.startDate} - ${job.endDate}`}</p>
               <p>{job.jobDescription}</p>
             </div>

@@ -26,14 +26,15 @@ function MainTemplatePreview() {
     }
   },[search])
   useEffect(() => {
-    if(user.email){
+    if(user?.email){
       coverLetterFromGet(user.email).then((res) => {
         if(res){
+          console.log(res)
           setData(res)
         }
       })
     }
-  },[user.email])
+  },[user?.email])
     // Use selectedTemplate to dynamically render the chosen template
     return (
       <>

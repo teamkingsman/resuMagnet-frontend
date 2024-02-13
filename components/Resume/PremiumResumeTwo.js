@@ -1,7 +1,9 @@
+import { capitalize } from "@/lib/utils";
 
 const PremiumResume = ({resume}) => {
  
-    const { basicInfo, education, employment, skill, language, projects } = resume;
+
+    const { basicInfo, education, employment, skills, languages, projects } = resume;
     return (
         <>
            <div className="lg:w-[800px] font-serif p-8  h-[900px] mt-10 bg-slate-300 mx-auto shadow-2xl">
@@ -20,8 +22,8 @@ const PremiumResume = ({resume}) => {
                     <h2 className="">{basicInfo?.street}</h2>
                            </div>
                         <div>
-                        <h1>{basicInfo?.email}</h1>
-                       <h1>{basicInfo?.nationality}</h1>
+                        <h1>{capitalize(basicInfo?.email)}</h1>
+                       <h1>{capitalize(basicInfo?.nationality)}</h1>
                        <h1>{basicInfo?.dob}</h1>
                         </div>
                     </div>
@@ -43,7 +45,9 @@ const PremiumResume = ({resume}) => {
                    <h2 className="text-lg font-bold">{employment?.jobTitle}</h2>
                    <h2 className="text-lg font-bold">{employment?.employer}</h2>
                    <div className="flex gap-8">
-                       <h2 className="text-md flex gap-8 ">{employment?.startDate}</h2>  <h2>{employment?.endDate}</h2>
+                       <h2 className="text-md flex gap-8 ">{new Date(employment?.startDate)?.toLocaleDateString()} - {employment?.ongoing
+                    ? "Present"
+                    : new Date(employment?.endDate)?.toLocaleDateString()}</h2>
                        <h2 className="text-md ">{employment?.location}</h2>
 
                    </div>
@@ -91,8 +95,9 @@ const PremiumResume = ({resume}) => {
                 <h2>{education?.degree}</h2>
                 <h2>{education?.institute}</h2>
                 <div className="flex gap-8">
-                <h2>{education?.endDate}</h2>
-                <h2>{education?.ongoing}</h2>
+                <h2 className="text-md flex gap-8 ">{new Date(education?.startDate)?.toLocaleDateString()} - {education?.ongoing
+                    ? "Present"
+                    : new Date(education?.endDate)?.toLocaleDateString()}</h2>
                 </div>
                 </div>
             ))
@@ -105,10 +110,10 @@ const PremiumResume = ({resume}) => {
            </div>
            <ul className='list-disc grid grid-cols-3 ml-4'>
        {
-        skill?.map((skill,index)=>(
+        skills?.map((skill,index)=>(
             <div key={index}>
-                <h1>{skill?.level}</h1>
-            <li  className='underline ml-4'>{skill?.skill}</li>
+                <h1>{capitalize(skill?.level)}</h1>
+            <li  className='underline ml-4'>{capitalize(skill?.skill)}</li>
             </div>
       
           
@@ -125,14 +130,12 @@ const PremiumResume = ({resume}) => {
            </div>
            <ul  className="">
       {
-        language?.map((language,index)=>(
+        languages?.map((language,index)=>(
           
           <div key={index} className='flex gap-8'>
-              <li >{language?.language}</li>
-              <li >{(language?.proficiency)}</li>
-          </div>
-  
-      
+              <li >{capitalize(language?.language)}</li>
+              <li >{capitalize(language?.proficiency)}</li>
+          </div>      
         ))
       }
             </ul>

@@ -58,7 +58,7 @@ useEffect(() => {
         {selectedTemplate === 'template3' && <ClassicResume resume={data}/>}
         {selectedTemplate === 'template4' && <PremiumResume resume={data} />}
         {selectedTemplate === 'template5' && <Resumes resume={data}></Resumes>}
-        {selectedTemplate === 'template6' && <GoldenResume resume={{data}}/>}
+        {selectedTemplate === 'template6' && <GoldenResume resume={data}/>}
         {/* Add more template previews as needed */}
       </>
     );
