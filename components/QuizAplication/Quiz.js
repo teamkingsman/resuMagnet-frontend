@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { quiz } from "/components/QuizAplication/data";
-// import style from "/components/QuizAplication/style.module.css";
+
 const Quiz = () => {
   // console.log(quiz);
   const [activeQuestion, setActiveQuestion] = useState(0);
