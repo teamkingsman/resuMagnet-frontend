@@ -1,5 +1,4 @@
 import CvForm from "@/components/BuilderForm/CvForm/CvForm";
-
 function CV() {
   return (
     <>
@@ -7,5 +6,4 @@ function CV() {
     </>
   );
 }
-
 export default CV;

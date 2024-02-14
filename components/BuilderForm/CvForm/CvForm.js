@@ -136,7 +136,7 @@ function CvForm() {
       console.log(mergedData);
       const response = await cvFromPost(mergedData);
       console.log("CV data sent successfully", response);
-      // router.push("dashboard/resume/preview");
+      router.push("/dashboard/cv/preview")
     } catch (error) {
       console.error("Error sending CV data", error);
     }
