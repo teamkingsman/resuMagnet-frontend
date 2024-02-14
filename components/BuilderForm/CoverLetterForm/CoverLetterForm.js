@@ -25,7 +25,7 @@ function CoverLetterForm() {
     try {
       const response = await coverLetterFromPost(formData);
       console.log("Cover Letter data sent successfully", response);
-      router.push("dashboard/cover-letter/preview")
+      router.push("/dashboard/cover-letter/preview")
     } catch (error) {
       console.error("Error sending Cover Letter data", error);
     }

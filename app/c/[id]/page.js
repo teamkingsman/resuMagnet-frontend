@@ -17,14 +17,16 @@ function MainTemplatePreview({ params }) {
 
   useEffect(() => {
     cvFromGetById(params.id)
-            .then((res) => setData(res))
+            .then((res) => {
+              setData(res)
+              setSelectedTemplate(res?.template || "template1")
+            })
             .catch((err) => console.log(err));
 }, [params.id]);
 // console.log(data);
     // Use selectedTemplate to dynamically render the chosen template
     return (
       <>
-      {params.id}
         {/* Render the selected template components or content here */}
         {selectedTemplate === 'template1' && <CvDiamond cv={data}/>}
         {selectedTemplate === 'template2' && <Cv cvData={data}/>}

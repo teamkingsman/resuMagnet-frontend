@@ -1,9 +1,11 @@
 import CvForm from "@/components/BuilderForm/CvForm/CvForm"
+import AllCvTemplate from "../test/AllCvTemplate"
 
 
 function CV () {
   return (
-    <CvForm></CvForm>
+    <AllCvTemplate></AllCvTemplate>
+    // <CvForm></CvForm>
   )
 }
 

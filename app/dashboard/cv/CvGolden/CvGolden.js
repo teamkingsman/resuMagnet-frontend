@@ -38,7 +38,9 @@ const CvGolden = ({ cv }) => {
                     {education?.map((edu, index) => (
                         <div key={index} className="mb-4">
                             <p className="font-semibold">{edu.degree} - {edu.institute}</p>
-                            <p className="text-gray-600">{`${edu.startDate} - ${edu.endDate}`}</p>
+                            <p className="text-gray-600">{`${new Date(edu?.startDate)?.toLocaleDateString()} - ${edu?.ongoing
+                    ? "Present"
+                    : new Date(edu?.endDate)?.toLocaleDateString()}`}</p>
                             <p className="text-gray-600">{edu.jobDescription}</p>
                         </div>
                     ))}
@@ -49,7 +51,9 @@ const CvGolden = ({ cv }) => {
                     {employment?.map((job, index) => (
                         <div key={index} className="mb-4">
                             <p className="font-semibold">{job.jobTitle} - {job.employer}</p>
-                            <p className="text-gray-600">{`${job.startDate} - ${job.endDate}`}</p>
+                            <p className="text-gray-600">{`${new Date(job?.startDate)?.toLocaleDateString()} - ${job?.ongoing
+                    ? "Present"
+                    : new Date(job?.endDate)?.toLocaleDateString()}`}</p>
                             <p className="text-gray-600">{job.jobDescription}</p>
                         </div>
                     ))}
