@@ -5,6 +5,7 @@ import Image from "next/image";
 import avatar from "@/assets/avatar.gif";
 import { FaRegEdit } from "react-icons/fa";
 import { AiOutlineDelete } from "react-icons/ai";
+import CropImage from "@/components/Modal/CropImage";
 
 function BasicInfoForm({ onChange, basicInfo }) {
   const [showAdditionalFields, setShowAdditionalFields] = useState(false);
