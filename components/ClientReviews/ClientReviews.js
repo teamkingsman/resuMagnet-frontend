@@ -13,12 +13,13 @@ const ClientReviews = () => {
         const  rating= form.rating.value;
 
         const formData = { name , designation , comment , rating}
+        console.log(formData);
 
         try {
             const response = await ReviewsofUser(formData);
             console.log("Review sent successfully", response);
-            router.push("/")
-          } catch (error) {
+            // router.push("/")
+        } catch (error) {
             console.error("Error sending Review data", error);
           }
       
