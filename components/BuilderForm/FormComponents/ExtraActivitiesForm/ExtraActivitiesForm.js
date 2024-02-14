@@ -1,123 +1,138 @@
 "use client";
 import React, { useState } from "react";
 
-function ProjectForm({ onChange, projects: initialProjects }) {
-  const [projects, setProjects] = useState(
-    initialProjects
-      ? Object.values(initialProjects)
+function ExtraActivitiesForm({ onChange, extraActivities: initialActivities }) {
+  const [activities, setActivities] = useState(
+    initialActivities
+      ? Object.values(initialActivities)
       : [
           {
             id: 1,
-            title: "",
-            type: "",
-            liveLink: "",
+            name: "",
+            organization: "",
+            startDate: "",
+            endDate: "",
             description: "",
-            githubLink: "",
           },
         ]
   );
 
-  const handleProjectChange = (e, field, id) => {
-    setProjects((prevProjects) =>
-      prevProjects.map((project) =>
-        project.id === id ? { ...project, [field]: e.target.value } : project
+  const handleInputChange = (e, field, id) => {
+    setActivities((prevActivities) =>
+      prevActivities.map((activity) =>
+        activity.id === id ? { ...activity, [field]: e.target.value } : activity
       )
     );
-    onChange(projects);
+    onChange([...activities]);
   };
 
-  const addMoreProject = () => {
-    setProjects((prevProjects) => [
-      ...prevProjects,
+  const handleDateChange = (date, field, id) => {
+    setActivities((prevActivities) =>
+      prevActivities.map((activity) =>
+        activity.id === id ? { ...activity, [field]: date } : activity
+      )
+    );
+    onChange([...activities]);
+  };
+
+  const addMoreActivity = () => {
+    setActivities((prevActivities) => [
+      ...prevActivities,
       {
-        id: prevProjects.length + 1,
-        title: "",
-        type: "",
-        liveLink: "",
+        id: prevActivities.length + 1,
+        name: "",
+        organization: "",
+        startDate: "",
+        endDate: "",
         description: "",
-        githubLink: "",
       },
     ]);
-    onChange(projects);
+    onChange([...activities]);
   };
 
   return (
     <div className="md:flex flex-col justify-center gap-4 mt-4">
-      {projects?.map((project) => (
-        <div key={project.id}>
+      {activities.map((activity) => (
+        <div key={activity.id}>
           <h1 className="text-center font-extrabold py-2 text-2xl">
-            Project {project.id}
+            Extracurricular Activity {activity.id}
           </h1>
           <div className="md:flex justify-between gap-4">
             <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
-                  Title
+                  Activity Name
                 </span>
               </label>
               <input
                 type="text"
-                placeholder="Enter Title"
+                placeholder="Enter Activity Name"
                 className="input bg-base-300"
-                name={`title-${project.id}`}
-                value={project.title}
-                onChange={(e) => handleProjectChange(e, "title", project.id)}
+                name="name"
+                value={activity.name}
+                onChange={(e) => handleInputChange(e, "name", activity.id)}
                 required
               />
             </div>
             <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
-                  Type
+                  Organization
                 </span>
               </label>
               <input
                 type="text"
-                placeholder="Enter Type"
+                placeholder="Enter Organization"
                 className="input bg-base-300"
-                name={`type-${project.id}`}
-                value={project.type}
-                onChange={(e) => handleProjectChange(e, "type", project.id)}
-                required
-              />
-            </div>
-          </div>
-          <div className="md:flex justify-between gap-4">
-            <div className="form-control flex-1">
-              <label className="label">
-                <span className="flex items-center gap-2 label-text font-semibold text-main">
-                  Live Link or Media Link
-                </span>
-              </label>
-              <input
-                type="text"
-                placeholder="Enter Live Link or Media Link"
-                className="input bg-base-300"
-                name={`liveLink-${project.id}`}
-                value={project.liveLink}
-                onChange={(e) => handleProjectChange(e, "liveLink", project.id)}
-                required
-              />
-            </div>
-            <div className="form-control flex-1">
-              <label className="label">
-                <span className="flex items-center gap-2 label-text font-semibold text-main">
-                  GitHub Repository Link
-                </span>
-              </label>
-              <input
-                type="text"
-                placeholder="Enter GitHub Repository Link"
-                className="input bg-base-300"
-                name={`githubLink-${project.id}`}
-                value={project.githubLink}
+                name={`organization-${activity.id}`}
+                value={activity.organization}
                 onChange={(e) =>
-                  handleProjectChange(e, "githubLink", project.id)
+                  handleInputChange(e, "organization", activity.id)
                 }
                 required
               />
             </div>
           </div>
+
+          <div className="md:flex justify-between gap-4">
+            <div className="form-control flex-1">
+              <label className="label">
+                <span className="flex items-center gap-2 label-text font-semibold text-main">
+                  Start Date
+                </span>
+              </label>
+              <input
+                type="date"
+                placeholder="Select Start Date"
+                className="input bg-base-300"
+                name={`startDate-${activity.id}`}
+                value={activity.startDate}
+                onChange={(e) =>
+                  handleDateChange(e.target.value, "startDate", activity.id)
+                }
+                required
+              />
+            </div>
+            <div className="form-control flex-1">
+              <label className="label">
+                <span className="flex items-center gap-2 label-text font-semibold text-main">
+                  End Date
+                </span>
+              </label>
+              <input
+                type="date"
+                placeholder="Select End Date"
+                className="input bg-base-300"
+                name={`endDate-${activity.id}`}
+                value={activity.endDate}
+                onChange={(e) =>
+                  handleDateChange(e.target.value, "endDate", activity.id)
+                }
+                required
+              />
+            </div>
+          </div>
+
           <div className="form-control">
             <label className="label">
               <span className="flex items-center gap-2 label-text font-semibold text-main">
@@ -126,13 +141,10 @@ function ProjectForm({ onChange, projects: initialProjects }) {
             </label>
             <textarea
               placeholder="Enter Description"
-              className="textarea bg-base-300"
-              name={`description-${project.id}`}
-              value={project.description}
-              onChange={(e) =>
-                handleProjectChange(e, "description", project.id)
-              }
-              required
+              className="textarea textarea-bordered bg-base-300"
+              name={`description-${activity.id}`}
+              value={activity.description}
+              onChange={(e) => handleInputChange(e, "description", activity.id)}
             />
           </div>
         </div>
@@ -141,14 +153,14 @@ function ProjectForm({ onChange, projects: initialProjects }) {
       <div className="form-control mt-4">
         <button
           type="button"
-          onClick={addMoreProject}
+          onClick={addMoreActivity}
           className="flex items-center justify-center gap-2 text-main font-semibold hover:font-bold hover:bg hover:border"
         >
-          Add More Project +
+          Add More Activity +
         </button>
       </div>
     </div>
   );
 }
 
-export default ProjectForm;
+export default ExtraActivitiesForm;

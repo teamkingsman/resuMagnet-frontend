@@ -1,14 +1,18 @@
 "use client";
 import React, { useState } from "react";
 
-function LanguageForm({ onChange }) {
-  const [languages, setLanguages] = useState([
-    {
-      id: 1,
-      language: "",
-      proficiency: "",
-    },
-  ]);
+function LanguageForm({ onChange, language: initialLanguages }) {
+  const [languages, setLanguages] = useState(
+    initialLanguages
+      ? Object.values(initialLanguages)
+      : [
+          {
+            id: 1,
+            language: "",
+            proficiency: "",
+          },
+        ]
+  );
 
   const handleLanguageChange = (e, id) => {
     const { name, value } = e.target;
@@ -17,12 +21,7 @@ function LanguageForm({ onChange }) {
         lang.id === id ? { ...lang, [name]: value } : lang
       )
     );
-
- 
-    setLanguages((updatedLanguages) => {
-      onChange(updatedLanguages);
-      return updatedLanguages;
-    });
+    onChange(languages);
   };
 
   const addMoreLanguage = () => {
@@ -34,16 +33,18 @@ function LanguageForm({ onChange }) {
         proficiency: "",
       },
     ]);
+    onChange(languages);
   };
-
 
   return (
     <div className="md:flex flex-col justify-center gap-4 mt-4">
-      {languages.map((lang) => (
+      {languages?.map((lang) => (
         <div key={`language-${lang.id}`}>
-          <h1 className="text-center font-extrabold py-2 text-2xl">Language {lang.id}</h1>
+          <h1 className="text-center font-extrabold py-2 text-2xl">
+            Language {lang.id}
+          </h1>
           <div className="md:flex justify-between gap-4">
-            <div className="form-control">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Language
@@ -59,7 +60,7 @@ function LanguageForm({ onChange }) {
                 required
               />
             </div>
-            <div className="form-control">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Proficiency
