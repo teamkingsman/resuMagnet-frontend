@@ -9,9 +9,11 @@ const Interview = () => {
 
     const handleGenerate = async (e) => {
         e.preventDefault();
-        setChatLog((prevChatLog) => [...prevChatLog, { type: 'user', message: `Act like a interviewer and generate Question and Answer for the job ${inputValue}` }]);
-        await SendMessage(`Act like a interviewer and generate Question and Answer for the job ${inputValue}`);
+        setChatLog([])
+        setChatLog((prevChatLog) => [...prevChatLog, { type: 'user', message: `Generating Interview Questions and Answers for the  ${inputValue}` }]);
+        await SendMessage(`Act like a interviewer and generate Question and Answer for the job ${inputValue} . Use @ before every Questions & Answers`);
         setInputValue('');
+        
     };
 
     const SendMessage = async (message) => {
@@ -50,13 +52,44 @@ const Interview = () => {
                 <button className="btn text-main" type="submit">Generate</button>
             </form>
             <div>
+                <h1 className="text-2xl md:text-3xl font-extrabold text-sub_color px-4 py-2 mt-4">Resu-Magnet</h1>
+                <hr className="py-2" />
                 {chatLog.map((message, index) => (
                     <div key={index} className="">
-                       <h1 className="text-2xl md:text-3xl font-extrabold text-sub_color px-4 py-2 mt-4">Resu-Magnet</h1>
-                        <hr className="py-2" />
-                        { isLoading ? <><span className="loading loading-dots loading-lg"></span></> :<div className="w-full md:w-4/5 px-4 font-semibold text-lg md:text-xl mb-6">
-                            {message.message}
-                        </div>}
+                        {message.type === 'user' && (
+                            <div>
+                                <div className="w-full md:w-4/5 px-4 font-semibold text-lg md:text-xl mb-6 text-highlight_color">
+                                    {message.message
+                                    
+                                    }
+                                </div>
+                            </div>
+                        )}
+                        {
+                            isLoading ?
+                                <span className=" loading loading-dots loading-lg px-4 mx-4 text-highlight_color"></span>
+                                :
+                                message.type === 'bot' && (
+
+                                    <div className="w-full md:w-4/5 px-4 font-semibold text-lg md:text-xl mb-6">
+                                        {(
+                                    message.message.split('@').map((part, i) => (
+                                        <p key={i}><br />{part.trim()}</p>
+                                    ))
+                                )}
+                        
+
+                                    </div>
+                                )}
+
+                        {/* {message.type === 'bot' && (
+
+                            <div className="w-full md:w-4/5 px-4 font-semibold text-lg md:text-xl mb-6">
+                                { (
+                                    message.message
+                                )}
+                            </div>
+                        )} */}
                     </div>
                 ))}
             </div>

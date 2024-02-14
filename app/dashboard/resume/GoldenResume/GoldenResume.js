@@ -10,7 +10,8 @@ const GoldenResume = ({ resume }) => {
         languages,
         projects
     } = resume;
-
+    console.log(basicInfo)
+    
     return (
         <div className="max-w-6xl mx-auto mt-8 bg-white rounded-lg shadow-md p-8">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -61,7 +62,9 @@ const GoldenResume = ({ resume }) => {
                         {education?.map((edu, index) => (
                             <div key={index} className="mb-4">
                                 <p className="text-lg font-medium">{edu.degree} - {edu.institute}</p>
-                                <p className="text-gray-700">{`${edu.startDate} - ${edu.endDate}`}</p>
+                                <p className="text-gray-700">{`${new Date(edu?.startDate)?.toLocaleDateString()} - ${edu?.ongoing
+                    ? "Present"
+                    : new Date(edu?.endDate)?.toLocaleDateString()}`}</p>
                                 <p className="text-gray-700">{edu.jobDescription}</p>
                             </div>
                         ))}
@@ -89,7 +92,9 @@ const GoldenResume = ({ resume }) => {
                         {employment?.map((job, index) => (
                             <div key={index} className="mb-8">
                                 <p className="text-lg font-medium">{job.jobTitle} - {job.employer}</p>
-                                <p className="text-gray-700">{`${job.startDate} - ${job.endDate}`}</p>
+                                <p className="text-gray-700">{`${new Date(job?.startDate)?.toLocaleDateString()} - ${job?.ongoing
+                    ? "Present"
+                    : new Date(job?.endDate)?.toLocaleDateString()}`}</p>
                                 <p className="text-gray-700">{job.jobDescription}</p>
                             </div>
                         ))}

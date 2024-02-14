@@ -1,13 +1,16 @@
+"use client"
+import CoverLetterForm from '@/components/BuilderForm/CoverLetterForm/CoverLetterForm';
+import { useRouter } from 'next/navigation';
+import React from 'react';
 
-import CoverLetterForm from '@/components/BuilderForm/CoverLetterForm/CoverLetterForm'
-import React from 'react'
-
-const CoverLetter = () => {
+const CoverLetterTemplatePage = ({params}) => {
+    console.log(params);
+    // const router = useRouter();
     return (
         <div>
-            <CoverLetterForm></CoverLetterForm>
+            <CoverLetterForm params={params}></CoverLetterForm>
         </div>
     );
 };
 
-export default CoverLetter;
+export default CoverLetterTemplatePage;
