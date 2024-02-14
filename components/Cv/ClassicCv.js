@@ -103,42 +103,42 @@ const ClassicCv = ({ cv }) => {
                        
                         </div>
 
-                        <div className="mt-4 ">
-                            <h1 className=" font-bold ">EDUCATION</h1>
-                            <div className="space-y-2 bg-black">
-                       <hr className=" h-1 "/>
-                         </div>
-                    
-                         {
-                           education?.map((education,index)=>(
-                            <div key={index} className=" mt-2">
-                                         <p  className="text-sm font-semibold">{education?.degree}</p>
-                             <p className="text-sm font-semibold">{education?.institute}</p>
-                             <p className="text-sm font-semibold">{education?.ongoing}</p>
-                             
-                                 </div>
-                                 ))
-                              
-                         }
-                        
-  
-                        </div>
-                        {/* experience */}
-                        <div className="mt-4 ">
-                            <h1 className=" font-bold ">EXPERIENCE</h1>
-                            <div className="space-y-2 bg-black">
-                           <hr className=" h-1 "/>    
-                            </div>
-                            <div className=" mt-2">
-                           <div className=" py-4">
-                            {
-                              employment?.map((employment,index)=>(
-                                <div key={index}>
-                                <h2 className="text-sm font-semibold flex gap-8">{employment?.startDate}  {employment.endDate}</h2>
-                                <h1 className="text-lg font-semibold">{employment?.jobTitle}</h1>
-                                <h1 className="text-sm font-semibold">{employment?.employer}</h1>
-                                <p className="text-sm ">{employment?.jobDescription}</p>
-                                
+              <div className="mt-4 ">
+                <h1 className=" font-bold ">EDUCATION</h1>
+                <div className="space-y-2 bg-black">
+                  <hr className=" h-1 " />
+                </div>
+
+                {
+                  education?.map((education, index) => (
+                    <div key={index} className=" mt-2">
+                      <p className="text-sm font-semibold">{education?.degree}</p>
+                      <p className="text-sm font-semibold">{education?.institute}</p>
+                      <p className="text-sm font-semibold">{education?.ongoing}</p>
+
+                    </div>
+                  ))
+
+                }
+
+
+              </div>
+              {/* experience */}
+              <div className="mt-4 ">
+                <h1 className=" font-bold ">EXPERIENCE</h1>
+                <div className="space-y-2 bg-black">
+                  <hr className=" h-1 " />
+                </div>
+                <div className=" mt-2">
+                  <div className=" py-4">
+                    {
+                      employment?.map((employment, index) => (
+                        <div key={index}>
+                          <h2 className="text-sm font-semibold flex gap-8">{employment?.startDate}  {employment.endDate}</h2>
+                          <h1 className="text-lg font-semibold">{employment?.jobTitle}</h1>
+                          <h1 className="text-sm font-semibold">{employment?.employer}</h1>
+                          <p className="text-sm ">{employment?.jobDescription}</p>
+
 
                                 </div>
                               ))

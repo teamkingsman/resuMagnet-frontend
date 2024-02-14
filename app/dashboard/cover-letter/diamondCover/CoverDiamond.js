@@ -17,7 +17,7 @@ const CoverDiamond = ({cover}) => {
           <p className=" text-lg underline">Email: {email}</p>
           <p className='text-lg'>Phone: {phone}</p>
     
-          <div className="letter-body whitespace-pre-line mt-6" dangerouslySetInnerHTML={{ __html: letterBody }} />
+          <div className="letter-body whitespace-pre-line my-6" dangerouslySetInnerHTML={{ __html: letterBody }} />
     
           <p className="mt-6 text-xl text-main">Sincerely,<br/>{fname} {lname}</p>
         </div>

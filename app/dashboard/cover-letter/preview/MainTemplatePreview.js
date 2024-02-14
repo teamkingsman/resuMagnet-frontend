@@ -8,6 +8,8 @@ import ClassicCoverLetter from "@/components/CoverLetter/ClassicCoverLetter";
 import PremiumCoverLetter from "@/components/CoverLetter/PremiumCoverLetter";
 import CoverLetter from "../joytemplate/CoverLetter";
 import { useSearchParams } from "next/navigation";
+import Letter from "../templatetwo/Letter";
+import GoldenCover from "../GoldenCover/GoldenCover";
 
 
 
@@ -24,14 +26,15 @@ function MainTemplatePreview() {
     }
   },[search])
   useEffect(() => {
-    if(user.email){
+    if(user?.email){
       coverLetterFromGet(user.email).then((res) => {
         if(res){
+          console.log(res)
           setData(res)
         }
       })
     }
-  },[user.email])
+  },[user?.email])
     // Use selectedTemplate to dynamically render the chosen template
     return (
       <>
@@ -40,6 +43,8 @@ function MainTemplatePreview() {
         {selectedTemplate === 'template2' && <CoverLetter coverLetter={data}/>}
         {selectedTemplate === 'template3' && <ClassicCoverLetter coverLetter={data}/>}
         {selectedTemplate === 'template4' && <PremiumCoverLetter coverLetter={data}/>}
+        {selectedTemplate === 'template5' && <Letter cover={data}/>}
+        {selectedTemplate === 'template6' && <GoldenCover cover={data}/>}
         {/* Add more template previews as needed */}
       </>
     );
