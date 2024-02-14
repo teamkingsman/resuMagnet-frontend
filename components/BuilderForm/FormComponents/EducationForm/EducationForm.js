@@ -3,17 +3,19 @@ import React, { useState } from "react";
 
 function EducationForm({ onChange, education: initialEducationData }) {
   const [educationHistory, setEducationHistory] = useState(
-    initialEducationData || [
-      {
-        id: 1,
-        degree: "",
-        institute: "",
-        startDate: " ",
-        endDate: " ",
-        ongoing: false,
-        educationDescription: "",
-      },
-    ]
+    initialEducationData
+      ? Object.values(initialEducationData)
+      : [
+          {
+            id: 1,
+            degree: "",
+            institute: "",
+            startDate: "",
+            endDate: "",
+            ongoing: false,
+            educationDescription: "",
+          },
+        ]
   );
 
   const handleDateChange = (e, field, id) => {
@@ -60,13 +62,13 @@ function EducationForm({ onChange, education: initialEducationData }) {
 
   return (
     <div className="md:flex flex-col justify-center gap-4 mt-4">
-    {educationHistory.map((entry) => (
-      <div key={entry.id}>
-        <h1 className="text-center font-extrabold py-2 text-2xl">
-          Education History {entry.id}
-        </h1>
+      {educationHistory.map((entry) => (
+        <div key={entry.id}>
+          <h1 className="text-center font-extrabold py-2 text-2xl">
+            Education History {entry.id}
+          </h1>
           <div className="md:flex justify-between gap-4">
-            <div className="form-control">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Degree
@@ -82,7 +84,7 @@ function EducationForm({ onChange, education: initialEducationData }) {
                 required
               />
             </div>
-            <div className="form-control">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Institute
@@ -100,7 +102,7 @@ function EducationForm({ onChange, education: initialEducationData }) {
             </div>
           </div>
           <div className="md:flex justify-between gap-4">
-            <div className="form-control">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Start Date
@@ -116,7 +118,7 @@ function EducationForm({ onChange, education: initialEducationData }) {
               />
             </div>
 
-            <div className="form-control">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   End Date
@@ -135,7 +137,7 @@ function EducationForm({ onChange, education: initialEducationData }) {
           </div>
 
           <div className="flex flex-col justify-between">
-            <div className="form-control">
+            <div className="form-control flex-1">
               <div className="flex items-center">
                 <label className="label">
                   <span className="flex gap-2 label-text font-semibold text-main">
@@ -149,7 +151,7 @@ function EducationForm({ onChange, education: initialEducationData }) {
                 />
               </div>
             </div>
-            <div className="form-control">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex gap-2 label-text font-semibold text-main">
                   Description
@@ -169,7 +171,7 @@ function EducationForm({ onChange, education: initialEducationData }) {
         </div>
       ))}
 
-<div className="form-control mt-4">
+      <div className="form-control mt-4">
         <button
           type="button"
           onClick={() =>

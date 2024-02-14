@@ -11,7 +11,7 @@ const Navbar = () => {
 
     const pathname = usePathname()
     const lastpath = pathname.split("/").pop() // Get the last part of the pathname (e.g., "dashboard" or "signin")
-   console.log(lastpath)
+//    console.log(lastpath)
     const doNotShowNav = ["signin", "signup", "dashboard", "profile", "cover-letter", "resume", "cv", "preview",]
     if (doNotShowNav.includes(lastpath)) {
         return null;

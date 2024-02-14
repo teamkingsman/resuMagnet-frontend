@@ -1,12 +1,28 @@
 "use client";
-import { coverLetterFromPost } from "@/lib/BuilderAPI";
+import { coverLetterFromGet, coverLetterFromPost } from "@/lib/BuilderAPI";
 import { useRouter } from "next/navigation";
 import useAuth from "@/hooks/useAuth";
+import { useEffect, useState } from "react";
 
 function CoverLetterForm() {
   const router = useRouter();
   const { user } = useAuth();
   const userEmail = user.email;
+
+  const email = user?.email;
+  const [coverLetterData, setCoverLetterData] = useState();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await coverLetterFromGet(email);
+        setCoverLetterData(data);
+      } catch (error) {
+        console.error("Error fetching cover letter data:", error);
+      }
+    };
+    fetchData();
+  }, [email]);
+  console.log(coverLetterData);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -14,6 +30,7 @@ function CoverLetterForm() {
       designation: e.target.designation?.value,
       fname: e.target.fname?.value,
       lname: e.target.lname?.value,
+      address: e.target.address?.value,
       email: e.target.email?.value,
       phone: e.target.phone?.value,
       letterBody: e.target.letterBody?.value,
@@ -23,7 +40,7 @@ function CoverLetterForm() {
     try {
       const response = await coverLetterFromPost(formData);
       console.log("Cover Letter data sent successfully", response);
-      router.push("dashboard/cover-letter/preview");
+      // router.push("dashboard/cover-letter/preview");
     } catch (error) {
       console.error("Error sending Cover Letter data", error);
     }
@@ -52,6 +69,7 @@ function CoverLetterForm() {
                   placeholder="Enter First Name"
                   className="input bg-base-300"
                   name="fname"
+                  defaultValue={coverLetterData?.fname}
                   required
                 />
               </div>
@@ -66,6 +84,7 @@ function CoverLetterForm() {
                   placeholder="Enter Last Name"
                   className="input bg-base-300"
                   name="lname"
+                  defaultValue={coverLetterData?.lname}
                   required
                 />
               </div>
@@ -83,6 +102,7 @@ function CoverLetterForm() {
                   name="designation"
                   placeholder="Enter Designation"
                   className="input bg-base-300"
+                  defaultValue={coverLetterData?.designation}
                   required
                 />
               </div>
@@ -97,6 +117,7 @@ function CoverLetterForm() {
                   name="address"
                   placeholder="Enter Address"
                   className="input bg-base-300"
+                  defaultValue={coverLetterData?.address}
                   required
                 />
               </div>
@@ -114,6 +135,7 @@ function CoverLetterForm() {
                   placeholder="Enter Email"
                   className="input bg-base-300"
                   name="email"
+                  defaultValue={coverLetterData?.email}
                   required
                 />
               </div>
@@ -128,6 +150,7 @@ function CoverLetterForm() {
                   placeholder="Enter Phone Number"
                   className="input bg-base-300"
                   name="phone"
+                  defaultValue={coverLetterData?.phone}
                   required
                 />
               </div>
@@ -143,6 +166,7 @@ function CoverLetterForm() {
                 name="letterBody"
                 placeholder="Enter Content"
                 className="textarea textarea-bordered textarea-lg w-full bg-base-300"
+                defaultValue={coverLetterData?.letterBody}
               ></textarea>
             </div>
 

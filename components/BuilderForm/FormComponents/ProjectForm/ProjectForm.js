@@ -2,16 +2,20 @@
 import React, { useState } from "react";
 
 function ProjectForm({ onChange, projects: initialProjects }) {
-  const [projects, setProjects] = useState(initialProjects || [
-    {
-      id: 1,
-      title: "",
-      type: "",
-      liveLink: "",
-      description: "",
-      githubLink: "",
-    },
-  ]);
+  const [projects, setProjects] = useState(
+    initialProjects
+      ? Object.values(initialProjects)
+      : [
+          {
+            id: 1,
+            title: "",
+            type: "",
+            liveLink: "",
+            description: "",
+            githubLink: "",
+          },
+        ]
+  );
 
   const handleProjectChange = (e, field, id) => {
     setProjects((prevProjects) =>
@@ -39,13 +43,13 @@ function ProjectForm({ onChange, projects: initialProjects }) {
 
   return (
     <div className="md:flex flex-col justify-center gap-4 mt-4">
-      {projects.map((project) => (
+      {projects?.map((project) => (
         <div key={project.id}>
           <h1 className="text-center font-extrabold py-2 text-2xl">
             Project {project.id}
           </h1>
           <div className="md:flex justify-between gap-4">
-            <div className="form-control">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Title
@@ -61,7 +65,7 @@ function ProjectForm({ onChange, projects: initialProjects }) {
                 required
               />
             </div>
-            <div className="form-control">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Type
@@ -79,7 +83,7 @@ function ProjectForm({ onChange, projects: initialProjects }) {
             </div>
           </div>
           <div className="md:flex justify-between gap-4">
-            <div className="form-control">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Live Link or Media Link
@@ -95,7 +99,7 @@ function ProjectForm({ onChange, projects: initialProjects }) {
                 required
               />
             </div>
-            <div className="form-control">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   GitHub Repository Link
@@ -107,7 +111,9 @@ function ProjectForm({ onChange, projects: initialProjects }) {
                 className="input bg-base-300"
                 name={`githubLink-${project.id}`}
                 value={project.githubLink}
-                onChange={(e) => handleProjectChange(e, "githubLink", project.id)}
+                onChange={(e) =>
+                  handleProjectChange(e, "githubLink", project.id)
+                }
                 required
               />
             </div>
@@ -123,7 +129,9 @@ function ProjectForm({ onChange, projects: initialProjects }) {
               className="textarea bg-base-300"
               name={`description-${project.id}`}
               value={project.description}
-              onChange={(e) => handleProjectChange(e, "description", project.id)}
+              onChange={(e) =>
+                handleProjectChange(e, "description", project.id)
+              }
               required
             />
           </div>

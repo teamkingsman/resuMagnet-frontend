@@ -4,16 +4,18 @@ import React, { useState } from "react";
 
 function EmploymentForm({ onChange, employment: initialEmploymentData }) {
   const [employmentHistory, setEmploymentHistory] = useState(
-    initialEmploymentData || [
-      {
-        id: 1,
-        jobTitle: "",
-        employer: "",
-        startDate: " ",
-        endDate: " ",
-        jobDescription: "",
-      },
-    ]
+    initialEmploymentData
+      ? Object.values(initialEmploymentData)
+      : [
+          {
+            id: 1,
+            jobTitle: "",
+            employer: "",
+            startDate: "",
+            endDate: "",
+            jobDescription: "",
+          },
+        ]
   );
 
   const handleInputChange = (e, field, id) => {
@@ -25,30 +27,17 @@ function EmploymentForm({ onChange, employment: initialEmploymentData }) {
     onChange(employmentHistory);
   };
 
-  const addMoreHistory = () => {
-    setEmploymentHistory((prevHistory) => [
-      ...prevHistory,
-      {
-        id: prevHistory.length + 1,
-        jobTitle: "",
-        employer: "",
-        startDate: " ",
-        endDate: " ",
-        jobDescription: "",
-      },
-    ]);
-    onChange(employmentHistory);
-  };
+
 
   return (
     <div className="md:flex flex-col justify-center gap-4 mt-4">
-      {employmentHistory.map((entry) => (
+      {employmentHistory?.map((entry) => (
         <div key={entry.id}>
           <h1 className="text-center font-extrabold py-2 text-2xl">
             Employment History {entry.id}
           </h1>
           <div className="md:flex justify-between gap-4">
-            <div className="form-control">
+             <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Job Title
@@ -64,7 +53,7 @@ function EmploymentForm({ onChange, employment: initialEmploymentData }) {
                 required
               />
             </div>
-            <div className="form-control">
+             <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Employer
@@ -83,7 +72,7 @@ function EmploymentForm({ onChange, employment: initialEmploymentData }) {
           </div>
 
           <div className="md:flex justify-between gap-4">
-            <div className="form-control">
+             <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Start Date
@@ -99,7 +88,7 @@ function EmploymentForm({ onChange, employment: initialEmploymentData }) {
               />
             </div>
 
-            <div className="form-control">
+             <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   End Date
@@ -116,7 +105,7 @@ function EmploymentForm({ onChange, employment: initialEmploymentData }) {
             </div>
           </div>
 
-          <div className="form-control">
+           <div className="form-control flex-1">
             <label className="label">
               <span className="flex items-center gap-2 label-text font-semibold text-main">
                 Description

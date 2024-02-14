@@ -1,14 +1,17 @@
 "use client";
 import React, { useState } from "react";
 
-function SkillForm({ onChange, skill }) {
-  const initialSkills = skill && skill.length > 0 ? skill : [{
-    id: 1,
-    skill: "",
-    level: "",
-  }];
+function SkillForm({ onChange, skill:initialSkills }) {
 
-  const [skills, setSkills] = useState(initialSkills);
+  const [skills, setSkills] = useState(
+    initialSkills
+      ? Object.values(initialSkills)
+      : [{
+        id: 1,
+        skill: "",
+        level: "",
+      }]
+  );
 
   const handleSkillChange = (e, id) => {
     const { name, value } = e.target;
@@ -34,11 +37,11 @@ function SkillForm({ onChange, skill }) {
 
   return (
     <div className="md:flex flex-col justify-center gap-4 mt-4">
-      {skills.map((s) => (
+      {skills?.map((s) => (
         <div key={`skill-${s.id}`}>
           <h1 className="text-center font-extrabold py-2 text-2xl">Skill {s.id}</h1>
           <div className="md:flex justify-between gap-4">
-            <div className="form-control">
+             <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Skill
@@ -54,7 +57,7 @@ function SkillForm({ onChange, skill }) {
                 required
               />
             </div>
-            <div className="form-control">
+             <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Level

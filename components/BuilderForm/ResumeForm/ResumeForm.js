@@ -1,19 +1,18 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import EmploymentForm from "../FormComponents/EmploymentForm/EmploymentForm";
 import EducationForm from "../FormComponents/EducationForm/EducationForm";
 import SkillForm from "../FormComponents/SkillForm/SkillForm";
 import LanguageForm from "../FormComponents/LanguageForm/LanguageForm";
 import BasicInfoForm from "../FormComponents/BasicInfoForm/BasicInfoForm";
 import ProjectForm from "../FormComponents/ProjectForm/ProjectForm";
-import { resumeFromPost } from "@/lib/BuilderAPI";
+import { resumeFromGet, resumeFromPost } from "@/lib/BuilderAPI";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 
 const ResumeForm = () => {
   const router = useRouter();
   const { user } = useAuth();
-
   const [allFormData, setAllFormData] = useState({
     basicInfo: [],
     education: [],
@@ -21,108 +20,23 @@ const ResumeForm = () => {
     languages: [],
     projects: [],
     skills: [],
-    userEmail: user?.email,
   });
 
-  const resumeData = {
-    basicInfo: {
-      designation: "Mern Stack Developer",
-      photoURL:
-        "https://res.cloudinary.com/dxox3wiq1/image/upload/v1707156846/poto_plc2na.jpg",
-      fname: "Md Sakib",
-      lname: "Hossain",
-      email: "Mskib567@gmai.com",
-      phone: "01955703819",
-      country: "Bangladesh",
-      city: "Narayanganj",
-      street: "BSCIC Road,Kanchpur",
-      postal: "1430",
-      dob: "1999-11-28",
-      nationality: "Bangladeshi",
-      about: "dfgdfgdfgdf",
-    },
-    education: [
-      {
-        id: 1,
-        degree: "Bsc in CSE",
-        institute: "National University Of Bangladesh",
-        startDate: "2018-05-28",
-        endDate: "2022-05-02",
-        ongoing: false,
-        educationDescription: "gdgrftghrtf",
-      },
-      {
-        id: 2,
-        degree: "HSC",
-        institute: "GiasUddin Islamic Model College",
-        startDate: "2015-05-28",
-        endDate: "2017-05-28",
-        ongoing: false,
-        educationDescription: "gdgdfgdff",
-      },
-    ],
-    employment: [
-      {
-        id: 1,
-        jobTitle: "dgdfgdfg",
-        employer: "dfdfgdfg",
-        startDate: "2018-05-28",
-        endDate: "2018-05-28",
-        jobDescription: "df",
-      },
-      {
-        id: 2,
-        jobTitle: "ddfgdfgfg",
-        employer: "dfdfgdfg",
-        startDate: "2018-05-28",
-        endDate: "2018-05-28",
-        jobDescription: "dgdfgdff",
-      },
-    ],
-    projects: [
-      {
-        id: 1,
-        title: "gdgdfgf",
-        type: "dfdfgdfgg",
-        liveLink: "ddfgdfgfg",
-        description: "ddfgdff",
-        githubLink: "dfdfgdfg",
-      },
-      {
-        id: 2,
-        title: "ggdfgddf",
-        type: "dfdfgdfg",
-        liveLink: "dfdfgdfg",
-        description: "ddfgdff",
-        githubLink: "ddfgdffg",
-      },
-    ],
-    email: "mskib567@gmail.com",
-    skill: [
-      {
-        id: 1,
-        skill: "dfggdfgdfdf",
-        level: "Advanced",
-      },
-      {
-        id: 2,
-        skill: "dfgdf",
-        level: "Intermediate",
-      },
-    ],
-    language: [
-      {
-        id: 1,
-        language: "ffsdfdg",
-        proficiency: "Fluent",
-      },
-      {
-        id: 2,
-        language: "ffsdfsdg",
-        proficiency: "Intermediate",
-      },
-    ],
-  };
+  const email = user?.email;
+  const [resumeData, setResumeData] = useState();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await resumeFromGet(email);
+        setResumeData(data);
+      } catch (error) {
+        console.error("Error fetching resume data:", error);
+      }
+    };
+    fetchData();
+  }, [email]);
+  console.log(resumeData);
+
 
   const [showEmploymentForm, setShowEmploymentForm] = useState(false);
   const [showEducationForm, setShowEducationForm] = useState(false);
@@ -201,7 +115,7 @@ const ResumeForm = () => {
         skill: { ...resumeData.skill, ...allFormData.skill},
         language: { ...resumeData.language, ...allFormData.language },
         projects: { ...resumeData.projects, ...allFormData.projects },
-        
+        userEmail:user?.email,
       };
       console.log(mergedData);
       const response = await resumeFromPost(mergedData);
@@ -225,7 +139,7 @@ const ResumeForm = () => {
           <div className="card w-full shadow-2xl bg-base-100">
             <BasicInfoForm
               onChange={handleBasicInfoDataChange}
-              basicInfo={resumeData.basicInfo}
+              basicInfo={resumeData?.basicInfo}
             />
             <div className="card-body">
               <div className="form-control mt-4">
@@ -241,7 +155,7 @@ const ResumeForm = () => {
               {showEducationForm && (
                 <EducationForm
                   onChange={handleEducationDataChange}
-                  education={resumeData.education}
+                  education={resumeData?.education}
                 ></EducationForm>
               )}
 
@@ -258,7 +172,7 @@ const ResumeForm = () => {
               {showEmploymentForm && (
                 <EmploymentForm
                   onChange={handleEmploymentDataChange}
-                  employment={resumeData.employment}
+                  employment={resumeData?.employment}
                 ></EmploymentForm>
               )}
 
@@ -275,7 +189,7 @@ const ResumeForm = () => {
               {showSkillForm && (
                 <SkillForm
                   onChange={handleSkillDataChange}
-                  skill={resumeData.skill}
+                  skill={resumeData?.skill}
                 ></SkillForm>
               )}
 
@@ -292,7 +206,7 @@ const ResumeForm = () => {
               {showLanguageForm && (
                 <LanguageForm
                   onChange={handleLanguageDataChange}
-                  language={resumeData.language}
+                  language={resumeData?.language}
                 ></LanguageForm>
               )}
 
@@ -309,7 +223,7 @@ const ResumeForm = () => {
               {showProjectForm && (
                 <ProjectForm
                   onChange={handleProjectDataChange}
-                  projects={resumeData.projects}
+                  projects={resumeData?.projects}
                 ></ProjectForm>
               )}
 

@@ -1,11 +1,8 @@
 import CvForm from "@/components/BuilderForm/CvForm/CvForm";
 
-function CV({ params }) {
+function CV() {
   return (
     <>
-    {
-      params.id
-    }
       <CvForm></CvForm>
     </>
   );

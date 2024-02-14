@@ -1,13 +1,21 @@
-"use client"
-import React, { useState, useEffect } from "react";
+"use client";
+import React, { useState } from "react";
 
 function ExtraActivitiesForm({ onChange, extraActivities: initialActivities }) {
-  const [activities, setActivities] = useState(initialActivities);
-
-  // Update state when initialActivities prop changes
-  useEffect(() => {
-    setActivities(initialActivities);
-  }, [initialActivities]);
+  const [activities, setActivities] = useState(
+    initialActivities
+      ? Object.values(initialActivities)
+      : [
+          {
+            id: 1,
+            name: "",
+            organization: "",
+            startDate: "",
+            endDate: "",
+            description: "",
+          },
+        ]
+  );
 
   const handleInputChange = (e, field, id) => {
     setActivities((prevActivities) =>
@@ -15,6 +23,7 @@ function ExtraActivitiesForm({ onChange, extraActivities: initialActivities }) {
         activity.id === id ? { ...activity, [field]: e.target.value } : activity
       )
     );
+    onChange([...activities]);
   };
 
   const handleDateChange = (date, field, id) => {
@@ -23,6 +32,7 @@ function ExtraActivitiesForm({ onChange, extraActivities: initialActivities }) {
         activity.id === id ? { ...activity, [field]: date } : activity
       )
     );
+    onChange([...activities]);
   };
 
   const addMoreActivity = () => {
@@ -37,12 +47,8 @@ function ExtraActivitiesForm({ onChange, extraActivities: initialActivities }) {
         description: "",
       },
     ]);
-  };
-
-  useEffect(() => {
     onChange([...activities]);
-  }, [activities, onChange]);
-
+  };
 
   return (
     <div className="md:flex flex-col justify-center gap-4 mt-4">
@@ -52,7 +58,7 @@ function ExtraActivitiesForm({ onChange, extraActivities: initialActivities }) {
             Extracurricular Activity {activity.id}
           </h1>
           <div className="md:flex justify-between gap-4">
-            <div className="form-control">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Activity Name
@@ -68,7 +74,7 @@ function ExtraActivitiesForm({ onChange, extraActivities: initialActivities }) {
                 required
               />
             </div>
-            <div className="form-control">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Organization
@@ -89,7 +95,7 @@ function ExtraActivitiesForm({ onChange, extraActivities: initialActivities }) {
           </div>
 
           <div className="md:flex justify-between gap-4">
-            <div className="form-control">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Start Date
@@ -107,7 +113,7 @@ function ExtraActivitiesForm({ onChange, extraActivities: initialActivities }) {
                 required
               />
             </div>
-            <div className="form-control">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   End Date
@@ -138,9 +144,7 @@ function ExtraActivitiesForm({ onChange, extraActivities: initialActivities }) {
               className="textarea textarea-bordered bg-base-300"
               name={`description-${activity.id}`}
               value={activity.description}
-              onChange={(e) =>
-                handleInputChange(e, "description", activity.id)
-              }
+              onChange={(e) => handleInputChange(e, "description", activity.id)}
             />
           </div>
         </div>
