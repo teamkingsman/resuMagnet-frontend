@@ -21,7 +21,7 @@ const ResumeViewer = ({ params }) => {
   return (
     <div>
       {/* Render the selected template components or content here */}
-      {selectedTemplate === 'template1' && <ResumeDiamond resume={data}/>}
+        {selectedTemplate === 'template1' && <ResumeDiamond resume={data}/>}
         {selectedTemplate === 'template2' && <JoyResume resume={data}/>}
         {selectedTemplate === 'template3' && <ClassicResume resume={data}/>}
         {selectedTemplate === 'template4' && <PremiumResume resume={data} />}

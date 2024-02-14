@@ -67,6 +67,17 @@ console.log(router)
                                         }
                                         
                                         <li className="btn btn-sm md:btn-md lg:btn-lg w-3/4 mx-auto bg-sub_color py-4 mt-4 "><span className="text-highlight_color"></span>Download PDF</li>
+                                        {/* {
+                                               pathname =='/dashboard/resume/preview' ?(
+                                             <li className="btn btn-sm md:btn-md lg:btn-lg w-3/4 mx-auto bg-sub_color py-4 mt-4 "><span className="text-highlight_color"></span>
+                                            <a href={`/r/${objectId}`} download>
+                                            Download PDF</a></li>
+                                            ) :(
+                                         <li className="btn btn-sm md:btn-md lg:btn-lg w-3/4 mx-auto bg-sub_color py-4 mt-4 "><span className="text-highlight_color"></span>
+                                            <a href={`/c/${objectId}`} download>
+                                           Download PDF</a></li>
+                                            ) 
+                                        } */}
                                     </ul>
                                 </div>
                             </div>
