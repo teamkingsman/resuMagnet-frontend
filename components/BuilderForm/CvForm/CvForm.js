@@ -23,7 +23,7 @@ function CvForm({params}) {
     skills: [{}],
     extraActivities: [{}],
   });
-console.log(allFormData);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -35,6 +35,7 @@ console.log(allFormData);
     };
     fetchData();
   }, [params]);
+
 
   const [showEmploymentForm, setShowEmploymentForm] = useState(false);
   const [showEducationForm, setShowEducationForm] = useState(false);
@@ -77,14 +78,14 @@ console.log(allFormData);
   const handleEducationDataChange = (educationFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      education: educationFormData,
+      educations: educationFormData,
     }));
   };
 
   const handleEmploymentDataChange = (employmentFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      employment: employmentFormData,
+      employments: employmentFormData,
     }));
   };
 
@@ -167,6 +168,7 @@ console.log(allFormData);
                 <EducationForm
                   onChange={handleEducationDataChange}
                   education={allFormData?.education}
+
                 ></EducationForm>
               )}
 
@@ -184,6 +186,7 @@ console.log(allFormData);
                 <EmploymentForm
                   onChange={handleEmploymentDataChange}
                   employment={allFormData?.employment}
+
                 ></EmploymentForm>
               )}
 
@@ -201,6 +204,7 @@ console.log(allFormData);
                 <SkillForm
                   onChange={handleSkillDataChange}
                   skill={allFormData?.skills}
+
                 ></SkillForm>
               )}
 

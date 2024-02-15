@@ -15,8 +15,8 @@ const ResumeForm = ({params}) => {
   const { user } = useAuth();
   const [allFormData, setAllFormData] = useState({
     basicInfo: [],
-    education: [],
-    employment: [],
+    educations: [],
+    employments: [],
     languages: [],
     projects: [],
     skills: [],
@@ -35,6 +35,7 @@ const ResumeForm = ({params}) => {
     fetchData();
   }, [params]);
   console.log(allFormData);
+
 
 
   const [showEmploymentForm, setShowEmploymentForm] = useState(false);
@@ -73,14 +74,14 @@ const ResumeForm = ({params}) => {
   const handleEducationDataChange = (educationFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      education: educationFormData,
+      educations: educationFormData,
     }));
   };
 
   const handleEmploymentDataChange = (employmentFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      employment: employmentFormData,
+      employments: employmentFormData,
     }));
   };
 
@@ -120,7 +121,7 @@ const ResumeForm = ({params}) => {
       console.log(data);
       const response = await resumeFromPost(data);
       console.log("Resume data sent successfully", response);
-      // router.push("dashboard/resume/preview");
+      router.push("/dashboard/resume/preview");
     } catch (error) {
       console.error("Error sending resume data", error);
     }
@@ -156,6 +157,7 @@ const ResumeForm = ({params}) => {
                 <EducationForm
                   onChange={handleEducationDataChange}
                   education={allFormData?.education}
+
                 ></EducationForm>
               )}
 
@@ -173,6 +175,7 @@ const ResumeForm = ({params}) => {
                 <EmploymentForm
                   onChange={handleEmploymentDataChange}
                   employment={allFormData?.employment}
+
                 ></EmploymentForm>
               )}
 
