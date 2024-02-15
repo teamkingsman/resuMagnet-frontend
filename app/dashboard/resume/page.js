@@ -1,5 +1,4 @@
 import ResumeForm from "@/components/BuilderForm/ResumeForm/ResumeForm"
-import AllResumeTemplate from "../test/AllResumeTemplate"
 
 function resumeBuilder () {
 
