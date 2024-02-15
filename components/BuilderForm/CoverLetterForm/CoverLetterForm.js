@@ -1,27 +1,25 @@
 "use client";
-import { coverLetterFromGet, coverLetterFromPost } from "@/lib/BuilderAPI";
+import { coverLetterFromGet, coverLetterFromGetById, coverLetterFromPost } from "@/lib/BuilderAPI";
 import { useRouter } from "next/navigation";
 import useAuth from "@/hooks/useAuth";
 import { useEffect, useState } from "react";
 
-function CoverLetterForm() {
+function CoverLetterForm({ params }) {
   const router = useRouter();
   const { user } = useAuth();
-  const userEmail = user.email;
 
-  const email = user?.email;
-  const [coverLetterData, setCoverLetterData] = useState();
+  const [coverLetterData, setCoverLetterData] = useState({});
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await coverLetterFromGet(email);
+        const data = await coverLetterFromGetById(params);
         setCoverLetterData(data);
       } catch (error) {
         console.error("Error fetching cover letter data:", error);
       }
     };
     fetchData();
-  }, [email]);
+  }, [params]);
   console.log(coverLetterData);
 
   const handleFormSubmit = async (e) => {
@@ -34,7 +32,7 @@ function CoverLetterForm() {
       email: e.target.email?.value,
       phone: e.target.phone?.value,
       letterBody: e.target.letterBody?.value,
-      userEmail: userEmail,
+      userEmail: user?.email,
     };
 
     try {

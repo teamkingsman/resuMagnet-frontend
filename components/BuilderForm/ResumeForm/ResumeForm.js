@@ -22,20 +22,19 @@ const ResumeForm = ({params}) => {
     skills: [],
   });
 
-  const email = user?.email;
   const [resumeData, setResumeData] = useState();
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await resumeFromGetById(params);
-        setResumeData(data);
+        setAllFormData(data);
       } catch (error) {
         console.error("Error fetching resume data:", error);
       }
     };
     fetchData();
   }, [params]);
-  console.log(resumeData);
+  console.log(allFormData);
 
 
   const [showEmploymentForm, setShowEmploymentForm] = useState(false);
@@ -108,17 +107,18 @@ const ResumeForm = ({params}) => {
 
   const handlePreview = async () => {
     try {
-      const mergedData = {
-        basicInfo: { ...resumeData.basicInfo, ...allFormData.basicInfo },
-        education: [...resumeData.education, ...allFormData.education],
-        employment: [...resumeData.employment, ...allFormData.employment],
-        skills: [...resumeData.skills, ...allFormData.skills],
-        languages: [...resumeData.languages, ...allFormData.languages],
-        projects: [...resumeData.projects, ...allFormData.projects],
-        userEmail:user?.email,
+      const data = {
+        userEmail: user?.email,
+        basicInfo: allFormData.basicInfo,
+        education: allFormData.education,
+        employment: allFormData.employment,
+        languages: allFormData.languages,
+        projects: allFormData.projects,
+        skills: allFormData.skills,
       };
-      console.log(mergedData);
-      const response = await resumeFromPost(mergedData);
+      
+      console.log(data);
+      const response = await resumeFromPost(data);
       console.log("Resume data sent successfully", response);
       // router.push("dashboard/resume/preview");
     } catch (error) {
@@ -139,7 +139,7 @@ const ResumeForm = ({params}) => {
           <div className="card w-full shadow-2xl bg-base-100">
             <BasicInfoForm
               onChange={handleBasicInfoDataChange}
-              basicInfo={resumeData?.basicInfo}
+              basicInfo={allFormData?.basicInfo}
             />
             <div className="card-body">
               <div className="form-control mt-4">
@@ -155,7 +155,7 @@ const ResumeForm = ({params}) => {
               {showEducationForm && (
                 <EducationForm
                   onChange={handleEducationDataChange}
-                  education={resumeData?.education}
+                  education={allFormData?.education}
                 ></EducationForm>
               )}
 
@@ -172,7 +172,7 @@ const ResumeForm = ({params}) => {
               {showEmploymentForm && (
                 <EmploymentForm
                   onChange={handleEmploymentDataChange}
-                  employment={resumeData?.employment}
+                  employment={allFormData?.employment}
                 ></EmploymentForm>
               )}
 
@@ -189,7 +189,7 @@ const ResumeForm = ({params}) => {
               {showSkillForm && (
                 <SkillForm
                   onChange={handleSkillDataChange}
-                  skill={resumeData?.skills }
+                  skill={allFormData?.skills }
                 ></SkillForm>
               )}
 
@@ -206,7 +206,7 @@ const ResumeForm = ({params}) => {
               {showLanguageForm && (
                 <LanguageForm
                   onChange={handleLanguageDataChange}
-                  language={resumeData?.languages}
+                  language={allFormData?.languages}
                 ></LanguageForm>
               )}
 
@@ -223,7 +223,7 @@ const ResumeForm = ({params}) => {
               {showProjectForm && (
                 <ProjectForm
                   onChange={handleProjectDataChange}
-                  projects={resumeData?.projects}
+                  projects={allFormData?.projects}
                 ></ProjectForm>
               )}
 
