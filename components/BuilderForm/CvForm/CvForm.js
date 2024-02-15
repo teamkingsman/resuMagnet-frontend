@@ -6,39 +6,36 @@ import SkillForm from "../FormComponents/SkillForm/SkillForm";
 import LanguageForm from "../FormComponents/LanguageForm/LanguageForm";
 import BasicInfoForm from "../FormComponents/BasicInfoForm/BasicInfoForm";
 import ExtraActivitiesForm from "../FormComponents/ExtraActivitiesForm/ExtraActivitiesForm";
-import { cvFromGet, cvFromPost } from "@/lib/BuilderAPI";
+import { cvFromGet, cvFromGetById, cvFromPost } from "@/lib/BuilderAPI";
 import ProjectForm from "../FormComponents/ProjectForm/ProjectForm";
 import { useRouter } from "next/navigation";
 import useAuth from "@/hooks/useAuth";
 
-function CvForm() {
+function CvForm({params}) {
   const router = useRouter();
   const { user } = useAuth();
   const [allFormData, setAllFormData] = useState({
-    basicInfo: [],
-    educations: [],
-    employments: [],
-    languages: [],
-    projects: [],
-    skills: [],
-    extraActivities: [],
+    basicInfo: {},
+    education: [{}],
+    employment: [{}],
+    languages: [{}],
+    projects: [{}],
+    skills: [{}],
+    extraActivities: [{}],
   });
- 
 
-  const email = user?.email;
-  const [cvData, setCvData] = useState();
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await cvFromGet(email);
-        setCvData(data);
+        const data = await cvFromGetById(params);
+        setAllFormData(data);
       } catch (error) {
         console.error("Error fetching cv data:", error);
       }
     };
     fetchData();
-  }, [email]);
-  console.log(cvData);
+  }, [params]);
+
 
   const [showEmploymentForm, setShowEmploymentForm] = useState(false);
   const [showEducationForm, setShowEducationForm] = useState(false);
@@ -122,21 +119,19 @@ function CvForm() {
 
   const handlePreview = async () => {
     try {
-      const mergedData = {
-        basicInfo: { ...cvData.basicInfo, ...allFormData.basicInfo },
-        educations: { ...cvData.educations, ...allFormData.educations },
-        employments: { ...cvData.employments, ...allFormData.employments },
-        skills: { ...cvData.skills, ...allFormData.skills },
-        languages: { ...cvData.languages, ...allFormData.languages },
-        projects: { ...cvData.projects, ...allFormData.projects },
-        extraActivities: {
-          ...cvData.extraActivities,
-          ...allFormData.extraActivities,
-        },
+      const data ={
         userEmail: user?.email,
-      };
-      console.log(mergedData);
-      const response = await cvFromPost(mergedData);
+        basicInfo: allFormData.basicInfo,
+        education: allFormData.education,
+        employment: allFormData.employment,
+        languages: allFormData.languages,
+        projects: allFormData.projects,
+        skills: allFormData.skills,
+        extraActivities: allFormData.extraActivities,
+
+      }
+      console.log();
+      const response = await cvFromPost();
       console.log("CV data sent successfully", response);
       router.push("/dashboard/cv/preview")
     } catch (error) {
@@ -156,7 +151,7 @@ function CvForm() {
           <div className="card w-full shadow-2xl bg-base-100">
             <BasicInfoForm
               onChange={handleBasicInfoDataChange}
-              basicInfo={cvData?.basicInfo}
+              basicInfo={allFormData?.basicInfo}
             />
             <div className="card-body">
               <div className="form-control mt-4">
@@ -172,7 +167,8 @@ function CvForm() {
               {showEducationForm && (
                 <EducationForm
                   onChange={handleEducationDataChange}
-                  educations={cvData?.educations}
+                  education={allFormData?.education}
+
                 ></EducationForm>
               )}
 
@@ -189,7 +185,8 @@ function CvForm() {
               {showEmploymentForm && (
                 <EmploymentForm
                   onChange={handleEmploymentDataChange}
-                  employments={cvData?.employments}
+                  employment={allFormData?.employment}
+
                 ></EmploymentForm>
               )}
 
@@ -206,7 +203,8 @@ function CvForm() {
               {showSkillForm && (
                 <SkillForm
                   onChange={handleSkillDataChange}
-                  skills={cvData?.skills}
+                  skill={allFormData?.skills}
+
                 ></SkillForm>
               )}
 
@@ -223,7 +221,7 @@ function CvForm() {
               {showLanguageForm && (
                 <LanguageForm
                   onChange={handleLanguageDataChange}
-                  languages={cvData?.languages}
+                  language={allFormData?.languages}
                 ></LanguageForm>
               )}
 
@@ -240,7 +238,7 @@ function CvForm() {
               {showProjectForm && (
                 <ProjectForm
                   onChange={handleProjectDataChange}
-                  projects={cvData?.projects}
+                  projects={allFormData?.projects}
                 ></ProjectForm>
               )}
 
@@ -257,7 +255,7 @@ function CvForm() {
               {showExtraActivitiesForm && (
                 <ExtraActivitiesForm
                   onChange={handleExtraActivitiesDataChange}
-                  extraActivities={cvData?.extraActivities}
+                  extraActivities={allFormData?.extraActivities}
                 />
               )}
 
