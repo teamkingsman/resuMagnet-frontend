@@ -16,13 +16,14 @@ function CvForm() {
   const { user } = useAuth();
   const [allFormData, setAllFormData] = useState({
     basicInfo: [],
-    education: [],
-    employment: [],
+    educations: [],
+    employments: [],
     languages: [],
     projects: [],
     skills: [],
     extraActivities: [],
   });
+ 
 
   const email = user?.email;
   const [cvData, setCvData] = useState();
@@ -37,6 +38,7 @@ function CvForm() {
     };
     fetchData();
   }, [email]);
+  console.log(cvData);
 
   const [showEmploymentForm, setShowEmploymentForm] = useState(false);
   const [showEducationForm, setShowEducationForm] = useState(false);
@@ -79,14 +81,14 @@ function CvForm() {
   const handleEducationDataChange = (educationFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      education: educationFormData,
+      educations: educationFormData,
     }));
   };
 
   const handleEmploymentDataChange = (employmentFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      employment: employmentFormData,
+      employments: employmentFormData,
     }));
   };
 
@@ -122,10 +124,10 @@ function CvForm() {
     try {
       const mergedData = {
         basicInfo: { ...cvData.basicInfo, ...allFormData.basicInfo },
-        education: { ...cvData.education, ...allFormData.education },
-        employment: { ...cvData.employment, ...allFormData.employment },
-        skill: { ...cvData.skill, ...allFormData.skill },
-        language: { ...cvData.language, ...allFormData.language },
+        educations: { ...cvData.educations, ...allFormData.educations },
+        employments: { ...cvData.employments, ...allFormData.employments },
+        skills: { ...cvData.skills, ...allFormData.skills },
+        languages: { ...cvData.languages, ...allFormData.languages },
         projects: { ...cvData.projects, ...allFormData.projects },
         extraActivities: {
           ...cvData.extraActivities,
@@ -170,7 +172,7 @@ function CvForm() {
               {showEducationForm && (
                 <EducationForm
                   onChange={handleEducationDataChange}
-                  education={cvData?.education}
+                  educations={cvData?.educations}
                 ></EducationForm>
               )}
 
@@ -187,7 +189,7 @@ function CvForm() {
               {showEmploymentForm && (
                 <EmploymentForm
                   onChange={handleEmploymentDataChange}
-                  employment={cvData?.employment}
+                  employments={cvData?.employments}
                 ></EmploymentForm>
               )}
 
@@ -204,7 +206,7 @@ function CvForm() {
               {showSkillForm && (
                 <SkillForm
                   onChange={handleSkillDataChange}
-                  skill={cvData?.skill}
+                  skills={cvData?.skills}
                 ></SkillForm>
               )}
 
@@ -221,7 +223,7 @@ function CvForm() {
               {showLanguageForm && (
                 <LanguageForm
                   onChange={handleLanguageDataChange}
-                  language={cvData?.language}
+                  languages={cvData?.languages}
                 ></LanguageForm>
               )}
 
