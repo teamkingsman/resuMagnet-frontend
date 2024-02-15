@@ -1,8 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-function SkillForm({ onChange, skill:initialSkills }) {
-
+function SkillForm({ onChange, skills:initialSkills }) {
   const [skills, setSkills] = useState(
     initialSkills
       ? Object.values(initialSkills)

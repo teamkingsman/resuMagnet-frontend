@@ -15,8 +15,8 @@ const ResumeForm = () => {
   const { user } = useAuth();
   const [allFormData, setAllFormData] = useState({
     basicInfo: [],
-    education: [],
-    employment: [],
+    educations: [],
+    employments: [],
     languages: [],
     projects: [],
     skills: [],
@@ -35,7 +35,6 @@ const ResumeForm = () => {
     };
     fetchData();
   }, [email]);
-  console.log(resumeData);
 
 
   const [showEmploymentForm, setShowEmploymentForm] = useState(false);
@@ -74,14 +73,14 @@ const ResumeForm = () => {
   const handleEducationDataChange = (educationFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      education: educationFormData,
+      educations: educationFormData,
     }));
   };
 
   const handleEmploymentDataChange = (employmentFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      employment: employmentFormData,
+      employments: employmentFormData,
     }));
   };
 
@@ -110,17 +109,17 @@ const ResumeForm = () => {
     try {
       const mergedData = {
         basicInfo: { ...resumeData.basicInfo, ...allFormData.basicInfo },
-        education: { ...resumeData.education, ...allFormData.education },
-        employment: { ...resumeData.employment, ...allFormData.employment },
-        skill: { ...resumeData.skill, ...allFormData.skill},
-        language: { ...resumeData.language, ...allFormData.language },
+        educations: { ...resumeData.educations, ...allFormData.educations },
+        employments: { ...resumeData.employments, ...allFormData.employments },
+        skills: { ...resumeData.skills, ...allFormData.skills},
+        languages: { ...resumeData.languages, ...allFormData.languages },
         projects: { ...resumeData.projects, ...allFormData.projects },
         userEmail:user?.email,
       };
       console.log(mergedData);
       const response = await resumeFromPost(mergedData);
       console.log("Resume data sent successfully", response);
-      // router.push("dashboard/resume/preview");
+      router.push("/dashboard/resume/preview");
     } catch (error) {
       console.error("Error sending resume data", error);
     }
@@ -155,7 +154,7 @@ const ResumeForm = () => {
               {showEducationForm && (
                 <EducationForm
                   onChange={handleEducationDataChange}
-                  education={resumeData?.education}
+                  educations={resumeData?.educations}
                 ></EducationForm>
               )}
 
@@ -172,7 +171,7 @@ const ResumeForm = () => {
               {showEmploymentForm && (
                 <EmploymentForm
                   onChange={handleEmploymentDataChange}
-                  employment={resumeData?.employment}
+                  employments={resumeData?.employments}
                 ></EmploymentForm>
               )}
 
@@ -189,7 +188,7 @@ const ResumeForm = () => {
               {showSkillForm && (
                 <SkillForm
                   onChange={handleSkillDataChange}
-                  skill={resumeData?.skill}
+                  skills={resumeData?.skills}
                 ></SkillForm>
               )}
 
@@ -206,7 +205,7 @@ const ResumeForm = () => {
               {showLanguageForm && (
                 <LanguageForm
                   onChange={handleLanguageDataChange}
-                  language={resumeData?.language}
+                  languages={resumeData?.languages}
                 ></LanguageForm>
               )}
 
