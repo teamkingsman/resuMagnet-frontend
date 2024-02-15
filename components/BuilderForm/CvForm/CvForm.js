@@ -1,39 +1,49 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EmploymentForm from "../FormComponents/EmploymentForm/EmploymentForm";
 import EducationForm from "../FormComponents/EducationForm/EducationForm";
 import SkillForm from "../FormComponents/SkillForm/SkillForm";
 import LanguageForm from "../FormComponents/LanguageForm/LanguageForm";
 import BasicInfoForm from "../FormComponents/BasicInfoForm/BasicInfoForm";
-import { AuthContext } from "@/Providers/AuthProvider";
-import { cvFromPost } from "@/lib/BuilderAPI";
+import ExtraActivitiesForm from "../FormComponents/ExtraActivitiesForm/ExtraActivitiesForm";
+import { cvFromGet, cvFromPost } from "@/lib/BuilderAPI";
 import ProjectForm from "../FormComponents/ProjectForm/ProjectForm";
 import { useRouter } from "next/navigation";
 import useAuth from "@/hooks/useAuth";
 
-
 function CvForm() {
-  const router = useRouter()
-
-  // Form data state
+  const router = useRouter();
   const { user } = useAuth();
-  const userEmail = user.email;
-
   const [allFormData, setAllFormData] = useState({
-    basicInfo: null,
+    basicInfo: [],
     education: [],
     employment: [],
     languages: [],
     projects: [],
     skills: [],
-    userEmail: userEmail,
+    extraActivities: [],
   });
+
+  const email = user?.email;
+  const [cvData, setCvData] = useState();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await cvFromGet(email);
+        setCvData(data);
+      } catch (error) {
+        console.error("Error fetching cv data:", error);
+      }
+    };
+    fetchData();
+  }, [email]);
 
   const [showEmploymentForm, setShowEmploymentForm] = useState(false);
   const [showEducationForm, setShowEducationForm] = useState(false);
   const [showSkillForm, setShowSkillForm] = useState(false);
   const [showLanguageForm, setShowLanguageForm] = useState(false);
   const [showProjectForm, setShowProjectForm] = useState(false);
+  const [showExtraActivitiesForm, setShowExtraActivitiesForm] = useState(false);
 
   const handleEmploymentFormToggle = () => {
     setShowEmploymentForm(!showEmploymentForm);
@@ -53,6 +63,10 @@ function CvForm() {
 
   const handleProjectFormToggle = () => {
     setShowProjectForm(!showProjectForm);
+  };
+
+  const handleExtraActivitiesFormToggle = () => {
+    setShowExtraActivitiesForm(!showExtraActivitiesForm);
   };
 
   const handleBasicInfoDataChange = (basicInfoFormData) => {
@@ -97,22 +111,40 @@ function CvForm() {
     }));
   };
 
+  const handleExtraActivitiesDataChange = (extraActivitiesFormData) => {
+    setAllFormData((prevData) => ({
+      ...prevData,
+      extraActivities: extraActivitiesFormData,
+    }));
+  };
+
   const handlePreview = async () => {
-    console.log(allFormData);
     try {
-      const response = await cvFromPost(allFormData);
+      const mergedData = {
+        basicInfo: { ...cvData.basicInfo, ...allFormData.basicInfo },
+        education: { ...cvData.education, ...allFormData.education },
+        employment: { ...cvData.employment, ...allFormData.employment },
+        skill: { ...cvData.skill, ...allFormData.skill },
+        language: { ...cvData.language, ...allFormData.language },
+        projects: { ...cvData.projects, ...allFormData.projects },
+        extraActivities: {
+          ...cvData.extraActivities,
+          ...allFormData.extraActivities,
+        },
+        userEmail: user?.email,
+      };
+      console.log(mergedData);
+      const response = await cvFromPost(mergedData);
       console.log("CV data sent successfully", response);
       router.push("/dashboard/cv/preview")
-
     } catch (error) {
       console.error("Error sending CV data", error);
     }
-
   };
 
   return (
-    <div>
-      <div className="hero min-h-screen bg-main">
+    <div className="hero min-h-screen my-16 ">
+      <div className="bg-main p-8 rounded-xl">
         <div className="hero-content flex-col">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold text-whitecolor">
@@ -120,7 +152,10 @@ function CvForm() {
             </h1>
           </div>
           <div className="card w-full shadow-2xl bg-base-100">
-            <BasicInfoForm onChange={handleBasicInfoDataChange} />
+            <BasicInfoForm
+              onChange={handleBasicInfoDataChange}
+              basicInfo={cvData?.basicInfo}
+            />
             <div className="card-body">
               <div className="form-control mt-4">
                 <button
@@ -135,6 +170,7 @@ function CvForm() {
               {showEducationForm && (
                 <EducationForm
                   onChange={handleEducationDataChange}
+                  education={cvData?.education}
                 ></EducationForm>
               )}
 
@@ -151,6 +187,7 @@ function CvForm() {
               {showEmploymentForm && (
                 <EmploymentForm
                   onChange={handleEmploymentDataChange}
+                  employment={cvData?.employment}
                 ></EmploymentForm>
               )}
 
@@ -165,7 +202,10 @@ function CvForm() {
               </div>
 
               {showSkillForm && (
-                <SkillForm onChange={handleSkillDataChange}></SkillForm>
+                <SkillForm
+                  onChange={handleSkillDataChange}
+                  skill={cvData?.skill}
+                ></SkillForm>
               )}
 
               <div className="form-control mt-4">
@@ -181,6 +221,7 @@ function CvForm() {
               {showLanguageForm && (
                 <LanguageForm
                   onChange={handleLanguageDataChange}
+                  language={cvData?.language}
                 ></LanguageForm>
               )}
 
@@ -195,7 +236,27 @@ function CvForm() {
               </div>
 
               {showProjectForm && (
-                <ProjectForm onChange={handleProjectDataChange}></ProjectForm>
+                <ProjectForm
+                  onChange={handleProjectDataChange}
+                  projects={cvData?.projects}
+                ></ProjectForm>
+              )}
+
+              <div className="form-control mt-4">
+                <button
+                  type="button"
+                  className="text-left text-main font-semibold hover:font-bold hover:bg hover:border"
+                  onClick={handleExtraActivitiesFormToggle}
+                >
+                  Add Extra Activities +
+                </button>
+              </div>
+
+              {showExtraActivitiesForm && (
+                <ExtraActivitiesForm
+                  onChange={handleExtraActivitiesDataChange}
+                  extraActivities={cvData?.extraActivities}
+                />
               )}
 
               <div className="form-control mt-4">

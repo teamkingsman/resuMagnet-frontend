@@ -1,68 +1,63 @@
-"use client"
+"use client";
 import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
-function EducationForm({ onChange }) {
-  const [educationHistory, setEducationHistory] = useState([
-    {
-      id: 1,
-      degree: "",
-      institute: "",
-      startDate: null,
-      endDate: null,
-      ongoing: false,
-      jobDescription: "",
-    },
-  ]);
+function EducationForm({ onChange, education: initialEducationData }) {
+  const [educationHistory, setEducationHistory] = useState(
+    initialEducationData
+      ? Object.values(initialEducationData)
+      : [
+          {
+            id: 1,
+            degree: "",
+            institute: "",
+            startDate: "",
+            endDate: "",
+            ongoing: false,
+            educationDescription: "",
+          },
+        ]
+  );
 
-  const handleDateChange = (date, field, id) => {
-    setEducationHistory((prevHistory) =>
-      prevHistory.map((entry) =>
-        entry.id === id ? { ...entry, [field]: date } : entry
-      )
-    );
-    onChange([...educationHistory]);
+  const handleDateChange = (e, field, id) => {
+    setEducationHistory((prevHistory) => {
+      const updatedHistory = prevHistory.map((entry) =>
+        entry.id === id
+          ? {
+              ...entry,
+              [field]: e.target.value || "",
+            }
+          : entry
+      );
+      onChange([...updatedHistory]);
+      return updatedHistory;
+    });
   };
+
   const handleCheckboxChange = (e, id) => {
     const { checked } = e.target;
-    setEducationHistory((prevHistory) =>
-      prevHistory.map((entry) =>
+    setEducationHistory((prevHistory) => {
+      const updatedHistory = prevHistory.map((entry) =>
         entry.id === id
           ? {
               ...entry,
               ongoing: checked,
-              endDate: checked ? null : entry.endDate,
+              endDate: checked ? " " : entry.endDate,
             }
           : entry
-      )
-    );
-    onChange(educationHistory);
+      );
+      onChange([...updatedHistory]);
+      return updatedHistory;
+    });
   };
 
   const handleInputChange = (e, field, id) => {
-    setEducationHistory((prevHistory) =>
-      prevHistory.map((entry) =>
+    setEducationHistory((prevHistory) => {
+      const updatedHistory = prevHistory.map((entry) =>
         entry.id === id ? { ...entry, [field]: e.target.value } : entry
-      )
-    );
-    onChange(educationHistory);
-  };
-
-  const addMoreHistory = () => {
-    setEducationHistory((prevHistory) => [
-      ...prevHistory,
-      {
-        id: prevHistory.length + 1,
-        degree: "",
-        institute: "",
-        startDate: null,
-        endDate: null,
-        ongoing: false,
-        jobDescription: "",
-      },
-    ]);
-    onChange(educationHistory);
+      );
+      onChange([...updatedHistory]);
+      return updatedHistory;
+    });
   };
 
   return (
@@ -73,7 +68,7 @@ function EducationForm({ onChange }) {
             Education History {entry.id}
           </h1>
           <div className="md:flex justify-between gap-4">
-            <div className="form-control">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Degree
@@ -89,7 +84,7 @@ function EducationForm({ onChange }) {
                 required
               />
             </div>
-            <div className="form-control">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Institute
@@ -107,44 +102,42 @@ function EducationForm({ onChange }) {
             </div>
           </div>
           <div className="md:flex justify-between gap-4">
-            <div className="form-control">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Start Date
                 </span>
               </label>
-              <DatePicker
-                selected={entry.startDate}
-                onChange={(date) =>
-                  handleDateChange(date, "startDate", entry.id)
-                }
-                placeholderText="Select Start Date"
+              <input
+                type="date"
+                placeholder="Select Start Date"
                 className="input bg-base-300"
-                dateFormat="dd-MM-yyyy"
-                showTimeInput={false}
+                name={`startDate-${entry.id}`}
+                value={entry.startDate}
+                onChange={(e) => handleDateChange(e, "startDate", entry.id)}
               />
             </div>
 
-            <div className="form-control">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   End Date
                 </span>
               </label>
-              <DatePicker
-                selected={entry.endDate}
-                onChange={(date) => handleDateChange(date, "endDate", entry.id)}
-                placeholderText="Select End Date"
+              <input
+                type="date"
+                placeholder="Select End Date"
                 className="input bg-base-300"
-                dateFormat="dd-MM-yyyy"
-                showTimeInput={false}
+                name={`endDate-${entry.id}`}
+                value={entry.endDate}
+                onChange={(e) => handleDateChange(e, "endDate", entry.id)}
                 disabled={entry.ongoing}
               />
             </div>
           </div>
 
           <div className="flex flex-col justify-between">
-            <div className="form-control">
+            <div className="form-control flex-1">
               <div className="flex items-center">
                 <label className="label">
                   <span className="flex gap-2 label-text font-semibold text-main">
@@ -158,19 +151,19 @@ function EducationForm({ onChange }) {
                 />
               </div>
             </div>
-            <div className="form-control">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex gap-2 label-text font-semibold text-main">
                   Description
                 </span>
               </label>
               <textarea
-                placeholder="Enter Job Description"
-                className="textarea textarea-lg textarea-bordered bg-base-300"
-                name={`jobDescription-${entry.id}`}
-                value={entry.jobDescription}
+                placeholder="Enter Education Description"
+                className="textarea bg-base-300"
+                name={`educationDescription-${entry.id}`}
+                value={entry.educationDescription}
                 onChange={(e) =>
-                  handleInputChange(e, "jobDescription", entry.id)
+                  handleInputChange(e, "educationDescription", entry.id)
                 }
               />
             </div>
@@ -181,7 +174,20 @@ function EducationForm({ onChange }) {
       <div className="form-control mt-4">
         <button
           type="button"
-          onClick={addMoreHistory}
+          onClick={() =>
+            setEducationHistory((prevHistory) => [
+              ...prevHistory,
+              {
+                id: prevHistory.length + 1,
+                degree: "",
+                institute: "",
+                startDate: " ",
+                endDate: " ",
+                ongoing: false,
+                educationDescription: "",
+              },
+            ])
+          }
           className="flex items-center justify-center gap-2 text-main font-semibold hover:font-bold hover:bg hover:border"
         >
           Add More History +

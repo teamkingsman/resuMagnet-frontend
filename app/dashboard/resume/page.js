@@ -6,8 +6,8 @@ function resumeBuilder () {
   return (
     <div>
       
-      <AllResumeTemplate></AllResumeTemplate>
-      {/* <ResumeForm></ResumeForm> */}
+      {/* <AllResumeTemplate></AllResumeTemplate> */}
+      <ResumeForm></ResumeForm>
     </div>
   )
 }
