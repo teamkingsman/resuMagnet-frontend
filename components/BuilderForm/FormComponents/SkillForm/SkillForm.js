@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 
 function SkillForm({ onChange, skill:initialSkills }) {
-
+console.log(initialSkills)
   const [skills, setSkills] = useState(
     initialSkills
       ? Object.values(initialSkills)

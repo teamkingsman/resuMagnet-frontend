@@ -6,11 +6,11 @@ import SkillForm from "../FormComponents/SkillForm/SkillForm";
 import LanguageForm from "../FormComponents/LanguageForm/LanguageForm";
 import BasicInfoForm from "../FormComponents/BasicInfoForm/BasicInfoForm";
 import ProjectForm from "../FormComponents/ProjectForm/ProjectForm";
-import { resumeFromGet, resumeFromPost } from "@/lib/BuilderAPI";
+import {  resumeFromGetById, resumeFromPost } from "@/lib/BuilderAPI";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 
-const ResumeForm = () => {
+const ResumeForm = ({params}) => {
   const router = useRouter();
   const { user } = useAuth();
   const [allFormData, setAllFormData] = useState({
@@ -27,14 +27,14 @@ const ResumeForm = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await resumeFromGet(email);
+        const data = await resumeFromGetById(params);
         setResumeData(data);
       } catch (error) {
         console.error("Error fetching resume data:", error);
       }
     };
     fetchData();
-  }, [email]);
+  }, [params]);
   console.log(resumeData);
 
 
@@ -110,11 +110,11 @@ const ResumeForm = () => {
     try {
       const mergedData = {
         basicInfo: { ...resumeData.basicInfo, ...allFormData.basicInfo },
-        education: { ...resumeData.education, ...allFormData.education },
-        employment: { ...resumeData.employment, ...allFormData.employment },
-        skill: { ...resumeData.skill, ...allFormData.skill},
-        language: { ...resumeData.language, ...allFormData.language },
-        projects: { ...resumeData.projects, ...allFormData.projects },
+        education: [...resumeData.education, ...allFormData.education],
+        employment: [...resumeData.employment, ...allFormData.employment],
+        skills: [...resumeData.skills, ...allFormData.skills],
+        languages: [...resumeData.languages, ...allFormData.languages],
+        projects: [...resumeData.projects, ...allFormData.projects],
         userEmail:user?.email,
       };
       console.log(mergedData);
@@ -189,7 +189,7 @@ const ResumeForm = () => {
               {showSkillForm && (
                 <SkillForm
                   onChange={handleSkillDataChange}
-                  skill={resumeData?.skill}
+                  skill={resumeData?.skills }
                 ></SkillForm>
               )}
 
@@ -206,7 +206,7 @@ const ResumeForm = () => {
               {showLanguageForm && (
                 <LanguageForm
                   onChange={handleLanguageDataChange}
-                  language={resumeData?.language}
+                  language={resumeData?.languages}
                 ></LanguageForm>
               )}
 
