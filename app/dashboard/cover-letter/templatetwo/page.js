@@ -2,7 +2,7 @@
 import useAuth from "@/hooks/useAuth";
 
 import { useEffect, useState } from "react";
-import { coverLetterFromGet} from "@/lib/BuilderAPI";
+import { coverLetterFromGetByEmail} from "@/lib/BuilderAPI";
 import Letter from "./Letter";
 
 
@@ -14,10 +14,10 @@ const TemplateTwo = () => {
 
      
     useEffect(()=>{
-        coverLetterFromGet(user.email)
+        coverLetterFromGetByEmail(user.email)
         .then (res => setCover(res))
     }, [user])
-    coverLetterFromGet(cover)
+    coverLetterFromGetByEmail(cover)
 
     return (
         <div className="bg-[#808080]">

@@ -2,7 +2,7 @@
 import useAuth from "@/hooks/useAuth";
 
 import { useEffect, useState } from "react";
-import {resumeFromGet} from "@/lib/BuilderAPI";
+import {resumeFromGetByEmail} from "@/lib/BuilderAPI";
 
 import Resumes from "./Resumes";
 
@@ -14,10 +14,10 @@ const TemplateResume = () => {
 
      
     useEffect(()=>{
-        resumeFromGet(user.email)
+        resumeFromGetByEmail(user.email)
         .then (res => setResume(res))
     }, [user])
-    resumeFromGet(resume)
+    resumeFromGetByEmail(resume)
     return (
         <div>
             <Resumes resume={resume}></Resumes>

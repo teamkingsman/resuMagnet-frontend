@@ -1,39 +1,48 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EmploymentForm from "../FormComponents/EmploymentForm/EmploymentForm";
 import EducationForm from "../FormComponents/EducationForm/EducationForm";
 import SkillForm from "../FormComponents/SkillForm/SkillForm";
 import LanguageForm from "../FormComponents/LanguageForm/LanguageForm";
 import BasicInfoForm from "../FormComponents/BasicInfoForm/BasicInfoForm";
-import { AuthContext } from "@/Providers/AuthProvider";
-import { cvFromPost } from "@/lib/BuilderAPI";
+import ExtraActivitiesForm from "../FormComponents/ExtraActivitiesForm/ExtraActivitiesForm";
+import { cvFromGetbyEmail, cvFromGetById, cvFromPost } from "@/lib/BuilderAPI";
 import ProjectForm from "../FormComponents/ProjectForm/ProjectForm";
 import { useRouter } from "next/navigation";
 import useAuth from "@/hooks/useAuth";
 
-
-function CvForm() {
-  const router = useRouter()
-
-  // Form data state
+function CvForm({params}) {
+  const router = useRouter();
   const { user } = useAuth();
-  const userEmail = user.email;
-
   const [allFormData, setAllFormData] = useState({
-    basicInfo: null,
-    education: [],
-    employment: [],
-    languages: [],
-    projects: [],
-    skills: [],
-    userEmail: userEmail,
+    basicInfo: {},
+    education: [{}],
+    employment: [{}],
+    languages: [{}],
+    projects: [{}],
+    skills: [{}],
+    extraActivities: [{}],
   });
+console.log(allFormData)
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await cvFromGetById(params);
+        setAllFormData(data);
+      } catch (error) {
+        console.error("Error fetching cv data:", error);
+      }
+    };
+    fetchData();
+  }, [params]);
+
 
   const [showEmploymentForm, setShowEmploymentForm] = useState(false);
   const [showEducationForm, setShowEducationForm] = useState(false);
   const [showSkillForm, setShowSkillForm] = useState(false);
   const [showLanguageForm, setShowLanguageForm] = useState(false);
   const [showProjectForm, setShowProjectForm] = useState(false);
+  const [showExtraActivitiesForm, setShowExtraActivitiesForm] = useState(false);
 
   const handleEmploymentFormToggle = () => {
     setShowEmploymentForm(!showEmploymentForm);
@@ -55,6 +64,10 @@ function CvForm() {
     setShowProjectForm(!showProjectForm);
   };
 
+  const handleExtraActivitiesFormToggle = () => {
+    setShowExtraActivitiesForm(!showExtraActivitiesForm);
+  };
+
   const handleBasicInfoDataChange = (basicInfoFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
@@ -65,14 +78,14 @@ function CvForm() {
   const handleEducationDataChange = (educationFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      education: educationFormData,
+      educations: educationFormData,
     }));
   };
 
   const handleEmploymentDataChange = (employmentFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      employment: employmentFormData,
+      employments: employmentFormData,
     }));
   };
 
@@ -97,22 +110,39 @@ function CvForm() {
     }));
   };
 
-  const handlePreview = async () => {
-    console.log(allFormData);
-    try {
-      const response = await cvFromPost(allFormData);
-      console.log("CV data sent successfully", response);
-      router.push("/dashboard/cover-letter/preview")
+  const handleExtraActivitiesDataChange = (extraActivitiesFormData) => {
+    setAllFormData((prevData) => ({
+      ...prevData,
+      extraActivities: extraActivitiesFormData,
+    }));
+  };
 
+  const handlePreview = async () => {
+    try {
+      const data ={
+        userEmail: user?.email,
+        basicInfo: allFormData.basicInfo,
+        education: allFormData.education,
+        employment: allFormData.employment,
+        languages: allFormData.languages,
+        projects: allFormData.projects,
+        skills: allFormData.skills,
+        extraActivities: allFormData.extraActivities,
+
+      }
+      console.log(data);
+      const response = await cvFromPost(data);
+      console.log("CV data sent successfully", response);
+
+      // router.push("/dashboard/cv/preview")
     } catch (error) {
       console.error("Error sending CV data", error);
     }
-
   };
 
   return (
-    <div>
-      <div className="hero min-h-screen bg-main">
+    <div className="hero min-h-screen my-16 ">
+      <div className="bg-main p-8 rounded-xl">
         <div className="hero-content flex-col">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold text-whitecolor">
@@ -120,7 +150,10 @@ function CvForm() {
             </h1>
           </div>
           <div className="card w-full shadow-2xl bg-base-100">
-            <BasicInfoForm onChange={handleBasicInfoDataChange} />
+            <BasicInfoForm
+              onChange={handleBasicInfoDataChange}
+              basicInfo={allFormData?.basicInfo}
+            />
             <div className="card-body">
               <div className="form-control mt-4">
                 <button
@@ -135,6 +168,8 @@ function CvForm() {
               {showEducationForm && (
                 <EducationForm
                   onChange={handleEducationDataChange}
+                  education={allFormData?.education}
+
                 ></EducationForm>
               )}
 
@@ -151,6 +186,8 @@ function CvForm() {
               {showEmploymentForm && (
                 <EmploymentForm
                   onChange={handleEmploymentDataChange}
+                  employment={allFormData?.employment}
+
                 ></EmploymentForm>
               )}
 
@@ -165,7 +202,11 @@ function CvForm() {
               </div>
 
               {showSkillForm && (
-                <SkillForm onChange={handleSkillDataChange}></SkillForm>
+                <SkillForm
+                  onChange={handleSkillDataChange}
+                  skill={allFormData?.skills}
+
+                ></SkillForm>
               )}
 
               <div className="form-control mt-4">
@@ -181,6 +222,7 @@ function CvForm() {
               {showLanguageForm && (
                 <LanguageForm
                   onChange={handleLanguageDataChange}
+                  language={allFormData?.languages}
                 ></LanguageForm>
               )}
 
@@ -195,7 +237,27 @@ function CvForm() {
               </div>
 
               {showProjectForm && (
-                <ProjectForm onChange={handleProjectDataChange}></ProjectForm>
+                <ProjectForm
+                  onChange={handleProjectDataChange}
+                  projects={allFormData?.projects}
+                ></ProjectForm>
+              )}
+
+              <div className="form-control mt-4">
+                <button
+                  type="button"
+                  className="text-left text-main font-semibold hover:font-bold hover:bg hover:border"
+                  onClick={handleExtraActivitiesFormToggle}
+                >
+                  Add Extra Activities +
+                </button>
+              </div>
+
+              {showExtraActivitiesForm && (
+                <ExtraActivitiesForm
+                  onChange={handleExtraActivitiesDataChange}
+                  extraActivities={allFormData?.extraActivities}
+                />
               )}
 
               <div className="form-control mt-4">
