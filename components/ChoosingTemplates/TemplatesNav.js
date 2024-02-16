@@ -3,7 +3,7 @@ import { IoCaretBack } from "react-icons/io5";
 
 import Link from "next/link";
 import useAuth from "@/hooks/useAuth";
-import { cvFromGet, resumeFromGet } from "@/lib/BuilderAPI";
+import { cvFromGetbyEmail, resumeFromGetByEmail } from "@/lib/BuilderAPI";
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -19,11 +19,11 @@ const TemplatesNav = () => {
     
     useEffect(() => {
         if (pathname == '/dashboard/resume/preview') {
-            resumeFromGet(user.email).then((res) => setObjectId(res._id))
+            resumeFromGetByEmail(user.email).then((res) => setObjectId(res._id))
                 .catch((err) => console.log(err))
         }
         if (pathname == '/dashboard/cv/preview') {
-            cvFromGet(user.email).then((res) => setObjectId(res._id))
+            cvFromGetbyEmail(user.email).then((res) => setObjectId(res._id))
                 .catch((err) => console.log(err))
         }
 

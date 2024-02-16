@@ -8,7 +8,7 @@ import Resumes from "@/app/dashboard/resume/templatetwo/Resumes";
 import ClassicResume from "@/components/Resume/ClassicResume";
 import PremiumResume from "@/components/Resume/PremiumResumeTwo";
 import useAuth from "@/hooks/useAuth";
-import { resumeFromGet, resumeFromGetById } from "@/lib/BuilderAPI";
+import { resumeFromGetByEmail, resumeFromGetById } from "@/lib/BuilderAPI";
 import { useEffect, useState } from "react";
 // import { useEffect } from "react";
 
