@@ -19,6 +19,7 @@ const LinkData = [
     title: "New CV",
     href: "/dashboard/cv",
   },
+
 ];
 const PreviewData = [
   {
