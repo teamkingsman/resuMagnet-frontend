@@ -1,7 +1,7 @@
 'use client'
 
 import useAuth from "@/hooks/useAuth";
-import { resumeFromGet, resumeTemplateUpdate } from "@/lib/BuilderAPI";
+import { resumeFromGetByEmail, resumeTemplateUpdate } from "@/lib/BuilderAPI";
 import { useEffect, useState } from "react";
 import ResumeDiamond from "../diamondResume/ResumeDiamond";
 import ClassicResume from "@/components/Resume/ClassicResume";
@@ -39,7 +39,7 @@ useEffect(() => {
 }, [data._id, selectedTemplate]);
 
 useEffect(() => {
-  resumeFromGet(user.email)
+  resumeFromGetByEmail(user.email)
     .then((res) => {
       setData(res);
       if (res?.template) {

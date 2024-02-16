@@ -2,7 +2,7 @@
 import useAuth from "@/hooks/useAuth";
 
 import { useEffect, useState } from "react";
-import {cvFromGet} from "@/lib/BuilderAPI";
+import {cvFromGetbyEmail} from "@/lib/BuilderAPI";
 import CVpaper from "./CVpaper";
 
 
@@ -13,10 +13,10 @@ const TemplateCv = () => {
 
      
     useEffect(()=>{
-        cvFromGet(user.email)
+        cvFromGetbyEmail(user.email)
         .then (res => setCv(res))
     }, [user])
-    cvFromGet(cv)
+    cvFromGetbyEmail(cv)
 
     return (
         <div>

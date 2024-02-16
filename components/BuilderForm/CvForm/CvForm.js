@@ -6,7 +6,7 @@ import SkillForm from "../FormComponents/SkillForm/SkillForm";
 import LanguageForm from "../FormComponents/LanguageForm/LanguageForm";
 import BasicInfoForm from "../FormComponents/BasicInfoForm/BasicInfoForm";
 import ExtraActivitiesForm from "../FormComponents/ExtraActivitiesForm/ExtraActivitiesForm";
-import { cvFromGet, cvFromGetById, cvFromPost } from "@/lib/BuilderAPI";
+import { cvFromGetbyEmail, cvFromGetById, cvFromPost } from "@/lib/BuilderAPI";
 import ProjectForm from "../FormComponents/ProjectForm/ProjectForm";
 import { useRouter } from "next/navigation";
 import useAuth from "@/hooks/useAuth";
@@ -23,7 +23,7 @@ function CvForm({params}) {
     skills: [{}],
     extraActivities: [{}],
   });
-
+console.log(allFormData)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -130,10 +130,11 @@ function CvForm({params}) {
         extraActivities: allFormData.extraActivities,
 
       }
-      console.log();
-      const response = await cvFromPost();
+      console.log(data);
+      const response = await cvFromPost(data);
       console.log("CV data sent successfully", response);
-      router.push("/dashboard/cv/preview")
+
+      // router.push("/dashboard/cv/preview")
     } catch (error) {
       console.error("Error sending CV data", error);
     }
