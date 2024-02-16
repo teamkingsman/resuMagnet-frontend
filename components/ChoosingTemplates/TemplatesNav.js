@@ -32,7 +32,7 @@ const TemplatesNav = () => {
 
     console.log(objectId);
 const handelmodal =()=>{
-    document.getElementById('my_modal_1').showModal()
+    document.getElementById('qr-modal').showModal()
 }
     return (
         <>
@@ -72,7 +72,7 @@ const handelmodal =()=>{
                                             }
 
                                             <li className="btn btn-sm md:btn-md lg:btn-lg w-3/4 mx-auto bg-sub_color py-4 mt-4 "><span className="text-highlight_color"></span>Download PDF</li>
-                                            <li onClick={handelmodal} className="btn btn-sm md:btn-md lg:btn-lg w-3/4 mx-auto bg-sub_color py-4 mt-4 "><span className="text-highlight_color"></span>Download PDF</li>
+                                            <li onClick={handelmodal} className="btn btn-sm md:btn-md lg:btn-lg w-3/4 mx-auto bg-sub_color py-4 mt-4 "><span className="text-highlight_color"></span>Share QR</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -82,7 +82,7 @@ const handelmodal =()=>{
                     </ul>
                 </div>
             </div>
-            <QrModal />
+            <QrModal link={objectId} />
         </>
     );
 };
