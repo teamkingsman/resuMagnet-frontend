@@ -58,15 +58,15 @@ const CheckoutForm = ({ price, closeModal, }) => {
       console.log('payment method', paymentMethod)
     }
 
-    setProcessing(true)
+    // setProcessing(true)
 
     const { paymentIntent, error: confirmError } =
       await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: card,
           billing_details: {
-            email: user?.email,
-            name: user?.displayName,
+            email: user?.email || "anonymous",
+            name: user?.displayName || "anonymous",
           },
         },
       })
@@ -78,11 +78,12 @@ const CheckoutForm = ({ price, closeModal, }) => {
 
     console.log('payment intent', paymentIntent)
 
-    if (paymentIntent.status === 'succeeded') {
+    if (paymentIntent?.status === 'succeeded') {
       // save payment information to the server
       
       const paymentInfo = {
-        ...bookingInfo,
+        email: user.email,
+        price,
         transactionId: paymentIntent.id,
         date: new Date(),
       }
@@ -90,7 +91,7 @@ const CheckoutForm = ({ price, closeModal, }) => {
         // save payment info to the server
         await saveInfo(paymentInfo)
 
-        // const text = `Payment Successful! ${paymentIntent.id} `
+        const text = `Payment Successful! ${paymentIntent.id} `
         
         // navigate('/')
         toast.success(text);
@@ -103,7 +104,7 @@ const CheckoutForm = ({ price, closeModal, }) => {
         setProcessing(false)
       }
 
-      // setProcessing(false)
+      setProcessing(false)
     }
   }
 
