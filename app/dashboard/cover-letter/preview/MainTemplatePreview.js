@@ -36,6 +36,7 @@ function MainTemplatePreview() {
     }
   },[user?.email])
     // Use selectedTemplate to dynamically render the chosen template
+    if(!user?.email||!data) return <div>Loading...</div>
     return (
       <>
         {/* Render the selected template components or content here */}

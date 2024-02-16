@@ -1,12 +1,9 @@
-import CvForm from "@/components/BuilderForm/CvForm/CvForm"
-import AllCvTemplate from "../test/AllCvTemplate"
-
-
-function CV () {
+import CvForm from "@/components/BuilderForm/CvForm/CvForm";
+function CV() {
   return (
-    <AllCvTemplate></AllCvTemplate>
-    // <CvForm></CvForm>
-  )
+    <>
+      <CvForm></CvForm>
+    </>
+  );
 }
-
-export default CV
+export default CV;

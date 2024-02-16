@@ -8,7 +8,7 @@ const CoverLetterTemplatePage = ({params}) => {
     // const router = useRouter();
     return (
         <div>
-            <CoverLetterForm params={params}></CoverLetterForm>
+            <CoverLetterForm params={params.id}></CoverLetterForm>
         </div>
     );
 };
