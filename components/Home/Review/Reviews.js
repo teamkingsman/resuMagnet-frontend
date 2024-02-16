@@ -1,11 +1,19 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Review from './Review';
-import reviewsData from '/assets/review.json';
+// import reviewsData from '/assets/review.json';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { ReviewsGet } from '@/lib/BuilderAPI';
 
 const Reviews = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const [reviewsData , setreviewsData] = useState([])
+  useEffect(() => {
+    ReviewsGet()
+    .then((res) => setreviewsData(res))
+    .catch((err) => console.log(err))
+  },[])
 
   const handlePrevClick = () => {
     setCurrentIndex(prevIndex => Math.max(prevIndex - 1, 0));
@@ -26,16 +34,16 @@ const Reviews = () => {
     <div className='bg-[#F8F9F9] my-20 pt-10'>
       <div className='flex md:justify-between items-center'>
         <div className='my-8 pl-10 md:pl-20'>
-          <p className='text-6xl text-main'>Loved &</p>
-          <p className='text-6xl font-bold text-main '> Trusted </p>
-          <p><span className='text-6xl text-neutral-600'>by...</span></p>
+          <p className='text-3xl md:text-4xl lg:text-6xl text-main'>Loved &</p>
+          <p className='text-3xl md:text-4xl lg:text-6xl  font-bold text-main '> Trusted </p>
+          <p><span className='text-3xl md:text-4xl lg:text-6xl text-neutral-600'>by...</span></p>
         </div>
 
         <div className='lg:flex md:pr-20'>
-          <div className='text-4xl mb-4 pl-20' onClick={handlePrevClick} style={{ cursor: 'pointer' }}>
+          <div className=' text-xl  md:text-2xl lg:text-4xl mb-4 pl-10 md:pl-20' onClick={handlePrevClick} style={{ cursor: 'pointer' }}>
             <FaArrowLeft />
           </div>
-          <div className='text-4xl mb-4 pl-20' onClick={handleNextClick} style={{ cursor: 'pointer' }}>
+          <div className=' text-xl  md:text-2xl lg:text-4xl mb-4 pl-10 md:pl-20' onClick={handleNextClick} style={{ cursor: 'pointer' }}>
             <FaArrowRight />
           </div>
         </div>
@@ -48,6 +56,11 @@ const Reviews = () => {
               <Review key={item.id} item={item} />
             ))}
           </div>
+          {/* <div className="w-4/12 md:w-1/2 lg:w-5/12  lg:pl-20 flex flex-row mb-20 lg:items-center">
+            {reviewsData.map((item, index) => (
+              <Review key={item.id} item={item} />
+            ))}
+          </div> */}
         </div>
       </div>
     </div>
