@@ -1,7 +1,7 @@
 'use client'
 
 import useAuth from "@/hooks/useAuth";
-import { coverLetterFromGet, coverLetterFromPost } from "@/lib/BuilderAPI";
+import { coverLetterFromGetByEmail, coverLetterFromPost } from "@/lib/BuilderAPI";
 import { useEffect, useState } from "react";
 import CoverDiamond from "../diamondCover/CoverDiamond";
 import ClassicCoverLetter from "@/components/CoverLetter/ClassicCoverLetter";
@@ -26,15 +26,17 @@ function MainTemplatePreview() {
     }
   },[search])
   useEffect(() => {
-    if(user.email){
-      coverLetterFromGet(user.email).then((res) => {
+    if(user?.email){
+      coverLetterFromGetByEmail(user.email).then((res) => {
         if(res){
+          console.log(res)
           setData(res)
         }
       })
     }
-  },[user.email])
+  },[user?.email])
     // Use selectedTemplate to dynamically render the chosen template
+    if(!user?.email||!data) return <div>Loading...</div>
     return (
       <>
         {/* Render the selected template components or content here */}

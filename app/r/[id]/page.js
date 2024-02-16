@@ -8,28 +8,20 @@ import Resumes from "@/app/dashboard/resume/templatetwo/Resumes";
 import ClassicResume from "@/components/Resume/ClassicResume";
 import PremiumResume from "@/components/Resume/PremiumResumeTwo";
 import useAuth from "@/hooks/useAuth";
-import { resumeFromGet, resumeFromGetById } from "@/lib/BuilderAPI";
+import { resumeFromGetByEmail, resumeFromGetById } from "@/lib/BuilderAPI";
 import { useEffect, useState } from "react";
 // import { useEffect } from "react";
 
 const ResumeViewer = ({ params }) => {
-  console.log(params);  
-  const [selectedTemplate, setSelectedTemplate] = useState("");
-  const [data, setData] = useState({})
+  // const [selectedTemplate, setSelectedTemplate] = useState("template1");
 
-  useEffect(() => {
-    resumeFromGetById(params.id)
-            .then((res) => {
-              setData(res)
-              setSelectedTemplate(res?.template || "template1")
-            })
-            .catch((err) => console.log(err));
-}, [params.id]);
-console.log(data);
+  // useEffect(()=>{
+
+  // },[])
   return (
     <div>
       {/* Render the selected template components or content here */}
-      {selectedTemplate === 'template1' && <ResumeDiamond resume={data}/>}
+        {selectedTemplate === 'template1' && <ResumeDiamond resume={data}/>}
         {selectedTemplate === 'template2' && <JoyResume resume={data}/>}
         {selectedTemplate === 'template3' && <ClassicResume resume={data}/>}
         {selectedTemplate === 'template4' && <PremiumResume resume={data} />}

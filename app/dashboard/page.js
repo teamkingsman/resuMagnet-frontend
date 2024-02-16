@@ -2,10 +2,10 @@
 // import img from "@/assets/dashboard-img.jpg";
 import LinkBtn from "@/components/Dashboard/Dashboard/LinkBtn";
 import PreviewBtn from "@/components/Dashboard/Dashboard/PreviewBtn";
-export const metadata = {
-  title: "Dashboard",
-  description: "This is a Dashboard page",
-};
+// export const metadata = {
+//   title: "Dashboard",
+//   description: "This is a Dashboard page",
+// };
 const LinkData = [
   {
     title: "New Resume",
@@ -19,6 +19,7 @@ const LinkData = [
     title: "New CV",
     href: "/dashboard/cv",
   },
+
 ];
 const PreviewData = [
   {

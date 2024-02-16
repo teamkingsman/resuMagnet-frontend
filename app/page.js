@@ -1,3 +1,5 @@
+import { ToastContainer,  } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import FeatureSection from "@/components/Home/Feature/FeatureSection";
 import Banner from '@/components/Home/Banner/Banner'
 import Template from '@/components/Home/Template/Template'
@@ -18,6 +20,7 @@ export default function Home() {
       <FeatureSection />
       <Payment></Payment>
       <Reviews/>
+      <ToastContainer />
     </>
     )
 }

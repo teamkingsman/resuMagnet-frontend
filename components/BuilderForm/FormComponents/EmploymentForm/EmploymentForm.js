@@ -1,28 +1,24 @@
-"use client"
+"use client";
 import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-
-function EmploymentForm({ onChange }) {
-  const [employmentHistory, setEmploymentHistory] = useState([
-    {
-      id: 1,
-      jobTitle: "",
-      employer: "",
-      startDate: null,
-      endDate: null,
-      jobDescription: "",
-    },
-  ]);
-
-  const handleDateChange = (date, field, id) => {
-    setEmploymentHistory((prevHistory) =>
-      prevHistory.map((entry) =>
-        entry.id === id ? { ...entry, [field]: date } : entry
-      )
-    );
-    onChange([...employmentHistory]);
-  };
+function EmploymentForm({ onChange, employments: initialEmploymentData }) {
+  const [employmentHistory, setEmploymentHistory] = useState(() => {
+    return initialEmploymentData
+      ? Object.values(initialEmploymentData).map((entry) => ({
+          ...entry,
+          startDate: entry.startDate || "",
+          endDate: entry.endDate || "",
+        }))
+      : [
+          {
+            id: 1,
+            jobTitle: "",
+            employer: "",
+            startDate: "",
+            endDate: "",
+            jobDescription: "",
+          },
+        ];
+  });
 
   const handleInputChange = (e, field, id) => {
     setEmploymentHistory((prevHistory) =>
@@ -33,30 +29,15 @@ function EmploymentForm({ onChange }) {
     onChange(employmentHistory);
   };
 
-  const addMoreHistory = () => {
-    setEmploymentHistory((prevHistory) => [
-      ...prevHistory,
-      {
-        id: prevHistory.length + 1,
-        jobTitle: "",
-        employer: "",
-        startDate: null,
-        endDate: null,
-        jobDescription: "",
-      },
-    ]);
-    onChange(employmentHistory);
-  };
-
   return (
     <div className="md:flex flex-col justify-center gap-4 mt-4">
-      {employmentHistory.map((entry) => (
+      {employmentHistory?.map((entry) => (
         <div key={entry.id}>
           <h1 className="text-center font-extrabold py-2 text-2xl">
             Employment History {entry.id}
           </h1>
           <div className="md:flex justify-between gap-4">
-            <div className="form-control">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Job Title
@@ -72,7 +53,7 @@ function EmploymentForm({ onChange }) {
                 required
               />
             </div>
-            <div className="form-control">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Employer
@@ -91,48 +72,40 @@ function EmploymentForm({ onChange }) {
           </div>
 
           <div className="md:flex justify-between gap-4">
-            <div className="form-control">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Start Date
                 </span>
               </label>
-              <DatePicker
-                selected={entry.startDate}
-                onChange={(date) =>
-                  handleDateChange(date, "startDate", entry.id)
-                }
-                showTimeSelect={false}
-                required
-                placeholderText="Select Start Date"
+              <input
+                type="date"
+                placeholder="Select Start Date"
                 className="input bg-base-300"
-                dateFormat="dd-MM-yyyy"
-                showTimeInput={false}
+                name={`startDate-${entry.id}`}
+                value={entry.startDate}
+                onChange={(e) => handleInputChange(e, "startDate", entry.id)}
               />
             </div>
-            <div className="form-control">
+
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   End Date
                 </span>
               </label>
-              <DatePicker
-                selected={entry.endDate}
-                onChange={(date) =>
-                  handleDateChange(date, "endDate", entry.id)
-                }
-                showTimeSelect={false}
-                required
-                placeholderText="Select End Date"
+              <input
+                type="date"
+                placeholder="Select End Date"
                 className="input bg-base-300"
-                dateFormat="dd-MM-yyyy"
-                showTimeInput={false}
-
+                name={`endDate-${entry.id}`}
+                value={entry.endDate}
+                onChange={(e) => handleInputChange(e, "endDate", entry.id)}
               />
             </div>
           </div>
 
-          <div className="form-control">
+          <div className="form-control flex-1">
             <label className="label">
               <span className="flex items-center gap-2 label-text font-semibold text-main">
                 Description
@@ -140,12 +113,10 @@ function EmploymentForm({ onChange }) {
             </label>
             <textarea
               placeholder="Enter Job Description"
-              className="textarea textarea-bordered bg-base-300"
+              className="textarea bg-base-300"
               name={`jobDescription-${entry.id}`}
               value={entry.jobDescription}
-              onChange={(e) =>
-                handleInputChange(e, "jobDescription", entry.id)
-              }
+              onChange={(e) => handleInputChange(e, "jobDescription", entry.id)}
             />
           </div>
         </div>
@@ -153,7 +124,19 @@ function EmploymentForm({ onChange }) {
       <div className="form-control mt-4">
         <button
           type="button"
-          onClick={addMoreHistory}
+          onClick={() =>
+            setEmploymentHistory([
+              ...employmentHistory,
+              {
+                id: employmentHistory.length + 1,
+                jobTitle: "",
+                employer: "",
+                startDate: " ",
+                endDate: " ",
+                jobDescription: "",
+              },
+            ])
+          }
           className="flex items-center justify-center gap-2 text-main font-semibold hover:font-bold hover:bg hover:border "
         >
           Add More History +
