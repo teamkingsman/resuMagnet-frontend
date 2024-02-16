@@ -1,5 +1,4 @@
 "use client";
-
 import useAuth from "@/hooks/useAuth";
 import { allCv } from "@/lib/BuilderAPI";
 import Link from "next/link";

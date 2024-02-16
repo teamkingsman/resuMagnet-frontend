@@ -1,27 +1,27 @@
 "use client";
 import React, { useState } from "react";
 
-function SkillForm({ onChange }) {
-  const [skills, setSkills] = useState([
-    {
-      id: 1,
-      skill: "",
-      level: "",
-    },
-  ]);
+function SkillForm({ onChange, skill:initialSkills }) {
+console.log(initialSkills)
+
+  const [skills, setSkills] = useState(
+    initialSkills
+      ? Object.values(initialSkills)
+      : [{
+        id: 1,
+        skill: "",
+        level: "",
+      }]
+  );
 
   const handleSkillChange = (e, id) => {
     const { name, value } = e.target;
     setSkills((prevSkills) =>
-      prevSkills.map((skill) =>
-        skill.id === id ? { ...skill, [name]: value } : skill
+      prevSkills.map((s) =>
+        s.id === id ? { ...s, [name]: value } : s
       )
     );
-    
-    setSkills((updatedSkills) => {
-      onChange(updatedSkills);
-      return updatedSkills;
-    });
+    onChange(skills); 
   };
 
   const addMoreSkill = () => {
@@ -33,15 +33,16 @@ function SkillForm({ onChange }) {
         level: "",
       },
     ]);
+    onChange(skills); 
   };
 
   return (
     <div className="md:flex flex-col justify-center gap-4 mt-4">
-      {skills.map((skill) => (
-        <div key={`skill-${skill.id}`}>
-          <h1 className="text-center font-extrabold py-2 text-2xl">Skill {skill.id}</h1>
+      {skills?.map((s) => (
+        <div key={`skill-${s.id}`}>
+          <h1 className="text-center font-extrabold py-2 text-2xl">Skill {s.id}</h1>
           <div className="md:flex justify-between gap-4">
-            <div className="form-control">
+             <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Skill
@@ -52,20 +53,20 @@ function SkillForm({ onChange }) {
                 placeholder="Enter Skill"
                 className="input bg-base-300"
                 name="skill"
-                value={skill.skill}
-                onChange={(e) => handleSkillChange(e, skill.id)}
+                value={s.skill}
+                onChange={(e) => handleSkillChange(e, s.id)}
                 required
               />
             </div>
-            <div className="form-control">
+             <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Level
                 </span>
               </label>
               <select
-                value={skill.level}
-                onChange={(e) => handleSkillChange(e, skill.id)}
+                value={s.level}
+                onChange={(e) => handleSkillChange(e, s.id)}
                 className="select select-bordered bg-base-300"
                 name="level"
                 required
