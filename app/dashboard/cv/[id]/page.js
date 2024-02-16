@@ -6,7 +6,7 @@ const cvTemplatePage = ({params}) => {
     console.log(params);
     return (
         <div>
-            <CvForm params={params}></CvForm>
+            <CvForm params={params.id}></CvForm>
         </div>
     );
 };

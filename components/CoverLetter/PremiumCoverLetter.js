@@ -18,7 +18,7 @@ const PremiumCoverLetter = ({coverLetter}) => {
                      
                       {/* body */}
                       <div>
-                        <p className='flex justify-center display-linebreak'>{letterBody}</p>
+                        <p className='flex justify-start break-words'>{letterBody}</p>
                      
                       </div>
       

@@ -6,36 +6,36 @@ import SkillForm from "../FormComponents/SkillForm/SkillForm";
 import LanguageForm from "../FormComponents/LanguageForm/LanguageForm";
 import BasicInfoForm from "../FormComponents/BasicInfoForm/BasicInfoForm";
 import ProjectForm from "../FormComponents/ProjectForm/ProjectForm";
-import { resumeFromGet, resumeFromPost } from "@/lib/BuilderAPI";
+import {  resumeFromGetById, resumeFromPost } from "@/lib/BuilderAPI";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 
-const ResumeForm = () => {
+const ResumeForm = ({params}) => {
   const router = useRouter();
   const { user } = useAuth();
   const [allFormData, setAllFormData] = useState({
     basicInfo: [],
-    education: [],
-    employment: [],
+    educations: [],
+    employments: [],
     languages: [],
     projects: [],
     skills: [],
   });
 
-  const email = user?.email;
   const [resumeData, setResumeData] = useState();
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await resumeFromGet(email);
-        setResumeData(data);
+        const data = await resumeFromGetById(params);
+        setAllFormData(data);
       } catch (error) {
         console.error("Error fetching resume data:", error);
       }
     };
     fetchData();
-  }, [email]);
-  console.log(resumeData);
+  }, [params]);
+  console.log(allFormData);
+
 
 
   const [showEmploymentForm, setShowEmploymentForm] = useState(false);
@@ -74,14 +74,14 @@ const ResumeForm = () => {
   const handleEducationDataChange = (educationFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      education: educationFormData,
+      educations: educationFormData,
     }));
   };
 
   const handleEmploymentDataChange = (employmentFormData) => {
     setAllFormData((prevData) => ({
       ...prevData,
-      employment: employmentFormData,
+      employments: employmentFormData,
     }));
   };
 
@@ -108,19 +108,20 @@ const ResumeForm = () => {
 
   const handlePreview = async () => {
     try {
-      const mergedData = {
-        basicInfo: { ...resumeData.basicInfo, ...allFormData.basicInfo },
-        education: { ...resumeData.education, ...allFormData.education },
-        employment: { ...resumeData.employment, ...allFormData.employment },
-        skill: { ...resumeData.skill, ...allFormData.skill},
-        language: { ...resumeData.language, ...allFormData.language },
-        projects: { ...resumeData.projects, ...allFormData.projects },
-        userEmail:user?.email,
+      const data = {
+        userEmail: user?.email,
+        basicInfo: allFormData.basicInfo,
+        education: allFormData.education,
+        employment: allFormData.employment,
+        languages: allFormData.languages,
+        projects: allFormData.projects,
+        skills: allFormData.skills,
       };
-      console.log(mergedData);
-      const response = await resumeFromPost(mergedData);
+      
+      console.log(data);
+      const response = await resumeFromPost(data);
       console.log("Resume data sent successfully", response);
-      // router.push("dashboard/resume/preview");
+      router.push("/dashboard/resume/preview");
     } catch (error) {
       console.error("Error sending resume data", error);
     }
@@ -139,7 +140,7 @@ const ResumeForm = () => {
           <div className="card w-full shadow-2xl bg-base-100">
             <BasicInfoForm
               onChange={handleBasicInfoDataChange}
-              basicInfo={resumeData?.basicInfo}
+              basicInfo={allFormData?.basicInfo}
             />
             <div className="card-body">
               <div className="form-control mt-4">
@@ -155,7 +156,8 @@ const ResumeForm = () => {
               {showEducationForm && (
                 <EducationForm
                   onChange={handleEducationDataChange}
-                  education={resumeData?.education}
+                  education={allFormData?.education}
+
                 ></EducationForm>
               )}
 
@@ -172,7 +174,8 @@ const ResumeForm = () => {
               {showEmploymentForm && (
                 <EmploymentForm
                   onChange={handleEmploymentDataChange}
-                  employment={resumeData?.employment}
+                  employment={allFormData?.employment}
+
                 ></EmploymentForm>
               )}
 
@@ -189,7 +192,7 @@ const ResumeForm = () => {
               {showSkillForm && (
                 <SkillForm
                   onChange={handleSkillDataChange}
-                  skill={resumeData?.skill}
+                  skill={allFormData?.skills }
                 ></SkillForm>
               )}
 
@@ -206,7 +209,7 @@ const ResumeForm = () => {
               {showLanguageForm && (
                 <LanguageForm
                   onChange={handleLanguageDataChange}
-                  language={resumeData?.language}
+                  language={allFormData?.languages}
                 ></LanguageForm>
               )}
 
@@ -223,7 +226,7 @@ const ResumeForm = () => {
               {showProjectForm && (
                 <ProjectForm
                   onChange={handleProjectDataChange}
-                  projects={resumeData?.projects}
+                  projects={allFormData?.projects}
                 ></ProjectForm>
               )}
 
