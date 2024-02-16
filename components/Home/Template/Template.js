@@ -1,5 +1,6 @@
 import Image from "next/image";
 import img from "@/assets/template-img.jpg";
+import Link from "next/link";
 const Template = () => {
   return (
     <div className="py-10  bg-gradient-to-r from-[#EAF2F8] to-[#FDF2E9] ...">
@@ -19,7 +20,11 @@ const Template = () => {
             Tech, Engineering, Management or Marketing - CV generator with the
             right resume templates to highlight your career journey.
           </p>
-          <button className="text-base md:text-xl border px-4 hover:px-5 md:px-8  md:hover:px-9 py-3 md:py-4 rounded-full shadow-highlight_color shadow-lg hover:shadow-sub_color hover:shadow-xl bg-sub_color text-neutral-50 hover:bg-highlight_color hover:text-main  font-semibold ">Explore all template</button>
+          <Link href='/components/Temp/allTemplate.js'>
+            
+            <button className="text-base md:text-xl border px-4 hover:px-5 md:px-8  md:hover:px-9 py-3 md:py-4 rounded-full shadow-highlight_color shadow-lg hover:shadow-sub_color hover:shadow-xl bg-sub_color text-neutral-50 hover:bg-highlight_color hover:text-main  font-semibold ">Explore all template</button>
+            
+            </Link>
 
         </div>
         
