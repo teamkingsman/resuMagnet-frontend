@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 import { ImSpinner9 } from 'react-icons/im'
 import useAuth from '@/hooks/useAuth'
 import { useEffect, useState } from 'react'
-import { createPaymentIntent } from '@/lib/BuilderAPI'
+import { createPaymentIntent, saveInfo } from '@/lib/BuilderAPI'
 
 const CheckoutForm = ({ price, closeModal, }) => {
   // const axiosSecure = useAxiosSecure();
@@ -88,10 +88,8 @@ const CheckoutForm = ({ price, closeModal, }) => {
       }
       try{
         // save payment info to the server
-        await saveBookingInfo(paymentInfo)
+        await saveInfo(paymentInfo)
 
-        // await updateStatus(bookingInfo.roomId, true)
-        // await updateProUser(bookingInfo.email)
         // const text = `Payment Successful! ${paymentIntent.id} `
         
         // navigate('/')

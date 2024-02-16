@@ -9,7 +9,7 @@ import { Fragment } from 'react'
 import CheckoutForm from './CheckoutFrom'
 import { loadStripe } from '@stripe/stripe-js'
 
-const stripePromise = loadStripe("pk_test_51OEDEQBzZwPDCHs9F15ePqGW0TwRIq3A4dESu8lhj9h9uK9iRZUhJP5kVkdgmAvyD1uL2r3oI1Dh4gb8AR0QSc3T00cibrfdg4");
+const stripePromise = loadStripe("pk_test_51OkJhOBY8VyQPpY7KfwqiK1VowtfYqrlWK2DtC7xJljJez1ZIHEkFWkmx0kkRsNpxdj2iK8agfMgpg2EaUcWwcrb00SnT4AGWa");
 const PaymentModal = ({ closeModal, isOpen, price }) => {
   return (
     <Transition appear show={isOpen} as={Fragment}>
