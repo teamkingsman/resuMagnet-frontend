@@ -48,6 +48,7 @@ useEffect(() => {
     })
     .catch((err) => console.log(err));
 }, [user.email]);
+console.log(data);
 
     // Use selectedTemplate to dynamically render the chosen template
     return (

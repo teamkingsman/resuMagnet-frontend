@@ -7,7 +7,7 @@ const ResumeTemplatePage = ({params}) => {
   
     return (
         <div>
-            <ResumeForm params={params} ></ResumeForm>
+            <ResumeForm params={params.id} ></ResumeForm>
         </div>
     );
 };

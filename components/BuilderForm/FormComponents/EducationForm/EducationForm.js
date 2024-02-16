@@ -1,10 +1,14 @@
 "use client";
 import React, { useState } from "react";
 
-function EducationForm({ onChange, education: initialEducationData }) {
-  const [educationHistory, setEducationHistory] = useState(
-    initialEducationData
-      ? Object.values(initialEducationData)
+function EducationForm({ onChange, educations: initialEducationData }) {
+  const [educationHistory, setEducationHistory] = useState(() => {
+    return initialEducationData
+      ? Object.values(initialEducationData).map((entry) => ({
+          ...entry,
+          startDate: entry.startDate || "", 
+          endDate: entry.endDate || "",
+        }))
       : [
           {
             id: 1,
@@ -15,8 +19,8 @@ function EducationForm({ onChange, education: initialEducationData }) {
             ongoing: false,
             educationDescription: "",
           },
-        ]
-  );
+        ];
+  });
 
   const handleDateChange = (e, field, id) => {
     setEducationHistory((prevHistory) => {

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-function LanguageForm({ onChange, language: initialLanguages }) {
+function LanguageForm({ onChange, languages: initialLanguages }) {
   const [languages, setLanguages] = useState(
     initialLanguages
       ? Object.values(initialLanguages)
