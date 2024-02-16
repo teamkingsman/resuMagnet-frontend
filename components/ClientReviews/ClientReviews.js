@@ -1,8 +1,10 @@
 'use client'
 import { ReviewsofUser } from "@/lib/BuilderAPI";
+import { useRouter } from "next/navigation";
 
 
 const ClientReviews = () => {
+    const router =useRouter();
 
     const handleReviews =  async(e) => {
         e.preventDefault();
@@ -18,7 +20,7 @@ const ClientReviews = () => {
         try {
             const response = await ReviewsofUser(formData);
             console.log("Review sent successfully", response);
-            // router.push("/")
+            router.push("/")
         } catch (error) {
             console.error("Error sending Review data", error);
           }
@@ -26,7 +28,7 @@ const ClientReviews = () => {
     }
     return (
         <div>
-            <div>
+            <div className="w-2/3 mx-auto">
                 <form onSubmit={handleReviews}>
                     {/* user name */}
                     <label className="form-control w-full max-w-xs">

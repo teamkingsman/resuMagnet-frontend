@@ -1,7 +1,7 @@
 'use client'
 
 import useAuth from "@/hooks/useAuth";
-import { cvFromGet, cvTemplateUpdate } from "@/lib/BuilderAPI";
+import { cvFromGetbyEmail, cvTemplateUpdate } from "@/lib/BuilderAPI";
 import { useEffect, useState } from "react";
 import ClassicCv from "@/components/Cv/ClassicCv";
 import PremiumCv from "@/components/Cv/PremiumCv";
@@ -40,7 +40,7 @@ function MainTemplatePreview() {
     },[data._id, selectedTemplate])
   useEffect(() => {
     if(user.email){
-      cvFromGet(user.email).then((res) => {
+      cvFromGetbyEmail(user.email).then((res) => {
         setData(res)
         setSelectedTemplate(res?.template || "template1")
       })

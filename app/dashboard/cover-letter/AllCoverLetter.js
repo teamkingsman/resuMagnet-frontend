@@ -8,10 +8,10 @@ const AllCoverLetter = () => {
   const { user } = useAuth();
   const [coverLetter, setCoverLetter] = useState([]);
   useEffect(() => {
-    allCoverLetter(user.email)
+    allCoverLetter(user?.email)
       .then((res) => setCoverLetter(res))
       .catch((err) => console.log(err));
-  }, [user.email]);
+  }, [user?.email]);
   console.log(coverLetter);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-7 pl-2 mt-16 my-4 gap-3">
