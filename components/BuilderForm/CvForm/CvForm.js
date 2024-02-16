@@ -130,8 +130,8 @@ function CvForm({params}) {
         extraActivities: allFormData.extraActivities,
 
       }
-      console.log();
-      const response = await cvFromPost();
+      console.log(data);
+      const response = await cvFromPost(data);
       console.log("CV data sent successfully", response);
       router.push("/dashboard/cv/preview")
     } catch (error) {

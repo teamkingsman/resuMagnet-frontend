@@ -6,6 +6,7 @@ import useAuth from "@/hooks/useAuth";
 import { cvFromGet, resumeFromGet } from "@/lib/BuilderAPI";
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import QrModal from "../Modal/QrModal";
 
 
 const TemplatesNav = () => {
@@ -30,9 +31,11 @@ const TemplatesNav = () => {
     }, [user.email, pathname])
 
     console.log(objectId);
-
+const handelmodal =()=>{
+    document.getElementById('my_modal_1').showModal()
+}
     return (
-        <div>
+        <>
             <div className="navbar bg-base-100 px-4 border-b-2 border-b-sub_color shadow-xl">
                 <div className="flex-1">
                     <button onClick={()=>router.back()} className="flex flex-row gap-2 items-center">
@@ -69,6 +72,7 @@ const TemplatesNav = () => {
                                             }
 
                                             <li className="btn btn-sm md:btn-md lg:btn-lg w-3/4 mx-auto bg-sub_color py-4 mt-4 "><span className="text-highlight_color"></span>Download PDF</li>
+                                            <li onClick={handelmodal} className="btn btn-sm md:btn-md lg:btn-lg w-3/4 mx-auto bg-sub_color py-4 mt-4 "><span className="text-highlight_color"></span>Download PDF</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -78,7 +82,8 @@ const TemplatesNav = () => {
                     </ul>
                 </div>
             </div>
-        </div>
+            <QrModal />
+        </>
     );
 };
 
