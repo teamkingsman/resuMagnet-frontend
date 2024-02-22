@@ -20,6 +20,7 @@ const Navbar = () => {
         <li><Link href="/dashboard" className='text-main font-bold hover:text-highlight_color'>Dashboard</Link></li>
         <li><Link href="/about" className='text-main font-bold hover:text-highlight_color'>About Us</Link></li>
         <li><Link href="/contact" className='text-main font-bold hover:text-highlight_color'>Contact</Link></li>
+        <li><Link href="/pricing" className='text-main font-bold hover:text-highlight_color'>Pricing</Link></li>
     </>
     return (
 
