@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 import { ImSpinner9 } from 'react-icons/im'
 import useAuth from '@/hooks/useAuth'
 import { useEffect, useState } from 'react'
-import { createPaymentIntent, saveInfo } from '@/lib/BuilderAPI'
+import { createPaymentIntent, saveInfo, updateJobUser, updateProfessionalsUser, updateStudentsUser,  } from '@/lib/BuilderAPI'
 
 const CheckoutForm = ({ price, closeModal, }) => {
   // const axiosSecure = useAxiosSecure();
@@ -58,7 +58,7 @@ const CheckoutForm = ({ price, closeModal, }) => {
       console.log('payment method', paymentMethod)
     }
 
-    // setProcessing(true)
+    setProcessing(true)
 
     const { paymentIntent, error: confirmError } =
       await stripe.confirmCardPayment(clientSecret, {
@@ -90,7 +90,16 @@ const CheckoutForm = ({ price, closeModal, }) => {
       try{
         // save payment info to the server
         await saveInfo(paymentInfo)
-
+        if(paymentIntent.amount == 1200){
+          await updateStudentsUser(paymentInfo.email)
+        }
+        if(paymentIntent.amount == 4000){
+          await updateJobUser(paymentInfo.email)
+        }
+        if(paymentIntent.amount == 8000){
+          await updateProfessionalsUser(paymentInfo.email)
+        }
+        // await updateUser(paymentInfo.email)
         const text = `Payment Successful! ${paymentIntent.id} `
         
         // navigate('/')
@@ -130,7 +139,7 @@ const CheckoutForm = ({ price, closeModal, }) => {
         <div className='flex mt-2 justify-around'>
           <button
             type='button'
-            className='inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2'
+            className='inline-flex justify-center rounded-md border border-transparent bg-[#FEE2E2] px-4 py-2 text-sm font-medium text-[#7f1d1d] hover:bg-[#fecaca] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EF4444] focus-visible:ring-offset-2'
             onClick={closeModal}
           >
             Cancel
@@ -138,7 +147,7 @@ const CheckoutForm = ({ price, closeModal, }) => {
           <button
             type='submit'
             // disabled={!stripe || !clientSecret || processing}
-            className='inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2'
+            className='inline-flex justify-center rounded-md border border-transparent bg-[#bbf7d0] px-4 py-2 text-sm font-medium text-[#14532d] hover:bg-[#86efac] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#22c55e] focus-visible:ring-offset-2'
           >
             {processing ? (
               <ImSpinner9 className='m-auto animate-spin' size={24} />
@@ -148,7 +157,7 @@ const CheckoutForm = ({ price, closeModal, }) => {
           </button>
         </div>
       </form>
-      {cardError && <p className='text-red-600 ml-8'>{cardError}</p>}
+      {cardError && <p className='text-[#dc2626] ml-8'>{cardError}</p>}
     </>
   )
 }
