@@ -1,7 +1,14 @@
-
+"use client"
+import PaymentModal from '@/components/Payment/PaymentModal';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 const PaymentCard = ({price , title , subtitle , feature1 , feature2 , feature3 }) => {
+    let [isOpen, setIsOpen] = useState(false);
+  
+    const closeModal = ()=>{
+      setIsOpen(false);
+    }
     return (
         <div className="md:w-[300px] mx-auto space-y-8 shadow-[0px_0px_30px_2px_rgba(100,100,111,0.1)] my-20 relative p-8">
             {/* top part  */}
@@ -43,13 +50,16 @@ const PaymentCard = ({price , title , subtitle , feature1 , feature2 , feature3 
                 </ul>
                 <div className="pt-4 flex justify-center">
                     
-                    <button className="btn btn-sm py-2 w-full border-2 border-main text-main hover:bg-sub_color hover:text-main  rounded-full hover:text-white duration-300 shadow-lg  hover:shadow-xl font-semibold">
+                    <button onClick={() =>setIsOpen(true)}
+                     className="btn btn-sm py-2 w-full border-2 border-main text-main hover:bg-sub_color hover:text-main  rounded-full hover:text-white duration-300 shadow-lg  hover:shadow-xl font-semibold">
                         <span ></span>
                         Subscribe
                     </button>
         
                 </div>
             </div>
+            <PaymentModal closeModal={closeModal} isOpen={isOpen} price={price}
+      ></PaymentModal>
         </div>
     );
 };

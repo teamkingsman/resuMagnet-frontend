@@ -21,10 +21,10 @@ const Review = ({item}) => {
         <div className="text-center w-8/12 md:w-full  md:px-6 py-10 border-t-2 border-r-2 rounded-tr-xl pb-10">
         
         
-        <p className="font-bold text-main text-xl ">{comment}</p>
-        <h1 className="text-2xl font-bold text-main mt-10">{name}</h1>
-        <h3 className="text-xl mb-4 font-bold italic text-neutral-700">{designation}</h3>
-        <div className="flex items-center justify-center mt-2 text-[#FFBF00] text-2xl ">
+        <p className="font-bold text-main text-sm md:text-lg lg:text-xl ">{comment}</p>
+        <h1 className=" text-lg  md:text-xl lg:text-2xl font-bold text-main mt-10">{name}</h1>
+        <h3 className=" text-sm md:text-lg lg:text-xl mb-4 font-bold italic text-neutral-700">{designation}</h3>
+        <div className="flex items-center justify-center mt-2 text-[#FFBF00]  text-xl md:text-2xl ">
             {renderStars()}
         </div>
     </div>

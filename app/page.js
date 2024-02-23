@@ -2,7 +2,6 @@ import FeatureSection from "@/components/Home/Feature/FeatureSection";
 import Banner from '@/components/Home/Banner/Banner'
 import Template from '@/components/Home/Template/Template'
 import Reviews from '@/components/Home/Review/Reviews'
-import Payment from "@/components/Home/Payment/Payment";
 
 export const metadata = {
     title: 'Home - ResuMagnet',
@@ -16,7 +15,6 @@ export default function Home() {
       <Banner />
       <Template />
       <FeatureSection />
-      <Payment></Payment>
       <Reviews/>
     </>
     )

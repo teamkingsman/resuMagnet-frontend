@@ -19,7 +19,7 @@ const ResumeForm = ({params}) => {
     employments: [],
     languages: [],
     projects: [],
-    skills: [],
+    skill: [],
   });
 
   const [resumeData, setResumeData] = useState();
