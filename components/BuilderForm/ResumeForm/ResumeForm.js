@@ -6,35 +6,37 @@ import SkillForm from "../FormComponents/SkillForm/SkillForm";
 import LanguageForm from "../FormComponents/LanguageForm/LanguageForm";
 import BasicInfoForm from "../FormComponents/BasicInfoForm/BasicInfoForm";
 import ProjectForm from "../FormComponents/ProjectForm/ProjectForm";
-import {  resumeFromGetById, resumeFromPost } from "@/lib/BuilderAPI";
+import { resumeFromGetById, resumeFromPost } from "@/lib/BuilderAPI";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 
-const ResumeForm = ({params}) => {
+const ResumeForm = ({ params }) => {
   const router = useRouter();
   const { user } = useAuth();
   const [allFormData, setAllFormData] = useState({
-    basicInfo: [],
+    basicInfo: {},
     educations: [],
     employments: [],
     languages: [],
     projects: [],
-    skill: [],
+    skills: [],
   });
 
   const [resumeData, setResumeData] = useState();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await resumeFromGetById(params);
-        setAllFormData(data);
+        setResumeData(data || {});
       } catch (error) {
         console.error("Error fetching resume data:", error);
       }
     };
     fetchData();
   }, [params]);
-  console.log(allFormData);
+
+
 
 
 
@@ -108,25 +110,23 @@ const ResumeForm = ({params}) => {
 
   const handlePreview = async () => {
     try {
-      const data = {
-        userEmail: user?.email,
-        basicInfo: allFormData.basicInfo,
-        education: allFormData.education,
-        employment: allFormData.employment,
-        languages: allFormData.languages,
-        projects: allFormData.projects,
-        skills: allFormData.skills,
+      const mergedData = {
+        basicInfo: { ...resumeData.basicInfo, ...allFormData.basicInfo },
+        educations: { ...resumeData.educations, ...allFormData.educations },
+        employments: { ...resumeData.employments, ...allFormData.employments },
+        skills: { ...resumeData.skills, ...allFormData.skills},
+        languages: { ...resumeData.languages, ...allFormData.languages },
+        projects: { ...resumeData.projects, ...allFormData.projects },
+        userEmail:user?.email,
       };
-      
-      console.log(data);
-      const response = await resumeFromPost(data);
+      console.log(mergedData);
+      const response = await resumeFromPost(mergedData);
       console.log("Resume data sent successfully", response);
       router.push("/dashboard/resume/preview");
     } catch (error) {
       console.error("Error sending resume data", error);
     }
   };
-  
 
   return (
     <div className="hero min-h-screen my-16 ">
@@ -140,7 +140,7 @@ const ResumeForm = ({params}) => {
           <div className="card w-full shadow-2xl bg-base-100">
             <BasicInfoForm
               onChange={handleBasicInfoDataChange}
-              basicInfo={allFormData?.basicInfo}
+              basicInfo={resumeData?.basicInfo}
             />
             <div className="card-body">
               <div className="form-control mt-4">
@@ -156,8 +156,7 @@ const ResumeForm = ({params}) => {
               {showEducationForm && (
                 <EducationForm
                   onChange={handleEducationDataChange}
-                  education={allFormData?.education}
-
+                  educations={resumeData?.educations}
                 ></EducationForm>
               )}
 
@@ -174,8 +173,7 @@ const ResumeForm = ({params}) => {
               {showEmploymentForm && (
                 <EmploymentForm
                   onChange={handleEmploymentDataChange}
-                  employment={allFormData?.employment}
-
+                  employments={resumeData?.employments}
                 ></EmploymentForm>
               )}
 
@@ -192,7 +190,7 @@ const ResumeForm = ({params}) => {
               {showSkillForm && (
                 <SkillForm
                   onChange={handleSkillDataChange}
-                  skill={allFormData?.skills }
+                  skills={resumeData?.skills}
                 ></SkillForm>
               )}
 
@@ -209,7 +207,7 @@ const ResumeForm = ({params}) => {
               {showLanguageForm && (
                 <LanguageForm
                   onChange={handleLanguageDataChange}
-                  language={allFormData?.languages}
+                  languages={resumeData?.languages}
                 ></LanguageForm>
               )}
 
@@ -226,7 +224,7 @@ const ResumeForm = ({params}) => {
               {showProjectForm && (
                 <ProjectForm
                   onChange={handleProjectDataChange}
-                  projects={allFormData?.projects}
+                  projects={resumeData?.projects}
                 ></ProjectForm>
               )}
 
