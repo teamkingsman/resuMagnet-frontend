@@ -1,17 +1,17 @@
 "use client";
 import React, { useState } from "react";
 
-function SkillForm({ onChange, skill:initialSkills }) {
-console.log(initialSkills)
-
+function SkillForm({ onChange, skills: initialSkills }) {
   const [skills, setSkills] = useState(
     initialSkills
       ? Object.values(initialSkills)
-      : [{
-        id: 1,
-        skill: "",
-        level: "",
-      }]
+      : [
+          {
+            id: 1,
+            skill: "",
+            level: "",
+          },
+        ]
   );
 
   const handleSkillChange = (e, id) => {
@@ -21,7 +21,6 @@ console.log(initialSkills)
         s.id === id ? { ...s, [name]: value } : s
       )
     );
-    onChange(skills); 
   };
 
   const addMoreSkill = () => {
@@ -33,7 +32,11 @@ console.log(initialSkills)
         level: "",
       },
     ]);
-    onChange(skills); 
+  };
+
+  // Call onChange with the updated skills state
+  const handleOnChange = () => {
+    onChange(skills);
   };
 
   return (
@@ -86,7 +89,10 @@ console.log(initialSkills)
       <div className="form-control mt-4">
         <button
           type="button"
-          onClick={addMoreSkill}
+          onClick={() => {
+            addMoreSkill();
+            handleOnChange();
+          }}
           className="flex items-center justify-center gap-2 text-main font-semibold hover:font-bold hover:bg hover:border"
         >
           Add More Skill +
