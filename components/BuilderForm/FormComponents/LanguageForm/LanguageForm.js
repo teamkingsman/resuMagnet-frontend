@@ -21,7 +21,6 @@ function LanguageForm({ onChange, languages: initialLanguages }) {
         lang.id === id ? { ...lang, [name]: value } : lang
       )
     );
-    onChange(languages);
   };
 
   const addMoreLanguage = () => {
@@ -33,6 +32,10 @@ function LanguageForm({ onChange, languages: initialLanguages }) {
         proficiency: "",
       },
     ]);
+  };
+
+  // Call onChange with the updated languages state
+  const handleOnChange = () => {
     onChange(languages);
   };
 
@@ -89,7 +92,10 @@ function LanguageForm({ onChange, languages: initialLanguages }) {
       <div className="form-control mt-4">
         <button
           type="button"
-          onClick={addMoreLanguage}
+          onClick={() => {
+            addMoreLanguage();
+            handleOnChange();
+          }}
           className="flex items-center justify-center gap-2 text-main font-semibold hover:font-bold hover:bg hover:border"
         >
           Add More Language +
