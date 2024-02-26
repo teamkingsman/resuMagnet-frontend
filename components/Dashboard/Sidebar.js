@@ -35,7 +35,7 @@ function Sidebar() {
           />
         </Disclosure.Button>
 
-        <div className="p-6 w-1/2 h-screen bg-white z-20 fixed top-0 -left-96 lg:left-0 lg:w-60  peer-focus:left-0 peer:transition ease-out delay-150 duration-200 bg-neutral-50">
+        <div className="p-6 w-1/2 h-screen bg-white z-20 fixed top-0 -left-96 lg:left-0 lg:w-60 overflow-y-auto peer-focus:left-0 peer:transition ease-out delay-150 duration-200 bg-neutral-50">
           <div className="flex flex-col justify-start item-center">
             <div className="text-5xl w-full h-12 item-center">
               <Logo className="lg:w-full w-9/12" />
