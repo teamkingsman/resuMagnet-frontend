@@ -1,10 +1,18 @@
 "use client";
 import useAuth from "@/hooks/useAuth";
+import { User } from "@/lib/BuilderAPI";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Profile = () => {
   const { user } = useAuth();
+  const [userData, setUserData] = useState("");
+  useEffect(() => {
+    User(user.email)
+      .then((res) => setUserData(res))
+      .catch((err) => console.log(err));
+  }, [user.email]);
+  console.log(userData);
   return (
     <div>
       <div className="flex justify-center items-center h-screen mb-8">
@@ -20,7 +28,7 @@ const Profile = () => {
             <a href="#" className="relative block">
               <Image
                 alt="profile"
-                src={user.photoURL}
+                src={userData.photoURL}
                 width={100}
                 height={100}
                 className="mx-auto object-cover rounded-full h-24 w-24  border-2 border-sub_color "
@@ -31,24 +39,24 @@ const Profile = () => {
               {/* {role && role.toUpperCase()} */}
             </p>
             <p className="mt-2 md:text-xl font-medium text-gray-800 ">
-              User Id: {user.uid}
+            Name: {userData.displayName}
             </p>
             <div className="w-full p-2 mt-4 rounded-lg">
               <div className="flex flex-wrap items-center justify-between text-sm text-gray-600 ">
                 <p className="flex flex-col">
-                  Name
+                 User Status
                   <span className="font-bold text-black ">
-                    {user.displayName}
+                    {userData.status}
                   </span>
                 </p>
                 <p className="flex flex-col">
                   Email
-                  <span className="font-bold text-black ">{user.email}</span>
+                  <span className="font-bold text-black ">{userData.email}</span>
                 </p>
                 <p className="flex flex-col">
-                  Payment Id:
+                 User Type:
                   <span className="font-bold text-black ">
-                    {user.paymentId ? { paymentId } : "null"}
+                    {userData.usertype}
                   </span>
                 </p>
               </div>
