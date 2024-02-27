@@ -5,6 +5,7 @@ import { useState } from "react";
 import { MdAddPhotoAlternate, MdOutlineSend } from "react-icons/md";
 import useAuth from "@/hooks/useAuth";
 import axiosSecure from "@/lib";
+import { toast } from "sonner";
 
 function CreatePost() {
   const [uploadedPhotoURL, setUploadedPhotoURL] = useState();
@@ -18,30 +19,36 @@ function CreatePost() {
     }
   };
 
-  const handleCreatePost = async(e) => {
+  const handleCreatePost = async (e) => {
     e.preventDefault();
     const form = e.target;
     const postText = form.postText.value;
-    const currentDate = new Date();
-    const formattedDate = currentDate.toISOString();
-    const postData = {
-      text: postText,
-      photoURL: uploadedPhotoURL,
-      createdAt: formattedDate,
-      likes: [],
-      dislikes: [],
-      authorName: user?.displayName,
-      authorImage: user?.photoURL,
-      authorEmail: user?.email,
-    };
-    const postRes = await axiosSecure.post('/posts', postData);
-    if(postRes.data.insertedId){
-      console.log(postRes);
-      form.reset();
-    }
-    
+    try {
+      const currentDate = new Date();
+      const formattedDate = currentDate.toISOString();
+      const postData = {
+        text: postText,
+        photoURL: uploadedPhotoURL,
+        createdAt: formattedDate,
+        likes: [],
+        dislikes: [],
+        authorName: user?.displayName,
+        authorImage: user?.photoURL,
+        authorEmail: user?.email,
+      };
+      const postRes = await axiosSecure.post("/posts", postData);
+      if (postRes.data.insertedId) {
+        toast.success("Post Created Successfully");
+        console.log(postRes);
+        form.reset();
+        window.location.reload();
+      } else {
+        toast.error("Failed To Create Post");
+      }
+    } catch (error) {
+      console.log(error.message);
+    } 
   };
-
   return (
     <div>
       <form
