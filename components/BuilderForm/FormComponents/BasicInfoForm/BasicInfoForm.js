@@ -11,7 +11,7 @@ import { Cropper } from 'react-easy-crop';
 function BasicInfoForm({ onChange, basicInfo }) {
   const [showAdditionalFields, setShowAdditionalFields] = useState(false);
   const [photoUrl, setPhotoUrl] = useState(basicInfo?.photoURL || avatar);
-  const [formData, setFormData] = useState();
+  const [formData, setFormData] = useState(basicInfo|| {});
 
   const handleToggleClick = () => {
     setShowAdditionalFields(!showAdditionalFields);

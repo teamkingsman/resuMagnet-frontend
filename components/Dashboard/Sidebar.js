@@ -89,6 +89,22 @@ function Sidebar() {
                   </h3>
                 </div>
               </Link>
+              <Link href="/dashboard/quiz">
+                <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+                  <MdOutlineIntegrationInstructions className="text-2xl text-gray-600 group-hover:text-white " />
+                  <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
+                   QuizAplication
+                  </h3>
+                </div>
+              </Link>
+              <Link href="/dashboard/reviews">
+                <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
+                  <MdOutlineIntegrationInstructions className="text-2xl text-gray-600 group-hover:text-white " />
+                  <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
+                    Give Reviews
+                  </h3>
+                </div>
+              </Link>
               <Link href="/">
                 <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
                   <MdOutlineIntegrationInstructions className="text-2xl text-gray-600 group-hover:text-white " />

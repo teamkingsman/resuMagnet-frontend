@@ -2,12 +2,10 @@
 import { IoCaretBack } from "react-icons/io5";
 import Link from "next/link";
 import useAuth from "@/hooks/useAuth";
-import { cvFromGet, resumeFromGet } from "@/lib/BuilderAPI";
+import { cvFromGetbyEmail, resumeFromGetByEmail } from "@/lib/BuilderAPI";
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import jsPDF from 'jspdf';
-
-
+import QrModal from "../Modal/QrModal";
 
 
 const TemplatesNav = ({ selectedTemplate, resume }) => {
@@ -19,11 +17,11 @@ const TemplatesNav = ({ selectedTemplate, resume }) => {
 
     useEffect(() => {
         if (pathname == '/dashboard/resume/preview') {
-            resumeFromGet(user.email).then((res) => setObjectId(res._id))
+            resumeFromGetByEmail(user.email).then((res) => setObjectId(res._id))
                 .catch((err) => console.log(err))
         }
         if (pathname == '/dashboard/cv/preview') {
-            cvFromGet(user.email).then((res) => setObjectId(res._id))
+            cvFromGetbyEmail(user.email).then((res) => setObjectId(res._id))
                 .catch((err) => console.log(err))
         }
 
@@ -73,9 +71,11 @@ const TemplatesNav = ({ selectedTemplate, resume }) => {
     };
 
     
-
+const handelmodal =()=>{
+    document.getElementById('qr-modal').showModal()
+}
     return (
-        <div>
+        <>
             <div className="navbar bg-base-100 px-4 border-b-2 border-b-sub_color shadow-xl">
                 <div className="flex-1">
                     <button onClick={() => router.back()} className="flex flex-row gap-2 items-center">
@@ -115,6 +115,12 @@ const TemplatesNav = ({ selectedTemplate, resume }) => {
                                                 )
                                             }
 
+                                            <li className="btn btn-sm md:btn-md lg:btn-lg w-3/4 mx-auto bg-sub_color py-4 mt-4 "><span className="text-highlight_color"></span>Download PDF</li>
+                                            <li onClick={handelmodal} className="btn btn-sm md:btn-md lg:btn-lg w-3/4 mx-auto bg-sub_color py-4 mt-4 "><span className="text-highlight_color"></span>Share QR</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            )}
                                         </li>
                                         {/* <li className="btn btn-sm md:btn-md lg:btn-lg w-3/4 mx-auto bg-sub_color py-4 mt-4" onClick={handleDownloadPDF}>
                                             Download PDF
@@ -126,7 +132,8 @@ const TemplatesNav = ({ selectedTemplate, resume }) => {
                     </ul>
                 </div>
             </div>
-        </div>
+            <QrModal link={objectId} />
+        </>
     );
 };
 

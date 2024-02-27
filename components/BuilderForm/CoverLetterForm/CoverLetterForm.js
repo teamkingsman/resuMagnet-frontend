@@ -1,5 +1,5 @@
 "use client";
-import { coverLetterFromGet, coverLetterFromGetById, coverLetterFromPost } from "@/lib/BuilderAPI";
+import { coverLetterFromGetByEmail, coverLetterFromGetById, coverLetterFromPost } from "@/lib/BuilderAPI";
 import { useRouter } from "next/navigation";
 import useAuth from "@/hooks/useAuth";
 import { useEffect, useState } from "react";
