@@ -8,10 +8,10 @@ const Profile = () => {
   return (
     <div>
       <div className="flex justify-center items-center h-screen mb-8">
-        <div className="bg-white shadow-lg rounded-2xl w-9/12 lg:w-4/6">
+        <div className="bg-white shadow-lg rounded-2xl w-9/12 lg:w-4/6 pt-4">
           <Image
             alt="profile"
-            src="https://wallpapercave.com/wp/wp10784415.jpg"
+            src="https://source.unsplash.com/350x150/?northern lights"
             className="w-full h-4/5 mb-4 rounded-t-lg "
             width={200}
             height={200}
@@ -30,7 +30,7 @@ const Profile = () => {
             <p className="p-2 px-4 text-xs text-white bg-pink-500 rounded-full">
               {/* {role && role.toUpperCase()} */}
             </p>
-            <p className="mt-2 text-xl font-medium text-gray-800 ">
+            <p className="mt-2 md:text-xl font-medium text-gray-800 ">
               User Id: {user.uid}
             </p>
             <div className="w-full p-2 mt-4 rounded-lg">
