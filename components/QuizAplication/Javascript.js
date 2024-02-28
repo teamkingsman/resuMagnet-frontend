@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 // import style from '../style.css'
-import { quiz } from "/components/QuizAplication/data";
+import { quiz } from "/components/QuizAplication/javascriptData";
  
 const Page = () => {
   useEffect(()=>{
