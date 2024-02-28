@@ -4,7 +4,7 @@ import PostCard from "../PostCard/PostCard";
 import { useQuery } from "@tanstack/react-query";
 
 function AllPost() {
-  const { data: allPost = [] } = useQuery({
+  const { data: allPost = [] ,refetch} = useQuery({
     queryKey: ['allPost'],
     queryFn: async () => {
       const res = await axiosSecure.get('/posts');
@@ -15,7 +15,7 @@ function AllPost() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2  gap-8 w-full md:px-8">
       {allPost?.map((post) => (
-        <PostCard key={post._id} post={post}></PostCard>
+        <PostCard key={post._id} post={post} refetch={refetch}></PostCard>
       ))}
     </div>
   );

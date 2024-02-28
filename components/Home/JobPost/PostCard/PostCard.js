@@ -1,16 +1,16 @@
 "use client";
-import useAuth from "@/hooks/useAuth";
-import axiosSecure from "@/lib";
 import Image from "next/image";
-import { useState } from "react";
 import {
   AiOutlineArrowDown,
   AiOutlineArrowUp,
   AiOutlineComment,
 } from "react-icons/ai";
+import { useState } from "react";
+import axiosSecure from "@/lib";
+import useAuth from "@/hooks/useAuth";
 
-function PostCard({ post }) {
-    const { user } = useAuth();
+function PostCard({ post, refetch }) {
+  const { user } = useAuth();
   const {
     _id,
     text,
@@ -34,44 +34,85 @@ function PostCard({ post }) {
     };
     return new Date(dateString).toLocaleString("en-US", options);
   };
-  //   see more see less text
+
   const [showFullText, setShowFullText] = useState(false);
   const toggleText = () => {
     setShowFullText((prev) => !prev);
   };
   const truncatedText = showFullText ? text : text.slice(0, 60);
 
-//   upvote
+  const handleLike = async () => {
+    try {
+      const currentPost = await axiosSecure.get(`/posts/${_id}`);
+      const currentLikes = currentPost?.data?.likes || [];
+      const currentDislikes = currentPost?.data?.dislikes || [];
 
-const handleLike = async () => {
-    const currentPost = await axiosSecure.get(`/posts/${_id}`);
-    const currentLikes = currentPost?.likes || [];
-    const currentDislikes = currentPost?.dislikes || [];
-
-    if (currentLikes.includes(user?.email)) {
-        const updatedPost = await axiosSecure.patch(`/posts/${currentPost?._id}`, {
-            $pull: { likes: user?.email },
+      if (currentLikes.includes(user?.email)) {
+        await axiosSecure.patch(`/posts/${_id}`, {
+          $pull: { likes: user?.email },
         });
-        console.log('Removed like:', updatedPost.data);
-    }
-    else if (!currentLikes.includes(user?.email) && currentDislikes.includes(user?.email)) {
-        const updatedPost = await axiosSecure.patch(`/posts/${currentPost?._id}`, {
-            $pull: { dislikes: user?.email },
-            $push: { likes: user?.email },
+      } else if (
+        !currentLikes.includes(user?.email) &&
+        currentDislikes.includes(user?.email)
+      ) {
+        await axiosSecure.patch(`/posts/${_id}`, {
+          $pull: { dislikes: user?.email },
+          $push: { likes: user?.email },
         });
-        console.log('Removed dislike and added like:', updatedPost.data);
-    }
-    else if (!currentLikes.includes(user?.email) && !currentDislikes.includes(user?.email)) {
-        const updatedPost = await axiosSecure.patch(`/posts/${currentPost?._id}`, {
-            $push: { upVotes: user?.email },
+      } else if (
+        !currentLikes.includes(user?.email) &&
+        !currentDislikes.includes(user?.email)
+      ) {
+        await axiosSecure.patch(`/posts/${_id}`, {
+          $push: { likes: user?.email },
         });
-        console.log('added like:', updatedPost.data);
+      }
+      const updatedPostData = await axiosSecure.get(`/posts/${_id}`);
+      console.log(updatedPostData);
+      refetch();
+      //   setPostData(updatedPostData.data);
+    } catch (error) {
+      console.error("Error handling like:", error);
     }
-    const updatedPostData = await axiosPublic.get(`/posts/${updatedPost._id}`);
-    // setPostData(updatedPostData.data);
-};
+  };
 
+  const handleDislike = async () => {
+    try {
+      const currentPost = await axiosSecure.get(`/posts/${_id}`);
+      const currentLikes = currentPost?.data?.likes || [];
+      const currentDislikes = currentPost?.data?.dislikes || [];
 
+      if (currentDislikes.includes(user?.email)) {
+        await axiosSecure.patch(`/posts/${_id}`, {
+          $pull: { dislikes: user?.email },
+        });
+      } else if (
+        !currentDislikes.includes(user?.email) &&
+        currentLikes.includes(user?.email)
+      ) {
+        await axiosSecure.patch(`/posts/${_id}`, {
+          $pull: { likes: user?.email },
+          $push: { dislikes: user?.email },
+        });
+      } else if (
+        !currentDislikes.includes(user?.email) &&
+        !currentLikes.includes(user?.email)
+      ) {
+        await axiosSecure.patch(`/posts/${_id}`, {
+          $push: { dislikes: user?.email },
+        });
+      }
+      const updatedPostData = await axiosSecure.get(`/posts/${_id}`);
+      refetch();
+      console.log(updatedPostData);
+      //  setPostData(updatedPostData.data);
+    } catch (error) {
+      console.error("Error handling dislike:", error);
+    }
+  };
+
+  const isLiked = likes?.includes(user?.email);
+  const isDisliked = dislikes?.includes(user?.email);
 
   return (
     <div className="border-2 border-main rounded-none bg-base-200 w-full">
@@ -125,17 +166,27 @@ const handleLike = async () => {
       </div>
       <div className="bg-cyan-50 w-full flex justify-around gap-2 px-4 my-2">
         <div className="w-1/3 flex items-center border border-cyan-400 justify-center overflow-hidden transition-all   hover:scale-105  hover:shadow-2xl rounded-lg">
-          <button  onClick={handleLike} className="flex items-center  gap-1 text-xs font-bold text-cyan-600 p-1">
+          <button
+            onClick={handleLike}
+            className={`flex items-center  gap-1 text-xs font-bold text-cyan-600 p-1 ${
+              isLiked ? "text-green-600" : ""
+            }`}
+          >
             {likes?.length}
-            <AiOutlineArrowUp className="text-green-600 text-xs"></AiOutlineArrowUp>
-            Like
+            <AiOutlineArrowUp className="text-xs"></AiOutlineArrowUp>
+            {isLiked ? "Liked" : "Like"}
           </button>
         </div>
         <div className="w-1/3 flex items-center border border-cyan-400 justify-center overflow-hidden transition-all   hover:scale-105  hover:shadow-2xl rounded-lg">
-          <button className="flex items-center  gap-1 text-xs font-bold text-cyan-600 p-1">
+          <button
+            onClick={handleDislike}
+            className={`flex items-center  gap-1 text-xs font-bold text-cyan-600 p-1 ${
+              isDisliked ? "text-red-600" : ""
+            }`}
+          >
             {dislikes?.length}
-            <AiOutlineArrowDown className="text-red-600 text-xs"></AiOutlineArrowDown>
-            Dislike
+            <AiOutlineArrowDown className="text-xs"></AiOutlineArrowDown>
+            {isDisliked ? "Disliked" : "Dislike"}
           </button>
         </div>
         <div className="w-1/3 flex items-center border border-cyan-400 justify-center overflow-hidden transition-all   hover:scale-105  hover:shadow-2xl rounded-lg">
