@@ -50,8 +50,7 @@ function CreatePost() {
     } 
   };
   return (
-    <div>
-      <form
+    <form
         className="w-full flex flex-col md:px-8"
         onSubmit={handleCreatePost}
       >
@@ -71,7 +70,7 @@ function CreatePost() {
               alt="Uploaded"
               width={100}
               height={60}
-              className="w-full object-cover rounded-none border border-main"
+              className="w-full h-96 lg:h[620px] object-cover rounded-none border border-main"
             />
           ) : (
             <label className="file-input-sm w-full rounded-none border border-main flex items-center justify-center gap-4 overflow-hidden transition-all hover:scale-105 hover:shadow-2xl font-bold bg-base-300">
@@ -93,7 +92,6 @@ function CreatePost() {
           Create Post <MdOutlineSend />
         </button>
       </form>
-    </div>
   );
 }
 
