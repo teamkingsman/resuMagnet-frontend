@@ -38,7 +38,7 @@ const ResumeDiamond = ({ resume }) => {
 
         <div className="mb-8 mt-12 text-center text-neutral-50">
           <h2 className="text-xl font-bold text-main">Skills</h2>
-          {skills?.map((skill, index) => (
+          {Object.values(skills)?.map((skill, index) => (
             <div key={index} className="mb-4">
               <p>
                 {skill.skill} - {skill.level}
@@ -49,7 +49,7 @@ const ResumeDiamond = ({ resume }) => {
 
         <div className="languages mt-6 text-center text-neutral-50">
           <h2 className="text-xl font-bold  text-main  py-2">Languages</h2>
-          {languages?.map((lang, index) => (
+          {Object.values(languages)?.map((lang, index) => (
             <div key={index} className="mb-4">
               <p>
                 {lang.language} - {lang.proficiency}
@@ -85,7 +85,7 @@ const ResumeDiamond = ({ resume }) => {
             Projects
           </h2>
 
-          {projects?.map((project, index) => (
+          {Object.values(projects)?.map((project, index) => (
             <div key={index} className="text-xl pt-3">
               <h2 className="font-semibold bg-transparent">{project?.title}</h2>
               <h3>{project?.type}</h3>

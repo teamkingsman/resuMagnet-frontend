@@ -1,4 +1,5 @@
 "use client";
+import CvForm from "@/components/BuilderForm/CvForm/CvForm";
 import useAuth from "@/hooks/useAuth";
 import { allCv } from "@/lib/BuilderAPI";
 import Link from "next/link";
@@ -14,7 +15,8 @@ const AllCvTemplate = () => {
   }, [user.email]);
   console.log(cv);
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-7 pl-2 mt-16 my-4 gap-3">
+   <div>
+     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-7 pl-2 mt-16 my-4 gap-3">
       {cv.map((item, index) => (
         <Link key={item._Id} href={`/dashboard/cv/${item._id}`}>
           <div className="flex  py-8 px-6 bg-base-100 shadow-xl justify-center">
@@ -28,6 +30,8 @@ const AllCvTemplate = () => {
         </Link>
       ))}
     </div>
+    {cv.length === 0 && <CvForm />}
+   </div>
   );
 };
 
