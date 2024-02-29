@@ -3,9 +3,9 @@ import CreatePost from "@/components/Home/JobPost/CreatePost/CreatePost";
 
 function JobHub() {
   return (
-    <div>
-      <div className="flex flex-col items-center justify-center text-center bg-sub_color space-y-2 p-4">
-        <h1 className="text-5xl font-semibold text-whitecolor">JobHub</h1>
+    <div className="xl:px-20 md:px-10 sm:px-2 px-4 my-4 pt-10 ">
+      <div className="flex flex-col items-center justify-center text-center space-y-2 p-4">
+        <h1 className="text-5xl font-semibold text-sub_color">JobHub</h1>
         <p className="text-2xl font-medium text-main">
           {" "}
           Welcome to JobHub, where careers take flight and opportunities abound!
