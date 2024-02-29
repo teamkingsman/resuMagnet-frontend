@@ -163,7 +163,7 @@ function PostCard({ post, refetch }) {
   };
 
   return (
-    <div className="border-2 border-main rounded-none bg-base-200 w-full py-4">
+    <div className="border-2 border-main rounded-md bg-base-200 w-full py-4">
       <div className="px-4 space-y-2">
         <div className="flex items-center gap-2">
           <div className="flex items-center">
@@ -191,7 +191,7 @@ function PostCard({ post, refetch }) {
         </div>
       </div>
       <div className="px-4 space-y-2">
-        <p className="text-left text-base">
+        <p className="text-left text-lg font-normal">
           {truncatedText}{" "}
           {text.length > 80 && (
             <button

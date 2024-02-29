@@ -54,12 +54,12 @@ function CreatePost() {
         className="w-full flex flex-col md:px-8"
         onSubmit={handleCreatePost}
       >
-        <div className="form-control border border-main border-b-0">
+        <div className="form-control rounded-t-md border border-main border-b-0">
           <textarea
             placeholder="Type your post here..."
             type="text"
             name="postText"
-            className="input h-48 w-full rounded-none bg-base-200 textarea-lg"
+            className="input h-48 w-full  bg-base-200 textarea-lg"
             required
           />
         </div>
@@ -87,7 +87,7 @@ function CreatePost() {
         </div>
         <button
           type="submit"
-          className="flex items-center justify-center btn btn-sm bg-main border border-main text-neutral-50 font-bold w-full rounded-none overflow-hidden transition-all hover:scale-105 hover:shadow-2xl hover:bg-sub_color"
+          className="flex items-center justify-center btn btn-sm bg-main border border-main text-neutral-50 font-bold w-full rounded-none overflow-hidden transition-all hover:scale-105 hover:shadow-2xl hover:bg-sub_color rounded-b-md"
         >
           Create Post <MdOutlineSend />
         </button>

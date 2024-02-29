@@ -1,6 +1,5 @@
 "use client";
 import { usePathname } from "next/navigation";
-
 import Link from "next/link";
 import Logo from "../LogoAnimation/Logo";
 import useAuth from "@/hooks/useAuth";
@@ -32,6 +31,14 @@ const Navbar = () => {
           className="text-main font-bold hover:text-highlight_color"
         >
           Dashboard
+        </Link>
+      </li>
+      <li>
+        <Link
+          href="/jobhub"
+          className="text-main font-bold hover:text-highlight_color"
+        >
+         JobHub
         </Link>
       </li>
       <li>

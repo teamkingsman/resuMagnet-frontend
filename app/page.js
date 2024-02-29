@@ -14,9 +14,9 @@ export default function Home() {
 
     <>
       <Banner />
-      <JobPost></JobPost>
       <Template />
       <FeatureSection />
+      <JobPost></JobPost>
       <Reviews/>
     </>
     )
