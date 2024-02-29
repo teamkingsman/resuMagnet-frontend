@@ -6,7 +6,6 @@ import useAuth from "@/hooks/useAuth";
 
 const Navbar = () => {
   const { user, signOutUser } = useAuth();
-
   const pathname = usePathname();
   const lastpath = pathname.split("/").pop(); // Get the last part of the pathname (e.g., "dashboard" or "signin")
   //    console.log(lastpath)
