@@ -4,8 +4,8 @@ import Image from 'next/image';
 const GoldenResume = ({ resume }) => {
     const {
         basicInfo,
-        education,
-        employment,
+        educations,
+        employments,
         skills,
         languages,
         projects
@@ -38,7 +38,7 @@ const GoldenResume = ({ resume }) => {
 
                     <div className="text-center">
                         <h2 className="text-2xl font-bold text-main mb-4">Skills</h2>
-                        {skills?.map((skill, index) => (
+                        {skills && Object.values(skills)?.map((skill, index) => (
                             <div key={index} className="mb-2">
                                 <p className="text-lg font-medium">{skill.skill} - {skill.level}</p>
                             </div>
@@ -47,7 +47,7 @@ const GoldenResume = ({ resume }) => {
 
                     <div className="text-center mt-8">
                         <h2 className="text-2xl font-bold text-main mb-4">Languages</h2>
-                        {languages?.map((lang, index) => (
+                        {languages && Object.values(languages)?.map((lang, index) => (
                             <div key={index} className="mb-2">
                                 <p className="text-lg font-medium">{lang.language} - {lang.proficiency}</p>
                             </div>
@@ -59,7 +59,7 @@ const GoldenResume = ({ resume }) => {
                 <div className="lg:col-span-2">
                     <div className="mb-8">
                         <h2 className="text-2xl font-bold text-main mb-4">Education</h2>
-                        {education?.map((edu, index) => (
+                        {educations && Object.values(educations)?.map((edu, index) => (
                             <div key={index} className="mb-4">
                                 <p className="text-lg font-medium">{edu.degree} - {edu.institute}</p>
                                 <p className="text-gray-700">{`${new Date(edu?.startDate)?.toLocaleDateString()} - ${edu?.ongoing
@@ -73,7 +73,7 @@ const GoldenResume = ({ resume }) => {
                     <div className="mb-8">
                         <h2 className="text-2xl font-bold text-main mb-4">Projects</h2>
                     
-                        {projects?.map((project, index) => (
+                        {projects && Object.values(projects)?.map((project, index) => (
                             <div key={index} className="text-xl pt-3">
                                 <h2 className="font-semibold bg-transparent">{project?.title}</h2>
                                 <h3>{project?.type}</h3>
@@ -89,7 +89,7 @@ const GoldenResume = ({ resume }) => {
 
                     <div>
                         <h2 className="text-2xl font-bold text-main mb-4">Employment</h2>
-                        {employment?.map((job, index) => (
+                        {employments && Object.values(employments)?.map((job, index) => (
                             <div key={index} className="mb-8">
                                 <p className="text-lg font-medium">{job.jobTitle} - {job.employer}</p>
                                 <p className="text-gray-700">{`${new Date(job?.startDate)?.toLocaleDateString()} - ${job?.ongoing
