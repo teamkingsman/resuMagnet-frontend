@@ -19,6 +19,7 @@
     "cloudinary": "^2.0.0",
     "cloudinary-core": "^2.13.0",
     "firebase": "^10.7.1",
+    "html2pdf.js": "^0.10.1",
     "lottie-react": "^2.4.0",
     "next-cloudinary": "^5.20.0",
     "openai": "^4.0.0",
