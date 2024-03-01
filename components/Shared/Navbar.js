@@ -18,6 +18,9 @@ const Navbar = () => {
     "resume",
     "cv",
     "preview",
+    "interview",
+    "quiz",
+    "reviews",
   ];
   if (doNotShowNav.includes(lastpath)) {
     return null;
