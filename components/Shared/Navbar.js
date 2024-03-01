@@ -20,7 +20,7 @@ const Navbar = () => {
     "preview",
     "interview",
     "quiz",
-    "reviews",
+    "reviews", 
   ];
   if (doNotShowNav.includes(lastpath)) {
     return null;
