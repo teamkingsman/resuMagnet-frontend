@@ -5,7 +5,7 @@ import FAQ from "./FAQ";
 
 const Pricing = () => {
   return (
-    <div>
+    <div className="my-4 pt-10">
       <div className="bg-[#f9f9f9e6] max-w-[2520px] mx-auto xl:px-20 md:pr-10 sm:px-2">
       <div>
         <h1 className="text-2xl md:text-4xl text-center px-6 font-bold pt-16">

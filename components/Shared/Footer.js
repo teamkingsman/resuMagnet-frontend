@@ -15,7 +15,7 @@ const Footer = () => {
    
     return (
         <div>
-            <footer className="footer p-10 bg-[#FFFFFF] text-base-content border-t-4 border-double border-highlight_color">
+            <footer className="footer p-10 bg-[#FFFFFF] text-base-content border-t-4 border-double border-main">
                 <form className="md:hidden block">
                     <header className="footer-title text-highlight_color">Newsletter</header>
                     <fieldset className="form-control w-full ">

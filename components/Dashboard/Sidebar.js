@@ -6,18 +6,19 @@ import {
   MdOutlineSpaceDashboard,
   MdOutlineAnalytics,
   MdOutlineIntegrationInstructions,
-  MdOutlineMoreHoriz,
-  MdOutlineSettings,
   MdOutlineLogout,
+  MdOutlineQuiz,
+  MdOutlineRateReview,
+  MdOutlineHome,
 } from "react-icons/md";
+import { LuFileQuestion } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
-import { FaRegComments } from "react-icons/fa";
 import { BiMessageSquareDots } from "react-icons/bi";
 import Link from "next/link";
 import Logo from "../LogoAnimation/Logo";
 import useAuth from "@/hooks/useAuth";
 function Sidebar() {
-  const {signOutUser} = useAuth()
+  const { signOutUser } = useAuth()
   return (
     <>
       <Disclosure as="nav">
@@ -83,7 +84,8 @@ function Sidebar() {
               </Link>
               <Link href="/dashboard/interview">
                 <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                  <MdOutlineIntegrationInstructions className="text-2xl text-gray-600 group-hover:text-white " />
+                  <LuFileQuestion className="text-2xl text-gray-600 group-hover:text-white " />
+                  {/* <MdOutlineIntegrationInstructions className="text-2xl text-gray-600 group-hover:text-white " /> */}
                   <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
                     Interview Q&A
                   </h3>
@@ -91,15 +93,17 @@ function Sidebar() {
               </Link>
               <Link href="/dashboard/quiz">
                 <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                  <MdOutlineIntegrationInstructions className="text-2xl text-gray-600 group-hover:text-white " />
+                  <MdOutlineQuiz className="text-2xl text-gray-600 group-hover:text-white " />
+                  {/* <MdOutlineIntegrationInstructions className="text-2xl text-gray-600 group-hover:text-white " /> */}
                   <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
-                   QuizAplication
+                    QuizAplication
                   </h3>
                 </div>
               </Link>
               <Link href="/dashboard/reviews">
                 <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                  <MdOutlineIntegrationInstructions className="text-2xl text-gray-600 group-hover:text-white " />
+                <MdOutlineRateReview className="text-2xl text-gray-600 group-hover:text-white "/>
+                  {/* <MdOutlineIntegrationInstructions className="text-2xl text-gray-600 group-hover:text-white " /> */}
                   <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
                     Give Reviews
                   </h3>
@@ -107,7 +111,8 @@ function Sidebar() {
               </Link>
               <Link href="/">
                 <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                  <MdOutlineIntegrationInstructions className="text-2xl text-gray-600 group-hover:text-white " />
+                <MdOutlineHome className="text-2xl text-gray-600 group-hover:text-white "/>
+                  {/* <MdOutlineIntegrationInstructions className="text-2xl text-gray-600 group-hover:text-white " /> */}
                   <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
                     Home
                   </h3>

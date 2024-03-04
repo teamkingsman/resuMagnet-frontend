@@ -8,7 +8,7 @@ import { GiPostOffice } from "react-icons/gi";
 import { IoEarth } from "react-icons/io5";
 import Image from "next/image";
 const JoyResume = ({ resume }) => {
-  const { basicInfo, education, employment, languages, skills, projects } = resume;
+  const { basicInfo, educations, employments, languages, skills, projects } = resume;
   console.log(resume);
   return (
     <div className="max-w-screen-lg mx-auto border-2 p-5 my-4 font-poppins">
@@ -83,7 +83,7 @@ const JoyResume = ({ resume }) => {
       <div className="pt-5">
         <h1 className="text-xl font-semibold">Professional Experience</h1>
         <hr className="border border-black"></hr>
-        {employment?.map((emp, index) => (
+        {employments && Object.values(employments)?.map((emp, index) => (
           <div key={index} className="pt-2 grid grid-cols-12 gap-2">
             <div className="col-span-3">
             <h2>
@@ -110,7 +110,7 @@ const JoyResume = ({ resume }) => {
         <h1 className="text-xl font-semibold">Education</h1>
         <hr className="border border-black"></hr>
         <div className="grid grid-cols-2 pt-4 gap-3">
-          {education?.map((edu, index) => (
+          {educations && Object.values(educations)?.map((edu, index) => (
             <div key={index} className="flex md:gap-5 gap-3">
               <div>
                 <h2>
@@ -136,7 +136,7 @@ const JoyResume = ({ resume }) => {
       <div className="pt-5">
         <h1 className="text-2xl font-semibold">Project</h1>
         <hr className="border border-black"></hr>
-        {projects?.map((project, index) => (
+        {educations && Object.values(projects)?.map((project, index) => (
           <div key={index} className="text-xl pt-3">
             <h2 className="font-semibold">
               {project?.title}
@@ -156,7 +156,7 @@ const JoyResume = ({ resume }) => {
         <hr className="border border-black"></hr>
         <div className="grid grid-cols-3  gap-4">
           <ul className="list-disc flex pt-3 pl-4 md:gap-12 gap-4">
-            {skills?.map((lang, index) => (
+            {skills && Object.values(skills)?.map((lang, index) => (
               <li key={index}>
                 <span className="text-lg font-semibold">{lang?.level}</span>:{" "}
                 {lang?.skill}
@@ -171,7 +171,7 @@ const JoyResume = ({ resume }) => {
         <hr className="border border-black"></hr>
         <div>
           <ul className="list-disc flex pt-3 pl-4 md:gap-12 gap-4">
-            {languages?.map((lang, index) => (
+            {languages && Object.values(languages)?.map((lang, index) => (
               <li key={index}>
                 {lang?.language} ({lang?.proficiency})
               </li>

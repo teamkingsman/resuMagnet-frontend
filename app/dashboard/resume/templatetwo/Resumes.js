@@ -9,8 +9,8 @@ import Image from 'next/image';
 const Resumes = ({ resume }) => {
   const {
     basicInfo,
-    education,
-    employment,
+    educations,
+    employments,
     skills,
     languages,
     projects
@@ -56,7 +56,7 @@ const Resumes = ({ resume }) => {
             <p>Graduation Year: {edu.graduationYear}</p>
           </div>
         ))} */}
-          {education?.map((edu, index) => (
+          {educations && Object.values(educations)?.map((edu, index) => (
             <div key={index} className="mb-4">
               <p className="font-bold">{edu.degree} - {edu.institute}</p>
               <p>{`${new Date(edu?.startDate)?.toLocaleDateString()} - ${edu?.ongoing
@@ -72,7 +72,7 @@ const Resumes = ({ resume }) => {
             {/* {coverLetterData.skills.map((skill, index) => (
             <li key={index}>{skill}</li>
           ))} */}
-            {skills?.map((skill, index) => (
+            {skills && Object.values(skills)?.map((skill, index) => (
               <div key={index} className="mb-4">
                 <p>{skill.skill} - {skill.level}</p>
               </div>
@@ -84,7 +84,7 @@ const Resumes = ({ resume }) => {
             <li key={index}>{language}</li>
           ))} */}
 
-            {languages?.map((lang, index) => (
+            {languages && Object.values(languages)?.map((lang, index) => (
               <div key={index} className="mb-4">
                 <p>{lang.language} - {lang.proficiency}</p>
               </div>
@@ -108,7 +108,7 @@ const Resumes = ({ resume }) => {
 
         <h3 className='text-xl font-bold border-b-2 mt-10'>Projects</h3>
 
-        {projects?.map((project, index) => (
+        {projects && Object.values(projects)?.map((project, index) => (
           <div key={index} className="text-xl pt-3">
             <h2 className="font-semibold bg-transparent">{project?.title}</h2>
             <h3>{project?.type}</h3>
@@ -137,7 +137,7 @@ const Resumes = ({ resume }) => {
             </ul>
           </div>
         ))} */}
-        {employment?.map((job, index) => (
+        {employments && Object.values(employments)?.map((job, index) => (
           <div key={index} className="mb-4">
             <p className="font-bold">{job.jobTitle} - {job.employer}</p>
             <p>{`${new Date(job?.startDate)?.toLocaleDateString()} - ${job?.ongoing
