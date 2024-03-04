@@ -14,7 +14,7 @@ const Template = () => {
           ></Image>
         </div>
         <div className="mt-10 space-y-9 pl-6">
-          <h1 className="text-2xl font-semibold md:text-3xl lg:text-5xl">The Right <span className="text-highlight_color">Resume</span> & <span className="text-highlight_color">CV</span> Maker for the Job</h1>
+          <h1 className="text-2xl font-semibold md:text-3xl lg:text-5xl uppercase">The Right <span className="text-highlight_color">Resume</span> & <span className="text-highlight_color">CV</span> Maker for the Job</h1>
           <p className="text-base md:text-xl my-6">
             Tech, Engineering, Management or Marketing - CV generator with the
             right resume templates to highlight your career journey.
