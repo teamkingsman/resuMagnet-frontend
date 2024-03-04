@@ -6,16 +6,16 @@ import SkillForm from "../FormComponents/SkillForm/SkillForm";
 import LanguageForm from "../FormComponents/LanguageForm/LanguageForm";
 import BasicInfoForm from "../FormComponents/BasicInfoForm/BasicInfoForm";
 import ExtraActivitiesForm from "../FormComponents/ExtraActivitiesForm/ExtraActivitiesForm";
-import {  cvFromGetById, cvFromPost } from "@/lib/BuilderAPI";
+import { cvFromGetById, cvFromPost } from "@/lib/BuilderAPI";
 import ProjectForm from "../FormComponents/ProjectForm/ProjectForm";
 import { useRouter } from "next/navigation";
 import useAuth from "@/hooks/useAuth";
 
-function CvForm({params}) {
+function CvForm({ params }) {
   const router = useRouter();
   const { user } = useAuth();
   const [allFormData, setAllFormData] = useState({
-    basicInfo: [],
+    basicInfo: {},
     educations: [],
     employments: [],
     languages: [],
@@ -23,9 +23,8 @@ function CvForm({params}) {
     skills: [],
     extraActivities: [],
   });
-console.log(allFormData)
 
-const [cvData, setCvData] = useState();
+  const [cvData, setCvData] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,8 +37,6 @@ const [cvData, setCvData] = useState();
     };
     fetchData();
   }, [params]);
-
-
 
   const [showEmploymentForm, setShowEmploymentForm] = useState(false);
   const [showEducationForm, setShowEducationForm] = useState(false);
@@ -121,25 +118,43 @@ const [cvData, setCvData] = useState();
     }));
   };
 
-   const handlePreview = async () => {
+  const handlePreview = async () => {
     try {
+      
       const mergedData = {
-        basicInfo: { ...cvData.basicInfo, ...allFormData.basicInfo },
-        educations: { ...cvData.educations, ...allFormData.educations },
-        employments: { ...cvData.employments, ...allFormData.employments },
-        skills: { ...cvData.skills, ...allFormData.skills },
-        languages: { ...cvData.languages, ...allFormData.languages },
-        projects: { ...cvData.projects, ...allFormData.projects },
-        extraActivities: {
-          ...cvData.extraActivities,
-          ...allFormData.extraActivities,
-        },
+        basicInfo: { ...cvData?.basicInfo, ...allFormData.basicInfo },
+        educations: [...(cvData?.educations || []), ...allFormData.educations],
+        employments: [...(cvData?.employments || []), ...allFormData.employments],
+        skills: [...(cvData?.skills || []), ...allFormData.skills],
+        languages: [...(cvData?.languages || []), ...allFormData.languages],
+        projects: [...(cvData?.projects || []), ...allFormData.projects],
         userEmail: user?.email,
       };
+    
+      mergedData.educations = Array.from(
+        new Set(mergedData.educations.map(JSON.stringify))
+      ).map(JSON.parse);
+      mergedData.employments = Array.from(
+        new Set(mergedData.employments.map(JSON.stringify))
+      ).map(JSON.parse);
+      mergedData.skills = Array.from(
+        new Set(mergedData.skills.map(JSON.stringify))
+      ).map(JSON.parse);
+      mergedData.languages = Array.from(
+        new Set(mergedData.languages.map(JSON.stringify))
+      ).map(JSON.parse);
+      mergedData.projects = Array.from(
+        new Set(mergedData.projects.map(JSON.stringify))
+      ).map(JSON.parse);
+      mergedData.extraActivities = Array.from(
+        new Set(mergedData.extraActivities.map(JSON.stringify))
+      ).map(JSON.parse);
+
       console.log(mergedData);
+
       const response = await cvFromPost(mergedData);
       console.log("CV data sent successfully", response);
-      router.push("/dashboard/cv/preview")
+      router.push("/dashboard/cv/preview");
     } catch (error) {
       console.error("Error sending CV data", error);
     }
@@ -174,7 +189,7 @@ const [cvData, setCvData] = useState();
                 <EducationForm
                   onChange={handleEducationDataChange}
                   educations={cvData?.educations}
-                ></EducationForm>
+                />
               )}
 
               <div className="form-control mt-4">
@@ -191,7 +206,7 @@ const [cvData, setCvData] = useState();
                 <EmploymentForm
                   onChange={handleEmploymentDataChange}
                   employments={cvData?.employments}
-                ></EmploymentForm>
+                />
               )}
 
               <div className="form-control mt-4">
@@ -208,7 +223,7 @@ const [cvData, setCvData] = useState();
                 <SkillForm
                   onChange={handleSkillDataChange}
                   skills={cvData?.skills}
-                ></SkillForm>
+                />
               )}
 
               <div className="form-control mt-4">
@@ -225,7 +240,7 @@ const [cvData, setCvData] = useState();
                 <LanguageForm
                   onChange={handleLanguageDataChange}
                   languages={cvData?.languages}
-                ></LanguageForm>
+                />
               )}
 
               <div className="form-control mt-4">
@@ -242,7 +257,7 @@ const [cvData, setCvData] = useState();
                 <ProjectForm
                   onChange={handleProjectDataChange}
                   projects={cvData?.projects}
-                ></ProjectForm>
+                />
               )}
 
               <div className="form-control mt-4">

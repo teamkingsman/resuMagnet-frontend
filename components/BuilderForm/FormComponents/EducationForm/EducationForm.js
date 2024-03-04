@@ -4,9 +4,9 @@ import React, { useState } from "react";
 function EducationForm({ onChange, educations: initialEducationData }) {
   const [educationHistory, setEducationHistory] = useState(() => {
     return initialEducationData
-      ? Object.values(initialEducationData).map((entry) => ({
+      ? initialEducationData.map((entry) => ({
           ...entry,
-          startDate: entry.startDate || "", 
+          startDate: entry.startDate || "",
           endDate: entry.endDate || "",
         }))
       : [
@@ -45,7 +45,7 @@ function EducationForm({ onChange, educations: initialEducationData }) {
           ? {
               ...entry,
               ongoing: checked,
-              endDate: checked ? " " : entry.endDate,
+              endDate: checked ? "" : entry.endDate,
             }
           : entry
       );
@@ -62,6 +62,21 @@ function EducationForm({ onChange, educations: initialEducationData }) {
       onChange([...updatedHistory]);
       return updatedHistory;
     });
+  };
+
+  const addMoreHistory = () => {
+    setEducationHistory((prevHistory) => [
+      ...prevHistory,
+      {
+        id: prevHistory.length + 1,
+        degree: "",
+        institute: "",
+        startDate: "",
+        endDate: "",
+        ongoing: false,
+        educationDescription: "",
+      },
+    ]);
   };
 
   return (
@@ -178,20 +193,7 @@ function EducationForm({ onChange, educations: initialEducationData }) {
       <div className="form-control mt-4">
         <button
           type="button"
-          onClick={() =>
-            setEducationHistory((prevHistory) => [
-              ...prevHistory,
-              {
-                id: prevHistory.length + 1,
-                degree: "",
-                institute: "",
-                startDate: " ",
-                endDate: " ",
-                ongoing: false,
-                educationDescription: "",
-              },
-            ])
-          }
+          onClick={addMoreHistory}
           className="flex items-center justify-center gap-2 text-main font-semibold hover:font-bold hover:bg hover:border"
         >
           Add More History +
