@@ -6,8 +6,8 @@ import Link from "next/link";
 
 function JobPost() {
   return (
-    <div className="flex flex-col items-center justify-center text-center bg-whitecolor space-y-4 p-4">
-      <h1 className="text-5xl font-semibold text-sub_color">JobHub</h1>
+    <div className="flex flex-col items-center justify-center text-center bg-whitecolor space-y-4 p-4 pt-5">
+      <h1 className="text-5xl font-semibold text-main uppercase">JobHub</h1>
       <p className="text-2xl font-medium text-main">
         {" "}
         Welcome to JobHub, where careers take flight and opportunities abound!
