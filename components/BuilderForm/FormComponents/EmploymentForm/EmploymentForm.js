@@ -1,9 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
+
 function EmploymentForm({ onChange, employments: initialEmploymentData }) {
   const [employmentHistory, setEmploymentHistory] = useState(() => {
     return initialEmploymentData
-      ? Object.values(initialEmploymentData).map((entry) => ({
+      ? initialEmploymentData.map((entry) => ({
           ...entry,
           startDate: entry.startDate || "",
           endDate: entry.endDate || "",
@@ -21,13 +22,15 @@ function EmploymentForm({ onChange, employments: initialEmploymentData }) {
   });
 
   const handleInputChange = (e, field, id) => {
-    setEmploymentHistory((prevHistory) =>
-      prevHistory.map((entry) =>
+    setEmploymentHistory((prevHistory) => {
+      const updatedHistory = prevHistory.map((entry) =>
         entry.id === id ? { ...entry, [field]: e.target.value } : entry
-      )
-    );
-    onChange(employmentHistory);
+      );
+      onChange([...updatedHistory]);
+      return updatedHistory;
+    });
   };
+
 
   return (
     <div className="md:flex flex-col justify-center gap-4 mt-4">

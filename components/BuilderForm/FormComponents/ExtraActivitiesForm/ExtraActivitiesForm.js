@@ -1,10 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 
 function ExtraActivitiesForm({ onChange, extraActivities: initialActivities }) {
   const [activities, setActivities] = useState(
     initialActivities
-      ? Object.values(initialActivities)
+      ? initialActivities.map((activity) => ({ ...activity }))
       : [
           {
             id: 1,
@@ -164,3 +164,4 @@ function ExtraActivitiesForm({ onChange, extraActivities: initialActivities }) {
 }
 
 export default ExtraActivitiesForm;
+

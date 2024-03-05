@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { deleteImageFromUrl, photoLink } from "@/lib/utils";
 import Image from "next/image";
 import avatar from "@/assets/avatar.gif";

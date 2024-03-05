@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import EmploymentForm from "../FormComponents/EmploymentForm/EmploymentForm";
 import EducationForm from "../FormComponents/EducationForm/EducationForm";
 import SkillForm from "../FormComponents/SkillForm/SkillForm";
@@ -35,10 +35,6 @@ const ResumeForm = ({ params }) => {
     };
     fetchData();
   }, [params]);
-
-
-
-
 
   const [showEmploymentForm, setShowEmploymentForm] = useState(false);
   const [showEducationForm, setShowEducationForm] = useState(false);
@@ -111,15 +107,33 @@ const ResumeForm = ({ params }) => {
   const handlePreview = async () => {
     try {
       const mergedData = {
-        basicInfo: { ...resumeData.basicInfo, ...allFormData.basicInfo },
-        educations: { ...resumeData.educations, ...allFormData.educations },
-        employments: { ...resumeData.employments, ...allFormData.employments },
-        skills: { ...resumeData.skills, ...allFormData.skills},
-        languages: { ...resumeData.languages, ...allFormData.languages },
-        projects: { ...resumeData.projects, ...allFormData.projects },
-        userEmail:user?.email,
+        basicInfo: { ...resumeData?.basicInfo, ...allFormData.basicInfo },
+        educations: [...(resumeData?.educations || []), ...allFormData.educations],
+        employments: [...(resumeData?.employments || []), ...allFormData.employments],
+        skills: [...(resumeData?.skills || []), ...allFormData.skills],
+        languages: [...(resumeData?.languages || []), ...allFormData.languages],
+        projects: [...(resumeData?.projects || []), ...allFormData.projects],
+        userEmail: user?.email,
       };
+  
+      mergedData.educations = Array.from(
+        new Set(mergedData.educations.map(JSON.stringify))
+      ).map(JSON.parse);
+      mergedData.employments = Array.from(
+        new Set(mergedData.employments.map(JSON.stringify))
+      ).map(JSON.parse);
+      mergedData.skills = Array.from(
+        new Set(mergedData.skills.map(JSON.stringify))
+      ).map(JSON.parse);
+      mergedData.languages = Array.from(
+        new Set(mergedData.languages.map(JSON.stringify))
+      ).map(JSON.parse);
+      mergedData.projects = Array.from(
+        new Set(mergedData.projects.map(JSON.stringify))
+      ).map(JSON.parse);
+  
       console.log(mergedData);
+  
       const response = await resumeFromPost(mergedData);
       console.log("Resume data sent successfully", response);
       router.push("/dashboard/resume/preview");
@@ -127,7 +141,7 @@ const ResumeForm = ({ params }) => {
       console.error("Error sending resume data", error);
     }
   };
-
+  
   return (
     <div className="hero min-h-screen my-16 ">
       <div className="bg-main p-8 rounded-xl">
