@@ -39,7 +39,7 @@ const ResumeDiamond = ({ resume }) => {
 
         <div className="mb-8 mt-12 text-center text-neutral-50">
           <h2 className="text-xl font-bold text-main">Skills</h2>
-          {skills && Object.values(skills)?.map((skill, index) => (
+          {skills?.map((skill, index) => (
             <div key={index} className="mb-4">
               <p>
                 {skill.skill} - {skill.level}
@@ -50,7 +50,7 @@ const ResumeDiamond = ({ resume }) => {
 
         <div className="languages mt-6 text-center text-neutral-50">
           <h2 className="text-xl font-bold  text-main  py-2">Languages</h2>
-          {languages && Object.values(languages)?.map((lang, index) => (
+          {languages?.map((lang, index) => (
             <div key={index} className="mb-4">
               <p>
                 {lang.language} - {lang.proficiency}
@@ -70,7 +70,7 @@ const ResumeDiamond = ({ resume }) => {
           <h2 className="text-xl font-bold  text-neutral-50 bg-[#1F618D] pl-2 mb-4 py-2">
             Education
           </h2>
-          {educations && Object.values(educations)?.map((edu, index) => (
+          {educations?.map((edu, index) => (
             <div key={index} className="mb-4">
               <p className="font-bold">{edu.degree} - {edu.institute}</p>
               <p>{`${new Date(edu?.startDate)?.toLocaleDateString()} - ${edu?.ongoing
@@ -86,7 +86,7 @@ const ResumeDiamond = ({ resume }) => {
             Projects
           </h2>
 
-          {projects && Object.values(projects)?.map((project, index) => (
+          {projects?.map((project, index) => (
             <div key={index} className="text-xl pt-3">
               <h2 className="font-semibold bg-transparent">{project?.title}</h2>
               <h3>{project?.type}</h3>
@@ -103,7 +103,7 @@ const ResumeDiamond = ({ resume }) => {
           <h2 className="text-xl font-bold  text-neutral-50 bg-[#1F618D] pl-2 mb-4 py-2">
             Employment
           </h2>
-          {employments && Object.values(employments)?.map((job, index) => (
+          {employments?.map((job, index) => (
             <div key={index} className="mb-4">
               <p className="font-bold">{job.jobTitle} - {job.employer}</p>
               <p>{`${job.startDate} - ${job.endDate}`}</p>

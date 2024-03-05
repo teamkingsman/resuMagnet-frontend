@@ -38,7 +38,7 @@ const PremiumResume = ({resume}) => {
                 </div>
               {
             
-            employments && Object.values(employments)?.map((employment,index)=>(
+            employments?.map((employment,index)=>(
                    <div key={index}>
               
                     {/* horizontal */}
@@ -68,7 +68,7 @@ const PremiumResume = ({resume}) => {
                         <h1 className="text-xl font-bold">Project</h1>
                            
                              {
-                               projects && Object.values(projects)?.map((project, index) => (
+                               projects.map((project, index) => (
                                  <div key={index}>
                                     <h2 className="text-lg font-bold">{project?.title}</h2>
                                     <div className='flex gap-8 underline'>
@@ -90,7 +90,7 @@ const PremiumResume = ({resume}) => {
            <hr className=" h-1"/>
            </div>
             {
-            educations && Object.values(educations)?.map((education,index)=>(
+            educations?.map((education,index)=>(
                 <div key={index}>
                 <h2>{education?.degree}</h2>
                 <h2>{education?.institute}</h2>
@@ -110,7 +110,7 @@ const PremiumResume = ({resume}) => {
            </div>
            <ul className='list-disc grid grid-cols-3 ml-4'>
        {
-        skills && Object.values(skills)?.map((skill,index)=>(
+        skills?.map((skill,index)=>(
             <div key={index}>
                 <h1>{capitalize(skill?.level)}</h1>
             <li  className='underline ml-4'>{capitalize(skill?.skill)}</li>
@@ -130,7 +130,7 @@ const PremiumResume = ({resume}) => {
            </div>
            <ul  className="">
       {
-        languages && Object.values(languages)?.map((language,index)=>(
+        languages?.map((language,index)=>(
           
           <div key={index} className='flex gap-8'>
               <li >{capitalize(language?.language)}</li>
