@@ -5,7 +5,7 @@ const ClassicCoverLetter = ({coverLetter}) => {
     const { designation, email, fname, lname, letterBody, phone } = coverLetter;
     return (
         <>
-             <div className="shadow-2xl  bg-slate-200 font-serif w-[400px]  lg:w-[800px] h-[1200px] mx-auto mt-4">
+             <div className="shadow-2xl  bg-slate-200 font-serif w-[400px]  lg:w-[800px] h-[800px] mx-auto mt-4">
             
          
                   <div>

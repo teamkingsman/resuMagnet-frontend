@@ -83,7 +83,7 @@ const JoyResume = ({ resume }) => {
       <div className="pt-5">
         <h1 className="text-xl font-semibold">Professional Experience</h1>
         <hr className="border border-black"></hr>
-        {employments && Object.values(employments)?.map((emp, index) => (
+        {employments?.map((emp, index) => (
           <div key={index} className="pt-2 grid grid-cols-12 gap-2">
             <div className="col-span-3">
             <h2>
@@ -110,7 +110,7 @@ const JoyResume = ({ resume }) => {
         <h1 className="text-xl font-semibold">Education</h1>
         <hr className="border border-black"></hr>
         <div className="grid grid-cols-2 pt-4 gap-3">
-          {educations && Object.values(educations)?.map((edu, index) => (
+          {educations?.map((edu, index) => (
             <div key={index} className="flex md:gap-5 gap-3">
               <div>
                 <h2>
@@ -156,7 +156,7 @@ const JoyResume = ({ resume }) => {
         <hr className="border border-black"></hr>
         <div className="grid grid-cols-3  gap-4">
           <ul className="list-disc flex pt-3 pl-4 md:gap-12 gap-4">
-            {skills && Object.values(skills)?.map((lang, index) => (
+            {skills?.map((lang, index) => (
               <li key={index}>
                 <span className="text-lg font-semibold">{lang?.level}</span>:{" "}
                 {lang?.skill}
@@ -171,7 +171,7 @@ const JoyResume = ({ resume }) => {
         <hr className="border border-black"></hr>
         <div>
           <ul className="list-disc flex pt-3 pl-4 md:gap-12 gap-4">
-            {languages && Object.values(languages)?.map((lang, index) => (
+            {languages?.map((lang, index) => (
               <li key={index}>
                 {lang?.language} ({lang?.proficiency})
               </li>
