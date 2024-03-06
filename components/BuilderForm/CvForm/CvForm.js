@@ -128,6 +128,7 @@ function CvForm({ params }) {
         skills: [...(cvData?.skills || []), ...allFormData.skills],
         languages: [...(cvData?.languages || []), ...allFormData.languages],
         projects: [...(cvData?.projects || []), ...allFormData.projects],
+        extraActivities: [...(cvData?.extraActivities || []), ...allFormData.extraActivities],
         userEmail: user?.email,
       };
     
