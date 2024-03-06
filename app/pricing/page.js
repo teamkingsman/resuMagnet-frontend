@@ -23,7 +23,7 @@ const Pricing = () => {
             title={"Students"}
             subtitle={"Basic"}
             feature1={"Unlimited resumes & cover letters"}
-            feature2={"Image Croping"}
+            feature2={"Job Hub"}
             feature3={"Interviews Practice Questions"}
           ></PaymentCard>
           <PaymentCard
@@ -32,15 +32,16 @@ const Pricing = () => {
             subtitle={"Advance"}
             feature2={"All premium templates & colors"}
             feature1={"Unlimited PDF downloads"}
-            feature3={"Job Searching"}
+            feature3={"Quiz Aplicatin"}
           ></PaymentCard>
           <PaymentCard
             price={"80"}
             title={"Professionals"}
             subtitle={"Most Popular"}
-            feature1={"ATS Verification"}
+            feature1={"Unlimited resumes , cover letters & CV"}
             feature2={"All premium templates & colors"}
-            feature3={"Unlimited resumes , cover letters & CV"}
+            feature3={"ATS Verification And Ai Interview Q&A"}
+
           ></PaymentCard>
         </div>
       </div>
