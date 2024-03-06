@@ -10,7 +10,7 @@ const PaymentCard = ({price , title , subtitle , feature1 , feature2 , feature3 
       setIsOpen(false);
     }
     return (
-        <div className="md:w-[300px] mx-auto space-y-8 shadow-[0px_0px_30px_2px_rgba(100,100,111,0.1)] my-20 relative p-8">
+        <div className="md:w-[300px] mx-auto bg-[#fdfdfd] space-y-8 shadow-[rgba(84,84,94,0.1)] my-20 relative p-8">
             {/* top part  */}
             <div>
                 {/* <img className="w-[60px] border h-[60px] object-cover rounded-full p-2 bg-slate-100 duration-300 hover:scale-105" src="https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL2pvYjk2OC1lbGVtZW50LTAxMi14LmpwZw.jpg" alt=""
@@ -23,10 +23,10 @@ const PaymentCard = ({price , title , subtitle , feature1 , feature2 , feature3 
                         {/* Price  */}
                         <div className="absolute top-8 left-7 text-white text-xl font-semibold flex flex-col">
                             <span>
-                                <sub className="font-normal text-sm">$</sub>
+                                <sub className="font-normal text-base">$</sub>
                                 <span>{price}</span>
                             </span>
-                            <span className="text-xs font-normal">/month</span>
+                            {/* <span className="text-xs font-normal">/month</span> */}
                         </div>
                     </div>
                 </div>

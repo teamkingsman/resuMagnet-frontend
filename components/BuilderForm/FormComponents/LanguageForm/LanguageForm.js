@@ -4,7 +4,10 @@ import React, { useState } from "react";
 function LanguageForm({ onChange, languages: initialLanguages }) {
   const [languages, setLanguages] = useState(
     initialLanguages
-      ? Object.values(initialLanguages)
+      ? initialLanguages.map((lang) => ({
+          ...lang,
+          proficiency: lang.proficiency || "",
+        }))
       : [
           {
             id: 1,
@@ -21,6 +24,7 @@ function LanguageForm({ onChange, languages: initialLanguages }) {
         lang.id === id ? { ...lang, [name]: value } : lang
       )
     );
+    onChange([...languages]); 
   };
 
   const addMoreLanguage = () => {
@@ -32,11 +36,7 @@ function LanguageForm({ onChange, languages: initialLanguages }) {
         proficiency: "",
       },
     ]);
-  };
-
-  // Call onChange with the updated languages state
-  const handleOnChange = () => {
-    onChange(languages);
+    onChange([...languages]);
   };
 
   return (
@@ -92,10 +92,7 @@ function LanguageForm({ onChange, languages: initialLanguages }) {
       <div className="form-control mt-4">
         <button
           type="button"
-          onClick={() => {
-            addMoreLanguage();
-            handleOnChange();
-          }}
+          onClick={() => addMoreLanguage()}
           className="flex items-center justify-center gap-2 text-main font-semibold hover:font-bold hover:bg hover:border"
         >
           Add More Language +

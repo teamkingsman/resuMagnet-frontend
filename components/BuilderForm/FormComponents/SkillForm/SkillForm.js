@@ -4,7 +4,10 @@ import React, { useState } from "react";
 function SkillForm({ onChange, skills: initialSkills }) {
   const [skills, setSkills] = useState(
     initialSkills
-      ? Object.values(initialSkills)
+      ? initialSkills.map((s) => ({
+          ...s,
+          level: s.level || "",
+        }))
       : [
           {
             id: 1,
@@ -21,6 +24,7 @@ function SkillForm({ onChange, skills: initialSkills }) {
         s.id === id ? { ...s, [name]: value } : s
       )
     );
+    onChange([...skills]);
   };
 
   const addMoreSkill = () => {
@@ -32,11 +36,11 @@ function SkillForm({ onChange, skills: initialSkills }) {
         level: "",
       },
     ]);
+    onChange([...skills]); 
   };
 
-  // Call onChange with the updated skills state
   const handleOnChange = () => {
-    onChange(skills);
+    onChange([...skills]); 
   };
 
   return (
@@ -45,7 +49,7 @@ function SkillForm({ onChange, skills: initialSkills }) {
         <div key={`skill-${s.id}`}>
           <h1 className="text-center font-extrabold py-2 text-2xl">Skill {s.id}</h1>
           <div className="md:flex justify-between gap-4">
-             <div className="form-control flex-1">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Skill
@@ -61,7 +65,7 @@ function SkillForm({ onChange, skills: initialSkills }) {
                 required
               />
             </div>
-             <div className="form-control flex-1">
+            <div className="form-control flex-1">
               <label className="label">
                 <span className="flex items-center gap-2 label-text font-semibold text-main">
                   Level
@@ -103,3 +107,5 @@ function SkillForm({ onChange, skills: initialSkills }) {
 }
 
 export default SkillForm;
+
+

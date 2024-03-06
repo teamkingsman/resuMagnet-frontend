@@ -6,27 +6,27 @@ const PremiumCv = ({cv}) => {
    const { basicInfo, education, employment, skill, language, projects } = cv;
    return (
         <>
-             <div className=" mt-8 font-serif bg-slate-400  lg:w-[800px] h-[700px] mx-auto shadow-2xl ">
+             <div className=" mt-8 font-serif bg-slate-400 text-[#000] bg-[#fff]  lg:w-[800px] h-[700px] mx-auto shadow-2xl ">
            
                <div className="p-4 ml-4">
           
             
                      <div className="mt-4 ">
                         <div>
-                     <h1 className="text-3xl font-bold ">{basicInfo.fname}  {basicInfo.lname}</h1>
-                     <h1 className="text-xl font-bold ">{basicInfo.designation}</h1>
+                     <h1 className="text-3xl font-bold ">{basicInfo?.fname}  {basicInfo?.lname}</h1>
+                     <h1 className="text-xl font-bold ">{basicInfo?.designation}</h1>
                      <div className="flex mt-4 justify-between">
                      <div className="">
-                     <h1 className="text-md  ">{basicInfo.email}</h1>
-                     <h1 className="text-md ">{basicInfo.phone}</h1>
-                     <h1 className="text-md  ">Date of birth:{basicInfo.dob}</h1>
-                     <h1 className="text-md  ">nationality:{basicInfo.nationality}</h1>
+                     <h1 className="text-md  ">{basicInfo?.email}</h1>
+                     <h1 className="text-md ">{basicInfo?.phone}</h1>
+                     <h1 className="text-md  ">Date of birth:{basicInfo?.dob}</h1>
+                     <h1 className="text-md  ">nationality:{basicInfo?.nationality}</h1>
                      </div>
 
                      <div>
-                     <h1 className="text-md ">Country:{basicInfo.country}</h1>
-                     <h1 className="text-md  ">City:{basicInfo.city}</h1>
-                     <h1 className="text-md  ">postal code:{basicInfo.postal}</h1>
+                     <h1 className="text-md ">Country:{basicInfo?.country}</h1>
+                     <h1 className="text-md  ">City:{basicInfo?.city}</h1>
+                     <h1 className="text-md  ">postal code:{basicInfo?.postal}</h1>
                      </div>
                     
                      <div>
@@ -55,7 +55,7 @@ const PremiumCv = ({cv}) => {
              <div>
                  <h1 className="text-xl font-bold">summary:</h1>
                  <div>
-                    <p>{basicInfo.about}</p>
+                    <p>{basicInfo?.about}</p>
                  </div>
                 </div>   
                 </div>   
