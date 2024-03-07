@@ -1,4 +1,64 @@
-# ResuMagnet - Next.js Application
+## Project Name: ResuMagnet
+
+## Description : 
+1.Introduction
+
+1.1 Purpose
+This document aims to outline the requirements for the development of ResuMagnet, a comprehensive online platform designed for individuals seeking job opportunities and career advancement.
+
+1.2 Scope
+ResuMagnet is intended for use by professionals and students across various sectors actively seeking employment. The platform aims to provide an efficient and user-friendly environment for creating impactful resumes, CVs, and cover letters.
+
+2.Project Goal
+ResuMagnet aims to provide a comprehensive online platform for users to create, enhance, and manage their professional profiles effortlessly. The primary goal is to assist individuals in crafting effective resumes and cover letters while incorporating advanced features such as ATS score analysis, AI-supported cover letter writing, and seamless export options.
+
+3. Key Features With Details
+
+3.1 CV Builder 
+3.2 ResuMagnet's Resume Builder
+3.3 Cover Letter Builder
+3.4 Review Feature: A Dashboard-Integrated User Experience 
+3.5 AutoSave Functionality
+3.6 Export to PDF
+3.7 Resume Link and QR Code 
+3.8 An Attractive and Functional Contact Page with Formspree
+3.9 share Link
+3.10 Payment Integration
+3.11 Serverless Subscription System with Formspree
+3.12 AI-Powered Interviewer
+3.13 Live Design Preview
+
+
+### Technology
+
+4.Frontend Technologies
+
+4.1 Next.js
+4.2 Tailwind CSS
+4.3 Daisy UI
+4.4 Firebase
+4.5 Axios
+4.6 Stripe
+4.7 TanStack Query
+
+5 Backend Technologies
+
+5.1 Node.js
+5.2 Express.js
+5.3 MongoDB
+5.5 JWT (JSON Web Tokens)
+
+
+### Live link:
+https://resu-magnet-frontend.vercel.app/
+
+### Server link:
+https://github.com/teamkingsman/resuMagnet-backend/
+
+
+
+
+<!-- 
 
 ## Introduction
 
@@ -59,4 +119,4 @@ Before starting your work, ensure your local `dev` branch is up-to-date:
 ```bash
 git checkout dev
 git pull origin dev
-```
+``` -->
